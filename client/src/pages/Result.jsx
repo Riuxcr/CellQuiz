@@ -2,6 +2,9 @@ import { useLocation, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { trackFbq } from '../utils/fbq.js'
 
+const CHECKOUT_URL =
+  'https://cellstart.com/checkouts/cn/hWN9Uk6NEwQXKaSPysLdMz5t/en-us?_r=AQABoYi90bHV1P2bHWQw67oveC2sAqSud0BThq2OEtVA8Ys&auto_redirect=false&edge_redirect=true&skip_shop_pay=true'
+
 function getRecommendation(answers) {
   if (!answers || typeof answers !== 'object') return null
   
@@ -129,10 +132,10 @@ export default function Result() {
                 className="w-full sm:flex-1 rounded-2xl bg-[#111827] px-8 py-5 text-lg font-bold text-white shadow-xl transition-all hover:bg-black flex items-center justify-center gap-2"
                 onClick={() => {
                   trackFbq('AddToCart')
-                  window.location.assign('https://cellstart.com/products/nad?selling_plan=3903586561&variant=46896557195521')
+                  window.location.assign(recommendation.productUrl)
                 }}
               >
-                <span>Add to Cart</span>
+                <span>View Product</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                 </svg>
@@ -144,11 +147,11 @@ export default function Result() {
                 type="button"
                 className="w-full sm:flex-1 rounded-2xl border-2 border-[#e5e7eb] bg-white px-8 py-5 text-lg font-bold text-[#111827] transition-all flex items-center justify-center gap-2"
                 onClick={() => {
-                  trackFbq('ViewContent')
-                  window.location.assign('https://cellstart.com/pages/learn')
+                  trackFbq('InitiateCheckout')
+                  window.location.assign(CHECKOUT_URL)
                 }}
               >
-                <span>Learn More</span>
+                <span>Go to Checkout</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>

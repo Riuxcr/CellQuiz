@@ -1,10 +1,25 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import ProgressBar from '../components/ProgressBar.jsx'
 import { trackFbq } from '../utils/fbq.js'
 import QuestionCard from '../components/QuestionCard.jsx'
 import EmailCapture from '../components/EmailCapture.jsx'
+
+const PRODUCT_URL =
+  'https://cellstart.com/products/nad?selling_plan=3903586561&variant=46896557195521'
+
+const CHECKOUT_URL =
+  'https://cellstart.com/checkouts/cn/hWN9Uk6NEwQXKaSPysLdMz5t/en-us?_r=AQABoYi90bHV1P2bHWQw67oveC2sAqSud0BThq2OEtVA8Ys&auto_redirect=false&edge_redirect=true&skip_shop_pay=true'
+
+const buildRedirectUrl = (baseUrl, flow) => {
+  // Add tracking labels to let Shopify/analytics segment conversions.
+  const url = new URL(baseUrl)
+  url.searchParams.set('utm_source', 'cellquiz')
+  url.searchParams.set('utm_medium', 'quiz_ab')
+  url.searchParams.set('utm_campaign', 'protocol_flow')
+  url.searchParams.set('utm_content', flow) // 'product' | 'checkout'
+  return url.toString()
+}
 
 const COMMON_QUESTIONS = [
   {
@@ -86,7 +101,6 @@ const LONGEVITY_PATH = [
 ]
 
 export default function Quiz() {
-  const navigate = useNavigate()
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState({})
   const [name, setName] = useState('')
@@ -129,9 +143,29 @@ export default function Quiz() {
     }
   }
 
-  const handleEmailSuccess = () => {
+  const stableSplit = (seed) => {
+    // Stable "random" assignment so the same user/email
+    // is routed consistently during an A/B test.
+    // Simple string hash -> odd/even decision.
+    let hash = 0
+    for (let i = 0; i < seed.length; i++) {
+      hash = (hash << 5) - hash + seed.charCodeAt(i)
+      hash |= 0 // force 32-bit
+    }
+    return Math.abs(hash)
+  }
 
-    window.location.assign('https://cellstart.com/products/nad?selling_plan=3903586561&variant=46896557195521')
+  const handleEmailSuccess = () => {
+    const seed = email.trim().toLowerCase()
+    const isProductFlow = stableSplit(seed) % 2 === 0 // even -> product, odd -> checkout
+
+    if (isProductFlow) {
+      trackFbq('ViewContent')
+      window.location.assign(buildRedirectUrl(PRODUCT_URL, 'product'))
+    } else {
+      trackFbq('InitiateCheckout')
+      window.location.assign(buildRedirectUrl(CHECKOUT_URL, 'checkout'))
+    }
   }
 
   const shell = 'mx-auto flex min-h-[100dvh] w-full max-w-[1400px] flex-col justify-center px-6 py-12'
