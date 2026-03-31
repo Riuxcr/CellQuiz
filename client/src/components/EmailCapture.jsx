@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { motion, AnimatePresence } from 'framer-motion'
 import { trackFbq } from '../utils/fbq.js'
 import { API_ENDPOINTS } from '../config.js'
 
 const SUBMIT_URL = API_ENDPOINTS.SUBMIT_QUIZ
+/** Render cold starts + DB can exceed 30s; keep UX honest with a clear timeout message. */
+const SUBMIT_TIMEOUT_MS = 90000
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -40,19 +41,30 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
 
     setSubmitting(true)
     try {
-      await axios.post(SUBMIT_URL, {
-        name: name.trim(),
-        email: email.trim(),
-        answers,
-      })
+      await axios.post(
+        SUBMIT_URL,
+        {
+          name: name.trim(),
+          email: email.trim(),
+          answers,
+        },
+        {
+          timeout: SUBMIT_TIMEOUT_MS,
+          headers: { 'Content-Type': 'application/json' },
+        },
+      )
       trackFbq('Lead')
       // Pass submitted values so redirect logic never relies on stale parent state.
       onSuccess({ email: email.trim(), name: name.trim() })
     } catch (err) {
-      const msg =
-        err.response?.data?.message ||
-        err.message ||
-        'Could not submit. Please try again.'
+      const isTimeout =
+        err.code === 'ECONNABORTED' ||
+        (typeof err.message === 'string' && err.message.toLowerCase().includes('timeout'))
+      const msg = isTimeout
+        ? 'That took too long—the server may have been starting up. Please tap again in a few seconds.'
+        : err.response?.data?.message ||
+          err.message ||
+          'Could not submit. Please try again.'
       setSubmitError(msg)
     } finally {
       setSubmitting(false)
@@ -104,54 +116,33 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
             autoComplete="email"
             disabled={submitting}
           />
-          <AnimatePresence>
-            {(validationError || submitError) && (
-              <motion.div 
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="overflow-hidden"
-              >
-                <p className="mt-2 text-xs font-black text-red-500 uppercase tracking-wider pl-4">
-                  {validationError || submitError}
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {(validationError || submitError) && (
+            <p
+              className="mt-2 text-xs font-black text-red-500 uppercase tracking-wider pl-4 transition-opacity duration-200"
+              role="alert"
+            >
+              {validationError || submitError}
+            </p>
+          )}
         </div>
 
-        <motion.button
-          whileHover={{ scale: 1.02, backgroundColor: '#000' }}
-          whileTap={{ scale: 0.98 }}
+        <button
           type="submit"
-          className="relative overflow-hidden w-full rounded-[1.25rem] bg-[#111827] px-8 py-5 text-xl font-black text-white shadow-2xl transition-all disabled:opacity-70"
+          className="relative w-full rounded-[1.25rem] bg-[#111827] px-8 py-5 text-xl font-black text-white shadow-2xl transition-all duration-150 hover:bg-black active:scale-[0.99] disabled:pointer-events-none disabled:opacity-70"
           disabled={submitting}
         >
-          <AnimatePresence mode="wait">
-            {submitting ? (
-              <motion.div 
-                key="loading"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="flex items-center justify-center gap-3"
-              >
-                <div className="w-4 h-4 border-[3px] border-white/30 border-t-white rounded-full animate-spin" />
-                <span className="text-lg">Analyzing...</span>
-              </motion.div>
-            ) : (
-              <motion.span 
-                key="text"
-                className="text-lg md:text-xl"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                Generate My Protocol
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.button>
+          {submitting ? (
+            <span className="flex items-center justify-center gap-3">
+              <span
+                className="h-4 w-4 shrink-0 rounded-full border-[3px] border-white/30 border-t-white animate-spin"
+                aria-hidden
+              />
+              <span className="text-lg">Saving…</span>
+            </span>
+          ) : (
+            <span className="text-lg md:text-xl">Generate My Protocol</span>
+          )}
+        </button>
       </form>
 
       <div className="mt-12 flex items-center justify-center gap-3 text-[10px] font-black text-gray-300 uppercase tracking-[0.3em]">

@@ -4,6 +4,7 @@ import ProgressBar from '../components/ProgressBar.jsx'
 import { trackFbq } from '../utils/fbq.js'
 import QuestionCard from '../components/QuestionCard.jsx'
 import EmailCapture from '../components/EmailCapture.jsx'
+import { warmQuizApi } from '../utils/warmQuizApi.js'
 
 const PRODUCT_URL =
   'https://cellstart.com/products/nad?selling_plan=3903586561&variant=46896557195521'
@@ -130,7 +131,15 @@ export default function Quiz() {
 
   useEffect(() => {
     trackFbq('ViewContent')
+    warmQuizApi()
   }, [])
+
+  useEffect(() => {
+    if (!showEmailStep) return
+    warmQuizApi()
+    const id = window.setTimeout(warmQuizApi, 800)
+    return () => clearTimeout(id)
+  }, [showEmailStep])
 
   // Warm browser cache for quiz art: first image immediately, rest when idle (smoother step-to-step).
   useEffect(() => {

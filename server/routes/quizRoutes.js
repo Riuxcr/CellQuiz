@@ -3,34 +3,6 @@ const Lead = require('../models/Lead')
 
 const router = express.Router()
 
-function getRecommendation(answers) {
-  const q1 = answers[1] ?? answers['1'] ?? ''
-  const text = String(q1)
-
-  if (text.includes('Acne')) {
-    return {
-      title: 'Acne Control Serum',
-      description: 'Targets acne and reduces breakouts.',
-      productUrl:
-        'https://yourstore.com/discount/QUIZ20?redirect=/products/acne-serum',
-    }
-  }
-  if (text.includes('Dry Skin')) {
-    return {
-      title: 'Hydrating Moisturizer',
-      description: 'Deep hydration for dry skin.',
-      productUrl:
-        'https://yourstore.com/discount/QUIZ20?redirect=/products/hydrating-moisturizer',
-    }
-  }
-  return {
-    title: 'Glow Boost Cream',
-    description: 'Enhances natural glow and radiance.',
-    productUrl:
-      'https://yourstore.com/discount/QUIZ20?redirect=/products/glow-cream',
-  }
-}
-
 router.post('/submit', async (req, res) => {
   try {
     const { name, email, answers } = req.body
@@ -66,13 +38,8 @@ router.post('/submit', async (req, res) => {
       answers,
     })
 
-    const recommendation = getRecommendation(answers)
-
-    return res.json({
-      success: true,
-      message: 'Lead saved successfully',
-      recommendation,
-    })
+    // Client only checks success; skip extra payload for a slightly faster response.
+    return res.json({ success: true })
   } catch (err) {
     if (err.name === 'ValidationError') {
       return res.status(400).json({
