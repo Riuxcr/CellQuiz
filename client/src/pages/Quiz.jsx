@@ -9,7 +9,7 @@ const PRODUCT_URL =
   'https://cellstart.com/products/nad?selling_plan=3903586561&variant=46896557195521'
 
 const CHECKOUT_URL =
-  'https://cellstart.com/checkouts/cn/hWN9Uk6NEwQXKaSPysLdMz5t/en-us?_r=AQABoYi90bHV1P2bHWQw67oveC2sAqSud0BThq2OEtVA8Ys&auto_redirect=false&edge_redirect=true&skip_shop_pay=true'
+  'https://cellstart.com/checkouts/cn/hWNAU8GfyILoKlWisS38oZvN/en-us?_r=AQABeic2poYKAyDjN9NVkfsIjkT9LngcU-PtbsT3yIKv_GA&auto_redirect=false&edge_redirect=true&preview_theme_id=156406677761&skip_shop_pay=true'
 
 const buildRedirectUrl = (baseUrl, flow) => {
   // Add tracking labels to let Shopify/analytics segment conversions.
@@ -155,9 +155,10 @@ export default function Quiz() {
     return Math.abs(hash)
   }
 
-  const handleEmailSuccess = () => {
-    const seed = email.trim().toLowerCase()
-    const isProductFlow = stableSplit(seed) % 2 === 0 // even -> product, odd -> checkout
+  const handleEmailSuccess = (payload) => {
+    const submittedEmail = (payload?.email ?? email).trim().toLowerCase()
+    if (!submittedEmail) return
+    const isProductFlow = stableSplit(submittedEmail) % 2 === 0 // even -> product, odd -> checkout
 
     if (isProductFlow) {
       trackFbq('ViewContent')

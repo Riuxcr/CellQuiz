@@ -46,7 +46,8 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
         answers,
       })
       trackFbq('Lead')
-      onSuccess()
+      // Pass submitted values so redirect logic never relies on stale parent state.
+      onSuccess({ email: email.trim(), name: name.trim() })
     } catch (err) {
       const msg =
         err.response?.data?.message ||
