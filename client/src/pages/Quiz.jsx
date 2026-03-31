@@ -1,34 +1,13 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import ProgressBar from '../components/ProgressBar.jsx'
 import { trackFbq } from '../utils/fbq.js'
 import QuestionCard from '../components/QuestionCard.jsx'
 import EmailCapture from '../components/EmailCapture.jsx'
 import { warmQuizApi } from '../utils/warmQuizApi.js'
-
-const PRODUCT_URL =
-  'https://cellstart.com/products/nad?selling_plan=3903586561&variant=46896557195521'
-
-const CHECKOUT_URL =
-  'https://cellstart.com/checkouts/cn/hWNAU8GfyILoKlWisS38oZvN/en-us?_r=AQABeic2poYKAyDjN9NVkfsIjkT9LngcU-PtbsT3yIKv_GA&auto_redirect=false&edge_redirect=true&preview_theme_id=156406677761&skip_shop_pay=true'
-
-const buildRedirectUrl = (baseUrl, flow) => {
-  // Add tracking labels to let Shopify/analytics segment conversions.
-  const url = new URL(baseUrl)
-  url.searchParams.set('utm_source', 'cellquiz')
-  url.searchParams.set('utm_medium', 'quiz_ab')
-  url.searchParams.set('utm_campaign', 'protocol_flow')
-  url.searchParams.set('utm_content', flow) // 'product' | 'checkout'
-  return url.toString()
-}
-
-/** Open CellStart in a new tab so the quiz tab stays on quiz.cellstart.com (avoids Back → /quiz 404 if hosting rewrites lag). Falls back to same-tab if pop-up blocked. */
-const openCellStartUrl = (url) => {
-  const tab = window.open(url, '_blank', 'noopener,noreferrer')
-  if (tab == null) {
-    window.location.assign(url)
-  }
-}
+import {
+  RESULT_STATE_STORAGE_KEY,
+} from '../constants/cellstartUrls.js'
 
 // Order: goal first, then age — then branch into skincare or longevity path.
 const COMMON_QUESTIONS = [
@@ -111,6 +90,7 @@ const LONGEVITY_PATH = [
 ]
 
 export default function Quiz() {
+  const navigate = useNavigate()
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState({})
   const [name, setName] = useState('')
@@ -207,13 +187,18 @@ export default function Quiz() {
     if (!submittedEmail) return
     const isProductFlow = stableSplit(submittedEmail) % 2 === 0 // even -> product, odd -> checkout
 
-    if (isProductFlow) {
-      trackFbq('ViewContent')
-      openCellStartUrl(buildRedirectUrl(PRODUCT_URL, 'product'))
-    } else {
-      trackFbq('InitiateCheckout')
-      openCellStartUrl(buildRedirectUrl(CHECKOUT_URL, 'checkout'))
+    const resultState = {
+      answers: { ...answers },
+      name: (payload?.name ?? name).trim(),
+      email: submittedEmail,
+      preferredFlow: isProductFlow ? 'product' : 'checkout',
     }
+    try {
+      sessionStorage.setItem(RESULT_STATE_STORAGE_KEY, JSON.stringify(resultState))
+    } catch {
+      /* ignore quota / private mode */
+    }
+    navigate('/result', { state: resultState })
   }
 
   const shell = 'mx-auto flex min-h-[100dvh] w-full max-w-[1400px] flex-col justify-center px-6 py-12'
