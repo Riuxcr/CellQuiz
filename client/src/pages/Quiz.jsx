@@ -21,6 +21,14 @@ const buildRedirectUrl = (baseUrl, flow) => {
   return url.toString()
 }
 
+/** Open CellStart in a new tab so the quiz tab stays on quiz.cellstart.com (avoids Back → /quiz 404 if hosting rewrites lag). Falls back to same-tab if pop-up blocked. */
+const openCellStartUrl = (url) => {
+  const tab = window.open(url, '_blank', 'noopener,noreferrer')
+  if (tab == null) {
+    window.location.assign(url)
+  }
+}
+
 const COMMON_QUESTIONS = [
   {
     id: 'age',
@@ -162,10 +170,10 @@ export default function Quiz() {
 
     if (isProductFlow) {
       trackFbq('ViewContent')
-      window.location.assign(buildRedirectUrl(PRODUCT_URL, 'product'))
+      openCellStartUrl(buildRedirectUrl(PRODUCT_URL, 'product'))
     } else {
       trackFbq('InitiateCheckout')
-      window.location.assign(buildRedirectUrl(CHECKOUT_URL, 'checkout'))
+      openCellStartUrl(buildRedirectUrl(CHECKOUT_URL, 'checkout'))
     }
   }
 
