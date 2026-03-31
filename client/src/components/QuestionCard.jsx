@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Logo from './Logo.jsx'
 
 export default function QuestionCard({ question, options, type, min, max, helperText, info, image, onSelect, onBack }) {
 
@@ -24,15 +23,7 @@ export default function QuestionCard({ question, options, type, min, max, helper
   }
 
   return (
-    <div className="relative flex flex-col md:flex-row w-full max-w-[1360px] mx-auto min-h-0 md:h-[720px] items-stretch overflow-hidden rounded-[2.5rem] md:rounded-[3rem] border border-[#e5e7eb] bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)] transition-all duration-500 mb-20 md:mb-0">
-      {/* Brand mark — top right, inside a small rounded card so it reads on photo + white areas */}
-      <div
-        className="absolute right-4 top-4 z-30 md:right-6 md:top-6 rounded-xl md:rounded-2xl border border-gray-100 bg-white/95 px-3 py-2 shadow-sm backdrop-blur-sm md:px-3.5 md:py-2.5"
-        aria-hidden
-      >
-        <Logo className="h-6 w-auto md:h-7" />
-      </div>
-
+    <div className="flex flex-col md:flex-row w-full max-w-[1360px] mx-auto min-h-0 md:h-[720px] items-stretch overflow-hidden rounded-[2.5rem] md:rounded-[3rem] border border-[#e5e7eb] bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)] transition-all duration-500 mb-20 md:mb-0">
       {/* Visual Side (Desktop Only) */}
       <div className="hidden md:flex md:w-[42%] bg-[#111827] relative overflow-hidden">
         {image && (
