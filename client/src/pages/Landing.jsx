@@ -49,7 +49,9 @@ export default function Landing() {
         animate={{ opacity: 1, y: 0 }}
         className="relative z-20 px-8 pt-6 pb-4 md:px-12 md:pt-8 text-left"
       >
-        <Logo className="h-9 w-auto md:h-11 drop-shadow-lg" />
+        <div className="inline-flex rounded-xl md:rounded-2xl border border-white/30 bg-white/15 px-3 py-2 shadow-lg shadow-black/20 backdrop-blur-md md:px-4 md:py-2.5">
+          <Logo className="h-9 w-auto md:h-11 drop-shadow-md" />
+        </div>
       </motion.header>
 
       {/* Hero Content Overlaid on the Left - Moved Up */}
