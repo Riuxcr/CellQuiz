@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Logo from './Logo.jsx'
 
 export default function QuestionCard({ question, options, type, min, max, helperText, info, image, onSelect, onBack }) {
 
   const [selectedLocal, setSelectedLocal] = useState(null)
   const [showInfo, setShowInfo] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   // Reset local state when question changes
   useEffect(() => {
@@ -12,28 +14,54 @@ export default function QuestionCard({ question, options, type, min, max, helper
     setShowInfo(false)
   }, [question])
 
+  useEffect(() => {
+    setImageLoaded(false)
+  }, [image])
+
   const handleOptionClick = (option) => {
     setSelectedLocal(option)
     setShowInfo(true)
   }
 
   return (
-    <div className="flex flex-col md:flex-row w-full max-w-[1360px] mx-auto min-h-0 md:h-[720px] items-stretch overflow-hidden rounded-[2.5rem] md:rounded-[3rem] border border-[#e5e7eb] bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)] transition-all duration-500 mb-20 md:mb-0">
+    <div className="relative flex flex-col md:flex-row w-full max-w-[1360px] mx-auto min-h-0 md:h-[720px] items-stretch overflow-hidden rounded-[2.5rem] md:rounded-[3rem] border border-[#e5e7eb] bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)] transition-all duration-500 mb-20 md:mb-0">
+      {/* Brand mark — top right, inside a small rounded card so it reads on photo + white areas */}
+      <div
+        className="absolute right-4 top-4 z-30 md:right-6 md:top-6 rounded-xl md:rounded-2xl border border-gray-100 bg-white/95 px-3 py-2 shadow-sm backdrop-blur-sm md:px-3.5 md:py-2.5"
+        aria-hidden
+      >
+        <Logo className="h-6 w-auto md:h-7" />
+      </div>
 
       {/* Visual Side (Desktop Only) */}
       <div className="hidden md:flex md:w-[42%] bg-[#111827] relative overflow-hidden">
         {image && (
           <div className="absolute inset-0 z-0">
-            <motion.img 
+            {/* Placeholder while the (large) asset decodes — avoids a harsh empty flash */}
+            <div
+              className={`absolute inset-0 bg-gradient-to-br from-gray-800 via-[#1e293b] to-[#111827] transition-opacity duration-500 ${
+                imageLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+              }`}
+              aria-hidden
+            >
+              <div className="absolute inset-0 animate-pulse bg-[radial-gradient(ellipse_at_30%_20%,rgba(59,130,246,0.12),transparent_50%)]" />
+            </div>
+            <motion.img
               key={image}
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2 }}
-              src={image} 
-              alt="" 
-              className="h-full w-full object-cover opacity-80" 
+              src={image}
+              alt=""
+              decoding="async"
+              fetchPriority="high"
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageLoaded(true)}
+              initial={{ scale: 1.04 }}
+              animate={{ scale: imageLoaded ? 1 : 1.04 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className={`h-full w-full object-cover transition-opacity duration-500 ease-out ${
+                imageLoaded ? 'opacity-80' : 'opacity-0'
+              }`}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/20 to-transparent opacity-60" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/20 to-transparent opacity-60 pointer-events-none" />
           </div>
         )}
       </div>

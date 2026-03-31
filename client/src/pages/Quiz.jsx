@@ -132,6 +132,35 @@ export default function Quiz() {
     trackFbq('ViewContent')
   }, [])
 
+  // Warm browser cache for quiz art: first image immediately, rest when idle (smoother step-to-step).
+  useEffect(() => {
+    const preload = (src) => {
+      const im = new Image()
+      im.src = src
+    }
+    const first = COMMON_QUESTIONS[0]?.image
+    if (first) preload(first)
+
+    const allUrls = [
+      ...COMMON_QUESTIONS,
+      ...SKINCARE_PATH,
+      ...LONGEVITY_PATH,
+    ]
+      .map((q) => q.image)
+      .filter(Boolean)
+    const unique = [...new Set(allUrls)]
+
+    const run = () => {
+      unique.forEach(preload)
+    }
+    if (typeof requestIdleCallback === 'function') {
+      const id = requestIdleCallback(run, { timeout: 2500 })
+      return () => cancelIdleCallback(id)
+    }
+    const t = setTimeout(run, 400)
+    return () => clearTimeout(t)
+  }, [])
+
   const handleSelect = (option) => {
     const nextAnswers = { ...answers, [current.id]: option }
     setAnswers(nextAnswers)
