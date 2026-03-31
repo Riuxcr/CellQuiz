@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { motion } from 'framer-motion'
 import { trackFbq } from '../utils/fbq.js'
+import Logo from '../components/Logo.jsx'
 
 const API_TEST_URL = '/api/test'
 
@@ -48,9 +49,7 @@ export default function Landing() {
         animate={{ opacity: 1, y: 0 }}
         className="relative z-20 px-8 pt-6 pb-4 md:px-12 md:pt-8 text-left"
       >
-        <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-black tracking-tighter text-white drop-shadow-md">
-          CellStart<span className="text-blue-400">.</span>
-        </h2>
+        <Logo className="h-9 w-auto md:h-11 drop-shadow-lg" />
       </motion.header>
 
       {/* Hero Content Overlaid on the Left - Moved Up */}

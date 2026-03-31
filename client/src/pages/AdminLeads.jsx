@@ -3,6 +3,7 @@ import axios from 'axios'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { API_ENDPOINTS } from '../config.js'
+import Logo from '../components/Logo.jsx'
 
 const LEADS_URL = API_ENDPOINTS.FETCH_LEADS
 
@@ -41,7 +42,8 @@ export default function AdminLeads() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-8 bg-gray-50">
+        <Logo className="h-10 w-auto opacity-90" />
         <div className="h-10 w-10 animate-spin rounded-full border-4 border-[#111827] border-t-transparent" />
       </div>
     )

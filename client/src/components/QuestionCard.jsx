@@ -21,7 +21,7 @@ export default function QuestionCard({ question, options, type, min, max, helper
     <div className="flex flex-col md:flex-row w-full max-w-[1360px] mx-auto min-h-0 md:h-[720px] items-stretch overflow-hidden rounded-[2.5rem] md:rounded-[3rem] border border-[#e5e7eb] bg-white shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)] transition-all duration-500 mb-20 md:mb-0">
 
       {/* Visual Side (Desktop Only) */}
-      <div className="hidden md:flex md:w-[42%] bg-[#111827] relative p-12 flex-col justify-between overflow-hidden">
+      <div className="hidden md:flex md:w-[42%] bg-[#111827] relative overflow-hidden">
         {image && (
           <div className="absolute inset-0 z-0">
             <motion.img 
@@ -36,23 +36,6 @@ export default function QuestionCard({ question, options, type, min, max, helper
             <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/20 to-transparent opacity-60" />
           </div>
         )}
-        
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="w-16 h-16 rounded-[1.25rem] bg-white/10 backdrop-blur-md flex items-center justify-center shadow-xl relative z-10 border border-white/20"
-        >
-           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="white" className="w-8 h-8">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v17.792m0-17.792l-8.156 8.156m8.156-8.156l8.156 8.156" />
-          </svg>
-        </motion.div>
-
-        <div className="relative z-10">
-          <h3 className="text-[10px] font-black tracking-[0.4em] text-white uppercase mb-3 opacity-60">Analysis Module</h3>
-          <p className="text-2xl font-bold text-white leading-tight max-w-xs drop-shadow-lg">
-            We quantify your dermal data points to build your profile.
-          </p>
-        </div>
       </div>
 
       {/* Content Side */}

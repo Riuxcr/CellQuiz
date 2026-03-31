@@ -29,20 +29,21 @@ const openCellStartUrl = (url) => {
   }
 }
 
+// Order: goal first, then age — then branch into skincare or longevity path.
 const COMMON_QUESTIONS = [
-  {
-    id: 'age',
-    question: 'What is your age range?',
-    options: ['Under 30', '30-40', '40-60', 'Above 60'],
-    info: 'Did you know your biological age (how old your cells act) can be significantly different from your chronological age (how many birthdays you’ve had)? Most people can shift their biological markers by 3–5 years just by optimizing the factors we discuss next.',
-    image: '/Age.png'
-  },
   {
     id: 'goal',
     question: 'Which goal is more important to you?',
     options: ['Skincare & anti-aging', 'Longevity & cellular repair'],
     info: 'Whether you focus on your skin or your internal cells, NAD+ is the foundational fuel for both repair processes.',
     image: '/goal.jpg'
+  },
+  {
+    id: 'age',
+    question: 'What is your age range?',
+    options: ['Under 30', '30-40', '40-60', 'Above 60'],
+    info: 'Did you know your biological age (how old your cells act) can be significantly different from your chronological age (how many birthdays you’ve had)? Most people can shift their biological markers by 3–5 years just by optimizing the factors we discuss next.',
+    image: '/Age.png'
   },
 ]
 
