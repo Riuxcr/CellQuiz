@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import axios from 'axios'
 import { trackFbq } from '../utils/fbq.js'
 import QuestionCard from '../components/QuestionCard.jsx'
 import EmailCapture from '../components/EmailCapture.jsx'
 import { warmQuizApi } from '../utils/warmQuizApi.js'
+import { API_BASE_URL } from '../config.js'
 import {
   RESULT_STATE_STORAGE_KEY,
 } from '../constants/cellstartUrls.js'
