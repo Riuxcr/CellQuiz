@@ -247,7 +247,7 @@ export default function Result() {
   return (
     <main className="min-h-screen bg-neutral-100 text-[#111827]">
       {/* Expansive Left-Aligned Hero with Full Background */}
-      <section className="relative min-h-[115vh] flex items-center overflow-hidden bg-white">
+      <section className="relative min-h-[100vh] flex items-center overflow-hidden bg-white">
         {/* Full-width Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -259,7 +259,7 @@ export default function Result() {
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-12 py-20">
           <div className="max-w-3xl text-left">
-            <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#005ba4]">
+            <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#111827]">
               {insight?.categoryLabel || 'quiz results'}
             </span>
             
