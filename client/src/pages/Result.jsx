@@ -247,7 +247,7 @@ export default function Result() {
   return (
     <main className="min-h-screen bg-neutral-100 text-[#111827]">
       {/* Expansive Left-Aligned Hero with Full Background */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white">
+      <section className="relative min-h-[115vh] flex items-center overflow-hidden bg-white">
         {/* Full-width Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
