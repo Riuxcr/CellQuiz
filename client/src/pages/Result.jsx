@@ -201,20 +201,48 @@ export default function Result() {
   const displayReviews = reviews.length > 0 ? reviews : FALLBACK_REVIEWS
 
   if (!hasQuizAnswers(answers)) {
+    console.error('Quiz Debug: Missing answers in state or session storage.', { 
+      'Location State': location.state, 
+      'Session Storage': readStoredResultState() 
+    });
     return (
-      <main className="mx-auto flex min-h-[100dvh] max-w-md flex-col justify-center px-6 py-12">
-        <p className="text-center text-lg text-gray-600">No quiz data here. Finish the quiz first.</p>
-        <div className="mt-8 flex justify-center gap-4 text-sm font-medium">
-          <Link className="text-gray-900 underline underline-offset-4" to="/quiz">Start quiz</Link>
-          <span className="text-gray-300">|</span>
-          <Link className="text-gray-900 underline underline-offset-4" to="/">Home</Link>
+      <main className="mx-auto flex min-h-[100dvh] w-full flex-col items-center justify-center bg-white px-8 text-center font-sans">
+        <div className="max-w-md w-full">
+            <div className="h-20 w-20 bg-blue-50 text-blue-300 rounded-full flex items-center justify-center mx-auto mb-10">
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <h2 className="text-3xl font-black text-[#111827] tracking-tight uppercase mb-4">Analysis data missing</h2>
+            <p className="text-gray-400 font-bold mb-12 leading-relaxed uppercase tracking-[0.2em] text-[10px]">Your personalized report requires a completed quiz session.</p>
+            <div className="flex flex-col gap-4">
+                <Link className="px-8 py-5 bg-[#111827] text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-2xl hover:bg-black transition-all active:scale-95" to="/quiz">Restart Analysis</Link>
+                <Link className="px-8 py-5 bg-white border border-gray-100 text-[#111827] rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-gray-50 transition-all active:scale-95" to="/">Back to Home</Link>
+            </div>
         </div>
       </main>
     )
   }
 
-  const goProduct = () => { trackFbq('AddToCart'); openCellStartUrl(buildRedirectUrl(PRODUCT_URL, 'product')) }
-  const goCheckout = () => { trackFbq('InitiateCheckout'); openCellStartUrl(buildRedirectUrl(CHECKOUT_URL, 'checkout')) }
+  const goProduct = async () => { 
+    trackFbq('AddToCart'); 
+    try {
+      if (resolvedState?.email) {
+        const axios = (await import('axios')).default;
+        await axios.put(`${API_BASE_URL}/api/quiz/mark-converted`, { email: resolvedState.email });
+      }
+    } catch (e) { console.error('Conversion track failed', e) }
+    openCellStartUrl(buildRedirectUrl(PRODUCT_URL, 'product')) 
+  }
+
+  const goCheckout = async () => { 
+    trackFbq('InitiateCheckout'); 
+    try {
+      if (resolvedState?.email) {
+        const axios = (await import('axios')).default;
+        await axios.put(`${API_BASE_URL}/api/quiz/mark-converted`, { email: resolvedState.email });
+      }
+    } catch (e) { console.error('Conversion track failed', e) }
+    openCellStartUrl(buildRedirectUrl(CHECKOUT_URL, 'checkout')) 
+  }
 
   return (
     <main className="min-h-screen bg-neutral-100 text-[#111827]">

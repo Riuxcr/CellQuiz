@@ -116,7 +116,7 @@ export default function Quiz() {
     warmQuizApi()
     
     // Initialize session for drop-off tracking
-    axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001'}/api/quiz/start-session`, { 
+    axios.post(`${API_BASE_URL}/api/quiz/start-session`, { 
       sessionId 
     }).catch(err => console.error('Failed to start session tracking:', err))
   }, [])
@@ -124,7 +124,7 @@ export default function Quiz() {
   // Track progress on every step change
   useEffect(() => {
     const questionIndex = showEmailStep ? questionSet.length : currentStep
-    axios.put(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001'}/api/quiz/track`, {
+    axios.put(`${API_BASE_URL}/api/quiz/track`, {
       sessionId,
       questionIndex
     }).catch(err => console.error('Failed to track progress:', err))
