@@ -248,29 +248,29 @@ export default function Result() {
     <main className="min-h-screen bg-neutral-100 text-[#111827]">
       {/* Centered Editorial Hero */}
       <section className="bg-white px-6 py-20 md:py-32 text-center">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-4xl px-4">
           <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#005ba4]">
             {insight?.categoryLabel || 'quiz results'}
           </span>
-          <p className="mt-10 text-2xl md:text-3xl font-black uppercase text-gray-900 tracking-[0.1em] leading-tight">
+          
+          <h1 className="mt-8 text-[3.5rem] md:text-[5rem] font-black tracking-tight text-[#111827] leading-[1] uppercase">
             Your results are in!
-          </p>
-          <h1 className="mt-2 text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 md:text-7xl lg:text-8xl leading-[1.0] uppercase">
-            {insight?.headline}
           </h1>
-          <p className="mx-auto mt-12 max-w-2xl text-base leading-relaxed text-gray-600 md:text-xl font-medium">
-            {insight?.body || 'Based on your specific answers, ChronoNAD+™ is the recommended protocol to support your skin’s vitality and cellular health.'}
+          
+          <p className="mx-auto mt-12 max-w-3xl text-lg md:text-2xl leading-relaxed text-gray-600 font-medium">
+            <span className="text-[#111827] font-bold">{insight?.headline}.</span> {insight?.body}
           </p>
-          <div className="mt-12 flex flex-wrap justify-center gap-6">
+
+          <div className="mt-14 flex flex-wrap justify-center gap-4">
             <button
               onClick={goProduct}
-              className="rounded-sm bg-[#005ba4] px-12 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-white transition-all hover:bg-blue-800"
+              className="rounded-[0.5rem] bg-[#005ba4] px-14 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-all hover:bg-blue-800 shadow-lg min-w-[240px]"
             >
               add to cart
             </button>
             <button
               onClick={goCheckout}
-              className="rounded-sm border border-gray-100 bg-white px-12 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-gray-900 transition-all hover:bg-gray-50 shadow-sm"
+              className="rounded-[0.5rem] border border-gray-100 bg-white px-14 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-gray-700 transition-all hover:bg-gray-50 shadow-sm min-w-[240px]"
             >
               checkout
             </button>
