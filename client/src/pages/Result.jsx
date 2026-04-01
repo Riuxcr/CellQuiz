@@ -271,19 +271,19 @@ export default function Result() {
       {/* High-Fidelity Judge.me Review Widget */}
       <section className="bg-white px-6 py-20 border-t border-gray-100 font-sans">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center mb-4">
-            <span className="text-[10px] font-bold text-blue-800 uppercase tracking-widest">Customer Reviews</span>
-            <h2 className="text-2xl font-light text-gray-900 mt-2">Customer Reviews</h2>
+          <div className="text-center mb-8">
+            <span className="text-[12px] font-black text-blue-800 uppercase tracking-[0.3em]">Customer Reviews</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-4">Customer Reviews</h2>
           </div>
 
           <div className="flex flex-col items-center border-y border-gray-200 py-10 mb-8">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex flex-col items-center gap-2 mb-2">
               <StarRow n={5} />
-              <span className="text-sm font-bold text-gray-700">4.94 out of 5</span>
+              <span className="text-2xl md:text-3xl font-bold text-gray-900">4.94 out of 5</span>
             </div>
             <div className="flex items-center gap-1.5 mb-8">
-              <span className="text-xs font-bold text-gray-500">Based on 16 reviews</span>
-              <svg className="w-4 h-4 text-[#00b2a9]" fill="currentColor" viewBox="0 0 20 20">
+              <span className="text-base md:text-lg font-bold text-gray-500">Based on 16 reviews</span>
+              <svg className="w-5 h-5 text-[#00b2a9]" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
               </svg>
             </div>
