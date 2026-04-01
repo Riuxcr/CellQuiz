@@ -82,18 +82,17 @@ function BenefitAccordion() {
   const [active, setActive] = useState(0)
 
   return (
-    <div className="flex h-[550px] md:h-[650px] w-full gap-3 md:gap-4 mt-12">
+    <div className="flex h-[500px] md:h-[650px] w-full gap-2 md:gap-4 mt-8 md:mt-12">
       {ACCORDION_DATA.map((item, i) => (
         <motion.div
           key={i}
           onClick={() => setActive(i)}
           onMouseEnter={() => setActive(i)}
           animate={{
-            width: active === i ? '100%' : '15%',
-            flex: active === i ? 4 : 1
+            flex: active === i ? 5 : 1
           }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative h-full overflow-hidden rounded-3xl cursor-pointer group"
+          className="relative h-full overflow-hidden rounded-2xl md:rounded-3xl cursor-pointer group"
         >
           {/* Background Image */}
           <img
@@ -103,7 +102,7 @@ function BenefitAccordion() {
           />
           
           {/* Main Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
           {/* Active Content */}
           <motion.div
@@ -113,10 +112,10 @@ function BenefitAccordion() {
               y: active === i ? 0 : 20
             }}
             transition={{ duration: 0.4, delay: active === i ? 0.2 : 0 }}
-            className={`absolute bottom-0 left-0 p-6 md:p-10 w-full ${active === i ? 'block' : 'hidden md:block opacity-0'}`}
+            className={`absolute bottom-0 left-0 p-4 md:p-10 w-full ${active === i ? 'block' : 'hidden'}`}
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">{item.title}</h3>
-            <p className="max-w-md text-sm md:text-base leading-relaxed text-white/80">
+            <h3 className="text-xl md:text-3xl font-bold text-white mb-2 md:mb-3">{item.title}</h3>
+            <p className="max-w-md text-xs md:text-base leading-relaxed text-white/90">
               {item.desc}
             </p>
           </motion.div>
@@ -125,9 +124,9 @@ function BenefitAccordion() {
           {active !== i && (
             <motion.div
               layoutId={`title-${i}`}
-              className="absolute inset-0 flex items-center justify-center p-2"
+              className="absolute inset-0 flex items-center justify-center p-1 md:p-2"
             >
-              <span className="rotate-180 whitespace-nowrap text-[10px] md:text-xs font-black uppercase tracking-[0.5em] text-white/60 [writing-mode:vertical-lr]">
+              <span className="rotate-180 whitespace-nowrap text-[9px] md:text-xs font-black uppercase tracking-[0.3em] md:tracking-[0.5em] text-white/70 [writing-mode:vertical-lr]">
                 {item.title}
               </span>
             </motion.div>
@@ -223,7 +222,7 @@ export default function Result() {
       <section className="bg-white px-6 py-20 md:py-32 text-center">
         <div className="mx-auto max-w-3xl">
           <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-800">quiz results</span>
-          <h1 className="mt-6 text-5xl font-bold tracking-tight text-gray-900 md:text-7xl lg:text-8xl">
+          <h1 className="mt-6 text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 md:text-7xl lg:text-8xl leading-[1.1]">
             Your results are in!
           </h1>
           <p className="mx-auto mt-10 max-w-2xl text-sm leading-relaxed text-gray-600 md:text-lg">
