@@ -4,6 +4,7 @@ const express = require('express')
 const cors = require('cors')
 const connectDB = require('./config/db')
 const quizRoutes = require('./routes/quizRoutes')
+const reviewRoutes = require('./routes/reviewRoutes')
 
 const app = express()
 const PORT = process.env.PORT || 5001
@@ -45,6 +46,7 @@ app.get('/api/test', (req, res) => {
 })
 
 app.use('/api/quiz', quizRoutes)
+app.use('/api/reviews', reviewRoutes)
 
 async function start() {
   try {

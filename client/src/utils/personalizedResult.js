@@ -104,8 +104,5 @@ export function getPersonalizedInsight(answers) {
 }
 
 export function getHeroImageForAnswers(answers) {
-  const goal = answers?.goal
-  if (goal === 'Skincare & anti-aging') return '/skin.jpg'
-  if (goal === 'Longevity & cellular repair') return '/Active.png'
-  return '/goal.jpg'
+  return '/Result.png'
 }
