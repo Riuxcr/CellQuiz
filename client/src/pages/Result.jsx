@@ -249,13 +249,16 @@ export default function Result() {
       {/* Centered Editorial Hero */}
       <section className="bg-white px-6 py-20 md:py-32 text-center">
         <div className="mx-auto max-w-4xl">
-          <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-800">
+          <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#005ba4]">
             {insight?.categoryLabel || 'quiz results'}
           </span>
-          <h1 className="mt-6 text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 md:text-6xl lg:text-7xl leading-[1.1] uppercase">
-            {insight?.headline || 'Your Results Are In'}
+          <p className="mt-10 text-2xl md:text-3xl font-black uppercase text-gray-900 tracking-[0.1em] leading-tight">
+            Your results are in!
+          </p>
+          <h1 className="mt-2 text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 md:text-7xl lg:text-8xl leading-[1.0] uppercase">
+            {insight?.headline}
           </h1>
-          <p className="mx-auto mt-10 max-w-2xl text-sm leading-relaxed text-gray-600 md:text-lg font-medium">
+          <p className="mx-auto mt-12 max-w-2xl text-base leading-relaxed text-gray-600 md:text-xl font-medium">
             {insight?.body || 'Based on your specific answers, ChronoNAD+™ is the recommended protocol to support your skin’s vitality and cellular health.'}
           </p>
           <div className="mt-12 flex flex-wrap justify-center gap-6">
