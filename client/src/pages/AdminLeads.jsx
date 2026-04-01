@@ -11,6 +11,7 @@ export default function AdminLeads() {
   const [leads, setLeads] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     fetchLeads()
@@ -19,7 +20,10 @@ export default function AdminLeads() {
   const fetchLeads = async () => {
     try {
       setLoading(true)
-      const res = await axios.get(LEADS_URL)
+      const token = localStorage.getItem('admin_token')
+      const res = await axios.get(LEADS_URL, {
+        headers: { Authorization: token }
+      })
       setLeads(res.data.leads || [])
       setError(null)
     } catch (err) {
@@ -29,6 +33,11 @@ export default function AdminLeads() {
       setLoading(false)
     }
   }
+
+  const filteredLeads = leads.filter(l => 
+    l.email?.toLowerCase().includes(search.toLowerCase()) ||
+    l.name?.toLowerCase().includes(search.toLowerCase())
+  )
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString(undefined, {
@@ -42,94 +51,131 @@ export default function AdminLeads() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-8 bg-gray-50">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-8 bg-[#f9fafb]">
         <Logo className="h-10 w-auto opacity-90" />
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-[#111827] border-t-transparent" />
+        <div className="h-10 w-10 animate-spin rounded-full border-[3px] border-[#111827] border-t-transparent shadow-xl" />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 px-6 py-16 md:px-12 lg:px-24">
-      <div className="mx-auto max-w-7xl">
-        <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <h1 className="text-4xl font-black tracking-tight text-[#111827]">
-              Leads Overview<span className="text-gray-300">.</span>
-            </h1>
-            <p className="mt-3 text-lg font-medium text-gray-500">
-              Total Analysis Completions: <span className="font-bold text-[#111827]">{leads.length}</span>
-            </p>
+    <div className="min-h-screen bg-white font-sans selection:bg-blue-100">
+      <div className="w-full">
+        
+        {/* Header Section - Full Width */}
+        <header className="px-10 py-12 md:px-16 border-b border-gray-50 flex flex-col lg:flex-row lg:items-center justify-between gap-8 bg-[#fcfcfd]">
+          <div className="relative">
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
+                <h1 className="text-5xl font-black tracking-tight text-[#111827]">
+                  Leads Hub<span className="text-blue-600">.</span>
+                </h1>
+                <div className="mt-3 flex items-center gap-3">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <p className="text-sm font-black text-gray-400 uppercase tracking-[0.2em]">{leads.length} Total Analysis Completions</p>
+                </div>
+            </motion.div>
           </div>
-          <div className="flex items-center gap-4">
+
+          <div className="flex flex-wrap items-center gap-4">
+             <div className="relative group">
+                <input 
+                    type="text" 
+                    placeholder="Search by email..." 
+                    className="w-full md:w-80 bg-white border border-gray-100 rounded-2xl px-6 py-3.5 text-sm font-bold text-[#111827] placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-blue-100/20 focus:border-blue-200 transition-all shadow-sm"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+                <svg className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+             </div>
+             <Link 
+              to="/admin/analytics" 
+              className="px-6 py-3.5 rounded-2xl bg-white border border-gray-100 text-sm font-black uppercase tracking-widest text-[#111827] hover:shadow-sm transition-all active:scale-95 text-[10px]"
+            >
+              Analytics
+            </Link>
             <button 
               onClick={fetchLeads}
-              className="px-6 py-3 rounded-xl bg-white border border-gray-200 text-sm font-bold text-[#111827] shadow-sm hover:shadow-md transition-all active:scale-95"
+              className="p-3.5 rounded-2xl bg-white border border-gray-100 text-[#111827] shadow-sm hover:shadow-md transition-all active:scale-95"
+              title="Refresh Data"
             >
-              Refresh Data
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
             </button>
             <Link 
               to="/" 
-              className="px-6 py-3 rounded-xl bg-[#111827] text-sm font-bold text-white shadow-xl hover:bg-black transition-all active:scale-95"
+              className="px-8 py-3.5 rounded-2xl bg-[#111827] text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-2xl shadow-blue-900/10 hover:bg-black transition-all active:scale-95"
             >
-              Go to Landing
+              Client Site
             </Link>
           </div>
         </header>
 
         {error && (
-          <div className="mb-8 rounded-2xl bg-red-50 border border-red-100 p-6 text-red-600 font-bold">
-            {error}
-          </div>
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="m-10 mb-8 rounded-3xl bg-red-50 border border-red-100 p-6 text-red-600 font-bold flex items-center justify-between">
+            <span>{error}</span>
+            <button onClick={fetchLeads} className="text-red-800 underline uppercase text-xs tracking-widest">Retry</button>
+          </motion.div>
         )}
 
-        <div className="overflow-hidden rounded-[2rem] border border-gray-100 bg-white shadow-2xl shadow-gray-200/50">
+        {/* Leads Table - Full Width Edge-to-Edge */}
+        <div className="w-full">
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="border-b border-gray-50 bg-gray-50/50">
-                  <th className="px-8 py-5 text-sm font-black uppercase tracking-widest text-gray-400">Email</th>
-                  <th className="px-8 py-5 text-sm font-black uppercase tracking-widest text-gray-400">Profile Details</th>
-                  <th className="px-8 py-5 text-sm font-black uppercase tracking-widest text-gray-400">Captured On</th>
+                <tr className="border-b border-gray-100 bg-white">
+                  <th className="px-10 py-8 md:px-16 text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Contributor</th>
+                  <th className="px-10 py-8 md:px-16 text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Analysis Breakdown</th>
+                  <th className="px-10 py-8 md:px-16 text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 text-right">Captured</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-50">
+              <tbody className="divide-y divide-gray-50/50">
                 <AnimatePresence>
-                  {leads.length > 0 ? (
-                    leads.map((lead, idx) => (
+                  {filteredLeads.length > 0 ? (
+                    filteredLeads.map((lead, idx) => (
                       <motion.tr 
                         key={lead._id || idx}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: idx * 0.05 }}
-                        className="group hover:bg-gray-50/30 transition-colors"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: idx * 0.02 }}
+                        className="group hover:bg-[#fcfcfd] transition-all"
                       >
-                        <td className="px-8 py-6 align-top">
-                          <span className="text-lg font-bold text-[#111827]">{lead.email}</span>
+                        <td className="px-10 py-10 md:px-16 align-top">
+                          <div className="flex flex-col">
+                            <span className="text-xl font-black text-[#111827] leading-none mb-2">{lead.name || 'Anonymous User'}</span>
+                            <span className="text-sm font-bold text-gray-400 leading-none">{lead.email}</span>
+                          </div>
                         </td>
-                        <td className="px-8 py-6">
-                          <div className="flex flex-wrap gap-2">
+                        <td className="px-10 py-10 md:px-16">
+                          <div className="flex flex-wrap gap-3">
                             {Object.entries(lead.answers || {}).map(([key, value]) => (
-                              <div key={key} className="inline-flex flex-col rounded-lg bg-gray-50 border border-gray-100 px-3 py-2">
-                                <span className="text-[10px] font-black uppercase text-gray-400 leading-none mb-1">{key}</span>
-                                <span className="text-sm font-bold text-[#111827] leading-none">{String(value)}</span>
+                              <div key={key} className="inline-flex items-center gap-2.5 rounded-2xl bg-gray-50 border border-gray-100 px-4 py-2.5 hover:bg-white hover:border-blue-100 transition-all duration-200 cursor-default">
+                                <span className="text-[10px] font-black uppercase text-gray-400 tracking-tighter opacity-60">
+                                    {key.replace(/([A-Z])/g, ' $1').trim()}
+                                </span>
+                                <span className="text-xs font-black text-[#111827]">{String(value)}</span>
                               </div>
                             ))}
                           </div>
                         </td>
-                        <td className="px-8 py-6 align-top whitespace-nowrap">
-                          <span className="text-sm font-bold text-gray-400">{formatDate(lead.createdAt)}</span>
+                        <td className="px-10 py-10 md:px-16 align-top text-right whitespace-nowrap">
+                          <div className="flex flex-col items-end">
+                            <span className="text-base font-black text-gray-900 mb-1">{formatDate(lead.createdAt).split(',')[0]}</span>
+                            <span className="text-[11px] font-bold text-gray-300 uppercase tracking-widest">{formatDate(lead.createdAt).split(',')[1]}</span>
+                          </div>
                         </td>
                       </motion.tr>
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="3" className="px-8 py-20 text-center">
-                        <div className="flex flex-col items-center gap-4 text-gray-400 font-bold">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                          </svg>
-                          <span>No leads found yet. Time to start the quiz!</span>
+                      <td colSpan="3" className="px-8 py-40 text-center">
+                        <div className="flex flex-col items-center gap-6">
+                            <div className="h-20 w-20 flex items-center justify-center rounded-full bg-gray-50 text-gray-200">
+                                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                            </div>
+                            <div>
+                                <p className="text-2xl font-black text-gray-900 mb-1 leading-none">No records match your criteria</p>
+                                <p className="text-sm font-bold text-gray-400">Total analysis available: {leads.length}</p>
+                            </div>
+                            <button onClick={() => setSearch('')} className="px-8 py-3 rounded-2xl bg-blue-50 text-blue-800 text-[11px] font-black uppercase tracking-widest transition-all hover:bg-blue-100">Reset Search</button>
                         </div>
                       </td>
                     </tr>

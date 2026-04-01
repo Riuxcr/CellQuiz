@@ -9,7 +9,7 @@ const SUBMIT_TIMEOUT_MS = 90000
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-export default function EmailCapture({ name, setName, email, setEmail, answers, onSuccess }) {
+export default function EmailCapture({ name, setName, email, setEmail, answers, sessionId, onSuccess }) {
   const [validationError, setValidationError] = useState('')
   const [submitError, setSubmitError] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -47,6 +47,7 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
           name: name.trim(),
           email: email.trim(),
           answers,
+          sessionId,
         },
         {
           timeout: SUBMIT_TIMEOUT_MS,

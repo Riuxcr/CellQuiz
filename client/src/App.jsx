@@ -5,6 +5,9 @@ import Landing from './pages/Landing.jsx'
 import Quiz from './pages/Quiz.jsx'
 import Result from './pages/Result.jsx'
 import AdminLeads from './pages/AdminLeads.jsx'
+import AdminLogin from './pages/AdminLogin.jsx'
+import AdminAnalytics from './pages/AdminAnalytics.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 import Splash from './pages/Splash.jsx'
 
 export default function App() {
@@ -26,7 +29,23 @@ export default function App() {
             <Route path="/home" element={<Landing />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/result" element={<Result />} />
-            <Route path="/admin" element={<AdminLeads />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route 
+              path="/admin" 
+              element={
+                <ProtectedRoute>
+                  <AdminLeads />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/admin/analytics" 
+              element={
+                <ProtectedRoute>
+                  <AdminAnalytics />
+                </ProtectedRoute>
+              } 
+            />
           </Routes>
         </motion.div>
       </AnimatePresence>

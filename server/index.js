@@ -45,8 +45,11 @@ app.get('/api/test', (req, res) => {
   res.send('API is working')
 })
 
+const authRoutes = require('./routes/authRoutes')
+
 app.use('/api/quiz', quizRoutes)
 app.use('/api/reviews', reviewRoutes)
+app.use('/api/auth', authRoutes)
 
 async function start() {
   try {

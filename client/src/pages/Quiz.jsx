@@ -109,10 +109,26 @@ export default function Quiz() {
   const current = questionSet[currentStep]
   const total = questionSet.length
 
+  const [sessionId] = useState(() => `sess_${Math.random().toString(36).substring(2, 11)}_${Date.now()}`)
+
   useEffect(() => {
     trackFbq('ViewContent')
     warmQuizApi()
+    
+    // Initialize session for drop-off tracking
+    axios.post(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001'}/api/quiz/start-session`, { 
+      sessionId 
+    }).catch(err => console.error('Failed to start session tracking:', err))
   }, [])
+
+  // Track progress on every step change
+  useEffect(() => {
+    const questionIndex = showEmailStep ? questionSet.length : currentStep
+    axios.put(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001'}/api/quiz/track`, {
+      sessionId,
+      questionIndex
+    }).catch(err => console.error('Failed to track progress:', err))
+  }, [currentStep, showEmailStep, sessionId])
 
   useEffect(() => {
     if (!showEmailStep) return
@@ -223,6 +239,7 @@ export default function Quiz() {
                 email={email}
                 setEmail={setEmail}
                 answers={answers}
+                sessionId={sessionId}
                 onSuccess={handleEmailSuccess}
               />
             </motion.div>
