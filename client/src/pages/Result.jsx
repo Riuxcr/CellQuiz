@@ -246,45 +246,49 @@ export default function Result() {
 
   return (
     <main className="min-h-screen bg-neutral-100 text-[#111827]">
-      {/* Centered Editorial Hero */}
-      <section className="bg-white px-6 py-20 md:py-32 text-center">
-        <div className="mx-auto max-w-4xl px-4">
-          <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#005ba4]">
-            {insight?.categoryLabel || 'quiz results'}
-          </span>
-          
-          <h1 className="mt-8 text-[3.5rem] md:text-[5rem] font-black tracking-tight text-[#111827] leading-[1]">
-            Your results are in!
-          </h1>
-          
-          <p className="mx-auto mt-12 max-w-3xl text-lg md:text-2xl leading-relaxed text-gray-600 font-medium">
-            <span className="text-[#111827] font-bold">{insight?.headline}.</span> {insight?.body}
-          </p>
+      {/* Expansive Left-Aligned Hero with Full Background */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white">
+        {/* Full-width Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/resultpage.png" 
+            alt="ChronoNAD+™ Protocol Background" 
+            className="w-full h-full object-cover"
+          />
+          {/* Subtle gradient to ensure left-side text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-transparent" />
+        </div>
 
-          <div className="mt-14 flex flex-wrap justify-center gap-4">
-            <button
-              onClick={goProduct}
-              className="rounded-[0.5rem] bg-[#005ba4] px-14 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-all hover:bg-blue-800 shadow-lg min-w-[240px]"
-            >
-              add to cart
-            </button>
-            <button
-              onClick={goCheckout}
-              className="rounded-[0.5rem] border border-gray-100 bg-white px-14 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-gray-700 transition-all hover:bg-gray-50 shadow-sm min-w-[240px]"
-            >
-              checkout
-            </button>
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-12 py-20">
+          <div className="max-w-3xl text-left">
+            <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#005ba4]">
+              {insight?.categoryLabel || 'quiz results'}
+            </span>
+            
+            <h1 className="mt-8 text-[3.5rem] md:text-[5.5rem] font-black tracking-tight text-[#111827] leading-[0.95] uppercase">
+              Your results<br />are in!
+            </h1>
+            
+            <p className="mt-12 max-w-2xl text-lg md:text-2xl leading-relaxed text-gray-800 font-medium">
+              <span className="text-[#111827] font-bold">{insight?.headline}.</span> {insight?.body}
+            </p>
+
+            <div className="mt-14 flex flex-wrap gap-4">
+              <button
+                onClick={goProduct}
+                className="rounded-[0.5rem] bg-[#005ba4] px-14 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-all hover:bg-blue-800 shadow-xl min-w-[240px]"
+              >
+                add to cart
+              </button>
+              <button
+                onClick={goCheckout}
+                className="rounded-[0.5rem] border border-gray-100 bg-white px-14 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-gray-700 transition-all hover:bg-gray-50 shadow-sm min-w-[240px]"
+              >
+                checkout
+              </button>
+            </div>
           </div>
         </div>
-      </section>
-
-      {/* Visual Product Showcase - Full Bleed */}
-      <section className="w-screen bg-white pb-20 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-        <img 
-          src="/Result.jpg" 
-          alt="ChronoNAD+™ Protocol" 
-          className="w-full h-auto object-cover" 
-        />
       </section>
 
       {/* Immersive Whole-Body Benefits Accordion */}
