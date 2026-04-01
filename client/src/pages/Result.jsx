@@ -255,8 +255,6 @@ export default function Result() {
             alt="ChronoNAD+™ Protocol Background" 
             className="w-full h-full object-cover"
           />
-          {/* Subtle gradient to ensure left-side text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-transparent" />
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-12 py-20">
