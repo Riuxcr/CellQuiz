@@ -263,7 +263,7 @@ export default function Result() {
               {insight?.categoryLabel || 'quiz results'}
             </span>
             
-            <h1 className="mt-8 text-[3.5rem] md:text-[5.5rem] font-black tracking-tight text-[#111827] leading-[0.95] uppercase">
+            <h1 className="mt-8 text-[2.2rem] md:text-[3.5rem] font-black tracking-tight text-[#111827] leading-[0.95] uppercase">
               Your results<br />are in!
             </h1>
             
