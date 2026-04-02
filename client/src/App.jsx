@@ -39,6 +39,14 @@ export default function App() {
               } 
             />
             <Route 
+              path="/leads" 
+              element={
+                <ProtectedRoute>
+                  <AdminLeads />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
               path="/admin/analytics" 
               element={
                 <ProtectedRoute>
