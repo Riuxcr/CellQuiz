@@ -33,13 +33,8 @@ export default function AdminAnalytics() {
 
   const funnelSteps = [
     { label: 'Started Quiz', count: data?.totalAttempts || 0, icon: '🚀' },
-    { label: 'Question 1', count: data?.dropOffMap['0'] || 0, icon: '1️⃣' },
-    { label: 'Question 2', count: data?.dropOffMap['1'] || 0, icon: '2️⃣' },
-    { label: 'Question 3', count: data?.dropOffMap['2'] || 0, icon: '3️⃣' },
-    { label: 'Question 4', count: data?.dropOffMap['3'] || 0, icon: '4️⃣' },
-    { label: 'Question 5', count: data?.dropOffMap['4'] || 0, icon: '5️⃣' },
-    { label: 'Question 6+', count: (data?.dropOffMap['5'] || 0) + (data?.dropOffMap['6'] || 0) + (data?.dropOffMap['7'] || 0), icon: '📈' },
-    { label: 'Completed', count: data?.completions || 0, icon: '✅', highlight: true }
+    { label: 'Entered Email', count: data?.completions || 0, icon: '📩', highlight: true },
+    { label: 'Clicked Shop', count: data?.totalConversions || 0, icon: '🛒', highlight: true }
   ]
 
   return (
@@ -61,9 +56,9 @@ export default function AdminAnalytics() {
         {/* Stats Row - Flat Integrated Design */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-b border-gray-100">
             <StatCard label="Total Starts" value={data?.totalAttempts} sub="Unique visitors started" isFirst={true} />
-            <StatCard label="Completions" value={data?.completions} sub="Final submissions" />
-            <StatCard label="Conversion Rate" value={data?.totalAttempts > 0 ? `${((data.completions / data.totalAttempts) * 100).toFixed(1)}%` : '0%'} sub="Start to lead" />
-            <StatCard label="Drop-off Rate" value={data?.totalAttempts > 0 ? `${(100 - (data.completions / data.totalAttempts) * 100).toFixed(1)}%` : '0%'} sub="Total funnel loss" color="text-red-500" />
+            <StatCard label="Total Leads" value={data?.completions} sub="Emails captured" />
+            <StatCard label="Shop Clicks" value={data?.totalConversions} sub="Conversion events" color="text-green-600" />
+            <StatCard label="Shop CTR" value={data?.completions > 0 ? `${((data.totalConversions / data.completions) * 100).toFixed(1)}%` : '0%'} sub="Leads to store click" color="text-green-700" />
         </div>
 
         {/* Funnel Section - Minimal Flat Design */}

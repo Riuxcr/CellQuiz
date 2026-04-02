@@ -124,12 +124,18 @@ router.get('/analytics', async (req, res) => {
 
     const totalAttempts = attempts.length;
     const completions = attempts.filter(a => a.isCompleted).length;
+    
+    // Count conversions and total leads from Lead model
+    const totalLeads = await Lead.countDocuments();
+    const totalConversions = await Lead.countDocuments({ isConverted: true });
 
     res.json({
       success: true,
       data: {
         totalAttempts,
         completions,
+        totalLeads,
+        totalConversions,
         dropOffMap: counts
       }
     });

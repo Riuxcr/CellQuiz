@@ -14,7 +14,7 @@ import {
   getHeroImageForAnswers,
 } from '../utils/personalizedResult.js'
 
-const REVIEWS_URL = `${API_BASE_URL}/api/reviews`
+
 
 function readStoredResultState() {
   try {
@@ -32,23 +32,7 @@ function hasQuizAnswers(answers) {
   return answers != null && typeof answers === 'object' && Object.keys(answers).length > 0
 }
 
-const FALLBACK_REVIEWS = [
-  { _id: 'f1', name: 'Sarah M.', rating: 5, title: 'Part of my morning', body: 'Simple to take. I like that it’s one thing I don’t have to overthink.', date: '01/22/2026' },
-  { _id: 'f2', name: 'James T.', rating: 5, title: 'Steadier days', body: 'Hard to pin on one product, but I feel more consistent week to week.', date: '01/18/2026' },
-  { _id: 'f3', name: 'Elena R.', rating: 4, title: 'Good addition', body: 'I still see my derm and use my creams. This felt like a sensible add-on.', date: '01/12/2026' },
-]
 
-function StarRow({ n, max = 5 }) {
-  return (
-    <div className="flex gap-0.5" aria-hidden>
-      {Array.from({ length: max }, (_, i) => (
-        <svg key={i} className={`h-4 w-4 ${i < n ? 'text-amber-500' : 'text-gray-200'}`} fill="currentColor" viewBox="0 0 20 20">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
-      ))}
-    </div>
-  )
-}
 
 const ACCORDION_DATA = [
   {
@@ -136,49 +120,81 @@ function BenefitAccordion() {
   )
 }
 
+function VideoCard({ ugc }) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <>
+      <motion.div 
+        whileHover={{ y: -10 }}
+        onClick={() => setIsOpen(true)}
+        className="relative aspect-[9/16] w-full overflow-hidden rounded-[2rem] bg-gray-100 shadow-xl cursor-pointer group"
+      >
+        <img 
+          src={ugc.thumb} 
+          alt={ugc.title} 
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        
+        {/* Play Overlay */}
+        <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 group-hover:bg-black/40" />
+        
+        <div className="absolute inset-0 flex items-center justify-center">
+            <div className="h-16 w-16 md:h-20 md:w-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 transition-transform duration-300 group-hover:scale-110">
+                <svg className="w-6 h-6 md:w-10 md:h-10 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M6 4l12 6-12 6V4z" />
+                </svg>
+            </div>
+        </div>
+
+        {/* Text Details */}
+        <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+          <h4 className="text-xl md:text-2xl font-black text-white leading-tight uppercase">{ugc.title}</h4>
+          <p className="mt-1 text-xs md:text-sm font-bold text-white/60 uppercase tracking-widest">{ugc.desc}</p>
+        </div>
+      </motion.div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black px-4 md:px-0 bg-opacity-95">
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative aspect-[9/16] h-[85vh] max-w-full overflow-hidden rounded-3xl"
+            >
+              <video 
+                src={ugc.video} 
+                className="h-full w-full object-cover"
+                controls
+                autoPlay
+              />
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setIsOpen(false)
+                }}
+                className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
+
 export default function Result() {
   const location = useLocation()
   const navigate = useNavigate()
   const [resolvedState, setResolvedState] = useState(() => location.state ?? null)
-  const [reviews, setReviews] = useState([])
-  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false)
-  const [isSubmittingReview, setIsSubmittingReview] = useState(false)
-  const [newReview, setNewReview] = useState({ rating: 5, title: '', body: '', name: '' })
 
-  const fetchReviews = async () => {
-    try {
-      const res = await fetch(REVIEWS_URL)
-      if (res.ok) {
-        const data = await res.json()
-        if (Array.isArray(data)) setReviews(data)
-      }
-    } catch { /* silence errors, stay fallback */ }
-  }
 
-  useEffect(() => {
-    fetchReviews()
-  }, [])
 
-  const handleSubmitReview = async (e) => {
-    e.preventDefault()
-    setIsSubmittingReview(true)
-    try {
-      const res = await fetch(REVIEWS_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newReview)
-      })
-      if (res.ok) {
-        setNewReview({ rating: 5, title: '', body: '', name: '' })
-        setIsReviewModalOpen(false)
-        fetchReviews()
-      }
-    } catch (err) {
-      console.error('Error submitting review:', err)
-    } finally {
-      setIsSubmittingReview(false)
-    }
-  }
 
   useEffect(() => {
     if (hasQuizAnswers(location.state?.answers)) {
@@ -197,7 +213,6 @@ export default function Result() {
   const answers = resolvedState?.answers
   const insight = useMemo(() => getPersonalizedInsight(answers), [answers])
   const heroImage = '/Result.jpg' // Updated as requested
-  const displayReviews = reviews.length > 0 ? reviews : FALLBACK_REVIEWS
 
   if (!hasQuizAnswers(answers)) {
     console.error('Quiz Debug: Missing answers in state or session storage.', { 
@@ -277,8 +292,8 @@ export default function Result() {
       <section id="benefits" className="bg-white px-6 py-24 md:py-32 overflow-hidden">
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#003d7c] md:text-5xl">Whole-body benefits</h2>
-            <p className="mt-4 text-sm text-gray-400 font-medium tracking-wide italic">
+            <h2 className="text-4xl md:text-6xl font-black text-[#111827] tracking-tight uppercase">Whole-body benefits</h2>
+            <p className="mt-4 text-sm md:text-base text-gray-400 font-bold uppercase tracking-[0.2em] italic">
               Nourishing your cells for a more vibrant, energized lifecycle.
             </p>
           </div>
@@ -287,175 +302,43 @@ export default function Result() {
         </div>
       </section>
 
-      {/* High-Fidelity Judge.me Review Widget */}
-      <section className="bg-white px-6 py-20 border-t border-gray-100 font-sans">
+      {/* UGC Creator Videos Section */}
+      <section className="bg-white px-6 py-24 md:py-32 border-t border-gray-50">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center mb-8">
-            <span className="text-[12px] font-black text-blue-800 uppercase tracking-[0.3em]">Customer Reviews</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-4">Customer Reviews</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-black text-[#111827] tracking-tight uppercase">
+              Real People,<br className="md:hidden" /> Real Transformations
+            </h2>
           </div>
 
-          <div className="flex flex-col items-center border-y border-gray-200 py-10 mb-8">
-            <div className="flex flex-col items-center gap-2 mb-2">
-              <StarRow n={5} />
-              <span className="text-2xl md:text-3xl font-bold text-gray-900">4.94 out of 5</span>
-            </div>
-            <div className="flex items-center gap-1.5 mb-8">
-              <span className="text-base md:text-lg font-bold text-gray-500">Based on 16 reviews</span>
-              <svg className="w-5 h-5 text-[#00b2a9]" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
-              </svg>
-            </div>
-
-            {/* Star Distribution Breakdown */}
-            <div className="w-full max-w-sm space-y-1.5 px-6">
-              {[5, 4, 3, 2, 1].map((s) => {
-                const count = s === 5 ? 15 : s === 4 ? 1 : 0
-                const width = s === 5 ? '100%' : s === 4 ? '5%' : '0%'
-                return (
-                  <div key={s} className="flex items-center gap-4 text-[11px] font-bold text-gray-400 uppercase">
-                    <div className="flex gap-0.5 shrink-0">
-                      {[...Array(5)].map((_, i) => (
-                        <svg key={i} className={`w-3 h-3 ${i < s ? 'text-blue-800' : 'text-gray-200'}`} fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
-                    </div>
-                    <div className="h-4 w-full bg-gray-50 rounded-sm overflow-hidden">
-                      <div className="h-full bg-blue-800" style={{ width }} />
-                    </div>
-                    <span className="min-w-[12px]">{count}</span>
-                  </div>
-                )
-              })}
-            </div>
-
-            <button 
-              onClick={() => setIsReviewModalOpen(true)}
-              className="mt-10 bg-[#005ba4] text-white px-24 py-2.5 text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-blue-800 transition-colors"
-            >
-              Write a review
-            </button>
-          </div>
-
-          {/* Individual Reviews Stack */}
-          <div className="space-y-0 border-t border-gray-100">
-            {displayReviews.map((review, idx) => (
-              <div key={idx} className="py-10 border-b border-gray-100 last:border-b-0 group">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="flex flex-col gap-2">
-                    <StarRow n={review.rating} />
-                    <div className="flex items-center gap-2 mt-2">
-                      <div className="w-6 h-6 rounded-full border border-blue-800 flex items-center justify-center p-1 overflow-hidden">
-                         <svg className="w-full h-full text-blue-800" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                         </svg>
-                      </div>
-                      <span className="text-sm font-bold text-blue-800">{review.name}</span>
-                      <svg className="w-4 h-4 text-[#00b2a9]" fill="currentColor" viewBox="0 0 20 20">
-                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <span className="text-[11px] font-bold text-gray-300 tracking-wider font-mono">
-                    {new Date(review.date).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' })}
-                  </span>
-                </div>
-                <h4 className="text-lg font-bold text-gray-900 mb-3">{review.title}</h4>
-                <p className="text-base leading-relaxed text-gray-600 font-normal">
-                  {review.body}
-                </p>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {[
+              { 
+                video: '/firstVideo.mp4', 
+                thumb: '/firstThumbnail.png', 
+                title: 'Amazing Results!',
+                desc: 'See the visible shift in skin vitality.'
+              },
+              { 
+                video: '/secondVideo.mp4', 
+                thumb: '/secondthumbnail.png', 
+                title: 'Why I Chose ChronoNAD+',
+                desc: 'Supporting cellular energy daily.'
+              },
+              { 
+                video: '/thirdvideo.mov', 
+                thumb: '/Third_thumbnail.png', 
+                title: 'My 30-Day Journey',
+                desc: 'Consistent results starting from within.'
+              }
+            ].map((ugc, i) => (
+              <VideoCard key={i} ugc={ugc} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Write Review Modal */}
-      <AnimatePresence>
-        {isReviewModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 px-6 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="w-full max-w-lg overflow-hidden rounded-sm bg-white shadow-2xl"
-            >
-              <div className="bg-[#003d7c] px-8 py-6 text-white text-center relative">
-                <h3 className="text-xl font-bold">Write a review</h3>
-                <button 
-                  onClick={() => setIsReviewModalOpen(false)}
-                  className="absolute top-6 right-6 text-white/60 hover:text-white transition-colors"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
-              </div>
-              
-              <form onSubmit={handleSubmitReview} className="p-8 space-y-5 text-left">
-                <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Rating</label>
-                  <div className="flex gap-1">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <button
-                        key={s}
-                        type="button"
-                        onClick={() => setNewReview({ ...newReview, rating: s })}
-                        className="transition-transform active:scale-90"
-                      >
-                        <svg className={`w-8 h-8 ${s <= newReview.rating ? 'text-yellow-400' : 'text-gray-200'} fill-current`} viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      </button>
-                    ))}
-                  </div>
-                </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Name</label>
-                    <input
-                      required
-                      type="text"
-                      value={newReview.name}
-                      onChange={(e) => setNewReview({ ...newReview, name: e.target.value })}
-                      className="w-full rounded-sm border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-800"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Headline</label>
-                    <input
-                      required
-                      type="text"
-                      value={newReview.title}
-                      onChange={(e) => setNewReview({ ...newReview, title: e.target.value })}
-                      className="w-full rounded-sm border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-800"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Review Content</label>
-                  <textarea
-                    required
-                    rows={4}
-                    value={newReview.body}
-                    onChange={(e) => setNewReview({ ...newReview, body: e.target.value })}
-                    className="w-full rounded-sm border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-800 resize-none"
-                  />
-                </div>
-
-                <button
-                  disabled={isSubmittingReview}
-                  type="submit"
-                  className="w-full rounded-sm bg-[#005ba4] py-4 text-xs font-bold uppercase tracking-widest text-white shadow-xl transition-all hover:bg-blue-800 disabled:opacity-50"
-                >
-                  {isSubmittingReview ? 'Posting...' : 'Submit Review'}
-                </button>
-              </form>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* Final Footer Link */}
       <div className="bg-white py-12 text-center border-t border-gray-100">

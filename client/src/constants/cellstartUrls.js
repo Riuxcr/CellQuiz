@@ -14,12 +14,9 @@ export const buildRedirectUrl = (baseUrl, flow) => {
   return url.toString()
 }
 
-/** Open in a new tab when allowed; same-tab fallback if pop-ups are blocked. */
+/** Redirect the current window to the store destination. */
 export const openCellStartUrl = (url) => {
-  const tab = window.open(url, '_blank', 'noopener,noreferrer')
-  if (tab == null) {
-    window.location.assign(url)
-  }
+  window.location.href = url
 }
 
 export const RESULT_STATE_STORAGE_KEY = 'cellquiz_result_v1'

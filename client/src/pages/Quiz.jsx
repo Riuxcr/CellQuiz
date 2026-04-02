@@ -9,6 +9,8 @@ import { warmQuizApi } from '../utils/warmQuizApi.js'
 import { API_BASE_URL } from '../config.js'
 import {
   RESULT_STATE_STORAGE_KEY,
+  CHECKOUT_URL,
+  buildRedirectUrl,
 } from '../constants/cellstartUrls.js'
 
 // Order: goal first, then age — then branch into skincare or longevity path.
@@ -203,20 +205,31 @@ export default function Quiz() {
   const handleEmailSuccess = (payload) => {
     const submittedEmail = (payload?.email ?? email).trim().toLowerCase()
     if (!submittedEmail) return
-    const isProductFlow = stableSplit(submittedEmail) % 2 === 0 // even -> product, odd -> checkout
+    
+    // 25/75 Split: 0 -> checkout (25%), 1,2,3 -> results (75%)
+    const splitValue = stableSplit(submittedEmail) % 4
+    const isDirectToCheckout = splitValue === 0 
 
     const resultState = {
       answers: { ...answers },
       name: (payload?.name ?? name).trim(),
       email: submittedEmail,
-      preferredFlow: isProductFlow ? 'product' : 'checkout',
+      preferredFlow: isDirectToCheckout ? 'checkout' : 'product',
     }
+
     try {
       sessionStorage.setItem(RESULT_STATE_STORAGE_KEY, JSON.stringify(resultState))
     } catch {
       /* ignore quota / private mode */
     }
-    navigate('/result', { state: resultState })
+
+    if (isDirectToCheckout) {
+      // Redirect directly to checkout for 25% of users
+      window.location.href = buildRedirectUrl(CHECKOUT_URL, 'checkout')
+    } else {
+      // Redirect to results page for 75% of users
+      navigate('/result', { state: resultState })
+    }
   }
 
   const shell = 'mx-auto flex min-h-[100dvh] w-full max-w-[1400px] flex-col justify-center px-6 py-12'
