@@ -75,11 +75,11 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
   return (
     <div className="mx-auto w-full max-w-[700px] bg-white rounded-[2rem] md:rounded-[3rem] border border-[#f3f4f6] p-8 md:p-14 shadow-[0_60px_120px_-20px_rgba(0,0,0,0.12)]">
       <div className="text-center max-w-sm mx-auto">
-        <h2 className="text-[clamp(1.75rem,3.5vw,2.2rem)] font-black text-[#111827] tracking-tight leading-[0.95] uppercase">
-          Unlock Your Protocol
+        <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-black text-[#111827] tracking-tighter leading-[0.95] uppercase">
+          Results ready
         </h2>
-        <p className="mt-4 text-base text-gray-400 font-medium leading-relaxed">
-          Enter your details to receive your personalized ChronoNAD+<span className="text-blue-500">™</span> cellular report and exclusive welcome offer.
+        <p className="mt-4 text-base md:text-lg text-gray-400 font-medium leading-relaxed">
+          Enter your name and email to view your protocol and receive 10% off your first order.
         </p>
       </div>
 
@@ -141,16 +141,16 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
               <span className="text-lg">Saving…</span>
             </span>
           ) : (
-            <span className="text-lg md:text-xl">Generate My Protocol</span>
+            <span className="text-lg md:text-xl">Continue</span>
           )}
         </button>
       </form>
 
-      <div className="mt-12 flex items-center justify-center gap-3 text-[10px] font-black text-gray-300 uppercase tracking-[0.3em]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 opacity-50">
+      <div className="mt-12 flex items-center justify-center gap-3 text-[11px] font-bold text-gray-300 uppercase tracking-widest">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 opacity-40">
           <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
         </svg>
-        <span>Your Data is Secure & Encrypted</span>
+        <span>Your information is secure. Unsubscribe anytime.</span>
       </div>
     </div>
   )
