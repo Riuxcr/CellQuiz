@@ -49,10 +49,9 @@ export default function QuestionCard({ question, options, type, min, max, helper
               animate={{ scale: imageLoaded ? 1 : 1.04 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className={`h-full w-full object-cover transition-opacity duration-500 ease-out ${
-                imageLoaded ? 'opacity-80' : 'opacity-0'
+                imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/20 to-transparent opacity-60 pointer-events-none" />
           </div>
         )}
       </div>
