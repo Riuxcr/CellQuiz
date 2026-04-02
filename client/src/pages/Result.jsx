@@ -5,7 +5,6 @@ import { trackFbq } from '../utils/fbq.js'
 import { API_BASE_URL } from '../config.js'
 import {
   PRODUCT_URL,
-  CHECKOUT_URL,
   buildRedirectUrl,
   openCellStartUrl,
   RESULT_STATE_STORAGE_KEY,
@@ -233,16 +232,7 @@ export default function Result() {
     openCellStartUrl(buildRedirectUrl(PRODUCT_URL, 'product')) 
   }
 
-  const goCheckout = async () => { 
-    trackFbq('InitiateCheckout'); 
-    try {
-      if (resolvedState?.email) {
-        const axios = (await import('axios')).default;
-        await axios.put(`${API_BASE_URL}/api/quiz/mark-converted`, { email: resolvedState.email });
-      }
-    } catch (e) { console.error('Conversion track failed', e) }
-    openCellStartUrl(buildRedirectUrl(CHECKOUT_URL, 'checkout')) 
-  }
+
 
   return (
     <main className="min-h-screen bg-neutral-100 text-[#111827]">
@@ -276,13 +266,7 @@ export default function Result() {
                 onClick={goProduct}
                 className="rounded-[0.5rem] bg-[#005ba4] px-14 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-all hover:bg-blue-800 shadow-xl min-w-[240px]"
               >
-                add to cart
-              </button>
-              <button
-                onClick={goCheckout}
-                className="rounded-[0.5rem] border border-gray-100 bg-white px-14 py-4 text-[11px] font-black uppercase tracking-[0.2em] text-gray-700 transition-all hover:bg-gray-50 shadow-sm min-w-[240px]"
-              >
-                checkout
+                Shop NAD+
               </button>
             </div>
           </div>
