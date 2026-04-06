@@ -75,11 +75,69 @@ router.post('/submit', async (req, res) => {
       })
     }
 
+    // Capture the lead in our DB
     await Lead.create({
       name: name.trim(),
       email: email.trim(),
       answers,
     })
+
+    // --- Step 3: Klaviyo Server-Side Sync ---
+    const axios = require('axios')
+    const KLAVIYO_KEY = process.env.KLAVIYO_PRIVATE_KEY
+    if (KLAVIYO_KEY) {
+      try {
+        const goal = answers['goal'] || 'Unknown'
+        
+        // Match frontend segment logic for consistency
+        let segment = 'unknown'
+        if (goal === 'Skincare & anti-aging') {
+          const hasRoutine = answers['routine'] === 'Yes'
+          segment = hasRoutine ? 'skincare_with_routine' : 'skincare_no_routine'
+        } else if (goal === 'Longevity & cellular repair') {
+          const isActive = ['Highly Active', 'Moderately Active'].includes(answers['active'])
+          segment = isActive ? 'longevity_active' : 'longevity_sedentary'
+        }
+        
+        await axios.post('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/', {
+          data: {
+            type: 'profile-subscription-bulk-create-job',
+            attributes: {
+              profiles: {
+                data: [
+                  {
+                    type: 'profile',
+                    attributes: {
+                      email: email.trim(),
+                      first_name: name.trim(),
+                      properties: {
+                        'Quiz Goal': goal,
+                        'Quiz Segment': segment,
+                        ...answers
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }, {
+          headers: {
+            'Authorization': `Klaviyo-API-Key ${KLAVIYO_KEY}`,
+            'accept': 'application/vnd.api+json',
+            'revision': '2024-02-15',
+            'content-type': 'application/vnd.api+json'
+          }
+        }).catch(err => {
+          console.error('Klaviyo Sync Error (non-blocking):', err.response?.data || err.message)
+        })
+      } catch (err) {
+        console.error('Klaviyo Prep Error:', err)
+      }
+    } else {
+      console.warn('KLAVIYO_PRIVATE_KEY not set in environment.')
+    }
+    // ----------------------------------------
 
     // If a session ID was provided, mark it as completed
     if (sessionId) {
@@ -89,7 +147,6 @@ router.post('/submit', async (req, res) => {
       ).catch(err => console.error('Error marking session complete:', err))
     }
 
-    // Client only checks success; skip extra payload for a slightly faster response.
     return res.json({ success: true })
   } catch (err) {
     if (err.name === 'ValidationError') {

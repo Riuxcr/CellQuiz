@@ -5,12 +5,18 @@ export const PRODUCT_URL =
 export const CHECKOUT_URL =
   'https://cellstart.com/checkouts/cn/hWNAU8GfyILoKlWisS38oZvN/en-us?_r=AQABeic2poYKAyDjN9NVkfsIjkT9LngcU-PtbsT3yIKv_GA&auto_redirect=false&edge_redirect=true&preview_theme_id=156406677761&skip_shop_pay=true'
 
-export const buildRedirectUrl = (baseUrl, flow) => {
+export const buildRedirectUrl = (baseUrl, flow, extraParams = {}) => {
   const url = new URL(baseUrl)
   url.searchParams.set('utm_source', 'cellquiz')
   url.searchParams.set('utm_medium', 'quiz_ab')
   url.searchParams.set('utm_campaign', 'protocol_flow')
   url.searchParams.set('utm_content', flow)
+  
+  // Append extra parameters for personalization
+  Object.entries(extraParams).forEach(([key, value]) => {
+    if (value) url.searchParams.set(key, value)
+  })
+  
   return url.toString()
 }
 

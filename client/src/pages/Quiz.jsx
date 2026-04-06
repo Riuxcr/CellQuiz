@@ -204,17 +204,47 @@ export default function Quiz() {
 
   const handleEmailSuccess = (payload) => {
     const submittedEmail = (payload?.email ?? email).trim().toLowerCase()
+    const submittedName = (payload?.name ?? name).trim()
     if (!submittedEmail) return
     
+    // Klaviyo "Identify" (Step 2)
+    const _learnq = window._learnq || [];
+    const goal = answers['goal'] || 'Unknown'
+    
+    // Segment logic
+    let segment = 'unknown'
+    if (goal === 'Skincare & anti-aging') {
+      const hasRoutine = answers['routine'] === 'Yes'
+      segment = hasRoutine ? 'skincare_with_routine' : 'skincare_no_routine'
+    } else if (goal === 'Longevity & cellular repair') {
+      const isActive = ['Highly Active', 'Moderately Active'].includes(answers['active'])
+      segment = isActive ? 'longevity_active' : 'longevity_sedentary'
+    }
+
+    _learnq.push(['identify', {
+      '$email': submittedEmail,
+      '$first_name': submittedName,
+      'Quiz Goal': goal,
+      'Quiz Segment': segment
+    }]);
+
+    // Track "Completed Quiz" event
+    _learnq.push(['track', 'Completed Quiz', {
+      'Goal': goal,
+      'Segment': segment
+    }]);
+
     // 25/75 Split: 0 -> checkout (25%), 1,2,3 -> results (75%)
     const splitValue = stableSplit(submittedEmail) % 4
     const isDirectToCheckout = splitValue === 0 
 
     const resultState = {
       answers: { ...answers },
-      name: (payload?.name ?? name).trim(),
+      name: submittedName,
       email: submittedEmail,
       preferredFlow: isDirectToCheckout ? 'checkout' : 'product',
+      goal,
+      segment
     }
 
     try {
@@ -224,10 +254,10 @@ export default function Quiz() {
     }
 
     if (isDirectToCheckout) {
-      // Redirect directly to checkout for 25% of users
-      window.location.href = buildRedirectUrl(CHECKOUT_URL, 'checkout')
+      // Redirect directly to checkout for 25% of users (Step 4 Logic)
+      window.location.href = buildRedirectUrl(CHECKOUT_URL, 'checkout', { goal, segment })
     } else {
-      // Redirect to results page for 75% of users
+      // Redirect to results page for 75% of users (Step 4 Logic)
       navigate('/result', { state: resultState })
     }
   }
