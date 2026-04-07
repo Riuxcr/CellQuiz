@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
+import { motion } from 'framer-motion'
 import { trackFbq } from '../utils/fbq.js'
 import { API_ENDPOINTS } from '../config.js'
 
@@ -73,25 +74,26 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
   }
 
   return (
-    <div className="mx-auto w-full max-w-[700px] bg-white rounded-[2rem] md:rounded-[3rem] border border-[#f3f4f6] p-8 md:p-14 shadow-[0_60px_120px_-20px_rgba(0,0,0,0.12)]">
+    <div className="mx-auto w-full max-w-[600px] bg-white md:rounded-[2.5rem] p-8 md:p-14 md:shadow-ios">
       <div className="text-center max-w-sm mx-auto">
-        <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-black text-[#111827] tracking-tighter leading-[0.95] uppercase">
-          Results ready
+        <span className="text-[10px] font-bold tracking-[0.2em] text-[#007AFF] uppercase block mb-3">Final Step</span>
+        <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-[1.05]">
+          Results Ready.
         </h2>
-        <p className="mt-4 text-base md:text-lg text-gray-400 font-medium leading-relaxed">
-          Enter your name and email to view your protocol and receive 10% off your first order.
+        <p className="mt-4 text-base text-gray-500 font-medium leading-relaxed">
+          Enter your details to view your personalized protocol and receive <span className="text-gray-900 font-bold">10% off</span> your first order.
         </p>
       </div>
 
-      <form className="mt-10 flex flex-col gap-5" onSubmit={handleSubmit}>
+      <form className="mt-10 flex flex-col gap-4" onSubmit={handleSubmit}>
         {/* Name Input */}
-        <div className="relative group">
-          <label htmlFor="quiz-name" className="sr-only">Full Name</label>
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="quiz-name" className="text-xs font-bold text-gray-400 ml-4 uppercase tracking-wider">Full Name</label>
           <input
             id="quiz-name"
             type="text"
-            placeholder="Your Full Name"
-            className="w-full rounded-[1.25rem] border-2 border-[#f3f4f6] bg-[#fafafa] px-6 py-4 text-xl font-bold text-[#111827] placeholder-gray-300 transition-all focus:border-[#111827] focus:bg-white focus:outline-none focus:ring-8 focus:ring-gray-100/50 disabled:opacity-50"
+            placeholder="John Doe"
+            className="w-full rounded-2xl border-2 border-gray-100 bg-gray-50 px-6 py-4 text-lg font-semibold text-gray-900 placeholder-gray-300 transition-all focus:border-[#007AFF] focus:bg-white focus:outline-none disabled:opacity-50"
             value={name}
             onChange={(e) => {
               setName(e.target.value)
@@ -102,13 +104,13 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
         </div>
 
         {/* Email Input */}
-        <div className="relative group">
-          <label htmlFor="quiz-email" className="sr-only">Email Address</label>
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="quiz-email" className="text-xs font-bold text-gray-400 ml-4 uppercase tracking-wider">Email Address</label>
           <input
             id="quiz-email"
             type="email"
-            placeholder="email@example.com"
-            className="w-full rounded-[1.25rem] border-2 border-[#f3f4f6] bg-[#fafafa] px-6 py-4 text-xl font-bold text-[#111827] placeholder-gray-300 transition-all focus:border-[#111827] focus:bg-white focus:outline-none focus:ring-8 focus:ring-gray-100/50 disabled:opacity-50"
+            placeholder="john@example.com"
+            className="w-full rounded-2xl border-2 border-gray-100 bg-gray-50 px-6 py-4 text-lg font-semibold text-gray-900 placeholder-gray-300 transition-all focus:border-[#007AFF] focus:bg-white focus:outline-none disabled:opacity-50"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value)
@@ -118,10 +120,7 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
             disabled={submitting}
           />
           {(validationError || submitError) && (
-            <p
-              className="mt-2 text-xs font-black text-red-500 uppercase tracking-wider pl-4 transition-opacity duration-200"
-              role="alert"
-            >
+            <p className="mt-2 text-xs font-bold text-red-500 uppercase tracking-wider ml-4" role="alert">
               {validationError || submitError}
             </p>
           )}
@@ -129,28 +128,30 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
 
         <button
           type="submit"
-          className="relative w-full rounded-[1.25rem] bg-[#111827] px-8 py-5 text-xl font-black text-white shadow-2xl transition-all duration-150 hover:bg-black active:scale-[0.99] disabled:pointer-events-none disabled:opacity-70"
+          className="mt-4 w-full rounded-full bg-[#007AFF] px-8 py-5 text-lg font-bold text-white shadow-xl shadow-blue-500/20 active:scale-95 transition-all disabled:opacity-70"
           disabled={submitting}
         >
           {submitting ? (
             <span className="flex items-center justify-center gap-3">
-              <span
-                className="h-4 w-4 shrink-0 rounded-full border-[3px] border-white/30 border-t-white animate-spin"
-                aria-hidden
-              />
-              <span className="text-lg">Saving…</span>
+              <span className="h-5 w-5 rounded-full border-[3px] border-white/30 border-t-white animate-spin" />
+              <span>Analyzing Results...</span>
             </span>
           ) : (
-            <span className="text-lg md:text-xl">Continue</span>
+            <span>Reveal My Protocol</span>
           )}
         </button>
       </form>
 
-      <div className="mt-12 flex items-center justify-center gap-3 text-[11px] font-bold text-gray-300 uppercase tracking-widest">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 opacity-40">
-          <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
-        </svg>
-        <span>Your information is secure. Unsubscribe anytime.</span>
+      <div className="mt-12 flex flex-col items-center gap-3 text-center">
+        <div className="flex items-center gap-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 opacity-60">
+            <path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" />
+          </svg>
+          <span>Your information is encrypted and secure</span>
+        </div>
+        <p className="text-[10px] text-gray-400 font-medium px-6">
+          By continuing, you agree to receive personalized health insights and marketing emails. Unsubscribe at any time.
+        </p>
       </div>
     </div>
   )

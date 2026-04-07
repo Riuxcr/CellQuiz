@@ -97,27 +97,7 @@ export default function Landing() {
         </motion.div>
       </motion.div>
 
-      {/* Trust Reel */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-24 left-1/2 -translate-x-1/2 w-full px-6 z-20"
-      >
-        <div className="flex flex-wrap justify-center items-center gap-x-4 md:gap-x-8 gap-y-3 max-w-5xl mx-auto py-4 border-t border-b border-white/10 text-white/40 text-[clamp(7px,1vw,10px)] font-black tracking-[0.2em] uppercase text-center bg-blue-900/10 backdrop-blur-sm rounded-2xl">
-          <span>cGMP Certified</span>
-          <span className="opacity-20 hidden md:block">•</span>
-          <span>Clinically Tested</span>
-          <span className="opacity-20 hidden md:block">•</span>
-          <span>Made in USA</span>
-          <span className="opacity-20 hidden md:block">•</span>
-          <span>Non GMO</span>
-          <span className="opacity-20 hidden md:block">•</span>
-          <span>Sugar Free</span>
-          <span className="opacity-20 hidden md:block">•</span>
-          <span>Vegan Friendly</span>
-        </div>
-      </motion.div>
+
 
     </main>
   )

@@ -262,20 +262,32 @@ export default function Quiz() {
     }
   }
 
-  const shell = 'mx-auto flex min-h-[100dvh] w-full max-w-[1400px] flex-col justify-center px-6 py-12'
+  const progress = ((currentStep + 1) / total) * 100
+
+  const shell = 'mx-auto flex min-h-[100dvh] w-full max-w-[1400px] flex-col px-0 md:px-6 py-0 md:py-12'
 
   return (
     <main className={shell}>
-      <div className="w-full flex flex-col items-center">
+      {/* Global Progress Bar (iOS Style) */}
+      {!showEmailStep && (
+        <div className="fixed top-0 left-0 right-0 h-1 bg-gray-100 z-[100] md:relative md:mb-8 md:rounded-full md:overflow-hidden">
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+            className="h-full bg-[#007AFF] shadow-[0_0_8px_rgba(0,122,255,0.5)]"
+          />
+        </div>
+      )}
 
-        
+      <div className="w-full flex-1 flex flex-col items-center justify-center">
         <AnimatePresence mode="wait">
           {showEmailStep ? (
             <motion.div
               key="email"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -40 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="w-full"
             >
               <EmailCapture
@@ -291,11 +303,11 @@ export default function Quiz() {
           ) : current ? (
             <motion.div
               key={current.id}
-              initial={{ opacity: 0, x: 100 }}
+              initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full"
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full h-full flex flex-col"
             >
               <QuestionCard
                 question={current.question}
@@ -317,3 +329,4 @@ export default function Quiz() {
     </main>
   )
 }
+
