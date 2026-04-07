@@ -22,7 +22,7 @@ export default function QuestionCard({ question, questionNumber, options, type, 
   }
 
   return (
-    <div className="flex flex-col md:flex-row w-full max-w-[1300px] mx-auto min-h-[100dvh] md:min-h-0 md:h-[680px] bg-white md:rounded-[2.5rem] md:shadow-ios md:overflow-hidden relative">
+    <div className="flex flex-col md:flex-row w-full max-w-[1300px] mx-auto min-h-[100dvh] md:min-h-0 md:h-[680px] bg-[#111827] md:bg-white md:rounded-[2.5rem] md:shadow-ios md:overflow-hidden relative">
       
       {/* Back Button (Mobile & Desktop) */}
       {onBack && (
@@ -50,7 +50,7 @@ export default function QuestionCard({ question, questionNumber, options, type, 
               className="w-full h-full object-cover"
             />
             {/* Dark Overlay for Readability */}
-            <div className="absolute inset-0 bg-black/25 backdrop-blur-[2px]" />
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-[3px]" />
           </>
         )}
       </div>
@@ -155,8 +155,8 @@ export default function QuestionCard({ question, questionNumber, options, type, 
               className="mt-8 md:mt-10 w-full max-w-2xl mx-auto md:mx-0 z-20"
             >
               <div className="flex flex-col gap-6 items-center">
-                <div className="w-full py-2 px-4 md:py-3 md:px-6 rounded-2xl bg-gray-50/50 md:bg-white border md:border-gray-100">
-                   <p className="text-[11px] md:text-[13px] font-medium text-gray-600 md:text-gray-500 leading-relaxed text-center">
+                <div className="w-full py-2 px-4 md:py-3 md:px-6 rounded-2xl bg-white md:bg-white border md:border-gray-100 shadow-sm">
+                   <p className="text-[11px] md:text-[13px] font-bold text-gray-900 md:text-gray-700 leading-relaxed text-center">
                     {info}
                   </p>
                 </div>
