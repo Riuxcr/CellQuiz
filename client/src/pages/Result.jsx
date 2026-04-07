@@ -14,6 +14,7 @@ import {
   getPersonalizedInsight,
   getHeroImageForAnswers,
 } from '../utils/personalizedResult.js'
+import Logo from '../components/Logo.jsx'
 
 
 
@@ -246,10 +247,18 @@ export default function Result() {
       }
     } catch (e) { console.error('Conversion track failed', e) }
     
-    // 50/50 A/B Split Logic
-    const variant = Math.random() < 0.5 ? 'product' : 'checkout';
-    const targetBaseUrl = variant === 'product' ? PRODUCT_URL : CHECKOUT_URL;
+    // Odd/Even A/B Split Logic using global sequenceNumber
+    // Odd (1, 3, 5...) -> checkout
+    // Even (2, 4, 6...) -> product
+    let variant = 'product';
+    if (resolvedState?.sequenceNumber) {
+      variant = (resolvedState.sequenceNumber % 2 !== 0) ? 'checkout' : 'product';
+    } else {
+      // Fallback if sequenceNumber is missing
+      variant = Math.random() < 0.5 ? 'product' : 'checkout';
+    }
     
+    const targetBaseUrl = variant === 'product' ? PRODUCT_URL : CHECKOUT_URL;
     openCellStartUrl(buildRedirectUrl(targetBaseUrl, variant));
   }
 
@@ -266,6 +275,11 @@ export default function Result() {
             alt="ChronoNAD+™ Protocol Background" 
             className="w-full h-full object-cover"
           />
+        </div>
+
+        {/* Company Logo at Top Left */}
+        <div className="absolute top-8 left-6 md:top-12 md:left-12 z-50">
+          <Logo className="h-10 md:h-14 brightness-0 invert" />
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-12 py-20">

@@ -43,18 +43,18 @@ export default function Landing() {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/40 to-transparent" />
       </div>
 
-      {/* Centered Top Header - Moved Up */}
+      {/* Centered Top Header - Moved Down slightly */}
       <motion.header 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative z-20 px-8 pt-6 pb-4 md:px-12 md:pt-8 text-left"
+        className="relative z-20 px-8 pt-10 pb-4 md:px-12 md:pt-14 text-left"
       >
         <Logo className="h-9 w-auto md:h-11 brightness-0 invert drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]" />
       </motion.header>
 
-      {/* Hero Content Overlaid on the Left - Moved Up */}
+      {/* Hero Content Overlaid on the Left - Moved Down */}
       <motion.div
-        className="relative z-10 flex min-h-[calc(100vh-120px)] flex-col justify-start pt-12 md:pt-20 lg:pt-32 px-8 md:px-20 lg:px-32 max-w-6xl"
+        className="relative z-10 flex min-h-[calc(100vh-120px)] flex-col justify-start pt-20 md:pt-28 lg:pt-40 px-8 md:px-20 lg:px-32 max-w-6xl"
         initial="hidden"
         animate="visible"
         variants={containerVariants}

@@ -12,13 +12,17 @@ router.post('/start-session', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Session ID is required' })
     }
 
+    const totalCount = await QuizAttempt.countDocuments()
+    const sequenceNumber = totalCount + 1
+
     const attempt = await QuizAttempt.create({
       sessionId,
       lastQuestionReached: 0,
-      isCompleted: false
+      isCompleted: false,
+      sequenceNumber
     })
 
-    res.json({ success: true, attempt })
+    res.json({ success: true, attempt, sequenceNumber })
   } catch (err) {
     console.error('Failed to start quiz session:', err)
     res.status(500).json({ success: false, message: 'Server error' })

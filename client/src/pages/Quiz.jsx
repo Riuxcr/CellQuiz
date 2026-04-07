@@ -100,6 +100,7 @@ export default function Quiz() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [showEmailStep, setShowEmailStep] = useState(false)
+  const [sequenceNumber, setSequenceNumber] = useState(null)
 
   // Determine current question set based on goal selection
   const getQuestionSetForAnswers = (currentAnswers) => {
@@ -122,7 +123,13 @@ export default function Quiz() {
     // Initialize session for drop-off tracking
     axios.post(`${API_BASE_URL}/api/quiz/start-session`, { 
       sessionId 
-    }).catch(err => console.error('Failed to start session tracking:', err))
+    })
+    .then(res => {
+      if (res.data?.success) {
+        setSequenceNumber(res.data.sequenceNumber)
+      }
+    })
+    .catch(err => console.error('Failed to start session tracking:', err))
   }, [])
 
   // Track progress on every step change
@@ -243,6 +250,7 @@ export default function Quiz() {
       name: submittedName,
       email: submittedEmail,
       preferredFlow: isDirectToCheckout ? 'checkout' : 'product',
+      sequenceNumber,
       goal,
       segment
     }
@@ -270,7 +278,7 @@ export default function Quiz() {
     <main className={shell}>
       {/* Global Progress Bar (iOS Style) */}
       {!showEmailStep && (
-        <div className="fixed top-0 left-0 right-0 h-1 bg-gray-100 z-[100] md:relative md:mb-8 md:rounded-full md:overflow-hidden">
+        <div className="fixed top-0 left-0 right-0 h-1 bg-gray-100 z-[100] md:hidden">
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
@@ -311,6 +319,7 @@ export default function Quiz() {
             >
               <QuestionCard
                 question={current.question}
+                questionNumber={currentStep + 1}
                 options={current.options}
                 type={current.type}
                 min={current.min}

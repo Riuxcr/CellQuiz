@@ -14,6 +14,9 @@ const quizAttemptSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  sequenceNumber: {
+    type: Number
+  },
   createdAt: {
     type: Date,
     default: Date.now
