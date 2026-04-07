@@ -65,7 +65,7 @@ export default function QuestionCard({ question, options, type, min, max, helper
         {onBack && (
           <button
             onClick={onBack}
-            className="absolute left-5 top-5 md:left-8 md:top-8 p-2 text-white md:text-gray-400 hover:text-white md:hover:text-[#111827] transition-colors z-20"
+            className="absolute left-4 top-5 md:left-6 md:top-10 p-2 text-white md:text-gray-400 hover:text-white md:hover:text-[#111827] transition-colors z-20"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -79,15 +79,17 @@ export default function QuestionCard({ question, options, type, min, max, helper
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="text-[10px] font-bold tracking-[0.2em] text-[#007AFF] uppercase block mb-3 drop-shadow-sm">Quiz Progress</span>
-            <h2 className="text-xl md:text-4xl font-extrabold tracking-tight text-white md:text-gray-900 leading-[1.15] mb-2 drop-shadow-md">
-              {question}
-            </h2>
-            {helperText && (
-              <p className="text-xs md:text-base text-gray-200 md:text-gray-500 mb-6 md:mb-8 font-medium">
-                {helperText}
-              </p>
-            )}
+            <div className="md:pl-8">
+              <span className="text-[10px] font-bold tracking-[0.2em] text-[#007AFF] uppercase block mb-3 drop-shadow-sm">Quiz Progress</span>
+              <h2 className="text-xl md:text-4xl font-extrabold tracking-tight text-white md:text-gray-900 leading-[1.15] mb-2 drop-shadow-md">
+                {question}
+              </h2>
+              {helperText && (
+                <p className="text-xs md:text-base text-gray-200 md:text-gray-500 mb-6 md:mb-8 font-medium">
+                  {helperText}
+                </p>
+              )}
+            </div>
           </motion.div>
 
           <div className="grid grid-cols-1 gap-3">
