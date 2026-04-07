@@ -8,6 +8,7 @@ import {
   buildRedirectUrl,
   openCellStartUrl,
   RESULT_STATE_STORAGE_KEY,
+  CHECKOUT_URL
 } from '../constants/cellstartUrls.js'
 import {
   getPersonalizedInsight,
@@ -244,7 +245,12 @@ export default function Result() {
         await axios.put(`${API_BASE_URL}/api/quiz/mark-converted`, { email: resolvedState.email });
       }
     } catch (e) { console.error('Conversion track failed', e) }
-    openCellStartUrl(buildRedirectUrl(PRODUCT_URL, 'product')) 
+    
+    // 50/50 A/B Split Logic
+    const variant = Math.random() < 0.5 ? 'product' : 'checkout';
+    const targetBaseUrl = variant === 'product' ? PRODUCT_URL : CHECKOUT_URL;
+    
+    openCellStartUrl(buildRedirectUrl(targetBaseUrl, variant));
   }
 
 

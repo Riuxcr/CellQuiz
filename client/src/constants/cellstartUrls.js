@@ -3,7 +3,7 @@ export const PRODUCT_URL =
   'https://cellstart.com/products/nad?selling_plan=3903586561&variant=46896557195521'
 
 export const CHECKOUT_URL =
-  'https://cellstart.com/checkouts/cn/hWNAU8GfyILoKlWisS38oZvN/en-us?_r=AQABeic2poYKAyDjN9NVkfsIjkT9LngcU-PtbsT3yIKv_GA&auto_redirect=false&edge_redirect=true&preview_theme_id=156406677761&skip_shop_pay=true'
+  'https://cellstart.com/checkouts/cn/hWN9Uk6NEwQXKaSPysLdMz5t/en-us?_r=AQABYgUQlKVbAqILxGW8-lvXWM9WJi_JcqJlFydFIAWEp0Y&auto_redirect=false&edge_redirect=true&skip_shop_pay=true'
 
 export const buildRedirectUrl = (baseUrl, flow, extraParams = {}) => {
   const url = new URL(baseUrl)
