@@ -64,11 +64,11 @@ export default function Landing() {
           className="max-w-[85%] lg:max-w-4xl"
         >
           <h1 className="text-[clamp(1.5rem,3.5vw,2.75rem)] font-extrabold tracking-tight text-white leading-[1.1] drop-shadow-lg mb-8 uppercase">
-             ChronoNAD+<span className="text-blue-400">™</span> was created to boost and maintain optimal NAD+ levels at the cellular source.
+             Every cell in your body is fueled by NAD+
           </h1>
           
           <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-medium leading-[1.6] text-blue-50/90 mb-10 drop-shadow-sm max-w-2xl">
-            NAD+ is an essential coenzyme that plays a vital role in energy production and repair, supporting healthy aging and whole-body health at the cellular level. Take our quiz to find the right ChronoNAD+ protocol for you.
+            NAD+ levels decline by up to 65% as you age. ChronoNAD+ combines this vital coenzyme with Resveratrol to protect your DNA and power your 37.2 trillion cells.
           </p>
 
           <motion.div 
@@ -85,13 +85,13 @@ export default function Landing() {
                 navigate('/quiz')
               }}
             >
-              Start the quiz
+              START YOUR QUIZ
             </motion.button>
             <div className="flex items-center gap-2 mt-4 text-blue-100/80 font-bold px-4">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="text-xs uppercase tracking-[0.2em] drop-shadow-md">Takes 3 minutes</span>
+              <span className="text-xs uppercase tracking-[0.2em] drop-shadow-md">Takes 2 minutes</span>
             </div>
           </motion.div>
         </motion.div>
