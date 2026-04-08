@@ -36,8 +36,8 @@ export default function QuestionCard({ question, questionNumber, options, type, 
         </button>
       )}
 
-      {/* Mobile Background Image (Immersive) */}
-      <div className="md:hidden absolute inset-0 z-0">
+      {/* Mobile Background Image (Fixed/Immersive) */}
+      <div className="md:hidden fixed inset-0 z-0 overflow-hidden">
         {image && (
           <>
             <motion.img
@@ -47,7 +47,8 @@ export default function QuestionCard({ question, questionNumber, options, type, 
               initial={{ scale: 1.1, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover will-change-transform"
+              style={{ transform: 'translateZ(0)' }}
             />
             {/* Dark Overlay for Readability */}
             <div className="absolute inset-0 bg-black/40 backdrop-blur-[3px]" />
@@ -74,7 +75,7 @@ export default function QuestionCard({ question, questionNumber, options, type, 
       {/* Content Side */}
       <div className="flex-1 flex flex-col p-5 sm:p-10 md:p-12 pb-10 md:pb-12 bg-transparent md:bg-white relative z-10">
 
-        <div className="flex-1 max-w-2xl mx-auto md:mx-0 w-full flex flex-col justify-start pt-28 md:pt-12">
+        <div className={`flex-1 max-w-2xl mx-auto md:mx-0 w-full flex flex-col justify-start md:pt-12 ${questionNumber === 1 ? 'pt-[65vh]' : 'pt-28'}`}>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
