@@ -75,7 +75,7 @@ export default function QuestionCard({ question, questionNumber, options, type, 
       {/* Content Side */}
       <div className="flex-1 flex flex-col p-5 sm:p-10 md:p-12 pb-10 md:pb-12 bg-transparent md:bg-white relative z-10">
 
-        <div className={`flex-1 max-w-2xl mx-auto md:mx-0 w-full flex flex-col justify-start md:pt-12 ${questionNumber === 1 ? 'pt-[65vh]' : 'pt-28'}`}>
+        <div className={`flex-1 max-w-2xl mx-auto md:mx-0 w-full flex flex-col justify-start md:pt-12 ${questionNumber === 1 ? 'pt-[30vh]' : 'pt-28'}`}>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
