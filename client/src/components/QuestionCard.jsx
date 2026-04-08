@@ -81,7 +81,7 @@ export default function QuestionCard({ question, questionNumber, options, type, 
             transition={{ duration: 0.5 }}
           >
             <div>
-              <span className="text-[12px] font-black tracking-[0.2em] text-white uppercase block mb-3 drop-shadow-sm">
+              <span className="text-[12px] font-black tracking-[0.2em] text-white md:text-black uppercase block mb-3 drop-shadow-sm md:drop-shadow-none">
                 QUESTION {questionNumber}
               </span>
               <h2 className="text-xl md:text-2xl font-extrabold tracking-tight text-white md:text-gray-900 leading-[1.15] mb-2 drop-shadow-md">
