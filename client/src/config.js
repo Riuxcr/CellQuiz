@@ -9,3 +9,5 @@ export const API_ENDPOINTS = {
   SUBMIT_QUIZ: `${API_BASE_URL}/api/quiz/submit`,
   FETCH_LEADS: `${API_BASE_URL}/api/quiz/leads`,
 }
+
+export const LEADS_URL = API_ENDPOINTS.FETCH_LEADS 

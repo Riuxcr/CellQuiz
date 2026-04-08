@@ -32,14 +32,21 @@ router.post('/start-session', async (req, res) => {
 // Track real-time progress for each question
 router.put('/track', async (req, res) => {
   try {
-    const { sessionId, questionIndex } = req.body
+    const { sessionId, questionIndex, answer } = req.body
     if (!sessionId) {
       return res.status(400).json({ success: false, message: 'Session ID is required' })
     }
 
+    const updateData = { lastQuestionReached: questionIndex };
+    
+    if (answer !== undefined) {
+      updateData.$set = { [`answers.${questionIndex}`]: answer };
+      updateData.$push = { history: { step: questionIndex, answer, timestamp: new Date() } };
+    }
+
     await QuizAttempt.findOneAndUpdate(
       { sessionId },
-      { lastQuestionReached: questionIndex },
+      updateData,
       { new: true, upsert: true }
     )
 
@@ -175,13 +182,23 @@ router.get('/analytics', async (req, res) => {
       return res.status(403).json({ success: false, message: 'Forbidden' });
     }
 
-    const attempts = await QuizAttempt.find();
+    const attempts = await QuizAttempt.find().sort({ updatedAt: -1 });
     
     // Aggregate drop-off data: how many users reached each question index
     const counts = {};
+    const questionStats = {}; // To store answer distribution per question
+    
     attempts.forEach(a => {
       const idx = a.lastQuestionReached || 0;
       counts[idx] = (counts[idx] || 0) + 1;
+      
+      // Collect answer distribution
+      if (a.answers) {
+        a.answers.forEach((val, key) => {
+          if (!questionStats[key]) questionStats[key] = {};
+          questionStats[key][val] = (questionStats[key][val] || 0) + 1;
+        });
+      }
     });
 
     const totalAttempts = attempts.length;
@@ -191,6 +208,14 @@ router.get('/analytics', async (req, res) => {
     const totalLeads = await Lead.countDocuments();
     const totalConversions = await Lead.countDocuments({ isConverted: true });
 
+    // Latest activity feed
+    const activityFeed = attempts.slice(0, 10).map(a => ({
+      sessionId: a.sessionId,
+      lastStep: a.lastQuestionReached,
+      isCompleted: a.isCompleted,
+      updatedAt: a.updatedAt
+    }));
+
     res.json({
       success: true,
       data: {
@@ -198,7 +223,9 @@ router.get('/analytics', async (req, res) => {
         completions,
         totalLeads,
         totalConversions,
-        dropOffMap: counts
+        dropOffMap: counts,
+        questionStats,
+        activityFeed
       }
     });
   } catch (err) {

@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import { API_ENDPOINTS } from '../config.js'
-import Logo from '../components/Logo.jsx'
-
-const LEADS_URL = API_ENDPOINTS.FETCH_LEADS
+import { Link, useNavigate } from 'react-router-dom'
+import { LEADS_URL } from '../config.js'
 
 export default function AdminLeads() {
+  const navigate = useNavigate()
   const [leads, setLeads] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [search, setSearch] = useState('')
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
   useEffect(() => {
     fetchLeads()
@@ -27,11 +26,16 @@ export default function AdminLeads() {
       setLeads(res.data.leads || [])
       setError(null)
     } catch (err) {
-      setError('Could not fetch leads. Is the server running?')
+      setError('Connection to security layer failed.')
       console.error(err)
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('admin_token')
+    navigate('/admin/login')
   }
 
   const filteredLeads = leads.filter(l => 
@@ -44,166 +48,214 @@ export default function AdminLeads() {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
     })
+  }
+
+  const formatTime = (dateString) => {
+    return new Date(dateString).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   }
 
   if (loading) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-8 bg-[#f9fafb]">
-        <Logo className="h-10 w-auto opacity-90" />
-        <div className="h-10 w-10 animate-spin rounded-full border-[3px] border-[#111827] border-t-transparent shadow-xl" />
+      <div className="flex min-h-screen items-center justify-center bg-white">
+        <div className="h-8 w-8 rounded-full border-2 border-blue-600 border-t-transparent animate-spin" />
       </div>
     )
   }
 
+  const navItems = [
+    { id: 'insights', label: 'Insights', icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+    ), path: '/admin/analytics' },
+    { id: 'leads', label: 'Leads Portfolio', icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+    ), path: '/admin', active: true },
+  ]
+
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-blue-100">
-      <div className="w-full">
-        
-        {/* Header Section - Full Width */}
-        <header className="px-10 py-12 md:px-16 border-b border-gray-50 flex flex-col lg:flex-row lg:items-center justify-between gap-8 bg-[#fcfcfd]">
-          <div className="relative">
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-                <h1 className="text-5xl font-black tracking-tight text-[#111827]">
-                  Leads Hub<span className="text-blue-600">.</span>
-                </h1>
-                <div className="mt-3 flex items-center gap-3">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <p className="text-sm font-black text-gray-400 uppercase tracking-[0.2em]">{leads.length} Total Analysis Completions</p>
-                </div>
-            </motion.div>
+    <div className="flex h-screen bg-[#f8f9fa] text-gray-900 font-sans selection:bg-blue-100 overflow-hidden">
+      
+      {/* Gmail-style Sidebar */}
+      <motion.aside 
+        initial={false}
+        animate={{ width: isSidebarOpen ? 280 : 80 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="bg-white border-r border-gray-100 flex flex-col relative z-50 shadow-[4px_0_24px_rgba(0,0,0,0.02)]"
+      >
+        <div className="h-16 flex items-center px-6">
+          <button 
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="p-3 rounded-full hover:bg-gray-100 text-gray-500 transition-colors"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+          </button>
+          <AnimatePresence>
+            {isSidebarOpen && (
+              <motion.h1 
+                initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
+                className="ml-4 text-xl font-black tracking-tighter text-gray-900 whitespace-nowrap"
+              >
+                Command<span className="text-blue-600">Center</span>
+              </motion.h1>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <div className="px-3 mt-4">
+          <button 
+            onClick={fetchLeads}
+            className={`w-full flex items-center justify-center gap-3 bg-white shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-gray-100 hover:shadow-[0_8px_16px_rgba(0,0,0,0.12)] transition-all rounded-[28px] overflow-hidden ${isSidebarOpen ? 'px-6 py-4' : 'h-14 w-14 p-0 ml-1.5'}`}
+          >
+            <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" /></svg>
+            {isSidebarOpen && <span className="text-sm font-black text-gray-800 uppercase tracking-widest whitespace-nowrap">Sync Database</span>}
+          </button>
+        </div>
+
+        <nav className="flex-1 mt-8 space-y-1 px-3">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => navigate(item.path)}
+              className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-[20px] transition-all group ${item.active ? 'bg-blue-50 text-blue-700 font-bold' : 'text-gray-500 hover:bg-gray-50'}`}
+            >
+              <span className={`flex-shrink-0 transition-transform duration-500 ${item.active ? 'text-blue-600 scale-110' : 'text-gray-400 group-hover:text-gray-900 group-hover:scale-110'}`}>{item.icon}</span>
+              <AnimatePresence>
+                {isSidebarOpen && (
+                  <motion.span 
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="text-sm tracking-tight whitespace-nowrap"
+                  >
+                    {item.label}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
+          ))}
+        </nav>
+
+        <div className="mt-auto p-4 space-y-2">
+          <button 
+            onClick={handleLogout}
+            className="w-full flex items-center gap-4 px-4 py-3.5 rounded-[20px] text-red-500/60 hover:bg-red-50 hover:text-red-600 transition-all font-medium group"
+          >
+            <svg className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+            <AnimatePresence>
+              {isSidebarOpen && (
+                <motion.span 
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -10 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="text-sm whitespace-nowrap"
+                >
+                  Logout
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
+        </div>
+      </motion.aside>
+
+      <main className="flex-1 h-screen overflow-y-auto relative">
+        <header className="px-12 h-16 flex items-center justify-between sticky top-0 bg-[#f8f9fa]/90 backdrop-blur-xl z-40 border-b border-gray-100/50">
+          <div className="flex items-center gap-6">
+            <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400">Database Engine</h2>
+            <div className="h-4 w-[1px] bg-gray-200" />
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-bold text-gray-900 tracking-tight">Leads Portfolio Management</span>
+              <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-6">
              <div className="relative group">
                 <input 
                     type="text" 
-                    placeholder="Search by email..." 
-                    className="w-full md:w-80 bg-white border border-gray-100 rounded-2xl px-6 py-3.5 text-sm font-bold text-[#111827] placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-blue-100/20 focus:border-blue-200 transition-all shadow-sm"
+                    placeholder="Search database records..." 
+                    className="w-full md:w-96 bg-white border border-gray-100 rounded-[20px] px-6 py-3 text-sm font-bold text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-blue-100/40 focus:border-blue-200 transition-all shadow-sm"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
-                <svg className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                <svg className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
              </div>
-             <Link 
-              to="/admin/analytics" 
-              className="px-6 py-3.5 rounded-2xl bg-white border border-gray-100 text-sm font-black uppercase tracking-widest text-[#111827] hover:shadow-sm transition-all active:scale-95 text-[10px]"
-            >
-              Analytics
-            </Link>
-            <button 
-              onClick={fetchLeads}
-              className="p-3.5 rounded-2xl bg-white border border-gray-100 text-[#111827] shadow-sm hover:shadow-md transition-all active:scale-95"
-              title="Refresh Data"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
-            </button>
-            <Link 
-              to="/" 
-              className="px-8 py-3.5 rounded-2xl bg-[#111827] text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-2xl shadow-blue-900/10 hover:bg-black transition-all active:scale-95"
-            >
-              Client Site
-            </Link>
+             <button onClick={() => navigate('/')} className="px-6 py-2.5 rounded-full bg-gray-900 text-[10px] font-black uppercase tracking-widest text-white hover:bg-black transition-all shadow-xl shadow-gray-900/10">Portal Home</button>
           </div>
         </header>
 
-        {error && (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="m-10 mb-8 rounded-3xl bg-red-50 border border-red-100 p-6 text-red-600 font-bold flex items-center justify-between">
-            <span>{error}</span>
-            <button onClick={fetchLeads} className="text-red-800 underline uppercase text-xs tracking-widest">Retry</button>
-          </motion.div>
-        )}
+        <div className="px-12 py-12 max-w-[1400px] mx-auto space-y-10">
+          {error && (
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="rounded-[32px] bg-red-50 border border-red-100 p-8 text-red-600 font-bold flex items-center justify-between">
+              <span className="text-sm uppercase tracking-[0.2em]">{error}</span>
+              <button onClick={fetchLeads} className="text-red-800 underline uppercase text-xs tracking-widest">Restore Connection</button>
+            </motion.div>
+          )}
 
-        {/* Leads Table - Full Width Edge-to-Edge */}
-        <div className="w-full">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left">
-              <thead>
-                <tr className="border-b border-gray-100 bg-white">
-                  <th className="px-10 py-8 md:px-16 text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Contributor</th>
-                  <th className="px-10 py-8 md:px-16 text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">AB Group</th>
-                  <th className="px-10 py-8 md:px-16 text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Analysis Breakdown</th>
-                  <th className="px-10 py-8 md:px-16 text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 text-right">Captured</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-50/50">
-                <AnimatePresence>
-                  {filteredLeads.length > 0 ? (
-                    filteredLeads.map((lead, idx) => (
-                      <motion.tr 
-                        key={lead._id || idx}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: idx * 0.02 }}
-                        className="group hover:bg-[#fcfcfd] transition-all"
-                      >
-                        <td className="px-10 py-10 md:px-16 align-top">
-                          <div className="flex flex-col">
-                            <span className="text-xl font-black text-[#111827] leading-none mb-2">{lead.name || 'Anonymous User'}</span>
-                            <span className="text-sm font-bold text-gray-400 leading-none">{lead.email}</span>
-                            {lead.isConverted && (
-                              <div className="mt-4 flex items-center gap-2">
-                                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-100 px-3 py-1.5 text-[9px] font-black uppercase text-emerald-600 tracking-widest">
-                                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 100-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" /></svg>
-                                  Shop Clicked
-                                </span>
-                              </div>
-                            )}
+          <div className="space-y-6 pb-20">
+            <AnimatePresence mode="popLayout">
+              {filteredLeads.length > 0 ? (
+                filteredLeads.map((lead, idx) => (
+                  <motion.div 
+                    key={lead._id || idx}
+                    layout
+                    initial={{ opacity: 0, scale: 0.98, y: 15 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ delay: idx * 0.05, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="bg-white p-10 rounded-[48px] shadow-[0_24px_80px_rgba(0,0,0,0.02)] border border-gray-100/40 hover:shadow-[0_32px_96px_rgba(0,0,0,0.04)] hover:border-blue-100 transition-all duration-700 flex flex-col lg:flex-row lg:items-center justify-between gap-12 group"
+                  >
+                    <div className="flex-1 min-w-0 flex items-center gap-8">
+                      <div className="h-20 w-20 rounded-[32px] bg-blue-50 border border-blue-100 flex items-center justify-center text-3xl font-black text-blue-600 shadow-inner group-hover:scale-110 transition-transform duration-700">
+                        {lead.name ? lead.name[0].toUpperCase() : '?'}
+                      </div>
+                      <div>
+                        <h2 className="text-2xl font-black text-gray-900 tracking-tight leading-none mb-3">{lead.name || 'Anonymous Intelligence'}</h2>
+                        <p className="text-sm font-bold text-gray-400 group-hover:text-blue-600 transition-colors">{lead.email}</p>
+                        {lead.isConverted && (
+                          <div className="mt-5 inline-flex items-center gap-2 bg-emerald-50 text-emerald-600 border border-emerald-100 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">
+                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293l-4 4a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L9 10.586l3.293-3.293a1 1 0 111.414 1.414z" /></svg>
+                             Transaction Finalized
                           </div>
-                        </td>
-                        <td className="px-10 py-10 md:px-16 align-top">
-                          {lead.assignedVariant ? (
-                            <span className={`inline-flex items-center px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest ${lead.assignedVariant === 'checkout' ? 'bg-purple-50 text-purple-600 border border-purple-100' : 'bg-blue-50 text-blue-600 border border-blue-100'}`}>
-                              {lead.assignedVariant === 'checkout' ? 'Checkout' : 'Product'}
-                            </span>
-                          ) : (
-                            <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest italic">Legacy Lead</span>
-                          )}
-                        </td>
-                        <td className="px-10 py-10 md:px-16">
-                          <div className="flex flex-wrap gap-3">
-                            {Object.entries(lead.answers || {}).map(([key, value]) => (
-                              <div key={key} className="inline-flex items-center gap-2.5 rounded-2xl bg-gray-50 border border-gray-100 px-4 py-2.5 hover:bg-white hover:border-blue-100 transition-all duration-200 cursor-default">
-                                <span className="text-[10px] font-black uppercase text-gray-400 tracking-tighter opacity-60">
-                                    {key.replace(/([A-Z])/g, ' $1').trim()}
-                                </span>
-                                <span className="text-xs font-black text-[#111827]">{String(value)}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </td>
-                        <td className="px-10 py-10 md:px-16 align-top text-right whitespace-nowrap">
-                          <div className="flex flex-col items-end">
-                            <span className="text-base font-black text-gray-900 mb-1">{formatDate(lead.createdAt).split(',')[0]}</span>
-                            <span className="text-[11px] font-bold text-gray-300 uppercase tracking-widest">{formatDate(lead.createdAt).split(',')[1]}</span>
-                          </div>
-                        </td>
-                      </motion.tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="3" className="px-8 py-40 text-center">
-                        <div className="flex flex-col items-center gap-6">
-                            <div className="h-20 w-20 flex items-center justify-center rounded-full bg-gray-50 text-gray-200">
-                                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
-                            </div>
-                            <div>
-                                <p className="text-2xl font-black text-gray-900 mb-1 leading-none">No records match your criteria</p>
-                                <p className="text-sm font-bold text-gray-400">Total analysis available: {leads.length}</p>
-                            </div>
-                            <button onClick={() => setSearch('')} className="px-8 py-3 rounded-2xl bg-blue-50 text-blue-800 text-[11px] font-black uppercase tracking-widest transition-all hover:bg-blue-100">Reset Search</button>
-                        </div>
-                      </td>
-                    </tr>
-                  )}
-                </AnimatePresence>
-              </tbody>
-            </table>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex-[1.5] flex flex-wrap gap-4">
+                       <div className={`px-5 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border shadow-sm ${lead.assignedVariant === 'checkout' ? 'bg-purple-50 text-purple-600 border-purple-100' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
+                          {lead.assignedVariant || 'Standard'} Mode
+                       </div>
+                       {Object.entries(lead.answers || {}).slice(0, 4).map(([key, value]) => (
+                         <div key={key} className="bg-gray-50/50 border border-gray-100/50 rounded-[20px] px-6 py-3 flex items-center gap-4 hover:bg-white hover:border-blue-50 hover:shadow-sm transition-all duration-300">
+                            <span className="text-[11px] font-black uppercase text-gray-300 tracking-[0.1em]">{key}</span>
+                            <span className="text-xs font-black text-gray-800">{String(value)}</span>
+                         </div>
+                       ))}
+                    </div>
+
+                    <div className="flex flex-col items-end gap-2 md:min-w-[140px]">
+                      <span className="text-2xl font-black text-gray-900 tracking-tighter">{formatDate(lead.createdAt)}</span>
+                      <span className="text-[11px] font-black text-gray-300 uppercase tracking-[0.4em] bg-gray-50 px-4 py-1.5 rounded-xl border border-gray-100">
+                        {formatTime(lead.createdAt)}
+                      </span>
+                    </div>
+                  </motion.div>
+                ))
+              ) : (
+                <div className="py-40 flex flex-col items-center justify-center gap-8 opacity-40">
+                    <div className="h-24 w-24 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center shadow-inner animate-bounce text-gray-300">
+                        <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" /></svg>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-3xl font-black text-gray-900 mb-2 tracking-tight">Intelligence Void</p>
+                      <p className="text-xs font-black text-gray-400 uppercase tracking-[0.3em]">No records decrypted in the current database</p>
+                    </div>
+                    <button onClick={() => setSearch('')} className="px-10 py-4 rounded-full bg-blue-600 text-white text-[11px] font-black uppercase tracking-widest shadow-xl shadow-blue-600/20 active:scale-95">Re-initialize Database</button>
+                </div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   )
 }

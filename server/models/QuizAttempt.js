@@ -17,6 +17,21 @@ const quizAttemptSchema = new mongoose.Schema({
   sequenceNumber: {
     type: Number
   },
+  answers: {
+    type: Map,
+    of: mongoose.Schema.Types.Mixed,
+    default: {}
+  },
+  history: [
+    {
+      step: Number,
+      answer: mongoose.Schema.Types.Mixed,
+      timestamp: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
   createdAt: {
     type: Date,
     default: Date.now

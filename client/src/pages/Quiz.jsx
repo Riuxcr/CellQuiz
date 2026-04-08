@@ -181,6 +181,13 @@ export default function Quiz() {
     const nextAnswers = { ...answers, [current.id]: option }
     setAnswers(nextAnswers)
 
+    // Log the interaction to the tracker immediately
+    axios.put(`${API_BASE_URL}/api/quiz/track`, {
+      sessionId,
+      questionIndex: currentStep,
+      answer: option
+    }).catch(err => console.error('Silent tracking error:', err))
+
     const nextQuestionSet = getQuestionSetForAnswers(nextAnswers)
 
     if (currentStep < nextQuestionSet.length - 1) {
