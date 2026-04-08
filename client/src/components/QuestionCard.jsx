@@ -22,7 +22,7 @@ export default function QuestionCard({ question, questionNumber, options, type, 
   }
 
   return (
-    <div className="flex flex-col md:flex-row w-full max-w-[1300px] mx-auto min-h-[100dvh] md:min-h-0 md:h-[680px] bg-[#111827] md:bg-white md:rounded-[2.5rem] md:shadow-ios md:overflow-hidden relative">
+    <div className="flex flex-col md:flex-row w-full min-h-[100dvh] md:h-screen bg-[#111827] md:bg-white md:overflow-hidden relative">
       
       {/* Back Button (Mobile & Desktop) */}
       {onBack && (
@@ -56,7 +56,7 @@ export default function QuestionCard({ question, questionNumber, options, type, 
       </div>
 
       {/* Visual Side (Desktop Only) */}
-      <div className="hidden md:flex md:w-[45%] bg-[#111827] relative overflow-hidden">
+      <div className="hidden md:flex md:w-[45%] bg-[#111827] relative overflow-hidden md:rounded-tr-[4rem] md:rounded-br-[4rem]">
         {image && (
           <motion.img
             key={image}
@@ -74,14 +74,14 @@ export default function QuestionCard({ question, questionNumber, options, type, 
       {/* Content Side */}
       <div className="flex-1 flex flex-col p-5 sm:p-10 md:p-12 pb-10 md:pb-12 bg-transparent md:bg-white relative z-10">
 
-        <div className="flex-1 max-w-2xl mx-auto md:mx-0 w-full flex flex-col justify-start pt-16 md:pt-12">
+        <div className="flex-1 max-w-2xl mx-auto md:mx-0 w-full flex flex-col justify-start pt-28 md:pt-12">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <div>
-              <span className="text-[12px] font-bold tracking-[0.2em] text-[#007AFF] uppercase block mb-3 drop-shadow-sm">
+              <span className="text-[12px] font-black tracking-[0.2em] text-white uppercase block mb-3 drop-shadow-sm">
                 QUESTION {questionNumber}
               </span>
               <h2 className="text-xl md:text-2xl font-extrabold tracking-tight text-white md:text-gray-900 leading-[1.15] mb-2 drop-shadow-md">

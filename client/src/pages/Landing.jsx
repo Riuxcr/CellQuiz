@@ -57,7 +57,7 @@ export default function Landing() {
 
       {/* Hero Content Overlaid on the Left - Moved Down */}
       <motion.div
-        className="relative z-10 flex min-h-[calc(100vh-120px)] flex-col justify-start pt-20 md:pt-28 lg:pt-40 px-8 md:px-20 lg:px-32 max-w-6xl"
+        className="relative z-10 flex min-h-[calc(100vh-120px)] flex-col justify-start pt-28 md:pt-28 lg:pt-28 px-8 md:px-20 lg:px-32 max-w-6xl"
         initial="hidden"
         animate="visible"
         variants={containerVariants}

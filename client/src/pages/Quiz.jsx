@@ -265,20 +265,11 @@ export default function Quiz() {
 
   const progress = ((currentStep + 1) / total) * 100
 
-  const shell = 'mx-auto flex min-h-[100dvh] w-full max-w-[1400px] flex-col px-0 md:px-6 py-0 md:py-12'
+  const shell = 'flex min-h-[100dvh] w-full flex-col'
 
   return (
     <main className={shell}>
-      {/* Global Progress Bar (iOS Style) */}
-      {!showEmailStep && (
-        <div className="fixed top-0 left-0 right-0 h-1 bg-gray-100 z-[100] md:hidden">
-          <motion.div 
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            className="h-full bg-[#007AFF] shadow-[0_0_8px_rgba(0,122,255,0.5)]"
-          />
-        </div>
-      )}
+
 
       <div className="w-full flex-1 flex flex-col items-center justify-center">
         <AnimatePresence mode="wait">
