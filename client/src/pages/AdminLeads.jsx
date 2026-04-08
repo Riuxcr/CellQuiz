@@ -26,7 +26,7 @@ export default function AdminLeads() {
       setLeads(res.data.leads || [])
       setError(null)
     } catch (err) {
-      setError('Connection to security layer failed.')
+      setError('Connection failed.')
       console.error(err)
     } finally {
       setLoading(false)
@@ -64,18 +64,21 @@ export default function AdminLeads() {
   }
 
   const navItems = [
-    { id: 'insights', label: 'Insights', icon: (
+    { id: 'insights', label: 'Summary', icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
     ), path: '/admin/analytics' },
-    { id: 'leads', label: 'Leads Portfolio', icon: (
+    { id: 'leads', label: 'Customer List', icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
     ), path: '/admin', active: true },
+    { id: 'support', label: 'Help & Support', icon: (
+       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+    ), path: '/admin/analytics?tab=support' },
   ]
 
   return (
     <div className="flex h-screen bg-[#f8f9fa] text-gray-900 font-sans selection:bg-blue-100 overflow-hidden">
       
-      {/* Gmail-style Sidebar */}
+      {/* Sidebar with Simple Language */}
       <motion.aside 
         initial={false}
         animate={{ width: isSidebarOpen ? 280 : 80 }}
@@ -95,7 +98,7 @@ export default function AdminLeads() {
                 initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
                 className="ml-4 text-xl font-black tracking-tighter text-gray-900 whitespace-nowrap"
               >
-                Command<span className="text-blue-600">Center</span>
+                Admin<span className="text-blue-600">Panel</span>
               </motion.h1>
             )}
           </AnimatePresence>
@@ -107,7 +110,7 @@ export default function AdminLeads() {
             className={`w-full flex items-center justify-center gap-3 bg-white shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-gray-100 hover:shadow-[0_8px_16px_rgba(0,0,0,0.12)] transition-all rounded-[28px] overflow-hidden ${isSidebarOpen ? 'px-6 py-4' : 'h-14 w-14 p-0 ml-1.5'}`}
           >
             <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" /></svg>
-            {isSidebarOpen && <span className="text-sm font-black text-gray-800 uppercase tracking-widest whitespace-nowrap">Sync Database</span>}
+            {isSidebarOpen && <span className="text-sm font-black text-gray-800 uppercase tracking-widest whitespace-nowrap">Refresh List</span>}
           </button>
         </div>
 
@@ -115,7 +118,13 @@ export default function AdminLeads() {
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => navigate(item.path)}
+              onClick={() => {
+                if (item.id === 'support') {
+                   navigate('/admin/analytics');
+                } else {
+                   navigate(item.path);
+                }
+              }}
               className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-[20px] transition-all group ${item.active ? 'bg-blue-50 text-blue-700 font-bold' : 'text-gray-500 hover:bg-gray-50'}`}
             >
               <span className={`flex-shrink-0 transition-transform duration-500 ${item.active ? 'text-blue-600 scale-110' : 'text-gray-400 group-hover:text-gray-900 group-hover:scale-110'}`}>{item.icon}</span>
@@ -162,10 +171,10 @@ export default function AdminLeads() {
       <main className="flex-1 h-screen overflow-y-auto relative">
         <header className="px-12 h-16 flex items-center justify-between sticky top-0 bg-[#f8f9fa]/90 backdrop-blur-xl z-40 border-b border-gray-100/50">
           <div className="flex items-center gap-6">
-            <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400">Database Engine</h2>
+            <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400">Tracking Status</h2>
             <div className="h-4 w-[1px] bg-gray-200" />
             <div className="flex items-center gap-3">
-              <span className="text-sm font-bold text-gray-900 tracking-tight">Leads Portfolio Management</span>
+              <span className="text-sm font-bold text-gray-900 tracking-tight">Customer List Management</span>
               <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
             </div>
           </div>
@@ -174,14 +183,14 @@ export default function AdminLeads() {
              <div className="relative group">
                 <input 
                     type="text" 
-                    placeholder="Search database records..." 
+                    placeholder="Search people..." 
                     className="w-full md:w-96 bg-white border border-gray-100 rounded-[20px] px-6 py-3 text-sm font-bold text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-blue-100/40 focus:border-blue-200 transition-all shadow-sm"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 <svg className="absolute right-6 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
              </div>
-             <button onClick={() => navigate('/')} className="px-6 py-2.5 rounded-full bg-gray-900 text-[10px] font-black uppercase tracking-widest text-white hover:bg-black transition-all shadow-xl shadow-gray-900/10">Portal Home</button>
+             <button onClick={() => navigate('/')} className="px-6 py-2.5 rounded-full bg-gray-900 text-[10px] font-black uppercase tracking-widest text-white hover:bg-black transition-all shadow-xl shadow-gray-900/10">Front View</button>
           </div>
         </header>
 
@@ -189,7 +198,7 @@ export default function AdminLeads() {
           {error && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="rounded-[32px] bg-red-50 border border-red-100 p-8 text-red-600 font-bold flex items-center justify-between">
               <span className="text-sm uppercase tracking-[0.2em]">{error}</span>
-              <button onClick={fetchLeads} className="text-red-800 underline uppercase text-xs tracking-widest">Restore Connection</button>
+              <button onClick={fetchLeads} className="text-red-800 underline uppercase text-xs tracking-widest">Refresh Now</button>
             </motion.div>
           )}
 
@@ -209,12 +218,12 @@ export default function AdminLeads() {
                         {lead.name ? lead.name[0].toUpperCase() : '?'}
                       </div>
                       <div>
-                        <h2 className="text-2xl font-black text-gray-900 tracking-tight leading-none mb-3">{lead.name || 'Anonymous Intelligence'}</h2>
+                        <h2 className="text-2xl font-black text-gray-900 tracking-tight leading-none mb-3">{lead.name || 'Anonymous User'}</h2>
                         <p className="text-sm font-bold text-gray-400 group-hover:text-blue-600 transition-colors">{lead.email}</p>
                         {lead.isConverted && (
                           <div className="mt-5 inline-flex items-center gap-2 bg-emerald-50 text-emerald-600 border border-emerald-100 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">
                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293l-4 4a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L9 10.586l3.293-3.293a1 1 0 111.414 1.414z" /></svg>
-                             Transaction Finalized
+                             Purchased Kit
                           </div>
                         )}
                       </div>
@@ -222,7 +231,7 @@ export default function AdminLeads() {
 
                     <div className="flex-[1.5] flex flex-wrap gap-4">
                        <div className={`px-5 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border shadow-sm ${lead.assignedVariant === 'checkout' ? 'bg-purple-50 text-purple-600 border-purple-100' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
-                          {lead.assignedVariant || 'Standard'} Mode
+                          {lead.assignedVariant === 'checkout' ? 'Checkout View' : 'Results View'}
                        </div>
                        {Object.entries(lead.answers || {}).slice(0, 4).map(([key, value]) => (
                          <div key={key} className="bg-gray-50/50 border border-gray-100/50 rounded-[20px] px-6 py-3 flex items-center gap-4 hover:bg-white hover:border-blue-50 hover:shadow-sm transition-all duration-300">
@@ -246,10 +255,10 @@ export default function AdminLeads() {
                         <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" /></svg>
                     </div>
                     <div className="text-center">
-                      <p className="text-3xl font-black text-gray-900 mb-2 tracking-tight">Intelligence Void</p>
-                      <p className="text-xs font-black text-gray-400 uppercase tracking-[0.3em]">No records decrypted in the current database</p>
+                      <p className="text-3xl font-black text-gray-900 mb-2 tracking-tight">No records found</p>
+                      <p className="text-xs font-black text-gray-400 uppercase tracking-[0.3em]">The database is currently clear</p>
                     </div>
-                    <button onClick={() => setSearch('')} className="px-10 py-4 rounded-full bg-blue-600 text-white text-[11px] font-black uppercase tracking-widest shadow-xl shadow-blue-600/20 active:scale-95">Re-initialize Database</button>
+                    <button onClick={() => setSearch('')} className="px-10 py-4 rounded-full bg-blue-600 text-white text-[11px] font-black uppercase tracking-widest shadow-xl shadow-blue-600/20 active:scale-95">Search Again</button>
                 </div>
               )}
             </AnimatePresence>
