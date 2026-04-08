@@ -52,7 +52,7 @@ router.put('/track', async (req, res) => {
 
 router.post('/submit', async (req, res) => {
   try {
-    const { name, email, answers, sessionId } = req.body
+    const { name, email, answers, sessionId, assignedVariant } = req.body
 
     if (!name || typeof name !== 'string' || !name.trim()) {
       return res.status(400).json({
@@ -84,6 +84,7 @@ router.post('/submit', async (req, res) => {
       name: name.trim(),
       email: email.trim(),
       answers,
+      assignedVariant,
     })
 
     // --- Step 3: Klaviyo Server-Side Sync ---

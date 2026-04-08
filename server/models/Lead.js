@@ -5,6 +5,7 @@ const leadSchema = new mongoose.Schema({
   email: { type: String, required: true },
   answers: { type: mongoose.Schema.Types.Mixed, required: true },
   isConverted: { type: Boolean, default: false },
+  assignedVariant: { type: String },
   createdAt: { type: Date, default: Date.now },
 })
 

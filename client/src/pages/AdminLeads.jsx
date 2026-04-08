@@ -123,6 +123,7 @@ export default function AdminLeads() {
               <thead>
                 <tr className="border-b border-gray-100 bg-white">
                   <th className="px-10 py-8 md:px-16 text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Contributor</th>
+                  <th className="px-10 py-8 md:px-16 text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">AB Group</th>
                   <th className="px-10 py-8 md:px-16 text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Analysis Breakdown</th>
                   <th className="px-10 py-8 md:px-16 text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 text-right">Captured</th>
                 </tr>
@@ -151,6 +152,15 @@ export default function AdminLeads() {
                               </div>
                             )}
                           </div>
+                        </td>
+                        <td className="px-10 py-10 md:px-16 align-top">
+                          {lead.assignedVariant ? (
+                            <span className={`inline-flex items-center px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest ${lead.assignedVariant === 'checkout' ? 'bg-purple-50 text-purple-600 border border-purple-100' : 'bg-blue-50 text-blue-600 border border-blue-100'}`}>
+                              {lead.assignedVariant === 'checkout' ? 'Checkout' : 'Product'}
+                            </span>
+                          ) : (
+                            <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest italic">Legacy Lead</span>
+                          )}
                         </td>
                         <td className="px-10 py-10 md:px-16">
                           <div className="flex flex-wrap gap-3">

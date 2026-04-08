@@ -241,15 +241,13 @@ export default function Quiz() {
       'Segment': segment
     }]);
 
-    // 25/75 Split: 0 -> checkout (25%), 1,2,3 -> results (75%)
-    const splitValue = stableSplit(submittedEmail) % 4
-    const isDirectToCheckout = splitValue === 0 
-
+    const assignedVariant = sequenceNumber ? (sequenceNumber % 2 !== 0 ? 'checkout' : 'product') : 'product'
+    
     const resultState = {
       answers: { ...answers },
       name: submittedName,
       email: submittedEmail,
-      preferredFlow: isDirectToCheckout ? 'checkout' : 'product',
+      assignedVariant,
       sequenceNumber,
       goal,
       segment
@@ -261,13 +259,8 @@ export default function Quiz() {
       /* ignore quota / private mode */
     }
 
-    if (isDirectToCheckout) {
-      // Redirect directly to checkout for 25% of users (Step 4 Logic)
-      window.location.href = buildRedirectUrl(CHECKOUT_URL, 'checkout', { goal, segment })
-    } else {
-      // Redirect to results page for 75% of users (Step 4 Logic)
-      navigate('/result', { state: resultState })
-    }
+    // Always redirect to results page (100% of users)
+    navigate('/result', { state: resultState })
   }
 
   const progress = ((currentStep + 1) / total) * 100
@@ -305,6 +298,7 @@ export default function Quiz() {
                 setEmail={setEmail}
                 answers={answers}
                 sessionId={sessionId}
+                assignedVariant={sequenceNumber ? (sequenceNumber % 2 !== 0 ? 'checkout' : 'product') : 'product'}
                 onSuccess={handleEmailSuccess}
               />
             </motion.div>
