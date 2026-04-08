@@ -270,11 +270,16 @@ export default function Result() {
       <section className="relative min-h-[100vh] flex items-center overflow-hidden bg-white">
         {/* Full-width Background Image */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/resultpage.png" 
-            alt="ChronoNAD+™ Protocol Background" 
-            className="w-full h-full object-cover"
-          />
+          <picture>
+            <source media="(max-width: 768px)" srcSet="/Quizmobile.png" />
+            <img 
+              src="/resultpage.png" 
+              alt="ChronoNAD+™ Protocol Background" 
+              className="w-full h-full object-cover"
+            />
+          </picture>
+          {/* Mobile-only overlay for text legibility */}
+          <div className="absolute inset-0 bg-black/50 md:hidden" />
         </div>
 
         {/* Company Logo at Top Left */}
@@ -284,16 +289,16 @@ export default function Result() {
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-12 py-20">
           <div className="max-w-3xl text-left">
-            <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#111827]">
+            <span className="text-[12px] font-black uppercase tracking-[0.4em] text-white">
               {insight?.categoryLabel || 'quiz results'}
             </span>
             
-            <h1 className="mt-8 text-[2.2rem] md:text-[3.5rem] font-black tracking-tight text-[#111827] leading-[0.95] uppercase">
+            <h1 className="mt-8 text-[2.2rem] md:text-[3.5rem] font-black tracking-tight text-white leading-[0.95] uppercase">
               Your results<br />are in!
             </h1>
             
-            <p className="mt-12 max-w-2xl text-lg md:text-2xl leading-relaxed text-gray-800 font-medium">
-              <span className="text-[#111827] font-bold">{insight?.headline}.</span> {insight?.body}
+            <p className="mt-12 max-w-2xl text-lg md:text-2xl leading-relaxed text-white/90 font-medium">
+              <span className="text-white font-bold">{insight?.headline}.</span> {insight?.body}
             </p>
 
             <div className="mt-14 flex flex-wrap gap-4">

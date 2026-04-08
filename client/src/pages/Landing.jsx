@@ -34,11 +34,14 @@ export default function Landing() {
     <main className="relative min-h-screen w-full overflow-hidden bg-white selection:bg-blue-600 selection:text-white">
       {/* Background Section (Full Width) */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="/hero-bg.jpeg" 
-          alt="Chrono NAD+ Hero" 
-          className="h-full w-full object-cover object-center lg:object-[center_right]"
-        />
+        <picture>
+          <source media="(max-width: 768px)" srcSet="/mobilehero.png" />
+          <img 
+            src="/hero-bg.jpeg" 
+            alt="Chrono NAD+ Hero" 
+            className="h-full w-full object-cover object-center lg:object-[center_right]"
+          />
+        </picture>
         {/* Blue Gradient Overlay on the Left (Matching Reference) */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/40 to-transparent" />
       </div>
