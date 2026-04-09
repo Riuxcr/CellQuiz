@@ -42,21 +42,9 @@ const quizAttemptSchema = new mongoose.Schema({
         default: Date.now
       }
     }
-  ],
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now
-  }
-});
-
-// Update the updatedAt field before each save
-quizAttemptSchema.pre('save', function(next) {
-  this.updatedAt = Date.now();
-  next();
+  ]
+}, { 
+  timestamps: true 
 });
 
 module.exports = mongoose.model('QuizAttempt', quizAttemptSchema);

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import axios from 'axios'
-import { trackFbq } from '../utils/fbq.js'
+import { trackEvent, identifyUser } from '../utils/pixels.js'
 import QuestionCard from '../components/QuestionCard.jsx'
 import EmailCapture from '../components/EmailCapture.jsx'
 import { warmQuizApi } from '../utils/warmQuizApi.js'
@@ -117,7 +117,10 @@ export default function Quiz() {
   const [sessionId] = useState(() => `sess_${Math.random().toString(36).substring(2, 11)}_${Date.now()}`)
 
   useEffect(() => {
-    trackFbq('ViewContent')
+    trackEvent('ViewContent', { 
+      content_name: 'Quiz Startup',
+      content_category: 'Analysis' 
+    })
     warmQuizApi()
     
     // Initialize session for drop-off tracking
@@ -193,7 +196,11 @@ export default function Quiz() {
     if (currentStep < nextQuestionSet.length - 1) {
       setCurrentStep((s) => s + 1)
     } else {
-      trackFbq('CompleteRegistration')
+    const goal = nextAnswers['goal'] || 'Unknown'
+    trackEvent('CompleteRegistration', {
+      content_name: 'Quiz Completed',
+      goal: goal
+    })
       setShowEmailStep(true)
     }
   }
@@ -242,11 +249,10 @@ export default function Quiz() {
       'Quiz Segment': segment
     }]);
 
-    // Track "Completed Quiz" event
-    _learnq.push(['track', 'Completed Quiz', {
-      'Goal': goal,
-      'Segment': segment
-    }]);
+    // Track identifying information
+    identifyUser(submittedEmail, submittedName);
+
+    // Track "Completed Quiz" event in Klaviyo
 
     const assignedVariant = sequenceNumber ? (sequenceNumber % 2 !== 0 ? 'checkout' : 'product') : 'product'
     

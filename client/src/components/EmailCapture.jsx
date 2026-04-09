@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { motion } from 'framer-motion'
-import { trackFbq } from '../utils/fbq.js'
+import { trackEvent } from '../utils/pixels.js'
 import { API_ENDPOINTS } from '../config.js'
 
 const SUBMIT_URL = API_ENDPOINTS.SUBMIT_QUIZ
@@ -56,7 +56,7 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
           headers: { 'Content-Type': 'application/json' },
         },
       )
-      trackFbq('Lead')
+      trackEvent('Lead')
       // Pass submitted values so redirect logic never relies on stale parent state.
       onSuccess({ email: email.trim(), name: name.trim() })
     } catch (err) {

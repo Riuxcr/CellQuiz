@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { motion } from 'framer-motion'
-import { trackFbq } from '../utils/fbq.js'
+import { trackEvent } from '../utils/pixels.js'
 import Logo from '../components/Logo.jsx'
 
 const API_TEST_URL = '/api/test'
@@ -84,7 +84,8 @@ export default function Landing() {
               type="button"
               className="rounded-full bg-white px-14 py-6 text-xl font-bold text-blue-900 shadow-2xl transition-all"
               onClick={() => {
-                trackFbq('InitiateCheckout')
+                trackEvent('Lead')
+                trackEvent('InitiateCheckout')
                 navigate('/quiz')
               }}
             >

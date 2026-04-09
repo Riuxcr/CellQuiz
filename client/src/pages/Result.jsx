@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { trackFbq } from '../utils/fbq.js'
+import { trackEvent } from '../utils/pixels.js'
 import { API_BASE_URL } from '../config.js'
 import {
   PRODUCT_URL,
@@ -239,7 +239,10 @@ export default function Result() {
   }
 
   const goProduct = async () => { 
-    trackFbq('AddToCart'); 
+    trackEvent('AddToCart', {
+      content_name: 'Cellular Protocol',
+      variant: variant
+    }); 
     
     // Determine variant first for tracking accuracy
     let variant = 'product';

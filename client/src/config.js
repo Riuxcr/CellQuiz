@@ -11,3 +11,6 @@ export const API_ENDPOINTS = {
 }
 
 export const LEADS_URL = API_ENDPOINTS.FETCH_LEADS 
+
+export const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID || ''
+export const TIKTOK_PIXEL_ID = import.meta.env.VITE_TIKTOK_PIXEL_ID || ''
