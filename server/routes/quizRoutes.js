@@ -244,8 +244,36 @@ router.get('/leads', async (req, res) => {
       return res.status(403).json({ success: false, message: 'Forbidden' });
     }
 
-    const leads = await Lead.find().sort({ createdAt: -1 })
-    res.json({ success: true, leads })
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 20;
+    const search = req.query.search || '';
+    const skip = (page - 1) * limit;
+
+    let query = {};
+    if (search) {
+      query = {
+        $or: [
+          { name: { $regex: search, $options: 'i' } },
+          { email: { $regex: search, $options: 'i' } }
+        ]
+      };
+    }
+
+    const [leads, total] = await Promise.all([
+      Lead.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit),
+      Lead.countDocuments(query)
+    ]);
+
+    res.json({ 
+      success: true, 
+      leads,
+      pagination: {
+        total,
+        page,
+        pages: Math.ceil(total / limit),
+        hasMore: page * limit < total
+      }
+    })
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: 'Server error' })

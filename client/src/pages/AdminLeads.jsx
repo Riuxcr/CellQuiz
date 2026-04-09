@@ -8,8 +8,11 @@ export default function AdminLeads() {
   const navigate = useNavigate()
   const [leads, setLeads] = useState([])
   const [loading, setLoading] = useState(true)
+  const [isFetchingMore, setIsFetchingMore] = useState(false)
   const [error, setError] = useState(null)
   const [search, setSearch] = useState('')
+  const [page, setPage] = useState(1)
+  const [hasMore, setHasMore] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 1024)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024)
 
@@ -23,24 +26,47 @@ export default function AdminLeads() {
     return () => window.removeEventListener('resize', handleResize)
   }, [isSidebarOpen])
 
-  useEffect(() => {
-    fetchLeads()
-  }, [])
 
-  const fetchLeads = async () => {
+
+  const fetchLeads = async (pageNumber = 1, append = false, currentSearch = search) => {
     try {
-      setLoading(true)
+      if (append) setIsFetchingMore(true)
+      else setLoading(true)
+
       const token = localStorage.getItem('admin_token')
-      const res = await axios.get(LEADS_URL, {
+      const res = await axios.get(`${LEADS_URL}?page=${pageNumber}&limit=20&search=${encodeURIComponent(currentSearch)}`, {
         headers: { Authorization: token }
       })
-      setLeads(res.data.leads || [])
+
+      if (append) {
+        setLeads(prev => [...prev, ...(res.data.leads || [])])
+      } else {
+        setLeads(res.data.leads || [])
+      }
+      
+      setHasMore(res.data.pagination?.hasMore || false)
+      setPage(pageNumber)
       setError(null)
     } catch (err) {
       setError('Connection failed.')
       console.error(err)
     } finally {
       setLoading(false)
+      setIsFetchingMore(false)
+    }
+  }
+
+  // Debounced search
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      fetchLeads(1, false, search)
+    }, 500)
+    return () => clearTimeout(handler)
+  }, [search])
+
+  const handleLoadMore = () => {
+    if (!isFetchingMore && hasMore) {
+      fetchLeads(page + 1, true, search)
     }
   }
 
@@ -49,10 +75,7 @@ export default function AdminLeads() {
     navigate('/admin/login')
   }
 
-  const filteredLeads = leads.filter(l => 
-    l.email?.toLowerCase().includes(search.toLowerCase()) ||
-    l.name?.toLowerCase().includes(search.toLowerCase())
-  )
+
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString(undefined, {
@@ -133,7 +156,7 @@ export default function AdminLeads() {
 
         <div className="px-3 mt-4 min-w-[280px]">
           <button 
-            onClick={fetchLeads}
+            onClick={() => fetchLeads()}
             className={`w-full flex items-center justify-center gap-3 bg-white shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-gray-100 hover:shadow-[0_8px_16px_rgba(0,0,0,0.12)] transition-all rounded-[28px] overflow-hidden ${isSidebarOpen ? 'px-6 py-4' : 'h-14 w-14 p-0 ml-1.5'}`}
           >
             <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" /></svg>
@@ -240,8 +263,8 @@ export default function AdminLeads() {
 
           <div className="space-y-6 pb-20">
             <AnimatePresence mode="popLayout">
-              {filteredLeads.length > 0 ? (
-                filteredLeads.map((lead, idx) => (
+              {leads.length > 0 ? (
+                leads.map((lead, idx) => (
                   <motion.div 
                     key={lead._id || idx}
                     layout
@@ -301,6 +324,28 @@ export default function AdminLeads() {
                 </div>
               )}
             </AnimatePresence>
+
+            {hasMore && (
+              <div className="flex justify-center pt-8 pb-12">
+                <button
+                  onClick={handleLoadMore}
+                  disabled={isFetchingMore}
+                  className="group relative flex items-center gap-4 px-10 py-5 rounded-full bg-white border border-gray-100 shadow-[0_12px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:border-blue-100 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed group-hover:scale-105 active:scale-95"
+                >
+                  {isFetchingMore ? (
+                    <div className="flex items-center gap-3">
+                       <div className="h-4 w-4 rounded-full border-2 border-blue-600 border-t-transparent animate-spin" />
+                       <span className="text-[10px] font-black uppercase tracking-widest text-blue-600">Loading Records...</span>
+                    </div>
+                  ) : (
+                    <>
+                      <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 group-hover:text-blue-600 transition-colors">Load More Customers</span>
+                      <div className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </main>
