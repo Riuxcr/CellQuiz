@@ -6,7 +6,6 @@
 export const trackEvent = (eventName, data = {}) => {
   const metaData = { ...data };
   const tiktokData = { ...data };
-
   // 1. Meta (Facebook) Pixel
   if (typeof window.fbq === 'function') {
     window.fbq('track', eventName, metaData);

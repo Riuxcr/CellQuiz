@@ -66,11 +66,11 @@ export default function Landing() {
           variants={itemVariants}
           className="max-w-[85%] lg:max-w-4xl"
         >
-          <h1 className="text-[clamp(1.5rem,3.5vw,2.75rem)] font-extrabold tracking-tight text-white leading-[1.1] drop-shadow-lg mb-8 uppercase">
+          <h1 className="text-[clamp(1.5rem,3.5vw,2.75rem)] font-montserrat font-extrabold tracking-tight text-white leading-[1.1] drop-shadow-lg mb-8 uppercase">
              Every cell in your body is<br />fueled by NAD+
           </h1>
           
-          <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-medium leading-[1.6] text-blue-50/90 mb-10 drop-shadow-sm max-w-2xl">
+          <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-montserrat font-medium leading-[1.6] text-blue-50/90 mb-10 drop-shadow-sm max-w-2xl">
             NAD+ levels decline by up to 65% as you age. ChronoNAD+ combines this vital coenzyme with Resveratrol to protect your DNA and power your 37.2 trillion cells.
           </p>
 
@@ -82,7 +82,7 @@ export default function Landing() {
               whileHover={{ scale: 1.05, boxShadow: '0 20px 40px -10px rgba(0,0,0,0.3)' }}
               whileTap={{ scale: 0.98 }}
               type="button"
-              className="rounded-full bg-white px-14 py-6 text-xl font-bold text-blue-900 shadow-2xl transition-all"
+              className="rounded-full bg-white px-14 py-6 text-xl font-montserrat font-bold text-blue-900 shadow-2xl transition-all"
               onClick={() => {
                 trackEvent('Lead')
                 trackEvent('InitiateCheckout')
