@@ -67,7 +67,7 @@ export default function Landing() {
           className="max-w-[85%] lg:max-w-4xl"
         >
           <h1 className="text-[clamp(1.5rem,3.5vw,2.75rem)] font-extrabold tracking-tight text-white leading-[1.1] drop-shadow-lg mb-8 uppercase">
-             Every cell in your body is fueled by NAD+
+             Every cell in your body is<br />fueled by NAD+
           </h1>
           
           <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-medium leading-[1.6] text-blue-50/90 mb-10 drop-shadow-sm max-w-2xl">
