@@ -14,6 +14,17 @@ const quizAttemptSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  conversionDestination: {
+    type: String, // 'product' or 'checkout'
+    default: null
+  },
+  convertedAt: {
+    type: Date
+  },
+  goalPath: {
+    type: String, // 'Skincare' or 'Longevity'
+    default: null
+  },
   sequenceNumber: {
     type: Number
   },

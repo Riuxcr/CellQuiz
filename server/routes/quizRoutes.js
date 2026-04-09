@@ -42,6 +42,12 @@ router.put('/track', async (req, res) => {
     if (answer !== undefined) {
       updateData.$set = { [`answers.${questionIndex}`]: answer };
       updateData.$push = { history: { step: questionIndex, answer, timestamp: new Date() } };
+      
+      // If this is the first question (index 0 - Goal), track the path
+      if (questionIndex === 0) {
+          const goal = answer === 'Skincare & anti-aging' ? 'Skincare' : 'Longevity';
+          updateData.goalPath = goal;
+      }
     }
 
     await QuizAttempt.findOneAndUpdate(
@@ -62,29 +68,17 @@ router.post('/submit', async (req, res) => {
     const { name, email, answers, sessionId, assignedVariant } = req.body
 
     if (!name || typeof name !== 'string' || !name.trim()) {
-      return res.status(400).json({
-        success: false,
-        message: 'Name is required',
-      })
+      return res.status(400).json({ success: false, message: 'Name is required' })
     }
-
     if (!email || typeof email !== 'string' || !email.trim()) {
-      return res.status(400).json({
-        success: false,
-        message: 'Email is required',
-      })
+      return res.status(400).json({ success: false, message: 'Email is required' })
+    }
+    if (answers == null || typeof answers !== 'object' || Array.isArray(answers)) {
+      return res.status(400).json({ success: false, message: 'Answers are required' })
     }
 
-    if (
-      answers == null ||
-      typeof answers !== 'object' ||
-      Array.isArray(answers)
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: 'Answers are required',
-      })
-    }
+    const goal = answers['goal'] || 'Unknown'
+    const goalPath = goal.toLowerCase().includes('skin') ? 'Skincare' : 'Longevity'
 
     // Capture the lead in our DB
     await Lead.create({
@@ -92,16 +86,14 @@ router.post('/submit', async (req, res) => {
       email: email.trim(),
       answers,
       assignedVariant,
+      goalPath
     })
 
-    // --- Step 3: Klaviyo Server-Side Sync ---
+    // --- Klaviyo Server-Side Sync ---
     const axios = require('axios')
     const KLAVIYO_KEY = process.env.KLAVIYO_PRIVATE_KEY
     if (KLAVIYO_KEY) {
       try {
-        const goal = answers['goal'] || 'Unknown'
-        
-        // Match frontend segment logic for consistency
         let segment = 'unknown'
         if (goal === 'Skincare & anti-aging') {
           const hasRoutine = answers['routine'] === 'Yes'
@@ -146,8 +138,6 @@ router.post('/submit', async (req, res) => {
       } catch (err) {
         console.error('Klaviyo Prep Error:', err)
       }
-    } else {
-      console.warn('KLAVIYO_PRIVATE_KEY not set in environment.')
     }
     // ----------------------------------------
 
@@ -155,23 +145,17 @@ router.post('/submit', async (req, res) => {
     if (sessionId) {
       await QuizAttempt.findOneAndUpdate(
         { sessionId },
-        { isCompleted: true }
+        { isCompleted: true, goalPath }
       ).catch(err => console.error('Error marking session complete:', err))
     }
 
     return res.json({ success: true })
   } catch (err) {
     if (err.name === 'ValidationError') {
-      return res.status(400).json({
-        success: false,
-        message: err.message,
-      })
+      return res.status(400).json({ success: false, message: err.message })
     }
     console.error(err)
-    return res.status(500).json({
-      success: false,
-      message: 'Server error',
-    })
+    return res.status(500).json({ success: false, message: 'Server error' })
   }
 })
 
@@ -182,38 +166,55 @@ router.get('/analytics', async (req, res) => {
       return res.status(403).json({ success: false, message: 'Forbidden' });
     }
 
-    const attempts = await QuizAttempt.find().sort({ updatedAt: -1 });
-    
-    // Aggregate drop-off data: how many users reached each question index
+    const { goal } = req.query; // Optional filter: 'Skincare' or 'Longevity'
+    let query = {};
+    if (goal) query.goalPath = goal;
+
+    const attempts = await QuizAttempt.find(query).sort({ updatedAt: -1 });
+    const leads = await Lead.find(query).sort({ createdAt: -1 });
+
+    // Aggregate drop-off data
     const counts = {};
-    const questionStats = {}; // To store answer distribution per question
+    const questionStats = {};
     
     attempts.forEach(a => {
       const idx = a.lastQuestionReached || 0;
       counts[idx] = (counts[idx] || 0) + 1;
       
-      // Collect answer distribution
-      if (a.answers) {
-        a.answers.forEach((val, key) => {
-          if (!questionStats[key]) questionStats[key] = {};
-          questionStats[key][val] = (questionStats[key][val] || 0) + 1;
-        });
+      if (a.answers && a.answers instanceof Map) {
+         a.answers.forEach((val, key) => {
+           if (!questionStats[key]) questionStats[key] = {};
+           questionStats[key][val] = (questionStats[key][val] || 0) + 1;
+         });
       }
     });
 
     const totalAttempts = attempts.length;
     const completions = attempts.filter(a => a.isCompleted).length;
-    
-    // Count conversions and total leads from Lead model
-    const totalLeads = await Lead.countDocuments();
-    const totalConversions = await Lead.countDocuments({ isConverted: true });
+    const totalConversions = leads.filter(l => l.isConverted).length;
+
+    // Destination Split Analysis
+    const destSplit = {
+        checkout: leads.filter(l => l.isConverted && l.conversionDestination === 'checkout').length,
+        product: leads.filter(l => l.isConverted && l.conversionDestination === 'product').length
+    };
+
+    // Calculate abandonment rate per step
+    const abandonmentRate = {};
+    const totalParticipants = attempts.length || 1;
+    let accumulated = 0;
+    Object.keys(counts).sort((a,b) => a-b).forEach(idx => {
+       const dropoffsAtThisStep = counts[idx];
+       abandonmentRate[idx] = ((dropoffsAtThisStep / totalParticipants) * 100).toFixed(1);
+    });
 
     // Latest activity feed
     const activityFeed = attempts.slice(0, 10).map(a => ({
       sessionId: a.sessionId,
       lastStep: a.lastQuestionReached,
       isCompleted: a.isCompleted,
-      updatedAt: a.updatedAt
+      updatedAt: a.updatedAt,
+      conversionDestination: a.conversionDestination
     }));
 
     res.json({
@@ -221,9 +222,11 @@ router.get('/analytics', async (req, res) => {
       data: {
         totalAttempts,
         completions,
-        totalLeads,
+        totalLeads: leads.length,
         totalConversions,
         dropOffMap: counts,
+        abandonmentRate,
+        destSplit,
         questionStats,
         activityFeed
       }
@@ -242,31 +245,35 @@ router.get('/leads', async (req, res) => {
     }
 
     const leads = await Lead.find().sort({ createdAt: -1 })
-    res.json({
-      success: true,
-      leads,
-    })
+    res.json({ success: true, leads })
   } catch (err) {
-    console.error(err)
-    res.status(500).json({
-      success: false,
-      message: 'Server error',
-    })
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Server error' })
   }
 })
 
-// Mark a lead as converted when they click purchase buttons
+// Mark a lead as converted with destination tracking
 router.put('/mark-converted', async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, destination, sessionId } = req.body;
     if (!email) {
       return res.status(400).json({ success: false, message: 'Email is required' });
     }
 
+    const convertedAt = new Date();
+
     await Lead.findOneAndUpdate(
       { email },
-      { isConverted: true }
+      { isConverted: true, conversionDestination: destination, convertedAt },
+      { new: true }
     );
+
+    if (sessionId) {
+      await QuizAttempt.findOneAndUpdate(
+        { sessionId },
+        { isConverted: true, conversionDestination: destination, convertedAt }
+      ).catch(err => console.error('Error marking attempt converted:', err));
+    }
 
     res.json({ success: true });
   } catch (err) {

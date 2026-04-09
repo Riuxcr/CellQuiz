@@ -240,23 +240,25 @@ export default function Result() {
 
   const goProduct = async () => { 
     trackFbq('AddToCart'); 
-    try {
-      if (resolvedState?.email) {
-        const axios = (await import('axios')).default;
-        await axios.put(`${API_BASE_URL}/api/quiz/mark-converted`, { email: resolvedState.email });
-      }
-    } catch (e) { console.error('Conversion track failed', e) }
     
-    // Odd/Even A/B Split Logic using global sequenceNumber
-    // Odd (1, 3, 5...) -> checkout
-    // Even (2, 4, 6...) -> product
+    // Determine variant first for tracking accuracy
     let variant = 'product';
     if (resolvedState?.sequenceNumber) {
       variant = (resolvedState.sequenceNumber % 2 !== 0) ? 'checkout' : 'product';
     } else {
-      // Fallback if sequenceNumber is missing
       variant = Math.random() < 0.5 ? 'product' : 'checkout';
     }
+
+    try {
+      if (resolvedState?.email) {
+        const axios = (await import('axios')).default;
+        await axios.put(`${API_BASE_URL}/api/quiz/mark-converted`, { 
+          email: resolvedState.email,
+          destination: variant,
+          sessionId: resolvedState.sessionId
+        });
+      }
+    } catch (e) { console.error('Conversion track failed', e) }
     
     const targetBaseUrl = variant === 'product' ? PRODUCT_URL : CHECKOUT_URL;
     openCellStartUrl(buildRedirectUrl(targetBaseUrl, variant));
