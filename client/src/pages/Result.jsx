@@ -239,11 +239,6 @@ export default function Result() {
   }
 
   const goProduct = async () => { 
-    trackEvent('AddToCart', {
-      content_name: 'Cellular Protocol',
-      variant: variant
-    }); 
-    
     // Determine variant first for tracking accuracy
     let variant = 'product';
     if (resolvedState?.sequenceNumber) {
@@ -252,6 +247,11 @@ export default function Result() {
       variant = Math.random() < 0.5 ? 'product' : 'checkout';
     }
 
+    trackEvent('AddToCart', {
+      content_name: 'Cellular Protocol',
+      variant: variant
+    }); 
+    
     try {
       if (resolvedState?.email) {
         const axios = (await import('axios')).default;
