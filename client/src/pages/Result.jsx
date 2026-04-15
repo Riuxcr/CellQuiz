@@ -289,8 +289,8 @@ export default function Result() {
               className="w-full h-full object-cover"
             />
           </picture>
-          {/* Mobile-only overlay for text legibility */}
-          <div className="absolute inset-0 bg-black/50 md:hidden" />
+          {/* Professional gradient overlay for text legibility and brand consistency */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#002b4d]/95 via-[#002b4d]/60 to-[#002b4d]/30 z-10" />
         </div>
 
         {/* Company Logo at Top Left */}
@@ -300,17 +300,27 @@ export default function Result() {
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-12 py-20">
           <div className="max-w-3xl text-left">
-            <span className="text-[12px] font-black uppercase tracking-[0.4em] text-white">
+            <span className="text-[10.5px] font-black uppercase tracking-[0.3em] text-white/80">
               {insight?.categoryLabel || 'quiz results'}
             </span>
             
-            <h1 className="mt-8 text-[2.2rem] md:text-[3.5rem] font-black tracking-tight text-white leading-[0.95] uppercase">
-              Your results<br />are in!
+            <h1 className="mt-6 text-[1.8rem] md:text-[2.75rem] font-black tracking-tight text-white leading-[0.95]">
+              Your Results are In !
             </h1>
             
-            <p className="mt-12 max-w-2xl text-lg md:text-2xl leading-relaxed text-white/90 font-medium">
-              <span className="text-white font-bold">{insight?.headline}.</span> {insight?.body}
-            </p>
+            <div className="mt-8 space-y-4">
+              <h2 className="text-lg md:text-xl font-black text-white uppercase tracking-tight">
+                {insight?.headline}
+              </h2>
+
+              <div className="max-w-3xl space-y-3">
+                {insight?.body?.split('\n\n').map((para, i) => (
+                  <p key={i} className="text-base md:text-lg leading-relaxed text-white font-bold">
+                    {para}
+                  </p>
+                ))}
+              </div>
+            </div>
 
             <div className="mt-14 flex flex-wrap gap-4">
               <button
