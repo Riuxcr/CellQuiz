@@ -19,7 +19,7 @@ const COMMON_QUESTIONS = [
     id: 'goal',
     question: 'Which goal is more important to you?',
     options: ['Skincare & anti-aging', 'Longevity & cellular repair'],
-    info: 'Interestingly, the body views your skin as a "non-essential" organ compared to your heart or brain. When your cellular repair resources start to decline with age, your body diverts those resources inward to keep you alive, leaving your skin to fend for itself. This "resource diversion" is the primary reason why fine lines and loss of elasticity accelerate after age 30.',
+    info: 'Interestingly, the body views your skin as a "non-essential" organ. As repair resources decline with age, they’re diverted inward—leaving your skin to show the first signs of aging after 30.',
     image: '/goal.jpg'
   },
   {

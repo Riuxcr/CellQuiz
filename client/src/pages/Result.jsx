@@ -47,6 +47,7 @@ const ACCORDION_DATA = [
     title: 'Skin Health',
     desc: 'Support your skin from the inside out. Works alongside your skincare routine to promote a smoother, healthier look. Because real skin health starts beneath the surface.',
     img: '/Secondcard.jpg',
+    mobileImg: '/SecondCardMObile.png',
     icon: '✨'
   },
   {
@@ -80,11 +81,16 @@ function BenefitAccordion() {
           className="relative h-full overflow-hidden rounded-2xl md:rounded-3xl cursor-pointer group"
         >
           {/* Background Image */}
-          <img
-            src={item.img}
-            alt={item.title}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+          <picture>
+            {item.mobileImg && (
+              <source media="(max-width: 768px)" srcSet={item.mobileImg} />
+            )}
+            <img
+              src={item.img}
+              alt={item.title}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </picture>
           
           {/* Main Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
