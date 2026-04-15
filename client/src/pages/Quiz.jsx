@@ -19,14 +19,14 @@ const COMMON_QUESTIONS = [
     id: 'goal',
     question: 'Which goal is more important to you?',
     options: ['Skincare & anti-aging', 'Longevity & cellular repair'],
-    info: 'Whether you focus on your skin or your internal cells, NAD+ is the foundational fuel for both repair processes.',
+    info: 'Interestingly, the body views your skin as a "non-essential" organ compared to your heart or brain. When your cellular repair resources start to decline with age, your body diverts those resources inward to keep you alive, leaving your skin to fend for itself. This "resource diversion" is the primary reason why fine lines and loss of elasticity accelerate after age 30.',
     image: '/goal.jpg'
   },
   {
     id: 'age',
     question: 'What is your age range?',
     options: ['Under 30', '30-40', '40-60', 'Above 60'],
-    info: 'Did you know your biological age (how old your cells act) can be significantly different from your chronological age (how many birthdays you’ve had)? Most people can shift their biological markers by 3–5 years just by optimizing the factors we discuss next.',
+    info: 'Did you know your biological age (how old your cells act) can be significantly different from your chronological age (how many birthdays you\'ve had)? Most people can shift their biological markers by 3–5 years just by optimizing the factors we discuss next.',
     image: '/Age.png'
   },
 ]
@@ -36,14 +36,14 @@ const SKINCARE_PATH = [
     id: 'routine',
     question: 'Do you have a skincare routine?',
     options: ['Yes', 'No'],
-    info: 'A consistent routine provides the structural foundation that helps personalized supernutrients like NAD+ work more effectively.',
+    info: 'Dermatologists often note a large part of visible skin aging is driven by UV exposure, which can be prevented with sunscreen. Including a retinol, facewash, and moisturizer into your routine are also great starting points.',
     image: '/skin.jpg'
   },
   {
     id: 'dermatologist',
     question: 'Have you seen a dermatologist?',
     options: ['Yes', 'No'],
-    info: 'Everyone’s skin “biome” is as unique as a fingerprint. Seeing a professional can help identify whether a skin issue is inflammatory (internal) or reactive (external), saving you months of trial-and-error with products that might not be attacking the right problem.',
+    info: 'Everyone’s skin "biome" is as unique as a fingerprint. Seeing a professional can help identify whether a skin issue is inflammatory (internal) or reactive (external), saving you months of trial-and-error with products that might not be attacking the right problem.',
     image: '/dermo.jpg'
   },
   {
@@ -53,7 +53,7 @@ const SKINCARE_PATH = [
     min: 1,
     max: 10,
     helperText: 'On a scale of 10, with 1 being the least severe and 10 the most severe. Scores of 5 and up often warrant a dermatologist visit.',
-    info: 'Higher severity often indicates a greater need for deep cellular repair to reset the skin’s natural healing cycle.',
+    info: 'Your skin completely replaces itself roughly every 28 to 40 days. If you\'re dealing with a high-severity issue, it’s important to remember that true structural change takes at least two full "cycles" to become visible. Remember to see your dermatologist.',
     image: '/skinSevere.jpg'
   },
 ]
@@ -64,7 +64,7 @@ const LONGEVITY_PATH = [
     question: 'How active are you?',
     options: ['Highly Active', 'Moderately Active', 'Lightly Active', 'Sedentary'],
 
-    info: 'Beyond intentional exercise, Non-Exercise Activity Thermogenesis (NEAT)—like pacing while on the phone or taking the stairs—can account for up to 50% of your daily energy burn. Staying “lightly active” throughout the day is often more impactful for longevity than one intense hour at the gym.',
+    info: 'Beyond intentional exercise, Non-Exercise Activity Thermogenesis (NEAT)—like pacing while on the phone or taking the stairs—can account for up to 50% of your daily energy burn. Staying "lightly active" throughout the day is often more impactful for longevity than one intense hour at the gym.',
     image: '/Active.png'
   },
   {
@@ -72,7 +72,7 @@ const LONGEVITY_PATH = [
     question: 'How many hours of sleep do you typically get?',
     options: ['Optimal', 'Average', 'Insufficient', 'Deprived'],
 
-    info: 'During deep sleep, your brain essentially “washes” itself, clearing out metabolic waste products that build up during the day. If you’re consistently getting less than 7 hours, your body misses the window for this critical neurological cleanup.',
+    info: 'During deep sleep, your brain essentially "washes" itself, clearing out metabolic waste products that build up during the day. If you\'re consistently getting less than 7 hours, your body misses the window for this critical neurological cleanup.',
     image: '/Sleep.jpg'
   },
   {
@@ -80,7 +80,7 @@ const LONGEVITY_PATH = [
     question: 'How would you describe your current daily stress levels?',
     options: ['Low', 'Moderate', 'High', 'Chronic'],
 
-    info: 'Did you know high stress doesn’t just feel bad; it can actually “shorten” your DNA. Chronic stress is linked to the shortening of telomeres—the protective caps on the ends of your chromosomes—which is a primary marker of biological aging.',
+    info: 'Did you know high stress doesn\'t just feel bad; it can actually "shorten" your DNA. Chronic stress is linked to the shortening of telomeres—the protective caps on the ends of your chromosomes—which is a primary marker of biological aging.',
     image: '/Stress.png'
   },
   {
@@ -88,7 +88,7 @@ const LONGEVITY_PATH = [
     question: 'How long does it typically take your body to recover?',
     options: ['Rapid', 'Standard', 'Slow', 'Persistent'],
 
-    info: 'Recovery time is a direct reflection of your body’s “efficiency.” The faster you can move from an inflammatory state (soreness/fatigue) back to homeostasis (balance), the more resilient your system is. Hydration and amino acid availability are the two biggest levers you can pull here.',
+    info: 'Recovery time is a direct reflection of your body\'s "efficiency." The faster you can move from an inflammatory state (soreness/fatigue) back to homeostasis (balance), the more resilient your system is. Hydration and amino acid availability are the two biggest levers you can pull here.',
     image: '/recover.png'
   },
 ]
