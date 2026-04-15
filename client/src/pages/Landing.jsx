@@ -18,13 +18,13 @@ const HOMEPAGE_VARIANTS = {
     title: <>Better Skin<br />Starts Within</>,
     description: "What’s really holding your skin back? Take the quiz to discover how you can support your skincare routine for smoother, healthier-looking skin at the cellular level.",
     bgDesktop: "/skincareHome.png",
-    bgMobile: "/skincareHome.png"
+    bgMobile: "/mobile_skincare_home.png"
   },
   longevity: {
     title: <>Age Better<br />From Within</>,
     description: "What does your body really say about your age? Take the quiz and discover how you can support smarter, healthier longevity from the inside out.",
     bgDesktop: "/longevityhome.png",
-    bgMobile: "/longevityhome.png"
+    bgMobile: "/mobile_longevity_home.png"
   }
 }
 
