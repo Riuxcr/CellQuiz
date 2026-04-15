@@ -18,7 +18,7 @@ export function getPersonalizedInsight(answers) {
         trackKey: 'skincare_routine_yes_derm_yes',
         categoryLabel: 'SKINCARE / ANTI-AGING RESULTS',
         headline: 'You’re Taking a Proactive Approach to Skin Health',
-        body: 'You already follow a routine and have expert guidance, so you’re covering the basics well. To go further, supporting your skin at a cellular level is key. ChronoNAD+ helps boost NAD+ levels, promoting repair, energy, and long-term skin vitality. It’s an easy way to elevate the results you’re already achieving.'
+        body: 'Your answers show that you’re already investing in your skin with professional guidance and a consistent routine. That’s a great foundation for maintaining healthy-looking skin over time. Many people complement topical skincare with nutrients that support cellular processes linked to skin vitality. Add ChronoNAD+ to support cellular energy and long-term skin wellness.'
       }
     }
 
@@ -28,7 +28,7 @@ export function getPersonalizedInsight(answers) {
         trackKey: 'skincare_routine_yes_derm_no',
         categoryLabel: 'SKINCARE / ANTI-AGING RESULTS',
         headline: 'You’ve Started a Good Routine',
-        body: 'You have a routine in place, which is a great start, but deeper results come from within. Skin health is closely tied to cellular repair and energy levels. ChronoNAD+ supports this by boosting NAD+, helping improve overall vitality and visible skin health. It’s a simple upgrade to your current efforts.'
+        body: 'Your answers show that you’ve built a skincare routine, which is an important step toward maintaining healthy-looking skin. However, skin health is influenced by both external care and internal cellular processes. Supporting your body at the cellular level may help maintain long-term skin vitality. Discover ChronoNAD+ to complement your skincare routine.'
       }
     }
 
@@ -47,7 +47,7 @@ export function getPersonalizedInsight(answers) {
       trackKey: 'skincare_routine_no_derm_no',
       categoryLabel: 'SKINCARE / ANTI-AGING RESULTS',
       headline: 'Your Skin May Need More Consistent Support',
-      body: 'You’re not currently following a routine or expert guidance, so starting from within can be effective. Healthy skin begins with strong cellular function and repair. ChronoNAD+ helps boost NAD+, supporting energy, recovery, and overall skin vitality. It’s a simple way to begin improving your skin from the inside out.'
+      body: 'Your answers suggest you may not yet have a structured approach to supporting your skin. Daily habits, environmental exposure, and natural aging can impact how skin looks and feels over time. While topical care is important, skin health is also connected to what happens inside your cells. Support your skin from within with ChronoNAD+, formulated to support cellular energy and healthy aging.'
     }
   }
 
