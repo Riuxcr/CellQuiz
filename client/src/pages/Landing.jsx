@@ -1,11 +1,32 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import axios from 'axios'
 import { motion } from 'framer-motion'
 import { trackEvent } from '../utils/pixels.js'
 import Logo from '../components/Logo.jsx'
 
 const API_TEST_URL = '/api/test'
+
+const HOMEPAGE_VARIANTS = {
+  default: {
+    title: <>Every cell in your body is<br />fueled by NAD+</>,
+    description: "NAD+ levels decline by up to 65% as you age. ChronoNAD+ combines this vital coenzyme with Resveratrol to protect your DNA and power your 37.2 trillion cells.",
+    bgDesktop: "/hero-bg.jpeg",
+    bgMobile: "/mobilehero.png"
+  },
+  skincare: {
+    title: <>Better Skin<br />Starts Within</>,
+    description: "What’s really holding your skin back? Take the quiz to discover how you can support your skincare routine for smoother, healthier-looking skin at the cellular level.",
+    bgDesktop: "/skincareHome.png",
+    bgMobile: "/skincareHome.png"
+  },
+  longevity: {
+    title: <>Age Better<br />From Within</>,
+    description: "What does your body really say about your age? Take the quiz and discover how you can support smarter, healthier longevity from the inside out.",
+    bgDesktop: "/longevityhome.png",
+    bgMobile: "/longevityhome.png"
+  }
+}
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,30 +50,38 @@ const itemVariants = {
 
 export default function Landing() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  
+  // Detect source (e.g., ?source=skincare) and normalize to lowercase
+  const sourceRaw = searchParams.get('source')
+  const source = sourceRaw ? sourceRaw.toLowerCase() : null
+  
+  // Select content based on normalized source, fallback to default
+  const content = HOMEPAGE_VARIANTS[source] || HOMEPAGE_VARIANTS.default
+
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden bg-white selection:bg-blue-600 selection:text-white">
       {/* Background Section (Full Width) */}
       <div className="absolute inset-0 z-0">
         <picture>
-          <source media="(max-width: 768px)" srcSet="/mobilehero.png" />
+          <source media="(max-width: 768px)" srcSet={content.bgMobile} />
           <img 
-            src="/hero-bg.jpeg" 
+            src={content.bgDesktop} 
             alt="Chrono NAD+ Hero" 
             className="h-full w-full object-cover object-center lg:object-[center_right]"
           />
         </picture>
-        {/* Blue Gradient Overlay on the Left (Matching Reference) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/40 to-transparent" />
       </div>
 
       {/* Centered Top Header - Moved Down slightly */}
       <motion.header 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative z-20 px-8 pt-10 pb-4 md:px-12 md:pt-14 text-left"
+        className="relative z-20 px-8 pt-10 pb-4 md:px-12 md:pt-14 flex items-center justify-between"
       >
         <Logo className="h-9 w-auto md:h-11 brightness-0 invert drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]" />
+        
       </motion.header>
 
       {/* Hero Content Overlaid on the Left - Moved Down */}
@@ -67,11 +96,11 @@ export default function Landing() {
           className="max-w-[85%] lg:max-w-4xl"
         >
           <h1 className="text-[clamp(1.5rem,3.5vw,2.75rem)] font-montserrat font-extrabold tracking-tight text-white leading-[1.1] drop-shadow-lg mb-8 uppercase">
-             Every cell in your body is<br />fueled by NAD+
+             {content.title}
           </h1>
           
           <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-montserrat font-medium leading-[1.6] text-blue-50/90 mb-10 drop-shadow-sm max-w-2xl">
-            NAD+ levels decline by up to 65% as you age. ChronoNAD+ combines this vital coenzyme with Resveratrol to protect your DNA and power your 37.2 trillion cells.
+            {content.description}
           </p>
 
           <motion.div 
@@ -86,7 +115,7 @@ export default function Landing() {
               onClick={() => {
                 trackEvent('Lead')
                 trackEvent('InitiateCheckout')
-                navigate('/quiz')
+                navigate(`/quiz${source ? `?source=${source}` : ''}`)
               }}
             >
               START YOUR QUIZ

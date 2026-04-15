@@ -1,18 +1,21 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import Logo from '../components/Logo.jsx'
 
 export default function Splash() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/home')
-    }, 2800) // Slightly longer to let the animation finish
+      // Preserve search parameters when navigating to /home
+      const queryString = searchParams.toString()
+      navigate(`/home${queryString ? `?${queryString}` : ''}`)
+    }, 2800) 
 
     return () => clearTimeout(timer)
-  }, [navigate])
+  }, [navigate, searchParams])
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white selection:bg-blue-600 selection:text-black">
