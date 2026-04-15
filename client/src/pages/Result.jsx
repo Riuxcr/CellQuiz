@@ -54,6 +54,7 @@ const ACCORDION_DATA = [
     title: 'Stress Management',
     desc: 'Daily stress can drain your body over time. Support your system as it responds to physical and environmental stress. Stay balanced, even on demanding days.',
     img: '/Thirdcard.jpeg',
+    mobileImg: '/ThirdCardMobile.png',
     icon: '🧘'
   },
   {
