@@ -72,6 +72,8 @@ export default function Landing() {
             className="h-full w-full object-cover object-center lg:object-[center_right]"
           />
         </picture>
+        {/* Mobile-only overlay for text legibility with a brand-aligned color */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#002b4d]/90 via-[#002b4d]/40 to-transparent md:hidden z-10" />
       </div>
 
       {/* Centered Top Header - Moved Down slightly */}
@@ -86,7 +88,7 @@ export default function Landing() {
 
       {/* Hero Content Overlaid on the Left - Moved Down */}
       <motion.div
-        className="relative z-10 flex min-h-[calc(100vh-120px)] flex-col justify-start pt-28 md:pt-28 lg:pt-28 px-8 md:px-20 lg:px-32 max-w-6xl"
+        className="relative z-10 flex min-h-[calc(100vh-120px)] flex-col justify-end pb-24 md:justify-start md:pt-28 lg:pt-28 px-8 md:px-20 lg:px-32 max-w-6xl"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -95,11 +97,11 @@ export default function Landing() {
           variants={itemVariants}
           className="max-w-[85%] lg:max-w-4xl"
         >
-          <h1 className="text-[clamp(1.5rem,3.5vw,2.75rem)] font-montserrat font-extrabold tracking-tight text-white leading-[1.1] drop-shadow-lg mb-8 uppercase">
+          <h1 className="text-[clamp(1.5rem,3.5vw,2.75rem)] font-montserrat font-extrabold tracking-tight text-white leading-[1.1] drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] mb-8 uppercase">
              {content.title}
           </h1>
           
-          <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-montserrat font-medium leading-[1.6] text-blue-50/90 mb-10 drop-shadow-sm max-w-2xl">
+          <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-montserrat font-medium leading-[1.6] text-blue-50/90 mb-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] max-w-2xl">
             {content.description}
           </p>
 
