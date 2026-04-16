@@ -3,7 +3,7 @@
 
 export const API_BASE_URL = import.meta.env.PROD 
   ? 'https://cellquiz-server.onrender.com' // Replace this with your URL once Render gives it to you.
-  : 'http://localhost:5001'
+  : 'http://localhost:5002'
 
 export const API_ENDPOINTS = {
   SUBMIT_QUIZ: `${API_BASE_URL}/api/quiz/submit`,

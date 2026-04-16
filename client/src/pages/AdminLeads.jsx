@@ -15,6 +15,7 @@ export default function AdminLeads() {
   const [hasMore, setHasMore] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 1024)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024)
+  const [hideTestLeads, setHideTestLeads] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -238,19 +239,25 @@ export default function AdminLeads() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 md:gap-6 w-full md:w-auto justify-between md:justify-end">
-             <div className="relative group flex-1 md:flex-none">
-                <input 
-                    type="text" 
-                    placeholder="Search leads..." 
-                    className="w-full md:w-64 lg:w-96 bg-white border border-gray-100 rounded-[20px] px-5 py-2.5 text-xs md:text-sm font-bold text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-blue-100/40 focus:border-blue-200 transition-all shadow-sm"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                />
-                <svg className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+             <div className="flex flex-wrap items-center gap-3 md:gap-6 w-full md:w-auto justify-between md:justify-end">
+                <div className="relative group flex-1 md:flex-none">
+                   <input 
+                       type="text" 
+                       placeholder="Search leads..." 
+                       className="w-full md:w-64 lg:w-96 bg-white border border-gray-100 rounded-[20px] px-5 py-2.5 text-xs md:text-sm font-bold text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-blue-100/40 focus:border-blue-200 transition-all shadow-sm"
+                       value={search}
+                       onChange={(e) => setSearch(e.target.value)}
+                   />
+                   <svg className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 group-focus-within:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                </div>
+                <button 
+                  onClick={() => setHideTestLeads(!hideTestLeads)} 
+                  className={`px-4 py-2 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest transition-all shadow-xl shadow-gray-900/10 ${hideTestLeads ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}
+                >
+                  {hideTestLeads ? 'Showing Customers' : 'Hide Test Leads'}
+                </button>
+                <button onClick={() => navigate('/')} className="px-4 py-2 rounded-full bg-gray-900 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-white hover:bg-black transition-all shadow-xl shadow-gray-900/10">Front View</button>
              </div>
-             <button onClick={() => navigate('/')} className="px-4 py-2 rounded-full bg-gray-900 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-white hover:bg-black transition-all shadow-xl shadow-gray-900/10">Front View</button>
-          </div>
         </header>
 
         <div className="px-4 sm:px-8 md:px-12 py-6 md:py-12 max-w-[1400px] mx-auto space-y-6 md:space-y-10">
@@ -263,8 +270,8 @@ export default function AdminLeads() {
 
           <div className="space-y-6 pb-20">
             <AnimatePresence mode="popLayout">
-              {leads.length > 0 ? (
-                leads.map((lead, idx) => (
+              {leads.filter(l => !hideTestLeads || !l.isTestLead).length > 0 ? (
+                leads.filter(l => !hideTestLeads || !l.isTestLead).map((lead, idx) => (
                   <motion.div 
                     key={lead._id || idx}
                     layout
@@ -285,6 +292,11 @@ export default function AdminLeads() {
                              Purchasor {lead.conversionDestination && <span className="opacity-50 ml-1">via {lead.conversionDestination}</span>}
                           </div>
                         )}
+                        {lead.isTestLead && (
+                          <div className="mt-3 md:mt-5 inline-flex items-center gap-2 bg-amber-50 text-amber-600 border border-amber-100 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[8px] md:text-[10px] font-black uppercase tracking-widest shadow-sm ml-2">
+                             Test Lead
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -295,6 +307,16 @@ export default function AdminLeads() {
                        <div className={`px-4 md:px-5 py-2 md:py-3 rounded-full text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] border shadow-sm ${lead.assignedVariant === 'checkout' ? 'bg-purple-50 text-purple-600 border-purple-100' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
                           {lead.assignedVariant === 'checkout' ? 'Checkout' : 'Results'} Split
                        </div>
+                       {lead.utm_source && (
+                          <div className="px-4 md:px-5 py-2 md:py-3 rounded-full text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] border border-blue-600 bg-blue-600 text-white shadow-sm">
+                             {lead.utm_source} Ad
+                          </div>
+                       )}
+                       {!lead.utm_source && lead.source && (
+                          <div className="px-4 md:px-5 py-2 md:py-3 rounded-full text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] border border-gray-600 bg-gray-600 text-white shadow-sm">
+                             {lead.source}
+                          </div>
+                       )}
                        {Object.entries(lead.answers || {}).slice(0, 4).map(([key, value]) => (
                          <div key={key} className="bg-gray-50/50 border border-gray-100/50 rounded-xl md:rounded-[20px] px-4 md:px-6 py-2 md:py-3 flex items-center gap-2 md:gap-4 hover:bg-white hover:border-blue-50 hover:shadow-sm transition-all duration-300">
                             <span className="text-[9px] md:text-[11px] font-black uppercase text-gray-300 tracking-[0.1em]">{key}</span>
