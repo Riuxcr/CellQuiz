@@ -65,7 +65,10 @@ router.put('/track', async (req, res) => {
 
 router.post('/submit', async (req, res) => {
   try {
-    const { name, email, answers, sessionId, assignedVariant } = req.body
+    const { 
+      name, email, answers, sessionId, assignedVariant,
+      source, utm_source, utm_medium, utm_campaign, utm_content, utm_term 
+    } = req.body
 
     if (!name || typeof name !== 'string' || !name.trim()) {
       return res.status(400).json({ success: false, message: 'Name is required' })
@@ -77,16 +80,28 @@ router.post('/submit', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Answers are required' })
     }
 
+    const trimmedEmail = email.trim().toLowerCase()
+    const isTestLead = trimmedEmail.includes('test') || 
+                       trimmedEmail.includes('example') || 
+                       name.toLowerCase().includes('test')
+
     const goal = answers['goal'] || 'Unknown'
     const goalPath = goal.toLowerCase().includes('skin') ? 'Skincare' : 'Longevity'
 
     // Capture the lead in our DB
     await Lead.create({
       name: name.trim(),
-      email: email.trim(),
+      email: trimmedEmail,
       answers,
       assignedVariant,
-      goalPath
+      goalPath,
+      source,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_content,
+      utm_term,
+      isTestLead
     })
 
     // --- Klaviyo Server-Side Sync ---

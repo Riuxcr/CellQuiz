@@ -9,6 +9,13 @@ const leadSchema = new mongoose.Schema({
   convertedAt: { type: Date },
   assignedVariant: { type: String },
   goalPath: { type: String }, // 'Skincare' or 'Longevity'
+  source: { type: String }, // e.g., 'meta', 'tiktok', 'direct'
+  utm_source: { type: String },
+  utm_medium: { type: String },
+  utm_campaign: { type: String },
+  utm_content: { type: String },
+  utm_term: { type: String },
+  isTestLead: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
 })
 

@@ -10,7 +10,7 @@ const SUBMIT_TIMEOUT_MS = 90000
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-export default function EmailCapture({ name, setName, email, setEmail, answers, sessionId, assignedVariant, onSuccess }) {
+export default function EmailCapture({ name, setName, email, setEmail, answers, sessionId, assignedVariant, trackingData, onSuccess }) {
   const [validationError, setValidationError] = useState('')
   const [submitError, setSubmitError] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -43,14 +43,15 @@ export default function EmailCapture({ name, setName, email, setEmail, answers, 
     setSubmitting(true)
     try {
       await axios.post(
-        SUBMIT_URL,
-        {
-          name: name.trim(),
-          email: email.trim(),
-          answers,
-          sessionId,
-          assignedVariant,
-        },
+          SUBMIT_URL,
+          {
+            name: name.trim(),
+            email: email.trim(),
+            answers,
+            sessionId,
+            assignedVariant,
+            ...trackingData, // Spread tracking fields (source, utm_*)
+          },
         {
           timeout: SUBMIT_TIMEOUT_MS,
           headers: { 'Content-Type': 'application/json' },

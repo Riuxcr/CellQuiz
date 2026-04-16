@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import axios from 'axios'
 import { trackEvent, identifyUser } from '../utils/pixels.js'
@@ -95,6 +95,7 @@ const LONGEVITY_PATH = [
 
 export default function Quiz() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState({})
   const [name, setName] = useState('')
@@ -108,6 +109,16 @@ export default function Quiz() {
     if (!goal) return COMMON_QUESTIONS
     if (goal === 'Skincare & anti-aging') return [...COMMON_QUESTIONS, ...SKINCARE_PATH]
     return [...COMMON_QUESTIONS, ...LONGEVITY_PATH]
+  }
+
+  // Extract tracking parameters
+  const trackingData = {
+    source: searchParams.get('source'),
+    utm_source: searchParams.get('utm_source'),
+    utm_medium: searchParams.get('utm_medium'),
+    utm_campaign: searchParams.get('utm_campaign'),
+    utm_content: searchParams.get('utm_content'),
+    utm_term: searchParams.get('utm_term'),
   }
 
   const questionSet = getQuestionSetForAnswers(answers)
@@ -303,6 +314,7 @@ export default function Quiz() {
                 answers={answers}
                 sessionId={sessionId}
                 assignedVariant={sequenceNumber ? (sequenceNumber % 2 !== 0 ? 'checkout' : 'product') : 'product'}
+                trackingData={trackingData}
                 onSuccess={handleEmailSuccess}
               />
             </motion.div>
