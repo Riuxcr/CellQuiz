@@ -9,6 +9,7 @@ import AdminLogin from './pages/AdminLogin.jsx'
 import AdminAnalytics from './pages/AdminAnalytics.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import Splash from './pages/Splash.jsx'
+import Harmony from './pages/Harmony.jsx'
 
 export default function App() {
   const location = useLocation()
@@ -27,6 +28,7 @@ export default function App() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Splash />} />
             <Route path="/home" element={<Landing />} />
+            <Route path="/harmony" element={<Harmony />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/result" element={<Result />} />
             <Route path="/admin/login" element={<AdminLogin />} />
