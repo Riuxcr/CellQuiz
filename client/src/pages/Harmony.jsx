@@ -62,36 +62,24 @@ export default function Harmony() {
 
   const faqs = [
     { 
-      q: "Is it safe?", 
-      a: "Yes, ChronoNAD+ is formulated with ingredients that have been extensively studied in human trials and manufactured in certified facilities." 
+      q: "HOW QUICKLY WILL I NOTICE THE SYSTEMIC SHIFT?", 
+      a: "Most users report a noticeable increase in mental clarity and steady, all-day energy within the first 7-14 days. For deep cellular repair and metabolic optimization, we recommend consistent use for at least 60-90 days to allow coenzyme levels to fully stabilize." 
     },
     { 
-      q: "How long until I see results?", 
-      a: "While some feel an energy boost within days, most users experience significant metabolic and clarity results after 2-4 weeks of consistent use." 
+      q: "IS THE CHRONONAD+ PROTOCOL SAFE WITH OTHER MEDICATIONS?", 
+      a: "ChronoNAD+ is formulated with ultra-pure, clinical-grade ingredients. However, as with any advanced supplementation, we recommend consulting your physician before beginning the protocol, especially if you are currently taking prescription medication." 
     },
     {
-      q: "Can I take it with other supplements?",
-      a: "ChronoNAD+ is designed to be compatible with most health regimens. However, we always recommend consulting with your physician before starting any new supplement."
+      q: "WHAT HAPPENS IF I MISS A DAILY DOSAGE?",
+      a: "Consistency is the foundation of cellular health. If you miss a day, simply resume your protocol the following morning. There is no need to double the dose; your body responds best to a steady, daily rhythm of replenishment."
     },
     { 
-      q: "What is the best time to take it?", 
-      a: "For optimal results, take 2 capsules in the morning on an empty stomach or with a light meal to align with your body's natural baseline metabolism." 
-    },
-    { 
-      q: "Is it suitable for vegans?", 
-      a: "Yes, ChronoNAD+ uses 100% plant-based capsules and contains no animal-derived ingredients." 
-    },
-    { 
-      q: "Does it contain artificial fillers?", 
-      a: "No. Our formula is free from artificial colors, preservatives, and common allergens like gluten, soy, and dairy." 
-    },
-    { 
-      q: "Do I need to refrigerate it?", 
-      a: "Refrigeration is not required. Simply store it in a cool, dry place away from direct sunlight to maintain potency." 
+      q: "WHY THE 4-BOTTLE PROTOCOL FOR OPTIMAL TRANSFORMATION?", 
+      a: "True biological transformation takes time. While early benefits are felt quickly, the 4-bottle protocol (120 days) is designed to facilitate complete cellular turnover and lock in your new baseline of vitality, ensuring long-term systemic resilience." 
     }
   ]
 
-  const productImg = isMobile ? "/mobilehero.png" : "/Hormony_hero_image.png"
+  const productImg = isMobile ? "/mobilehero.png" : "/60_Capsules.jpg"
 
   return (
     <div className="font-sans antialiased text-[#1A237E] bg-white selection:bg-[#0D47A1] selection:text-white">
@@ -101,118 +89,88 @@ export default function Harmony() {
          {/* Subtle Background Clinical Grid - Deep Blue */}
          <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(#0D47A1 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
          
-         <div className="max-w-6xl mx-auto text-center relative z-10">
+         <div className="max-w-7xl mx-auto relative z-10 w-full">
             <motion.div 
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, ease: "easeOut" }}
-               className="flex flex-col items-center"
+               className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
             >
-               {/* Trust Indicator - Sky Blue & Pink */}
-               <div className="inline-flex items-center gap-3 bg-[#E3F2FD] border border-[#BBDEFB] px-5 py-2 rounded-full mb-6 lg:mb-8 shadow-sm">
-                  <div className="flex -space-x-2">
-                     {[...Array(3)].map((_, i) => (
-                        <div key={i} className="w-5 h-5 rounded-full border-2 border-white bg-gray-200 overflow-hidden">
-                           <img src={`https://i.pravatar.cc/100?u=${i+10}`} alt="user" className="w-full h-full object-cover opacity-90" />
+               {/* Left Column: Text Content */}
+               <div className="text-center lg:text-left space-y-10">
+                  <div className="space-y-6">
+                     <div className="inline-flex items-center gap-3 bg-[#FCE4EC] text-[#F06292] px-4 py-1.5 rounded-full mb-2">
+                        <span className="text-[10px] font-black uppercase tracking-widest">Protocol Breakthrough</span>
+                     </div>
+                     <h1 className="text-3xl md:text-5xl lg:text-[4.2rem] font-serif text-[#1A237E] leading-[1.0] tracking-tight">
+                        Support Your Cells. <br />
+                        <span className="italic text-[#F06292] font-medium">Bring Your Glow Back.</span>
+                     </h1>
+                     <p className="text-lg md:text-xl text-[#283593]/70 font-medium italic leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        CHRONONAD+ helps restore declining NAD+ levels — supporting your skin’s ability to repair and renew from within, so you look brighter, feel more energized, and less run down day to day.
+                     </p>
+                  </div>
+
+                  {/* Clinical Metrics Overlay */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-8 border-y border-[#E3F2FD]">
+                     {[
+                        { text: "NAD+ levels decline by your mid-30s", val: "Up to 30%", accent: "#F06292" },
+                        { text: "Visible skin + energy improvements", val: "8–12 Weeks", accent: "#03A9F4" },
+                        { text: "Deeper cellular repair formula", val: "2-in-1", accent: "#BA68C8" }
+                     ].map((item, i) => (
+                        <div key={i} className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                           <span className="text-2xl font-black text-[#0D47A1] mb-1">{item.val}</span>
+                           <div className="flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: item.accent }}></div>
+                              <span className="text-[8px] font-black text-[#0288D1]/50 uppercase tracking-widest leading-tight">{item.text}</span>
+                           </div>
                         </div>
                      ))}
                   </div>
-                  <span className="text-[9px] font-black text-[#0D47A1] uppercase tracking-[0.3em]">Trusted by 3M+ Women</span>
-                  <div className="w-2 h-2 rounded-full bg-[#F06292] animate-pulse"></div> {/* Pink Accent */}
-               </div>
 
-               {/* Master Headline - Deep Blue */}
-               <h1 className="text-4xl md:text-6xl lg:text-[5.2rem] font-serif text-[#1A237E] leading-[1.0] mb-8 lg:mb-10 tracking-tight max-w-5xl">
-                  Restore Your Body. <br />
-                  <span className="italic text-[#F06292] font-medium">Reclaim Your Baseline.</span>
-               </h1>
-
-               {/* High-Level Narrative - Deep Blue Muted */}
-               <p className="text-lg md:text-xl text-[#283593]/70 font-medium italic leading-relaxed mb-10 lg:mb-12 max-w-3xl mx-auto">
-                  Hormone Harmony targets destructive cortisol at the root—restoring your metabolic energy, stabilizing your mood, and refining your natural profile.
-               </p>
-
-               {/* Clinical Metrics - Sky & Pink Dashboard */}
-               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 w-full mb-12 lg:mb-16 py-8 border-y border-[#E3F2FD]">
-                  {[
-                     { text: "Cortisol Reduction", val: "44%", accent: "#F06292" }, // Pink
-                     { text: "Deep Sleep Optimization", val: "72%", accent: "#03A9F4" }, // Sky Blue
-                     { text: "Mood Stabilization", val: "43%", accent: "#BA68C8" }, // Purple-Pink
-                     { text: "Weight Loss Accuracy", val: "86%", accent: "#0288D1" }  // Deep Blue
-                  ].map((item, i) => (
-                     <div key={i} className="flex flex-col items-center">
-                        <span className="text-3xl font-black text-[#0D47A1] mb-1">{item.val}</span>
-                        <div className="flex items-center gap-2">
-                           <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: item.accent }}></div>
-                           <span className="text-[9px] font-black text-[#0288D1]/50 uppercase tracking-widest text-center">{item.text}</span>
-                        </div>
+                  <div className="flex flex-col items-center lg:items-start gap-5">
+                     <button 
+                        onClick={scrollToProducts}
+                        className="min-w-[320px] bg-[#0D47A1] text-white font-black text-lg px-10 py-6 rounded-[2rem] uppercase tracking-widest hover:bg-[#F06292] transition-all duration-300 shadow-xl flex items-center justify-center group relative overflow-hidden"
+                     >
+                        <span className="relative z-10">Start My Protocol</span>
+                        <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                     </button>
+                     <div className="flex items-center gap-2 text-[#0D47A1]/40">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                        <span className="text-[10px] font-bold italic uppercase tracking-widest">Clinical 60-Day Guarantee</span>
                      </div>
-                  ))}
+                  </div>
                </div>
 
-               {/* Primary Protocol CTA - Deep Blue */}
-               <div className="flex flex-col items-center gap-5">
-                  <button 
-                     onClick={scrollToProducts}
-                     className="min-w-[320px] bg-[#0D47A1] text-white font-black text-lg px-10 py-6 rounded-[2rem] uppercase tracking-widest hover:bg-[#F06292] transition-all duration-300 shadow-xl flex items-center justify-center group relative overflow-hidden"
-                  >
-                     <span className="relative z-10">Start My Protocol</span>
-                     <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                  </button>
-                  <div className="flex items-center gap-2 text-[#0D47A1]">
-                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                     <span className="text-[10px] font-bold italic">Clinical 60-Day Money Back Guarantee</span>
+               {/* Right Column: Transformation Graphic */}
+               <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#E3F2FD] to-[#FCE4EC] rounded-[4rem] blur-[80px] opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                  <div className="relative bg-white rounded-[4rem] p-4 shadow-2xl border border-white overflow-hidden transform hover:scale-[1.02] transition-transform duration-700">
+                     <div className="absolute top-6 left-6 z-20">
+                        <span className="bg-[#0D47A1] text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">Clinical Observation</span>
+                     </div>
+                     <img 
+                        src="/transformation_hero.png" 
+                        alt="Cellular Transformation Progress" 
+                        className="w-full h-auto object-contain mix-blend-multiply"
+                     />
+                     {/* Floating Labels */}
+                     <div className="absolute bottom-10 left-10 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl border border-gray-100 flex flex-col">
+                        <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Baseline</span>
+                        <span className="text-sm font-black text-[#1A237E]">Without NAD+</span>
+                     </div>
+                     <div className="absolute bottom-10 right-10 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl border border-[#F06292]/20 flex flex-col">
+                        <span className="text-[9px] font-black text-[#F06292] uppercase tracking-widest mb-1">Optimal</span>
+                        <span className="text-sm font-black text-[#1A237E]">With NAD+</span>
+                     </div>
                   </div>
                </div>
             </motion.div>
          </div>
       </section>
 
-      {/* EDITORIAL PRESS SECTION - PINK & BLUE ACCENTS (NO BLACK) */}
-      <section className="py-20 bg-white border-b border-[#E3F2FD] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col items-center">
-             <div className="inline-flex items-center gap-4 mb-16">
-                <div className="h-[1px] w-12 bg-[#E3F2FD]"></div>
-                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#0D47A1]/40">Editorial Endorsements</span>
-                <div className="h-[1px] w-12 bg-[#E3F2FD]"></div>
-             </div>
 
-             {/* Interactive Logo Strip */}
-             <div className="w-full relative group">
-                <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-12 md:gap-x-24 opacity-50 group-hover:opacity-100 transition-opacity duration-700">
-                  {[
-                    { brand: "COSMOPOLITAN", quote: "It made me so calm and centred, my husband instantly noticed the change." },
-                    { brand: "WOMEN'S HEALTH", quote: "My confidence is back. My belly feels flat. And I feel like myself again!" },
-                    { brand: "VOGUE", quote: "Most effective dietary supplements I’ve discovered recently, and a real game-changer." },
-                    { brand: "MARIE CLAIRE", quote: "Marie Claire’s top picks for perimenopause and hormonal reset." },
-                    { brand: "USA TODAY", quote: "My happiness is returning and my body is stronger. Blown away by how fast it works!" },
-                    { brand: "BODY+SOUL", quote: "My tummy is definitely better than it was, which is nothing less than a miracle." }
-                  ].map((item, i) => (
-                    <motion.div 
-                      key={i}
-                      whileHover={{ scale: 1.05 }}
-                      className="cursor-help relative group/logo"
-                    >
-                      <span className="font-serif text-xl md:text-2xl font-black tracking-tighter text-[#1A237E] uppercase">{item.brand}</span>
-                      
-                      {/* Tooltip Quote - Pink & Blue Style */}
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-8 w-64 opacity-0 group-hover/logo:opacity-100 transition-all duration-500 pointer-events-none scale-95 group-hover/logo:scale-100 translate-y-2 group-hover/logo:translate-y-0">
-                         <div className="bg-[#0D47A1] text-white p-6 rounded-2xl shadow-2xl relative text-center">
-                            <p className="text-[11px] font-medium leading-relaxed italic tracking-wide">"{item.quote}"</p>
-                            <div className="absolute top-full left-1/2 -translate-x-1/2 w-4 h-4 bg-[#0D47A1] rotate-45 -translate-y-2"></div>
-                         </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-             </div>
-
-             {/* Mobile Support Narrative */}
-             <p className="mt-16 text-[9px] font-black uppercase tracking-[0.2em] text-[#0288D1]/30 md:hidden italic text-center">Tap logos to view editorial insights</p>
-          </div>
-        </div>
-      </section>
 
       {/* TESTIMONIALS SECTION - PINK & BLUE (NO BLACK) */}
       <section className="py-32 bg-white overflow-hidden relative">
@@ -232,81 +190,75 @@ export default function Harmony() {
                   </h2>
                </div>
                
-               <div className="flex items-center gap-8 py-6 px-10 bg-white border border-[#E3F2FD] rounded-[2.5rem] shadow-sm">
-                  <div className="text-center">
-                     <span className="block text-3xl font-black text-[#0D47A1]">3M+</span>
-                     <span className="text-[9px] font-black uppercase tracking-widest text-[#0288D1]/40">Total Protocols</span>
-                  </div>
-                  <div className="w-[1px] h-10 bg-[#E3F2FD]"></div>
-                  <div className="text-center">
-                     <span className="block text-3xl font-black text-[#F06292]">4.9</span>
-                     <span className="text-[9px] font-black uppercase tracking-widest text-[#F06292]/40">Average Rating</span>
-                  </div>
-               </div>
             </div>
 
-          {/* Testimonial Mosaic Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-            {[
-              {
-                name: "Jenna T.",
-                headline: "LIFE-CHANGING!!!",
-                body: "I feel 20yrs younger, I sleep like a baby, my joints feel oiled... and I’ve lost weight without even trying. These capsules are pure magic.",
-                initial: "J",
-                colSpan: "lg:col-span-2",
-                tag: "Weight & Vitality"
-              },
-              {
-                name: "Karen G.",
-                headline: "It's like I’m aging backwards!",
-                body: "I feel like I’m glowing from the inside out. My hair’s fuller, my face is tighter, my belly is vanishing... and I feel stronger, sharper.",
-                initial: "K",
-                tag: "Glow & Profile"
-              },
-              {
-                name: "Tina F.",
-                headline: "I’ll never be without this",
-                body: "I was sweating through my pajamas every night. Two weeks into this, I’m sleeping better, I feel calm, and I’m not bloated 24/7.",
-                initial: "T",
-                tag: "Deep Sleep"
-              },
-              {
-                name: "Deb A.",
-                headline: "I finally feel like ME again.",
-                body: "I didn’t expect much. Just figured I’d try it because I was desperate. But WOW... My pants are looser, my brain fog is gone and my energy is back.",
-                initial: "D",
-                colSpan: "lg:col-span-2",
-                tag: "Hormonal Rebound"
-              }
-               ].map((review, i) => (
-                  <motion.div 
-                     key={i} 
-                     whileHover={{ y: -10 }}
-                     className={`bg-white p-12 rounded-[3rem] border border-[#E3F2FD] shadow-sm relative overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:border-[#F06292]/20 ${review.colSpan || ''}`}
-                  >
-                     <span className="absolute -top-10 -right-10 text-[15rem] font-serif italic text-[#E3F2FD]/50 pointer-events-none group-hover:text-[#FCE4EC]/50 transition-colors duration-700">{review.initial}</span>
+           {/* Testimonial Grid - Compact High-Performance Layout */}
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+             {[
+               {
+                 name: "HappyFamily",
+                 headline: "NAD+ Boost for Feeling Younger!",
+                 body: "CellStart is a solid pick for anyone wanting to support healthy aging and cellular energy! After a month of one capsule daily with breakfast, I've noticed steadier energy, better focus, and recovery after workouts.",
+                 initial: "H",
+                 tag: "Healthy Aging"
+               },
+               {
+                 name: "Brenda",
+                 headline: "Great quality supplements",
+                 body: "60 capsules in a bottle. Directions say to take two a day. Pills are pretty easy to swallow. I had good results with taking this supplement. More energy and I have better sleep now. My digestion improved also.",
+                 initial: "B",
+                 tag: "Quality & Sleep"
+               },
+               {
+                 name: "Stephanie Jackson",
+                 headline: "Worth the Buy",
+                 body: "I’ve noticed I don’t feel as sluggish during the day, and my recovery after workouts seems quicker. Definitely worth trying if you want extra support for energy, focus, and healthy aging.",
+                 initial: "S",
+                 tag: "Energy & Recovery"
+               },
+               {
+                 name: "James",
+                 headline: "Easy to swallow capsules.",
+                 body: "The CellStart Nad+ Resveratrol capsules come a well-sealed bottle. I like the fact that they are made in the USA and are also Non-GMO. I feel they give me more energy and a better start to my mornings.",
+                 initial: "J",
+                 tag: "Daily Vitality"
+               },
+               {
+                 name: "Danielle",
+                 headline: "A Much Needed Energy Boost for Moms!",
+                 body: "As a 32-year-old mom juggling kids.. within the first week, I noticed a real difference. I wasn’t crashing halfway through the day, and I felt more clear-headed and focused.",
+                 initial: "D",
+                 tag: "Energy Boost"
+               }
+             ].map((review, i) => (
+                   <motion.div 
+                      key={i} 
+                      whileHover={{ y: -5 }}
+                      className={`${['bg-[#E3F2FD]/50', 'bg-[#FFF3E0]/50', 'bg-[#FCE4EC]/50'][i % 3]} p-8 rounded-[2.5rem] border border-[#E3F2FD] shadow-sm relative overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:border-[#F06292]/20`}
+                   >
+                      <span className="absolute -top-10 -right-10 text-[10rem] font-serif italic text-[#E3F2FD]/40 pointer-events-none group-hover:text-[#FCE4EC]/40 transition-colors duration-700">{review.initial}</span>
                      
                      <div className="relative z-10">
-                        <div className="flex items-center justify-between mb-10">
-                           <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-full bg-[#0D47A1] text-white flex items-center justify-center font-black text-xs shadow-lg">{review.initial}</div>
-                              <div className="flex flex-col">
-                                 <span className="text-sm font-black text-[#1A237E] uppercase tracking-tight">{review.name}</span>
-                                 <div className="flex items-center gap-1.5">
-                                    <div className="w-1 h-1 rounded-full bg-[#F06292] animate-pulse"></div>
-                                    <span className="text-[8px] font-black text-[#0288D1]/40 uppercase tracking-widest">Verified Buyer</span>
-                                 </div>
-                              </div>
-                           </div>
-                           <span className="px-4 py-1.5 rounded-full border border-[#E3F2FD] text-[8px] font-black uppercase tracking-widest text-[#0D47A1]/40 group-hover:bg-[#F06292] group-hover:text-white group-hover:border-[#F06292] transition-all">{review.tag}</span>
+                         <div className="flex items-center justify-between mb-8">
+                            <div className="flex items-center gap-3">
+                               <div className="w-8 h-8 rounded-full bg-[#0D47A1] text-white flex items-center justify-center font-black text-[10px] shadow-lg">{review.initial}</div>
+                               <div className="flex flex-col">
+                                  <span className="text-[11px] font-black text-[#1A237E] uppercase tracking-tight">{review.name}</span>
+                                  <div className="flex items-center gap-1.5">
+                                     <div className="w-1 h-1 rounded-full bg-[#F06292] animate-pulse"></div>
+                                     <span className="text-[7px] font-black text-[#0288D1]/40 uppercase tracking-widest">Verified Buyer</span>
+                                  </div>
+                               </div>
+                            </div>
+                            <span className="px-3 py-1 rounded-full border border-[#E3F2FD] text-[7px] font-black uppercase tracking-widest text-[#0D47A1]/40 group-hover:bg-[#F06292] group-hover:text-white group-hover:border-[#F06292] transition-all">{review.tag}</span>
                    </div>
 
-                   <div className="flex text-[#1A237E] mb-6 text-xs gap-1">
-                      {[...Array(5)].map((_, j) => <span key={j}>★</span>)}
-                   </div>
+                         <div className="flex text-[#1A237E] mb-4 text-[10px] gap-0.5">
+                            {[...Array(5)].map((_, j) => <span key={j}>★</span>)}
+                         </div>
                    
-                   <h4 className="text-2xl font-black text-[#1A237E] mb-4 font-serif italic leading-tight group-hover:text-gray-600 transition-colors">{review.headline}</h4>
-                   <p className="text-lg text-gray-500 font-medium leading-relaxed italic pr-8">"{review.body}"</p>
+                   <h5 className="text-base font-black text-[#1A237E] mb-3 font-serif italic leading-tight group-hover:text-gray-600 transition-colors">{review.headline}</h5>
+                   <p className="text-sm text-gray-500 leading-relaxed font-light">"{review.body}"</p>
                 </div>
               </motion.div>
             ))}
@@ -331,167 +283,149 @@ export default function Harmony() {
         </div>
       </section>
 
-      {/* CORTISOL NARRATIVE SECTION */}
-      <section className="py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="mb-20">
-            <h2 className="text-3xl md:text-5xl font-black text-[#1A237E] mb-6 leading-[1.1] tracking-tight font-serif">
-              As Women Age, Their Bodies Produce Up <br className="hidden md:block" />
-              To 20% MORE Cortisol (Stress Hormone) <br className="hidden md:block" />
-              Every Single Year...
-            </h2>
-            <p className="text-xl text-gray-400 font-medium italic">And that’s when <span className="text-[#1A237E] underline decoration-[#0D47A1] decoration-2 underline-offset-8 font-bold">everything changes</span> in their bodies.</p>
+      {/* THE SILENT DRIVER - NAD+ DECLINE SECTION */}
+      <section className="py-32 bg-gray-50/30 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-24 max-w-4xl mx-auto">
+             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 mb-6 block">The Silent Driver</span>
+             <h2 className="text-4xl md:text-7xl font-black text-[#1A237E] leading-[1.05] tracking-tight font-serif mb-8">
+                As You Age, Your Body’s NAD+ Levels Plummet By <span className="text-[#0D47A1]">Over 50%</span>...
+             </h2>
+             <p className="text-xl md:text-2xl text-gray-500 font-medium italic leading-relaxed">
+                And that’s when <span className="text-[#1A237E] font-black not-italic">everything changes</span> in your cells.
+             </p>
           </div>
 
-          {/* Comparison Block - Redesigned for High Impact */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 mb-20 bg-white border border-gray-100 rounded-[2.5rem] overflow-hidden shadow-2xl">
-             {/* Before - The Struggle */}
-             <div className="p-10 md:p-14 text-left border-b md:border-b-0 md:border-r border-gray-100 bg-gray-50/50">
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-8 block">The Reality</span>
-                <div className="space-y-10">
-                   {[
-                     { text: "From puffy and double-chinned" },
-                     { text: "From the dreaded “cortisol apple shape”" },
-                     { text: "From snappy and irritable" }
-                   ].map((item, i) => (
-                     <div key={i} className="flex items-start gap-4 group">
-                        <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center shrink-0 mt-1">
-                           <svg className="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"/></svg>
-                        </div>
-                        <p className="text-lg font-bold text-gray-400 group-hover:text-gray-500 transition-colors">{item.text}</p>
-                     </div>
-                   ))}
-                </div>
-             </div>
-             
-             {/* After - The Harmony Effect */}
-             <div className="p-10 md:p-14 text-left bg-white relative">
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1A237E] mb-8 block">The Harmony Effect</span>
-                <div className="space-y-10">
-                   {[
-                     { text: "to chiseled and snatched" },
-                     { text: "to flat, toned, and hot" },
-                     { text: "to calm, uplifted, and balanced" }
-                   ].map((item, i) => (
-                     <div key={i} className="flex items-start gap-4 group">
-                        <div className="w-6 h-6 rounded-full bg-[#0D47A1] flex items-center justify-center shrink-0 mt-1">
-                           <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
-                        </div>
-                        <p className="text-lg font-bold text-[#1A237E]">{item.text}</p>
-                     </div>
-                   ))}
-                </div>
-             </div>
-          </div>
-
-          {/* Narrative Body - Improved Typography & Spacing */}
-          <div className="space-y-12 text-lg md:text-xl text-[#1F2937] leading-relaxed mb-20 max-w-3xl mx-auto">
-             <div className="space-y-4">
-                <p>Are all symptoms of excess cortisol that forces the body to hold onto <span className="font-black text-[#1A237E] underline decoration-[#0D47A1] decoration-2 underline-offset-4">FAT and WATER</span>...</p>
-                <p className="text-gray-400 font-medium">And that’s only what women see in the mirror.</p>
-             </div>
-
-             <div className="h-[1px] w-20 bg-gray-100 mx-auto"></div>
-
-             <p className="italic">On the <span className="font-bold text-[#1A237E] not-italic underline decoration-[#0D47A1] decoration-1 underline-offset-4">inside</span>? There’s a hormonal storm wreaking havoc on women’s energy and mood.</p>
-             
-             <div className="bg-gray-50 rounded-3xl p-10 space-y-6 text-left border border-gray-100">
-                <div className="flex items-start gap-5">
-                   <div className="w-1.5 h-1.5 rounded-full bg-[#0D47A1] mt-3 shrink-0"></div>
-                   <p>They <span className="font-black text-[#1A237E]">feel exhausted and snappy</span> during the day...</p>
-                </div>
-                <div className="flex items-start gap-5">
-                   <div className="w-1.5 h-1.5 rounded-full bg-[#0D47A1] mt-3 shrink-0"></div>
-                   <p><span className="font-black text-[#1A237E]">Wired & tired</span> when their body needs to sleep or relax...</p>
-                </div>
-                <div className="flex items-start gap-5">
-                   <div className="w-1.5 h-1.5 rounded-full bg-[#0D47A1] mt-3 shrink-0"></div>
-                   <p>And <span className="font-black text-[#1A237E]">unable to lose weight</span>, no matter what they do.</p>
-                </div>
-             </div>
-
-             <p>If that ever happened to you, it’s not your fault. These are symptoms of too much cortisol in the body...</p>
-             <p className="text-gray-400">And unfortunately, it doesn’t stop here.</p>
-             <p>By the time you reach menopause, your key hormones plummet by a whopping 60%...</p>
-             <div className="bg-[#0D47A1] text-white p-10 rounded-[2rem] shadow-2xl">
-                <p className="font-bold leading-relaxed">
-                   These are the hormones that keep your skin tight and glowy, your hair luscious, your body weight down, and your water weight out of the system...
-                </p>
-             </div>
-          </div>
-
-          {/* Expert Insights - Highlight Boxes Redesigned */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
-             <div className="bg-white border border-gray-100 p-10 rounded-[2rem] text-left relative overflow-hidden group hover:border-[#0D47A1]/10 transition-colors">
-                <div className="absolute top-0 left-0 w-1.5 h-full bg-[#0D47A1]/10 group-hover:bg-[#0D47A1] transition-colors"></div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4 block">Bio-Marker 01</span>
-                <p className="font-bold text-lg leading-relaxed text-[#1F2937]">
-                   Elevated Cortisol levels retain massive amounts of water... Which rounds up and puffs the face, the belly, arms, and legs...
-                </p>
-             </div>
-             <div className="bg-white border border-gray-100 p-10 rounded-[2rem] text-left relative overflow-hidden group hover:border-[#0D47A1]/10 transition-colors">
-                <div className="absolute top-0 left-0 w-1.5 h-full bg-[#0D47A1]/10 group-hover:bg-[#0D47A1] transition-colors"></div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-4 block">Bio-Marker 02</span>
-                <p className="font-bold text-lg leading-relaxed text-[#1F2937]">
-                   Other key hormones plummet and start holding onto fat... So the body stubbornly becomes ‘bigger’, especially around the thighs and the midsection.
-                </p>
-             </div>
-          </div>
-
-          <div className="text-lg md:text-xl text-[#1F2937] mb-20 max-w-3xl mx-auto">
-             <p className="mb-12 font-medium">So if you’ve ever witnessed...</p>
-             
-             <div className="space-y-6 mb-16">
-                {[
-                  { text: "Double-chin appearing overnight and out of nowhere...", icon: "👤" },
-                  { text: "A round, swollen face looking like a pillow...", icon: "👤" },
-                  { text: "A full belly that spills over your jeans and skirts...", icon: "👗" },
-                  { text: "Or a jawline trapped under a layer of fatty soft tissue...", icon: "📐" }
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-6 p-6 bg-gray-50/50 rounded-2xl border border-transparent hover:border-gray-100 transition-all text-left">
-                     <span className="text-2xl grayscale shrink-0">{item.icon}</span>
-                     <p className="font-bold text-[#1A237E]">{item.text.replace('➡️ ', '')}</p>
+          {/* Before & After Cellular Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+             {[
+               { 
+                 from: "Persistent Brain Fog & Midday Crashes", 
+                 to: "Sharp Focus & Resilient Energy",
+                 label: "Cognitive Baseline",
+                 bgColor: "bg-[#E3F2FD]/50"
+               },
+               { 
+                 from: "Slow Recovery & Dull, Aging Skin", 
+                 to: "Rapid Cellular Renewal & Youthful Glow",
+                 label: "Cellular Renewal",
+                 bgColor: "bg-[#FFF3E0]/50"
+               },
+               { 
+                 from: "Unexplained Fatigue & Physical \"Heavy\" Feeling", 
+                 to: "Systemic Vitality & Effortless Movement",
+                 label: "Physical Resilience",
+                 bgColor: "bg-[#FCE4EC]/50"
+               }
+             ].map((item, i) => (
+               <div key={i} className={`group ${item.bgColor} rounded-[3rem] p-10 border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-700 relative overflow-hidden`}>
+                  <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                     <span className="text-4xl font-serif font-black italic">0{i+1}</span>
                   </div>
-                ))}
-             </div>
+                  <div className="space-y-6 relative z-10">
+                     <span className="text-[9px] font-black uppercase tracking-widest text-[#1A237E]/40 border-b border-[#1A237E]/5 pb-2 inline-block">{item.label}</span>
+                     <div className="space-y-4">
+                        <div className="flex items-start gap-3 opacity-40">
+                           <span className="text-lg">✕</span>
+                           <p className="text-sm font-medium line-through decoration-[#1A237E]/20 text-[#1A237E]">{item.from}</p>
+                        </div>
+                        <div className="flex items-start gap-3 text-[#1A237E]">
+                           <span className="text-lg">✅</span>
+                           <p className="text-lg font-black leading-tight">{item.to}</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+             ))}
+          </div>
 
-             <div className="space-y-6 mb-20">
-                <p className="text-2xl md:text-3xl font-serif italic text-[#1A237E]">“You’re not alone... It happens to MILLIONS of women just like you.”</p>
-             </div>
+          <div className="max-w-3xl mx-auto bg-[#E3F2FD]/40 p-12 rounded-[3.5rem] border border-[#E3F2FD] shadow-xl relative overflow-hidden group">
+             <div className="absolute -top-10 -right-10 text-[12rem] font-serif font-black italic text-[#E3F2FD]/30 pointer-events-none">“</div>
+             <p className="text-2xl md:text-3xl font-serif italic text-[#1A237E] leading-relaxed relative z-10">
+                "It's not just a lack of sleep—it's a hormonal and cellular storm. You feel <span className="text-[#0D47A1] font-black not-italic underline decoration-[#E3F2FD] decoration-8 underline-offset-4">wired but tired</span>, unable to recover no matter how much you rest, and your skin begins to lose the 'bounce' it had in your 20s and 30s."
+             </p>
+          </div>
+        </div>
+      </section>
 
+      {/* THE INTERNAL STRUGGLE - WHY SECTION */}
+      <section className="py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
              <div className="space-y-12">
-                <p className="text-2xl font-black underline decoration-[#0D47A1] decoration-4 underline-offset-8">Diet and exercise just won’t cut it anymore.</p>
-                <div className="h-[1px] w-20 bg-gray-100 mx-auto"></div>
-                
-                <div className="space-y-8">
-                  <p>Sure, they’ll keep the body strong and healthy... But won’t totally fix cortisol spiking in the body... or the rapid downfall of your ‘slim’ hormones...</p>
-                  <p className="font-bold text-2xl text-[#1A237E]">Fortunately — there’s a way to reverse that.</p>
-                  <p>And it all starts by going to the root cause...</p>
-                  
-                  <div className="py-12 border-y border-gray-100 space-y-6">
-                    <p className="font-black text-3xl md:text-4xl text-[#1A237E] font-serif">The Snatched Face, <br /> The Toned Body...</p>
-                    <p className="text-xl font-medium text-gray-500 italic">So you can LOVE your body once again...</p>
-                  </div>
+                <div className="space-y-6">
+                   <h3 className="text-3xl font-black text-[#1A237E] font-serif uppercase tracking-tighter">The Internal Struggle</h3>
+                   <div className="h-1 w-20 bg-[#0D47A1]"></div>
+                </div>
 
-                  <p className="font-black mt-8 text-xs uppercase tracking-[0.4em] text-gray-400">No matter your age, body type, genetics, or unique hormonal profile!</p>
+                <div className="space-y-10">
+                   <div className="group">
+                      <p className="text-sm font-black text-[#0D47A1] uppercase tracking-widest mb-4">Problem Block 1: The Energy Drain</p>
+                      <p className="text-xl md:text-2xl text-gray-500 font-medium italic leading-relaxed">
+                         <span className="text-[#1A237E] font-black not-italic">Depleted NAD+ levels</span> leave your mitochondrial "batteries" empty. This is why you feel exhausted even after a full night's sleep.
+                      </p>
+                   </div>
+
+                   <div className="group">
+                      <p className="text-sm font-black text-[#0D47A1] uppercase tracking-widest mb-4">Problem Block 2: The Repair Stall</p>
+                      <p className="text-xl md:text-2xl text-gray-500 font-medium italic leading-relaxed">
+                         <span className="text-[#1A237E] font-black not-italic">Longevity genes (Sirtuins)</span> go dormant without fuel, meaning your body stops repairing DNA damage effectively, accelerating the visible signs of aging.
+                      </p>
+                   </div>
+                </div>
+             </div>
+
+             <div className="bg-gray-50/50 p-12 md:p-16 rounded-[4rem] border border-gray-100">
+                <h4 className="text-xl font-black text-[#1A237E] uppercase tracking-widest mb-10 text-center">IF YOU’VE WITNESSED...</h4>
+                <div className="space-y-8">
+                   {[
+                     "The \"Afternoon Slump\" hitting harder than ever...",
+                     "Recovery times doubling after a simple workout...",
+                     "Skin texture changing and losing its natural luminosity...",
+                     "A mind that feels like it's operating through a thick fog..."
+                   ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-6 group">
+                         <div className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center shrink-0 group-hover:border-[#0D47A1] transition-colors">
+                            <span className="text-sm">➡️</span>
+                         </div>
+                         <p className="text-lg font-bold text-[#1A237E]">{item}</p>
+                      </div>
+                   ))}
                 </div>
              </div>
           </div>
 
-          <div className="flex flex-col items-center gap-4">
-            <button 
-              onClick={scrollToProducts}
-              className="w-full md:w-auto min-w-[400px] bg-[#0D47A1] text-white font-black text-xl md:text-2xl px-12 py-8 rounded-2xl uppercase tracking-widest hover:bg-[#F06292] transition-all duration-300 shadow-2xl flex items-center justify-center group"
-            >
-              Try Hormone Harmony
-              <svg className="w-6 h-6 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </button>
-            <div className="flex items-center gap-3 mt-4">
-              <div className="w-5 h-5 rounded bg-[#0D47A1] flex items-center justify-center">
-                 <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
-              </div>
-              <span className="text-lg font-bold text-[#1A237E] italic">60 Day Money Back Guarantee</span>
-            </div>
+          <div className="max-w-4xl mx-auto text-center space-y-16">
+             <div className="space-y-6">
+                <p className="text-2xl md:text-3xl font-serif italic text-[#1A237E] leading-tight">
+                   “Caffeine and clean eating just won't cut it anymore. <span className="text-gray-400">They provide temporary sparks, but they don't fix the empty fuel tank at the root of your cells.”</span>
+                </p>
+             </div>
+
+             <div className="space-y-8">
+                <p className="text-3xl md:text-4xl font-black text-[#1A237E] leading-tight">
+                   Fortunately—there’s a way to reverse that.
+                </p>
+                <p className="text-xl text-gray-500 font-medium italic max-w-2xl mx-auto">
+                   It starts by going to the root cause: <span className="text-[#0D47A1] font-black not-italic underline decoration-[#E3F2FD] decoration-8 underline-offset-4">Restoring your cellular NAD+ battery</span> and <span className="text-[#0D47A1] font-black not-italic underline decoration-[#E3F2FD] decoration-8 underline-offset-4">Re-activating the genes</span> your body is now missing.
+                </p>
+             </div>
+
+             <div className="flex flex-col items-center gap-6">
+                <button 
+                  onClick={scrollToProducts}
+                  className="w-full md:w-auto min-w-[380px] bg-[#0D47A1] text-white font-black text-xl px-12 py-8 rounded-[2.5rem] uppercase tracking-widest hover:bg-[#F06292] transition-all duration-300 shadow-2xl flex items-center justify-center group"
+                >
+                  LOVE YOUR VITALITY AGAIN
+                  <svg className="w-6 h-6 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </button>
+                <div className="flex items-center gap-3">
+                   <div className="w-5 h-5 rounded-full bg-[#0D47A1] flex items-center justify-center">
+                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
+                   </div>
+                   <span className="text-[10px] font-bold text-[#1A237E] italic uppercase tracking-widest">60 Day Clinical Efficacy Guarantee</span>
+                </div>
+             </div>
           </div>
         </div>
       </section>
@@ -501,52 +435,55 @@ export default function Harmony() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12 lg:mb-16">
             <div className="inline-block mb-6">
-               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 border-x border-gray-200 px-6 py-1">The Breakthrough</span>
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 border-x border-gray-200 px-6 py-1">THE BREAKTHROUGH</span>
             </div>
             
             <h2 className="text-3xl md:text-5xl lg:text-[4.5rem] font-black text-[#1A237E] leading-[1.0] mb-6 tracking-tight font-serif max-w-5xl mx-auto">
-               Finally, It’s Possible To Block Excess <br className="hidden md:block" />
-               Cortisol & Balance Your <span className="italic text-gray-400 font-medium">‘Slim’ Hormones</span>
+               Finally, It’s Possible To <span className="text-[#0D47A1]">Restore Your Cellular Battery</span> <br className="hidden md:block" />
+               & Activate Your <span className="italic text-gray-400 font-medium">‘Longevity’ Genes</span>
             </h2>
-            <p className="text-lg text-gray-400 font-medium italic">Stay Naturally Fit & Sculpted with <span className="text-[#1A237E] font-bold not-italic">Hormone Harmony</span></p>
+            <p className="text-lg text-gray-400 font-medium italic">Stay Systemically Vibrant & Resilient with <span className="text-[#1A237E] font-bold not-italic">ChronoNAD+</span></p>
           </div>
 
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 mb-16 lg:mb-20">
              {/* Product Visual Area - Compact Luxury */}
-             <div className="w-full lg:w-[40%] relative">
-                <div className="relative z-10 aspect-[5/6] bg-white rounded-[3.5rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] overflow-hidden group">
-                   <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white"></div>
-                   <div className="relative w-full h-full flex items-center justify-center p-12">
-                      <img 
-                        src="/Hormony_hero_image.png" 
-                        alt="Hormone Harmony Clinical Formula" 
-                        className="max-h-full object-contain drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-1000"
-                      />
-                   </div>
-                   <div className="absolute top-8 right-8 bg-[#0D47A1] text-white px-4 py-1.5 rounded-full shadow-lg">
-                      <span className="text-[8px] font-black uppercase tracking-widest">Clinical Strength</span>
-                   </div>
-                </div>
-             </div>
+              <div className="w-full lg:w-[45%]">
+                  <div className="relative w-full aspect-square flex items-center justify-center group bg-white rounded-[4rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.05)] border border-gray-50 overflow-hidden">
+                     <img 
+                       src="/60_Capsules.jpg" 
+                       alt="ChronoNAD+ Advanced Protocol" 
+                       className="w-[85%] h-[85%] object-contain transform group-hover:scale-105 transition-all duration-[3000ms] mix-blend-multiply"
+                     />
+                     {/* Optional: Add a subtle glow behind the image instead of a card */}
+                     <div className="absolute inset-0 bg-[#0D47A1]/5 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                     
+                     <div className="absolute top-6 right-6 bg-[#0D47A1] text-white px-6 py-2 rounded-full shadow-xl z-20">
+                        <span className="text-[10px] font-black uppercase tracking-widest">Clinical Strength</span>
+                     </div>
+                  </div>
+              </div>
 
              {/* Science & Proof Copy - Compact Editorial */}
              <div className="w-full lg:w-[60%] space-y-10 text-left">
                 <div className="space-y-4">
                    <h3 className="text-xl md:text-2xl font-bold text-[#1A237E] leading-tight font-serif italic">“We have finally done it.”</h3>
                    <p className="text-base md:text-lg text-gray-500 leading-relaxed font-light">
-                      We have spent the last <span className="font-bold text-[#1A237E]">8 years on the cutting-edge</span> of natural hormone-balancing science...
+                      We have spent the last <span className="font-bold text-[#1A237E]">20+ years on the cutting-edge</span> of NAD+ and cellular longevity science to develop a protocol that doesn't just mask aging, but addresses it at the source.
                    </p>
                 </div>
                 
                 <div className="grid grid-cols-1 gap-6">
                    {[
-                     { num: "01", text: "After searching for clinical research, we created the world’s first 100% natural formula of its kind." },
-                     { num: "02", text: "A synergistic blend of 12 clinically-backed nutrients targeting the root cause of weight gain." },
-                     { num: "03", text: "Eliminate bloating and puffiness as quickly, effectively and safely as possible." }
+                     { title: "The First of Its Kind:", text: "After decades of clinical research, we created the world’s first dual-action cellular protocol that combines pure NAD+ fuel with a Sirtuin activator." },
+                     { title: "Clinical Synergy:", text: "A synergistic blend of clinically-backed nutrients targeting the root cause of biological decline—mitochondrial efficiency." },
+                     { title: "Total Vitality:", text: "Eliminate mental fog and persistent physical fatigue as quickly, effectively, and safely as possible." }
                    ].map((item, i) => (
                       <div key={i} className="flex items-start gap-5 group">
-                         <span className="text-3xl font-serif text-[#1A237E]/5 font-black italic group-hover:text-[#1A237E]/10 transition-colors">{item.num}</span>
-                         <p className="text-base md:text-lg text-[#1F2937] leading-relaxed py-1">{item.text}</p>
+                         <span className="text-3xl font-serif text-[#1A237E]/5 font-black italic group-hover:text-[#1A237E]/10 transition-colors">0{i+1}</span>
+                         <div className="space-y-1">
+                            <p className="text-sm font-black text-[#1A237E] uppercase tracking-widest">{item.title}</p>
+                            <p className="text-base md:text-lg text-[#1F2937] leading-relaxed">{item.text}</p>
+                         </div>
                       </div>
                    ))}
                 </div>
@@ -558,14 +495,14 @@ export default function Harmony() {
               onClick={scrollToProducts}
               className="min-w-[340px] bg-[#0D47A1] text-white font-black text-lg px-10 py-6 rounded-2xl uppercase tracking-widest hover:bg-[#F06292] transition-all duration-300 shadow-2xl flex items-center justify-center group"
             >
-              Try Hormone Harmony
+              START YOUR PROTOCOL
               <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
             <div className="flex items-center gap-2 text-gray-400">
                <div className="w-4 h-4 rounded-full bg-[#0D47A1] flex items-center justify-center">
                   <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
                </div>
-               <span className="text-[10px] font-bold text-[#1A237E] italic">60 Day Money Back Guarantee</span>
+               <span className="text-[10px] font-bold text-[#1A237E] italic uppercase tracking-widest">60 Day Clinical Efficacy Guarantee</span>
             </div>
           </div>
         </div>
@@ -576,40 +513,86 @@ export default function Harmony() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] mb-6 leading-tight tracking-tight font-serif">
-              30 Years. 6 Discoveries. <br />
-              <span className="italic text-gray-400 font-medium">One Perfect Solution.</span>
-            </h2>
-            <div className="flex items-center justify-center gap-4">
-               <div className="h-[1px] w-12 bg-gray-200"></div>
-               <span className="text-xs font-black uppercase tracking-[0.4em] text-[#1A237E]">Locked In A Single Capsule</span>
-               <div className="h-[1px] w-12 bg-gray-200"></div>
-            </div>
+            20+ Years. 6 Discoveries. <br />
+            <span className="italic text-gray-400 font-medium">One Perfect Solution.</span>
+          </h2>
+          <div className="flex items-center justify-center gap-4">
+             <div className="h-[1px] w-12 bg-gray-200"></div>
+             <span className="text-xs font-black uppercase tracking-[0.4em] text-[#1A237E]">LOCKED IN A SINGLE CAPSULE</span>
+             <div className="h-[1px] w-12 bg-gray-200"></div>
           </div>
+        </div>
 
-          {/* 6 Breakthroughs Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-             {[
-               { tag: "Stress Management", num: "1", text: "The adaptogenic herb that drops cortisol levels by 44% for better sleep & mood, and visibly reduced puffiness." },
-               { tag: "Hormonal Balance", num: "2", text: "A ancient botanical extract used for centuries to support natural estrogen balance in women." },
-               { tag: "Metabolic Support", num: "3", text: "Groundbreaking extract that stabilizes blood sugar and stops fat from accumulating in problem areas." },
-               { tag: "Water Flush", num: "4", text: "Eliminate water retention and 'heaviness' while flushing toxins that accumulate in the tissues." },
-               { tag: "Toxin Relief", num: "5", text: "Natural herbal support to reduce inflammation-related puffiness and promote systemic detoxification." },
-               { tag: "Vitality Boost", num: "6", text: "Mediterranean fruit complex that keeps your cellular energy buzzing at any age, without the crash." }
-             ].map((item, i) => (
-               <div key={i} className="relative bg-white border border-gray-100 p-10 rounded-[2.5rem] group hover:border-[#0D47A1] transition-all duration-500 hover:shadow-2xl overflow-hidden">
-                  {/* Background Number */}
-                  <span className="absolute -bottom-10 -right-5 text-[12rem] font-serif font-black italic text-gray-50/50 -z-10 group-hover:text-gray-100/50 transition-colors">{item.num}</span>
-                  
-                  <span className="inline-block text-[9px] font-black uppercase tracking-widest text-gray-400 mb-6 border-b border-gray-100 pb-2">{item.tag}</span>
-                  
-                  <p className="text-lg md:text-xl text-[#1F2937] leading-relaxed font-medium relative z-10">{item.text}</p>
-                  
-                  <div className="mt-8 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                     <span className="text-[10px] font-black uppercase tracking-widest text-[#1A237E] underline decoration-[#0D47A1] underline-offset-4">Learn More</span>
-                  </div>
-               </div>
-             ))}
-          </div>
+        {/* 6 Breakthroughs Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+           {[
+             { 
+               tag: "GENOMIC STABILITY", 
+               focus: "DNA Maintenance", 
+               num: "1", 
+               text: "NAD+ is required for enzymes called PARPs, which identify and repair routine DNA strand breaks, helping maintain your body’s natural genomic integrity.",
+               bg: "bg-[#E3F2FD]", 
+               accent: "text-[#0288D1]"
+             },
+             { 
+               tag: "CELLULAR ENERGY", 
+               focus: "Mitochondrial Power", 
+               num: "2", 
+               text: "Mitochondria rely on NAD+ to convert nutrients into ATP. Our formula supports the mitochondrial enzymes responsible for consistent, all-day power generation.",
+               bg: "bg-[#FFF3E0]", 
+               accent: "text-[#E65100]"
+             },
+             { 
+               tag: "CELLULAR REPAIR", 
+               focus: "Sirtuin Activation", 
+               num: "3", 
+               text: "Activates the sirtuin \"longevity genes\" that regulate protein quality-control, helping cells clean up and recycle damaged proteins for deep renewal.",
+               bg: "bg-[#FCE4EC]", 
+               accent: "text-[#D81B60]"
+             },
+             { 
+               tag: "HEALTHY COMMUNICATION", 
+               focus: "Signal Coordination", 
+               num: "4", 
+               text: "Helps coordinate chemical messengers between cells to maintain tissue balance and support balanced cellular signaling across the entire body.",
+               bg: "bg-[#E3F2FD]", 
+               accent: "text-[#0288D1]"
+             },
+             { 
+               tag: "NUTRIENT SENSING", 
+               focus: "Metabolic Balance", 
+               num: "5", 
+               text: "Supports the pathways that regulate metabolism and stress resistance, ensuring your cells respond efficiently to energy availability and metabolic needs.",
+               bg: "bg-[#FFF3E0]", 
+               accent: "text-[#E65100]"
+             },
+             { 
+               tag: "CELLULAR SENESCENCE", 
+               focus: "Healthy Renewal", 
+               num: "6", 
+               text: "Plays a critical role in regulating healthy cell turnover and renewal, supporting balanced cellular aging and long-term systemic vitality.",
+               bg: "bg-[#FCE4EC]", 
+               accent: "text-[#D81B60]"
+             }
+           ].map((item, i) => (
+             <div key={i} className={`relative ${item.bg} p-10 rounded-[3.5rem] group hover:scale-[1.02] transition-all duration-500 shadow-xl hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] overflow-hidden border border-gray-100 text-[#1A237E]`}>
+                {/* Background Number */}
+                <span className="absolute -bottom-10 -right-5 text-[12rem] font-serif font-black italic text-gray-200/20 -z-10 group-hover:text-gray-200/40 transition-colors">{item.num}</span>
+                
+                <div className="flex flex-col gap-1 mb-8 border-b border-[#1A237E]/5 pb-4">
+                   <span className="inline-block text-[10px] font-black uppercase tracking-widest text-[#1A237E]/40">{item.tag}</span>
+                   <span className={`text-[9px] font-bold uppercase tracking-widest ${item.accent} italic`}>{item.focus}</span>
+                 </div>
+                
+                <p className="text-lg md:text-xl text-[#1A237E]/80 leading-relaxed font-medium relative z-10">{item.text}</p>
+                
+                <div className="mt-10 flex items-center gap-3 opacity-60 group-hover:opacity-100 transition-opacity">
+                   <div className="w-2 h-2 rounded-full bg-[#1A237E]"></div>
+                   <span className="text-[10px] font-black uppercase tracking-widest text-[#1A237E]">Clinical Discovery</span>
+                </div>
+             </div>
+           ))}
+        </div>
 
           {/* Undeniable Results Box - Redesigned for High Authority */}
           <div className="bg-[#0D47A1] text-white p-12 md:p-16 rounded-[3rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] relative overflow-hidden mb-20 group">
@@ -619,25 +602,27 @@ export default function Harmony() {
              <div className="relative z-10 flex flex-col lg:flex-row items-center gap-16">
                 <div className="shrink-0 relative">
                    {/* Graphical Indicator */}
-                   <div className="w-40 h-40 md:w-56 md:h-56 rounded-full border-[12px] border-white/10 flex flex-col items-center justify-center relative">
-                      <div className="absolute inset-0 rounded-full border-[12px] border-white border-t-transparent border-l-transparent rotate-[45deg]"></div>
-                      <span className="text-6xl md:text-8xl font-serif italic font-black leading-none">86%</span>
-                      <span className="text-[10px] font-black uppercase tracking-widest mt-2">Verified Success</span>
+                   <div className="w-40 h-40 md:w-56 md:h-56 rounded-full border-[8px] border-white/10 flex flex-col items-center justify-center relative">
+                      <div className="absolute inset-0 rounded-full border-[8px] border-white border-t-transparent border-l-transparent rotate-[45deg]"></div>
+                      <span className="text-5xl md:text-7xl font-serif italic font-black leading-tight mb-1">94%</span>
+                       <span className="text-[7px] md:text-[9px] font-black uppercase tracking-[0.2em] text-center px-4 leading-tight max-w-[120px] opacity-80">
+                          Verified <br /> Recommendation
+                       </span>
                    </div>
                 </div>
                 
                 <div className="flex-grow space-y-6 text-center lg:text-left">
                    <div className="inline-block px-4 py-1 bg-white/10 rounded-full mb-2">
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em]">Scientific Spotlight</span>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em]">SCIENTIFIC SPOTLIGHT</span>
                    </div>
-                   <h4 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight">Undeniable Clinical Results</h4>
+                   <h4 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight">UNDENIABLE CLINICAL RESULTS</h4>
                    <p className="text-lg md:text-xl leading-relaxed text-gray-400 italic font-light max-w-2xl">
-                      “In a double-blind, placebo-controlled study, researchers observed a dramatic shift in body composition and cortisol markers for women using the Hormone Harmony protocol.”
+                      “In clinical observations, 94% of users reported a dramatic shift in cellular energy, mental clarity, and metabolic resilience while following the ChronoNAD+ protocol.”
                    </p>
                    <div className="pt-4 flex flex-wrap justify-center lg:justify-start gap-8 opacity-50">
-                      <span className="text-xs font-black uppercase tracking-widest">USA Manufactured</span>
-                      <span className="text-xs font-black uppercase tracking-widest">Third-Party Tested</span>
-                      <span className="text-xs font-black uppercase tracking-widest">GMP Certified</span>
+                      <span className="text-xs font-black uppercase tracking-widest">USA MANUFACTURED</span>
+                      <span className="text-xs font-black uppercase tracking-widest">THIRD-PARTY TESTED</span>
+                      <span className="text-xs font-black uppercase tracking-widest">GMP CERTIFIED</span>
                    </div>
                 </div>
              </div>
@@ -648,7 +633,7 @@ export default function Harmony() {
               onClick={scrollToProducts}
               className="w-full md:w-auto min-w-[400px] bg-[#0D47A1] text-white font-black text-xl md:text-2xl px-12 py-8 rounded-2xl uppercase tracking-widest hover:bg-[#F06292] transition-all duration-300 shadow-2xl flex items-center justify-center group"
             >
-              Try Hormone Harmony
+              Start Your Protocol
               <svg className="w-6 h-6 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
             <div className="flex items-center gap-3">
@@ -671,220 +656,243 @@ export default function Harmony() {
                className="inline-block mb-10"
             >
                <div className="bg-[#0D47A1] text-white px-10 py-4 rounded-full shadow-2xl">
-                  <span className="text-3xl md:text-4xl font-black uppercase tracking-[0.1em]">3 Capsules A Day</span>
+                  <span className="text-3xl md:text-4xl font-black uppercase tracking-[0.1em]">2 Capsules A Day</span>
                </div>
             </motion.div>
             
             <h2 className="text-3xl md:text-6xl font-black text-[#1A237E] leading-[1.05] mb-6 tracking-tight font-serif max-w-4xl mx-auto">
-               The Protocol To Beat Hormonal Weight, <br />
-               <span className="italic text-gray-400 font-medium">Puffiness and Bloating...</span>
+               The Protocol To <span className="text-[#0D47A1]">Revitalize Your Cellular Battery</span> & <br />
+               <span className="italic text-gray-400 font-medium">Reverse Biological Decline...</span>
             </h2>
-            <p className="text-xl text-gray-500 font-medium italic">Uplifting Mood, Deep Sleep and Resilient Energy</p>
+            <p className="text-xl text-gray-500 font-medium italic">Sustained Energy, Mental Clarity, and Deep Cellular Repair.</p>
           </div>
 
-          {/* Protocol Grid - Redesigned as Icon Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24 max-w-5xl mx-auto">
-             {[
-               { icon: "🌿", title: "12 Natural Extracts", text: "Hand-selected by leading nutrition and hormonal weight loss experts for synergistic efficacy." },
-               { icon: "🔬", title: "Clinical Authority", text: "Backed by decades of peer-reviewed research and thousands of successful human trials." },
-               { icon: "⚖️", title: "Precise Dosage", text: "Perfectly measured to target the root cause of cortisol-driven hormonal imbalances." },
-               { icon: "🎈", title: "Systemic Relief", text: "Addresses puffiness and stubborn fat while actively supporting mood and sleep cycles." }
-             ].map((item, i) => (
-               <div key={i} className="flex items-start gap-6 p-8 bg-gray-50/50 border border-gray-100 rounded-3xl hover:bg-white hover:border-[#0D47A1] transition-all group">
-                  <div className="w-12 h-12 rounded-2xl bg-white border border-gray-100 flex items-center justify-center shrink-0 group-hover:bg-[#0D47A1] group-hover:text-white transition-colors">
-                     <span className="text-xl grayscale group-hover:grayscale-0">{item.icon}</span>
-                  </div>
-                  <div>
-                     <h4 className="text-lg font-black text-[#1A237E] uppercase tracking-widest mb-2">{item.title}</h4>
-                     <p className="text-gray-500 leading-relaxed">{item.text}</p>
-                  </div>
-               </div>
-             ))}
-          </div>
+           {/* Protocol Grid - Optimized with Authentic Imagery Overlays */}
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 max-w-6xl mx-auto px-4">
+              {[
+                { 
+                  icon: "🧬", 
+                  title: "DUAL-ACTION FORMULA", 
+                  text: "Combining pure NAD+ fuel with a Sirtuin activator for maximum systemic efficacy.",
+                  img: "/protocol_dual_action_1777055664316.png"
+                },
+                { 
+                  icon: "🔬", 
+                  title: "CLINICAL AUTHORITY", 
+                  text: "Backed by 20+ years of peer-reviewed research and globally recognized longevity science.",
+                  img: "/protocol_clinical_authority_1777055686381.png"
+                },
+                { 
+                  icon: "⚡", 
+                  title: "PRECISE BIOAVAILABILITY", 
+                  text: "Formulated at doses clinically proven to bypass the digestive tract and enter the cell directly.",
+                  img: "/protocol_bioavailability_1777055701538.png"
+                },
+                { 
+                  icon: "🌟", 
+                  title: "SYSTEMIC VITALITY", 
+                  text: "Addresses the root cause of aging while actively supporting cognitive function and metabolic health.",
+                  img: "/protocol_vitality_1777055714038.png"
+                }
+              ].map((item, i) => (
+                <div key={i} className="relative aspect-[16/9] md:aspect-[4/3] lg:aspect-[16/10] rounded-[3rem] overflow-hidden shadow-2xl group border border-white/10">
+                   {/* Background Image Layer */}
+                   <div className="absolute inset-0">
+                      <img 
+                        src={item.img} 
+                        alt={item.title} 
+                        className="w-full h-full object-cover transition-transform duration-[3000ms] group-hover:scale-110" 
+                      />
+                      {/* Deep Clinical Overlay for Legibility */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1A237E]/90 via-[#1A237E]/40 to-transparent"></div>
+                   </div>
+
+                   {/* Content Overlay */}
+                   <div className="relative z-10 h-full flex flex-col justify-end p-10 md:p-12">
+                      <h4 className="text-sm font-black text-white uppercase tracking-widest mb-3">{item.title}</h4>
+                      <p className="text-blue-50/80 leading-relaxed font-medium text-lg md:text-xl max-w-md">{item.text}</p>
+                   </div>
+                </div>
+              ))}
+           </div>
 
           <div className="h-[1px] w-40 bg-gray-100 mx-auto mb-24"></div>
 
-          {/* Ingredients Showcase - Botanical Lab Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-             {[
-               {
-                 name: "Ashwagandha",
-                 focus: "Stress Defense",
-                 desc: "Drops cortisol levels by up to 44% in minutes by gently blocking the hormone that triggers water retention.",
-                 img: "/assets/ashwagandha.png"
-               },
-               {
-                 name: "Gelatinised Maca",
-                 focus: "Hormonal Harmony",
-                 desc: "Reduces hot flashes by up to 87% while stimulating natural hormone production for steady energy.",
-                 img: "/assets/maca.png"
-               },
-               {
-                 name: "Rhodiola Rosea",
-                 focus: "Mental Clarity",
-                 desc: "Lifts mood and clears brain fog in just 30 minutes, balancing cortisol for sustained focus.",
-                 img: "/assets/rhodiola.png"
-               }
-             ].map((ing, i) => (
-               <div key={i} className="flex flex-col bg-white border border-gray-100 rounded-[3rem] overflow-hidden group hover:shadow-2xl transition-all duration-500">
-                  <div className="aspect-square bg-gray-50 relative flex items-center justify-center p-12 overflow-hidden">
-                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                     {/* Placeholder for ingredient visual */}
-                     <div className="w-40 h-40 rounded-full border border-gray-200 flex items-center justify-center relative z-10">
-                        <svg className="w-16 h-16 text-[#1A237E]/10 group-hover:text-[#1A237E] transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                     </div>
-                     <div className="absolute bottom-6 right-6">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-[#1A237E]/20 group-hover:text-[#1A237E] transition-colors italic">High Potency</span>
-                     </div>
-                  </div>
-                  <div className="p-10 space-y-4">
-                     <div className="flex justify-between items-center">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Ingredient {i+1}</span>
-                        <span className="text-[10px] font-black uppercase tracking-widest text-[#1A237E] underline decoration-[#0D47A1] decoration-2 underline-offset-4">{ing.focus}</span>
-                     </div>
-                     <h4 className="text-2xl font-black text-[#1A237E] font-serif italic">{ing.name}</h4>
-                     <p className="text-gray-500 leading-relaxed font-medium">{ing.desc}</p>
-                  </div>
-               </div>
-             ))}
+          <div className="text-center mb-20">
+             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">THE CELLULAR SYSTEM</span>
+             <h2 className="text-4xl md:text-5xl font-black text-[#1A237E] font-serif mb-8">
+                Two Pillars of <span className="italic text-gray-400 font-medium">Human Longevity</span>
+             </h2>
           </div>
+
+           {/* Ingredients Showcase - Optimized with Realistic Clinical Imagery */}
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 px-4">
+              {[
+                {
+                  name: "NMN / NR (The Cellular Fuel)",
+                  focus: "ACTIVATE REPAIR",
+                  desc: "Acts as the direct precursor to NAD+, entering the cell and refilling your \"cellular battery\" to power DNA repair and metabolic function.",
+                  img: "/ingredient_nmn_powder_1777056026246.png"
+                },
+                {
+                  name: "RESVERATROL (The Accelerator)",
+                  focus: "OPTIMIZE PERFORMANCE",
+                  desc: "A potent activator of Sirtuins—your body's longevity genes—that signal your cells to use NAD+ fuel for deep maintenance and renewal.",
+                  img: "/ingredient_resveratrol_powder_1777056040092.png"
+                },
+                {
+                  name: "99%+ PURITY GUARANTEE",
+                  focus: "CLINICAL PRECISION",
+                  desc: "Third-party tested for maximum purity. No proprietary blends, no fillers, and no artificial ingredients. Just what your cells need.",
+                  img: "/ingredient_purity_seal_1777056058938.png"
+                }
+              ].map((ing, i) => (
+                <div key={i} className="flex flex-col bg-white border border-gray-100 rounded-[3rem] overflow-hidden group hover:shadow-2xl transition-all duration-500">
+                   <div className="aspect-square relative overflow-hidden">
+                      <img 
+                        src={ing.img} 
+                        alt={ing.name} 
+                        className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110" 
+                      />
+                      {/* Subtle Glassmorphic Overlay for "High Potency" */}
+                      <div className="absolute top-6 left-6 bg-white/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/40 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                         <span className="text-[9px] font-black uppercase tracking-widest text-[#1A237E] italic">High Potency</span>
+                      </div>
+                   </div>
+                   <div className="p-10 space-y-5">
+                      <div className="flex justify-between items-center">
+                         <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Ingredient {i+1}</span>
+                         <span className="text-[10px] font-black uppercase tracking-widest text-[#0D47A1] font-bold border-b-2 border-[#E3F2FD] pb-1">{ing.focus}</span>
+                      </div>
+                      <h4 className="text-xl md:text-2xl font-black text-[#1A237E] font-serif italic leading-[1.1]">{ing.name}</h4>
+                      <p className="text-gray-500 leading-relaxed font-medium text-lg">{ing.desc}</p>
+                   </div>
+                </div>
+              ))}
+           </div>
         </div>
       </section>
 
-      {/* RESULTS TIMELINE SECTION */}
-      <section className="py-32 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-start gap-16 lg:gap-24">
-             {/* Left: Sticky Headline & Visual */}
-             <div className="w-full lg:w-[40%] lg:sticky lg:top-32">
-                <div className="space-y-10">
-                   <div className="space-y-4">
-                      <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">The Transformation</span>
-                      <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-[1.05] tracking-tight font-serif">
-                         What To Expect <br />
-                         <span className="italic text-gray-400 font-medium">On Your Journey</span>
-                      </h2>
+       {/* CHRONONAD+ TRANSFORMATION TIMELINE SECTION - REDESIGNED HORIZONTAL */}
+       <section className="py-32 bg-white overflow-hidden">
+         <div className="max-w-7xl mx-auto px-6">
+           <div className="text-center mb-24 max-w-4xl mx-auto">
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F06292] mb-6 block">The Transformation</span>
+              <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-[1.05] tracking-tight font-serif mb-8">
+                 What To Expect <br />
+                 <span className="italic text-gray-400 font-medium">On Your Journey</span>
+              </h2>
+              <p className="text-xl text-gray-500 font-medium italic leading-relaxed">
+                 Follow the clinical timeline as ChronoNAD+ restores your cellular vitality and resets your biological clock from the inside out.
+              </p>
+           </div>
+
+           {/* Horizontal Timeline Grid */}
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+              {[
+                { 
+                  phase: "01",
+                  time: "24 Hours", 
+                  label: "THE CELLULAR SPARK",
+                  text: "Feel the first wave of mental clarity as your 37.2 trillion cells begin to replenish their vital coenzyme levels. Brain fog starts to lift, and you'll notice a better start to your mornings.",
+                  bgColor: "bg-[#0D47A1]",
+                  textColor: "text-white",
+                  tagColor: "text-blue-200",
+                  subTextColor: "text-blue-100/80",
+                  borderColor: "border-white/10"
+                },
+                { 
+                  phase: "02",
+                  time: "Day 7", 
+                  label: "REGENERATIVE FLOW",
+                  text: "Consistency is starting to pay off. You’ll notice you aren’t crashing halfway through the day anymore. Energy becomes sustained and stable.",
+                  bgColor: "bg-[#E3F2FD]",
+                  textColor: "text-[#1A237E]",
+                  tagColor: "text-[#0D47A1]",
+                  subTextColor: "text-gray-600",
+                  borderColor: "border-blue-100"
+                },
+                { 
+                  phase: "03",
+                  time: "Day 14", 
+                  label: "METABOLIC RESILIENCE",
+                  text: "The \"Better Skin From Within\" effect becomes visible. Cellular inflammation subsides, and your skin appears more vibrant and resilient.",
+                  bgColor: "bg-[#FFF3E0]",
+                  textColor: "text-[#1A237E]",
+                  tagColor: "text-[#F57C00]",
+                  subTextColor: "text-gray-600",
+                  borderColor: "border-orange-100"
+                },
+                { 
+                  phase: "04",
+                  time: "Week 4+", 
+                  label: "PEAK VITALITY",
+                  text: "Experience the full transformation. You feel a profound sense of \"cellular youth\"—balanced, sharp, and physically revitalized.",
+                  bgColor: "bg-gradient-to-br from-[#1A237E] to-[#0D47A1]",
+                  textColor: "text-white",
+                  tagColor: "text-blue-200",
+                  subTextColor: "text-blue-100/80",
+                  borderColor: "border-white/10"
+                }
+              ].map((milestone, i) => (
+                <motion.div 
+                   key={i} 
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   transition={{ duration: 0.8, delay: i * 0.1 }}
+                   viewport={{ once: true }}
+                   className={`${milestone.bgColor} p-8 rounded-[3rem] border ${milestone.borderColor} shadow-sm hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 group relative overflow-hidden flex flex-col h-full`}
+                >
+                   {/* Phase Header */}
+                   <div className="flex items-center justify-between mb-8">
+                      <span className={`text-[10px] font-black uppercase tracking-widest ${milestone.tagColor} border-b-2 border-[#F06292] pb-1`}>{milestone.time}</span>
+                      <span className={`text-3xl font-serif font-black italic ${i % 2 === 0 ? 'text-white/20' : 'text-[#1A237E]/10'} group-hover:scale-110 transition-transform`}>{milestone.phase}</span>
                    </div>
-                   
-                   <p className="text-xl text-gray-500 font-medium italic leading-relaxed">
-                      Follow the clinical timeline as Hormone Harmony restores balance to your system from the inside out.
-                   </p>
 
-                   <div className="rounded-[3rem] overflow-hidden shadow-2xl aspect-[4/5] bg-gray-50 relative group border border-gray-100">
-                      <div className="absolute inset-0 bg-[#0D47A1]/5 group-hover:bg-transparent transition-colors"></div>
-                      <img 
-                         src="/Harmony_Timeline_Person.png" 
-                         alt="Happy Customer Result" 
-                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-                      />
-                      <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl">
-                         <span className="text-[10px] font-black uppercase tracking-widest text-[#1A237E]">Verified Result</span>
-                      </div>
+                   <div className="flex-grow">
+                      <h4 className={`text-xl font-black ${milestone.textColor} font-serif italic leading-tight mb-4`}>{milestone.label}</h4>
+                      <p className={`text-base ${milestone.subTextColor} leading-relaxed font-medium`}>
+                         {milestone.text}
+                      </p>
                    </div>
-                </div>
-             </div>
 
-             {/* Right: Narrative Timeline Cards */}
-             <div className="w-full lg:w-[60%] relative py-10">
-                {/* Vertical Path */}
-                <div className="absolute left-[23px] md:left-[31px] top-0 bottom-0 w-[1px] bg-[#E3F2FD]"></div>
-
-                {[
-                  { 
-                    phase: "01",
-                    time: "24 Hours", 
-                    label: "The Calm Wave",
-                    icon: "🌊",
-                    text: "Feel the first wave of calm as cortisol — your body’s main stress hormone — begins to drop. Mood swings feel softer, your head feels clearer, and sleep starts to come easier. Some women even notice the puffiness in their face easing overnight." 
-                  },
-                  { 
-                    phase: "02",
-                    time: "Day 7", 
-                    label: "Systemic Shift",
-                    icon: "👗",
-                    text: "Your clothes start to feel looser as stubborn hormonal belly bloat begins to shrink. Hot flashes and night sweats calm down, leaving you sleeping deeper and waking with more energy. Sugar cravings aren’t controlling your every thought anymore." 
-                  },
-                  { 
-                    phase: "03",
-                    time: "Day 14", 
-                    label: "Visual Clarity",
-                    icon: "📐",
-                    text: "Catch your reflection and see it — your once puffy face now looks more chiseled, your jawline sharper. Your belly is flatter, your skin more vibrant, and your moods far more stable. Energy is steady all day without the caffeine crashes." 
-                  },
-                  { 
-                    phase: "04",
-                    time: "Week 4+", 
-                    label: "Full Harmony",
-                    icon: "✨",
-                    text: "The puffiness, bloating, cranky moods, and stubborn hormonal weight are gone. You feel balanced, confident, and comfortable in your own body again... and the best part? You didn’t have to starve yourself or run a marathon to get here." 
-                  }
-                ].map((milestone, i) => (
-                  <motion.div 
-                     key={i} 
-                     initial={{ opacity: 0, x: 20 }}
-                     whileInView={{ opacity: 1, x: 0 }}
-                     transition={{ duration: 0.8, delay: i * 0.1 }}
-                     className="relative mb-16 last:mb-0 pl-16 md:pl-24"
-                  >
-                     {/* Timeline Marker */}
-                     <div className="absolute left-[-24px] md:left-[-16px] top-4">
-                        <div className="w-12 h-12 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center relative z-10 group cursor-default">
-                           <div className="w-3 h-3 rounded-full bg-[#0D47A1] group-hover:scale-150 transition-transform duration-500 animate-pulse"></div>
-                        </div>
-                     </div>
-                     
-                     <div className="bg-white p-10 md:p-14 rounded-[3rem] border border-gray-100 shadow-sm hover:shadow-2xl hover:border-[#0D47A1] transition-all duration-500 group relative overflow-hidden">
-                        {/* Background Phase Number */}
-                        <span className="absolute top-10 right-10 text-6xl font-serif font-black italic text-gray-50/50 -z-10 group-hover:text-gray-100/50 transition-colors">{milestone.phase}</span>
-                        
-                        <div className="flex flex-col gap-6">
-                           <div className="flex items-center gap-4">
-                              <span className="text-xs font-black uppercase tracking-widest text-[#1A237E] border-b-2 border-[#0D47A1] pb-1">{milestone.time}</span>
-                              <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 italic">— {milestone.label}</span>
-                           </div>
-                           <h4 className="text-2xl md:text-3xl font-black text-[#1A237E] font-serif italic">{milestone.label}</h4>
-                           <p className="text-lg md:text-xl text-gray-500 leading-relaxed font-medium">{milestone.text}</p>
-                        </div>
-
-                        <div className="mt-8 flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-[#1A237E] opacity-0 group-hover:opacity-100 transition-opacity">
-                           <span>Clinical Milestone Reached</span>
-                           <div className="h-[1px] w-12 bg-[#0D47A1]"></div>
-                        </div>
-                     </div>
-                  </motion.div>
-                ))}
-             </div>
-          </div>
+                   <div className={`mt-8 pt-8 border-t ${i % 2 === 0 ? 'border-white/10' : 'border-black/5'} flex items-center gap-4 text-[9px] font-black uppercase tracking-widest ${milestone.tagColor} opacity-0 group-hover:opacity-100 transition-opacity`}>
+                      <span>Milestone Reached</span>
+                      <div className="h-[1px] flex-grow bg-[#F06292]/30"></div>
+                   </div>
+                </motion.div>
+              ))}
+           </div>
 
           <div className="flex flex-col items-center gap-6 mt-32">
             <button 
               onClick={scrollToProducts}
-              className="w-full md:w-auto min-w-[400px] bg-[#0D47A1] text-white font-black text-xl md:text-2xl px-12 py-8 rounded-2xl uppercase tracking-widest hover:bg-[#F06292] transition-all duration-300 shadow-2xl flex items-center justify-center group"
+              className="w-full md:w-auto min-w-[340px] bg-[#0D47A1] text-white font-black text-xl px-12 py-7 rounded-2xl uppercase tracking-widest hover:bg-[#F06292] transition-all duration-300 shadow-2xl flex items-center justify-center group"
             >
-              Try Hormone Harmony
+              Try CHRONONAD+
               <svg className="w-6 h-6 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
-            <div className="flex items-center gap-3">
-              <div className="w-5 h-5 rounded bg-[#0D47A1] flex items-center justify-center">
-                 <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
-              </div>
-              <span className="text-lg font-bold text-[#1A237E] italic">60 Day Money Back Guarantee</span>
+            <div className="flex items-center gap-2 text-[#0D47A1]">
+               <div className="w-4 h-4 rounded-full bg-[#0D47A1] flex items-center justify-center">
+                  <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
+               </div>
+               <span className="text-[10px] font-bold uppercase tracking-widest italic">60-Day Money Back Guarantee</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* INCLUSIVE BENEFITS SECTION */}
+      {/* DESIGNED FOR EVERY BODY SECTION */}
       <section className="py-32 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center lg:text-left mb-20 max-w-4xl">
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">Universal Efficacy</span>
+             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F06292] mb-6 block">CLINICALLY BACKED VITALITY</span>
              <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-[1.05] tracking-tight font-serif mb-8">
-                Designed For Every Woman. <br />
-                <span className="italic text-gray-400 font-medium">No Matter The Struggle.</span>
+                Designed For Every Body. <br />
+                <span className="italic text-gray-400 font-medium">No Matter The Age.</span>
              </h2>
-             <p className="text-xl text-gray-500 font-medium italic max-w-2xl">
-                Whether you’ve been battling stubborn weight for weeks or decades, Hormone Harmony is engineered to restore your natural baseline.
+             <p className="text-xl text-gray-500 font-medium italic max-w-2xl leading-relaxed">
+                Whether you’re navigating the daily grind or looking to optimize your long-term health, ChronoNAD+ is engineered to replenish your cellular battery and restore your natural vitality.
              </p>
           </div>
 
@@ -893,55 +901,61 @@ export default function Harmony() {
              <div className="lg:col-span-7 space-y-4">
                 {[
                   { 
-                    title: "Sculpted Jawline & Flattened Midsection", 
-                    desc: "Watch as fat and systemic puffiness leave your face and body, revealing your natural bone structure." 
+                    title: "SUSTAINED ENERGY & MENTAL CLARITY", 
+                    desc: "Say goodbye to the afternoon slump and persistent brain fog. Replenish your vital coenzyme levels to power your 37.2 trillion cells for consistent, all-day focus and mental sharpness." 
                   },
                   { 
-                    title: "Deep, Restorative Sleep Cycles", 
-                    desc: "Transition into effortless sleep without tossing or turning, waking up truly recharged and balanced." 
+                    title: "DEEP, REGENERATIVE SLEEP CYCLES", 
+                    desc: "Harmonize your internal biological rhythms and wake up feeling genuinely refreshed. Support your body’s natural ability to repair and recharge overnight without the need for heavy stimulants." 
                   },
                   { 
-                    title: "Resilient Mood & Uplifting Vitality", 
-                    desc: "Eliminate the 'wired & tired' feeling, replacing it with a steady, calm, and positive energy all day." 
+                    title: "METABOLIC RESILIENCE & EFFICIENCY", 
+                    desc: "Support your body’s natural ability to process nutrients and burn energy efficiently. Maintain a steady, healthy baseline and recover faster from daily lifestyle stressors." 
                   },
                   { 
-                    title: "Effortless Weight Management", 
-                    desc: "Lose stubborn hormonal weight without the need for punishing diets or unsustainable workout routines." 
+                    title: "AGE-DEFYING CELLULAR REPAIR", 
+                    desc: "Target the root cause of aging by activating Sirtuin \"longevity genes.\" Protect your DNA integrity and maintain your peak performance as you successfully Age Better, Longer." 
                   },
                   { 
-                    title: "Bloat-Free Nutritional Freedom", 
-                    desc: "Enjoy your favorite meals and social dinners without the immediate regret of heaviness and bloating." 
+                    title: "RADIANT SKIN FROM WITHIN", 
+                    desc: "Support your skin’s natural resilience and healthy cell turnover at the source. Fuel the dermal cells responsible for a vibrant, healthy-looking complexion and a natural glow." 
                   }
                 ].map((benefit, i) => (
-                  <div key={i} className="group flex items-center gap-8 p-8 bg-gray-50/50 border border-gray-100 rounded-3xl hover:bg-white hover:border-[#0D47A1] hover:shadow-2xl transition-all duration-500">
-                     <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center shrink-0 group-hover:bg-[#0D47A1] group-hover:text-white transition-colors">
+                <div key={i} className="group flex items-center gap-8 p-8 bg-gray-50/50 border border-[#E3F2FD] rounded-3xl hover:bg-white hover:border-[#F06292]/30 hover:shadow-2xl transition-all duration-500">
+                     <div className="w-10 h-10 rounded-full bg-white border border-[#E3F2FD] flex items-center justify-center shrink-0 group-hover:bg-[#0D47A1] group-hover:text-white transition-colors shadow-sm">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
                      </div>
                      <div>
-                        <h4 className="text-xl font-black text-[#1A237E] uppercase tracking-tight mb-1">{benefit.title}</h4>
-                        <p className="text-gray-500 font-medium">{benefit.desc}</p>
+                        <h4 className="text-sm font-black text-[#1A237E] uppercase tracking-widest mb-1 group-hover:text-[#F06292] transition-colors">{benefit.title}</h4>
+                        <p className="text-gray-500 font-medium leading-relaxed">{benefit.desc}</p>
                      </div>
                   </div>
                 ))}
-             </div>
+              </div>
 
-             {/* Success Image - Dramatic Artistic Frame */}
-             <div className="lg:col-span-5 relative">
-                <div className="relative z-10 rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] aspect-[4/5] border-8 border-white">
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
-                   <img 
-                      src="/Harmony_Success_Story.png" 
-                      alt="Happy Confident Woman" 
-                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 transform hover:scale-110"
-                   />
-                   <div className="absolute bottom-10 left-10 z-20">
-                      <p className="text-white text-3xl font-serif italic font-black">“I finally feel <br /> like myself again.”</p>
-                      <div className="mt-4 h-[2px] w-12 bg-white/50"></div>
-                   </div>
-                </div>
+              {/* Success Image - Dramatic Artistic Frame */}
+              <div className="lg:col-span-5 relative">
+                <div className="relative z-10 rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] aspect-[4/5] border-8 border-white bg-gray-50 group">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A237E]/80 via-transparent to-transparent z-10"></div>
+                    <img 
+                       src="/sarah_m_testimonial.png" 
+                       alt="Sarah M. Success Story" 
+                       className="w-full h-full object-cover transition-all duration-1000 transform group-hover:scale-105"
+                    />
+                    <div className="absolute top-8 left-8 z-20 flex flex-col gap-1">
+                       <span className="bg-[#F06292] text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg self-start">Verified Customer</span>
+                       <span className="bg-white/90 backdrop-blur-md text-[#1A237E] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg self-start">Sarah M. • Age 47</span>
+                    </div>
+                    <div className="absolute bottom-12 left-12 right-12 z-20">
+                       <p className="text-white text-xl md:text-2xl font-serif italic font-black leading-tight">
+                          “I finally feel like I have my spark back. My energy is steady all day, and I'm sleeping better than I have in years.”
+                       </p>
+                       <div className="mt-6 h-[3px] w-16 bg-[#F06292] shadow-glow"></div>
+                    </div>
+                 </div>
                 {/* Decorative Background Elements */}
-                <div className="absolute -top-10 -right-10 w-64 h-64 border border-gray-100 rounded-full -z-10"></div>
-                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-gray-50 rounded-full -z-10"></div>
+                <div className="absolute -top-10 -right-10 w-64 h-64 border border-[#E3F2FD] rounded-full -z-10 animate-pulse"></div>
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#FCE4EC]/30 rounded-full -z-10"></div>
              </div>
           </div>
         </div>
@@ -1027,130 +1041,155 @@ export default function Harmony() {
              <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-tight tracking-tight font-serif italic">Choose Your Clinical Protocol</h2>
           </div>
 
-          {/* Pricing Grid - Bento Style Varied Heights */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24 items-end max-w-6xl mx-auto">
-             {[
-               {
-                 id: "starter",
-                 tag: "Protocol Starter",
-                 bottleCount: 1,
-                 pricePerJar: "$69",
-                 cents: ".99",
-                 total: "$69.99",
-                 installment: "$17.49",
-                 isPopular: false,
-                 isBestValue: false,
-                 savings: null
-               },
-               {
-                 id: "savings",
-                 tag: "Optimal Transformation",
-                 bottleCount: 4,
-                 pricePerJar: "$52",
-                 cents: ".49",
-                 total: "$209.99",
-                 originalTotal: "$279.99",
-                 installment: "$52.49",
-                 isPopular: false,
-                 isBestValue: true,
-                 savings: "25% OFF",
-                 bonus: "Free Shipping + Cookbook"
-               },
-               {
-                 id: "popular",
-                 tag: "Maintenance Protocol",
-                 bottleCount: 2,
-                 pricePerJar: "$59",
-                 cents: ".99",
-                 total: "$119.99",
-                 originalTotal: "$139.99",
-                 installment: "$29.99",
-                 isPopular: true,
-                 isBestValue: false,
-                 savings: "14% OFF",
-                 bonus: "Free Shipping"
-               }
-             ].map((pkg, i) => (
-               <div key={i} className={`relative bg-white flex flex-col items-center text-center transition-all duration-700 group ${pkg.isBestValue ? 'rounded-[2.5rem] border-[3px] border-[#0D47A1] p-1 min-h-[520px] shadow-[0_30px_60px_-15px_rgba(13,71,161,0.15)] z-10' : 'rounded-[2rem] border border-[#E3F2FD] p-0.5 min-h-[460px] hover:border-[#0D47A1]/20'}`}>
-                  {pkg.isBestValue && (
-                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0D47A1] text-white px-8 py-2 rounded-full whitespace-nowrap shadow-xl">
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em]">Most Transformative</span>
-                     </div>
-                  )}
-                  
-                  <div className={`w-full py-2.5 rounded-[2rem] mb-2 ${pkg.isBestValue ? 'bg-[#0D47A1] text-white' : 'bg-[#E3F2FD] text-[#0D47A1]'}`}>
-                     <span className="text-[9px] font-black uppercase tracking-[0.3em]">{pkg.tag}</span>
-                  </div>
-                  
-                  <div className="px-6 py-2 flex flex-col flex-grow w-full">
-                     <div className="relative mb-4 mx-auto">
-                        {pkg.savings && (
-                           <div className="absolute -top-4 -right-4 w-14 h-14 rounded-full bg-white border-2 border-[#F06292] text-[#F06292] flex flex-col items-center justify-center font-black text-xs leading-none shadow-lg z-20 group-hover:bg-[#F06292] group-hover:text-white transition-colors duration-500">
-                              <span className="text-[7px] uppercase tracking-tighter mb-0.5">Save</span>
-                              <span className="text-base">{pkg.savings.split(' ')[0]}</span>
-                           </div>
-                        )}
-                        <img 
-                           src="/Hormony_hero_image.png" 
-                           alt={`${pkg.bottleCount} Bottles`} 
-                           className={`h-32 md:h-36 object-contain transition-all duration-700 ${pkg.bottleCount > 1 ? 'scale-110' : ''}`}
-                        />
-                     </div>
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 px-4 items-end">
+              {[
+                {
+                  bottleCount: 1,
+                  tag: "Sustained Trial",
+                  pricePerJar: "$69",
+                  cents: ".99",
+                  total: "$69.99",
+                  installment: "$17.49",
+                  isPopular: false,
+                  isBestValue: false,
+                  bonus: "One-Time Purchase"
+                },
+                {
+                  bottleCount: 4,
+                  tag: "Optimal Protocol",
+                  pricePerJar: "$52",
+                  cents: ".49",
+                  total: "$209.99",
+                  originalTotal: "$279.99",
+                  installment: "$52.49",
+                  isPopular: true,
+                  isBestValue: true,
+                  savings: "25% OFF",
+                  bonus: "Free Global Shipping"
+                },
+                {
+                  bottleCount: 2,
+                  tag: "Resilience Pack",
+                  pricePerJar: "$59",
+                  cents: ".99",
+                  total: "$119.99",
+                  originalTotal: "$139.99",
+                  installment: "$29.99",
+                  isPopular: false,
+                  isBestValue: false,
+                  savings: "14% OFF",
+                  bonus: "Free Shipping"
+                }
+              ].map((pkg, i) => (
+                <div key={i} className={`relative bg-white flex flex-col transition-all duration-700 group ${pkg.isBestValue ? 'rounded-[3rem] border-[3px] border-[#0D47A1] p-1.5 min-h-[580px] shadow-[0_40px_80px_-20px_rgba(13,71,161,0.2)] z-10 scale-105' : 'rounded-[2.5rem] border border-gray-100 p-1 min-h-[520px] hover:shadow-2xl'}`}>
+                   {pkg.isBestValue && (
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0D47A1] text-white px-8 py-2.5 rounded-full whitespace-nowrap shadow-xl z-20">
+                         <span className="text-[10px] font-black uppercase tracking-[0.3em]">Most Transformative</span>
+                      </div>
+                   )}
+                   
+                   <div className={`w-full py-3 rounded-[2.2rem] mb-4 text-center ${pkg.isBestValue ? 'bg-[#0D47A1] text-white' : 'bg-gray-50 text-gray-400'}`}>
+                      <span className="text-[10px] font-black uppercase tracking-[0.3em]">{pkg.tag}</span>
+                   </div>
+                   
+                   <div className="px-8 py-4 flex flex-col flex-grow w-full text-center">
+                      <div className="relative mb-8 aspect-square w-full max-w-[200px] mx-auto flex items-center justify-center">
+                         {pkg.savings && (
+                            <div className="absolute top-0 right-0 w-16 h-16 rounded-full bg-white border-2 border-[#F06292] text-[#F06292] flex flex-col items-center justify-center font-black text-sm leading-none shadow-lg z-20 group-hover:bg-[#F06292] group-hover:text-white transition-all duration-500 transform group-hover:rotate-12">
+                               <span className="text-[8px] uppercase tracking-tighter mb-0.5">Save</span>
+                               <span className="text-lg">{pkg.savings.split(' ')[0]}</span>
+                            </div>
+                         )}
+                         <img 
+                            src="/60_Capsules.jpg" 
+                            alt={`${pkg.bottleCount} Bottle Protocol`} 
+                            className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105 drop-shadow-[0_20px_40px_rgba(0,0,0,0.1)] mix-blend-multiply"
+                         />
+                      </div>
 
-                     <div className="mb-4">
-                        <div className="flex items-start justify-center gap-1">
-                           <span className="text-4xl font-serif italic font-black text-[#1A237E]">{pkg.pricePerJar}</span>
-                           <span className="text-base font-bold text-[#1A237E] mt-1">{pkg.cents}</span>
-                        </div>
-                        <p className="text-[7px] text-[#0288D1]/40 font-black uppercase tracking-[0.2em]">Price Per Protocol Jar</p>
-                     </div>
+                      <div className="mb-6">
+                         <div className="flex items-start justify-center gap-1">
+                            <span className="text-5xl font-serif italic font-black text-[#1A237E]">{pkg.pricePerJar}</span>
+                            <span className="text-lg font-bold text-[#1A237E] mt-1">{pkg.cents}</span>
+                         </div>
+                         <p className="text-[9px] text-[#0288D1]/60 font-black uppercase tracking-[0.25em] mt-1">Price Per Protocol Jar</p>
+                      </div>
 
-                     <div className="mb-4 space-y-0.5">
-                        <p className="text-[10px] font-bold text-[#0D47A1]/60">Total {pkg.originalTotal && <span className="line-through">{pkg.originalTotal}</span>} <span className="text-[#1A237E] font-black text-sm">{pkg.total}</span></p>
-                        <p className="text-[7px] text-[#0288D1]/40 uppercase tracking-widest font-black">Or 4 payments of {pkg.installment}</p>
-                     </div>
+                      <div className="mb-8 space-y-1">
+                         <p className="text-xs font-bold text-gray-400">Total {pkg.originalTotal && <span className="line-through">{pkg.originalTotal}</span>} <span className="text-[#1A237E] font-black text-base ml-1">{pkg.total}</span></p>
+                         <p className="text-[9px] text-gray-400 uppercase tracking-widest font-black">Or 4 interest-free payments of {pkg.installment}</p>
+                      </div>
 
-                     <div className="mt-auto space-y-3">
-                        <button className="w-full bg-[#0D47A1] hover:bg-[#F06292] text-white font-black py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg uppercase tracking-widest transition-all duration-500 group/btn overflow-hidden relative">
-                           <span className="relative z-10 text-xs">Start Protocol</span>
-                           <svg className="w-4 h-4 relative z-10 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                        </button>
+                      <div className="mt-auto space-y-4 pb-4">
+                         <button className={`w-full font-black py-5 rounded-2xl flex items-center justify-center gap-3 shadow-lg uppercase tracking-widest transition-all duration-500 group/btn relative overflow-hidden ${pkg.isBestValue ? 'bg-[#0D47A1] text-white hover:bg-[#F06292]' : 'bg-white text-[#0D47A1] border-2 border-[#0D47A1] hover:bg-[#0D47A1] hover:text-white'}`}>
+                            <span className="relative z-10 text-xs">Start Protocol</span>
+                            <svg className="w-5 h-5 relative z-10 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                         </button>
 
-                        <div className="flex items-center justify-center gap-2 opacity-50">
-                           <div className="w-3.5 h-3.5 rounded-full bg-[#0D47A1] flex items-center justify-center shrink-0">
-                              <svg className="w-2 h-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" d="M5 13l4 4L19 7"/></svg>
-                           </div>
-                           <span className="text-[8px] font-black text-[#1A237E] uppercase tracking-widest">60-Day Guarantee</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-             ))}
-          </div>
+                         <div className="flex items-center justify-center gap-3 opacity-60">
+                            <div className="w-4 h-4 rounded-full bg-[#0D47A1] flex items-center justify-center shrink-0">
+                               <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <span className="text-[10px] font-black text-[#1A237E] uppercase tracking-widest">60-Day Risk-Free Guarantee</span>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+              ))}
+           </div>
 
-          {/* Trust Footer - Redesigned as Security Brief */}
-          <div className="max-w-5xl mx-auto bg-gray-50/50 backdrop-blur-md p-10 md:p-16 rounded-[3.5rem] flex flex-col lg:flex-row items-center gap-16 border border-gray-100">
-             <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-8">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Security Encryption</span>
-                <div className="flex items-center gap-6">
-                   <div className="h-10 px-6 bg-white border border-gray-100 rounded-full flex items-center shadow-sm hover:border-[#0D47A1] transition-colors"><span className="text-[10px] text-[#1A237E] font-black uppercase tracking-widest">PayPal</span></div>
-                   <div className="h-10 px-6 bg-[#0D47A1] rounded-full flex items-center shadow-lg"><span className="text-[10px] text-white font-black uppercase tracking-widest italic">VISA</span></div>
-                   <div className="flex items-center ml-2">
-                      <div className="w-8 h-8 rounded-full bg-[#0D47A1] -mr-4 border-2 border-white shadow-md"></div>
-                      <div className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white shadow-md"></div>
+          {/* Security & Trust Section - Refined Clinical Aesthetic */}
+          <div className="max-w-6xl mx-auto bg-white p-12 md:p-16 rounded-[4rem] flex flex-col lg:flex-row items-center gap-12 lg:gap-24 shadow-[0_20px_50px_rgba(0,0,0,0.02)] border border-gray-50 mb-20 relative overflow-hidden group">
+             {/* Subtle Background Glow */}
+             <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#E3F2FD]/20 rounded-full blur-3xl pointer-events-none group-hover:bg-[#E3F2FD]/30 transition-colors duration-1000"></div>
+             
+             {/* Left Column: Security Eyebrow & Trust Badges */}
+             <div className="flex flex-col items-center lg:items-start gap-10 relative z-10">
+                <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[#0D47A1]/40">SECURITY ENCRYPTION</span>
+                <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6">
+                   {/* PayPal Verified */}
+                   <div className="h-14 px-8 bg-white border border-gray-100 rounded-full flex items-center shadow-sm hover:border-[#0D47A1]/20 transition-all duration-300">
+                      <span className="text-[11px] text-[#1A237E] font-black uppercase tracking-[0.2em]">PAYPAL VERIFIED</span>
+                   </div>
+                   
+                   {/* Visa Secure */}
+                   <div className="h-14 px-8 bg-[#0D47A1] rounded-full flex items-center shadow-lg transform hover:scale-105 transition-transform duration-300">
+                      <span className="text-[11px] text-white font-black uppercase tracking-[0.2em] italic">VISA SECURE</span>
+                   </div>
+                   
+                   {/* Mastercard Identity Check (Circles) */}
+                   <div className="flex items-center hover:translate-x-2 transition-transform duration-300 cursor-help" title="Mastercard Identity Check">
+                      <div className="w-11 h-11 rounded-full bg-[#0D47A1] -mr-4 border-2 border-white shadow-md relative z-20"></div>
+                      <div className="w-11 h-11 rounded-full bg-gray-200 border-2 border-white shadow-md relative z-10"></div>
                    </div>
                 </div>
              </div>
-             
-             <div className="flex flex-col md:flex-row items-center gap-10 flex-grow lg:border-l lg:pl-16 border-gray-100">
-                <div className="w-20 h-20 shrink-0 relative">
-                   <div className="absolute inset-0 bg-[#0D47A1]/5 rounded-3xl animate-pulse"></div>
-                   <svg className="w-full h-full text-[#1A237E] relative z-10 p-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+
+             {/* Middle Column: Large Security Shield */}
+             <div className="relative group/shield shrink-0">
+                <div className="absolute inset-0 bg-[#0D47A1]/5 rounded-[3rem] blur-2xl group-hover/shield:bg-[#0D47A1]/10 transition-colors duration-700"></div>
+                <div className="w-32 h-32 md:w-40 md:h-40 bg-gray-50/50 backdrop-blur-sm border border-white rounded-[3rem] flex items-center justify-center relative z-10 shadow-sm group-hover/shield:shadow-xl transition-all duration-700">
+                   <svg className="w-16 h-16 text-[#1A237E] drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+                   </svg>
+                   {/* 256-bit SSL Tag */}
+                   <div className="absolute -bottom-2 bg-white px-4 py-1 rounded-full shadow-md border border-gray-100">
+                      <span className="text-[8px] font-black uppercase tracking-widest text-[#0D47A1]">256-BIT SSL</span>
+                   </div>
                 </div>
-                <div className="space-y-3">
-                   <p className="text-xs md:text-sm text-gray-500 leading-relaxed font-medium">
-                      We use a <span className="text-[#1A237E] font-black">256-bit secure shopping cart</span> where 100% of your data is encrypted, safe and secure. This is the same data security standard used by most banks, governments and military organizations.
+             </div>
+
+             {/* Right Column: Headline & Body Text */}
+             <div className="flex-grow space-y-6 text-center lg:text-left max-w-xl relative z-10">
+                <div className="space-y-4">
+                   <h4 className="text-2xl md:text-3xl font-black text-[#1A237E] font-serif italic leading-tight">Your Data is Protected.</h4>
+                   <p className="text-base md:text-lg text-gray-500 leading-relaxed font-medium">
+                      We use a <span className="text-[#0D47A1] font-black">256-bit secure shopping cart</span> where 100% of your data is encrypted, safe, and secure. This is the same data security standard used by most banks, governments, and military organizations.
                    </p>
+                </div>
+                <div className="flex items-center justify-center lg:justify-start gap-4 pt-2">
+                   <div className="h-[1px] w-12 bg-[#E3F2FD]"></div>
+                   <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#0D47A1]/30 italic">Military Grade Security Standard</span>
                 </div>
              </div>
           </div>
@@ -1161,42 +1200,48 @@ export default function Harmony() {
       <section className="py-32 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="mb-24 max-w-4xl mx-auto">
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">Consumer Protection</span>
+             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 mb-6 block">CONSUMER PROTECTION</span>
              <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-tight tracking-tight font-serif mb-8">
                 Your Transformation. <br />
                 <span className="italic text-gray-400 font-medium">Fully Guaranteed.</span>
              </h2>
-             <p className="text-xl text-gray-500 font-medium italic">
-                We take all the risk so you can experience the life-changing benefits of Hormone Harmony with absolute peace of mind.
+             <p className="text-xl text-gray-500 font-medium italic max-w-2xl mx-auto leading-relaxed">
+                We take all the risk so you can experience the life-changing benefits of ChronoNAD+ with absolute peace of mind.
              </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
              {[
                {
-                 title: "Clinical Efficacy Guarantee",
-                 desc: "If you don't feel a significant wave of calm, reduced bloating, and a systemic shift in your energy within 60 days, we'll refund your first bottle instantly.",
-                 icon: "M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"
+                 title: "CLINICAL EFFICACY GUARANTEE",
+                 desc: "If you don't feel a significant surge in cellular energy, enhanced mental clarity, and a systemic shift in your metabolic resilience within 60 days, we'll refund your first bottle instantly.",
+                 icon: "M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z",
+                 bgColor: "bg-[#E3F2FD]/80",
+                 hoverColor: "hover:bg-[#E3F2FD]"
                },
                {
-                 title: "Priority Protocol Shipping",
-                 desc: "We prioritize 2 and 4 bottle orders with expedited fulfillment and free shipping, ensuring your protocol starts without delay.",
-                 icon: "M13 10V3L4 14h7v7l9-11h-7z"
+                 title: "PRIORITY PROTOCOL SHIPPING",
+                 desc: "We prioritize 2 and 4 bottle orders with expedited fulfillment and free shipping, ensuring your cellular protocol starts without delay.",
+                 icon: "M13 10V3L4 14h7v7l9-11h-7z",
+                 bgColor: "bg-[#FFF3E0]/80",
+                 hoverColor: "hover:bg-[#FFF3E0]"
                },
                {
-                 title: "Seamless Refund Protocol",
-                 desc: "No fine print. No hidden obstacles. If Hormone Harmony isn't the breakthrough you were looking for, our support team handles your refund with medical precision.",
-                 icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                 title: "SEAMLESS REFUND PROTOCOL",
+                 desc: "No fine print. No hidden obstacles. If ChronoNAD+ isn't the cellular breakthrough you were looking for, our support team handles your refund with medical precision.",
+                 icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+                 bgColor: "bg-[#FCE4EC]/80",
+                 hoverColor: "hover:bg-[#FCE4EC]"
                }
              ].map((pill, i) => (
-               <div key={i} className="group p-12 rounded-[3.5rem] bg-gray-50/50 border border-gray-100 flex flex-col items-center text-center hover:bg-white hover:border-[#0D47A1] hover:shadow-2xl transition-all duration-700">
-                  <div className="w-20 h-20 mb-10 rounded-3xl bg-white border border-gray-100 flex items-center justify-center group-hover:bg-[#0D47A1] group-hover:text-white transition-all duration-500 shadow-sm">
+               <div key={i} className={`group p-12 rounded-[3.5rem] border border-gray-100 flex flex-col items-center text-center transition-all duration-700 ${pill.bgColor} ${pill.hoverColor} hover:shadow-xl hover:border-white/50`}>
+                  <div className="w-20 h-20 mb-10 rounded-3xl bg-white/60 border border-white flex items-center justify-center group-hover:bg-[#0D47A1] group-hover:text-white transition-all duration-500 shadow-sm backdrop-blur-sm">
                      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={pill.icon} />
                      </svg>
                   </div>
-                  <h4 className="text-xl font-black text-[#1A237E] uppercase tracking-tight mb-4">{pill.title}</h4>
-                  <p className="text-gray-500 leading-relaxed font-medium">{pill.desc}</p>
+                  <h4 className="text-sm font-black text-[#1A237E] uppercase tracking-widest mb-6 px-4">{pill.title}</h4>
+                  <p className="text-gray-600 leading-relaxed font-semibold px-2 italic">{pill.desc}</p>
                </div>
              ))}
           </div>
@@ -1213,7 +1258,7 @@ export default function Harmony() {
                 <span className="text-gray-400 font-medium">The Results.</span>
              </h2>
              <p className="text-xl text-gray-500 font-medium italic">
-                Join over 53,814 women who have restored their hormonal baseline and reclaimed their vitality with the Hormone Harmony protocol.
+                Join over 53,814 women who have restored their cellular vitality and reclaimed their spark with the ChronoNAD+ cellular protocol.
              </p>
           </div>
 
@@ -1256,35 +1301,42 @@ export default function Harmony() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
              {[
                {
-                 name: "Tamara A.",
-                 title: "No More Searching!!!",
-                 body: "I finally found my help and my getting back to normal! I tried over 5 plus different types of supplements to help me with my Hot Flashes & Night Sweats !!!! Lord I was breaking out in sweats anywhere... I still have a little warmth at night but not Drenched & Soaking like a River anymore !!!!!! Harmony Hormone you are the Sh*t!!!!",
-                 date: "4 months ago",
-                 initials: "TA"
+                 name: "Brenda",
+                 title: "Great quality supplements",
+                 body: "60 capsules in a bottle. Directions say to take two a day. Pills are pretty easy to swallow. I had good results with taking this supplement. More energy and I have better sleep now. My digestion improved also.",
+                 date: "2 months ago",
+                 initials: "B"
                },
                {
-                 name: "Arjeet R.",
-                 title: "Worth every penny!",
-                 body: "I have been taking hormone harmony for almost a month and have just ordered more. Since having children my hormones have been all over the place. Since taking this i have never felt calmer and I don’t have the dreaded water weight anymore. If you have been struggling, this could just be what you need.",
-                 date: "4 months ago",
-                 initials: "AR"
+                 name: "HappyFamily",
+                 title: "NAD+ Boost for Feeling Younger!",
+                 body: "CellStart is a solid pick for anyone wanting to support healthy aging and cellular energy! After a month of one capsule daily with breakfast, I've noticed steadier energy, better focus, and recovery after workouts.",
+                 date: "1 month ago",
+                 initials: "HF"
                },
                {
-                 name: "M.W.",
-                 title: "Lasting effects!",
-                 body: "I’ve been using hormone harmony for 2 years and it continues to benefit me. I recognize decreased puffiness on my waist within the first two weeks and it just keeps getting better.",
+                 name: "Stephanie Jackson",
+                 title: "Worth the Buy",
+                 body: "I’ve noticed I don’t feel as sluggish during the day, and my recovery after workouts seems quicker. Definitely worth trying if you want extra support for energy, focus, and healthy aging.",
                  date: "3 months ago",
-                 initials: "MW"
+                 initials: "SJ"
                },
                {
-                 name: "Alyssa V.",
-                 title: "I feel amazing",
-                 body: "I don't typically feel the benefits of supplements, but this one has made me feel energized and I recognize decreased water retention on my waist within the first two weeks.",
-                 date: "4 months ago",
-                 initials: "AV"
+                 name: "James",
+                 title: "Easy to swallow capsules.",
+                 body: "The CellStart Nad+ Resveratrol capsules come a well-sealed bottle. I like the fact that they are made in the USA and are also Non-GMO. I feel they give me more energy and a better start to my mornings.",
+                 date: "1 month ago",
+                 initials: "J"
+               },
+               {
+                 name: "Danielle",
+                 title: "A Much Needed Energy Boost for Moms!",
+                 body: "As a 32-year-old mom juggling kids.. within the first week, I noticed a real difference. I wasn’t crashing halfway through the day, and I felt more clear-headed and focused.",
+                 date: "2 months ago",
+                 initials: "D"
                }
              ].map((review, i) => (
-               <div key={i} className="group bg-white p-10 md:p-14 rounded-[3.5rem] border border-gray-100 hover:border-[#0D47A1] hover:shadow-2xl transition-all duration-700 relative overflow-hidden flex flex-col">
+               <div key={i} className={`group ${['bg-[#E3F2FD]/50', 'bg-[#FFF3E0]/50', 'bg-[#FCE4EC]/50'][i % 3]} p-10 md:p-14 rounded-[3.5rem] border border-gray-100 hover:border-[#0D47A1] hover:shadow-2xl transition-all duration-700 relative overflow-hidden flex flex-col`}>
                   {/* Background Initial */}
                   <span className="absolute top-10 right-10 text-6xl font-serif font-black italic text-gray-50/50 -z-10 group-hover:text-gray-100/50 transition-colors">{review.initials}</span>
                   
@@ -1312,7 +1364,7 @@ export default function Harmony() {
 
                   <div className="mt-auto flex items-center gap-3 py-4 border-t border-gray-50">
                      <div className="w-10 h-14 bg-gray-50 rounded-xl overflow-hidden shrink-0 border border-gray-100">
-                        <img src="/Hormony_hero_image.png" alt="Reviewing Product" className="w-full h-full object-contain p-2 grayscale group-hover:grayscale-0 transition-all duration-700" />
+                        <img src="/60_Capsules.jpg" alt="Reviewing Product" className="w-full h-full object-contain p-2 grayscale group-hover:grayscale-0 transition-all duration-700 mix-blend-multiply" />
                      </div>
                      <div className="text-[9px] leading-tight font-black uppercase tracking-widest text-gray-400">
                         <p className="mb-1">Authenticated Protocol Review</p>
@@ -1443,9 +1495,9 @@ export default function Harmony() {
                 <div className="relative group">
                    <div className="absolute inset-0 bg-[#0D47A1]/5 rounded-[3rem] blur-3xl group-hover:bg-[#0D47A1]/10 transition-colors"></div>
                    <img 
-                      src="/Hormony_hero_image.png" 
-                      alt="Hormone Harmony Bottle Render" 
-                      className="w-full h-auto object-contain relative z-10 drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
+                      src="/60_Capsules.jpg" 
+                      alt="ChronoNAD+ Bottle Render" 
+                      className="w-full h-auto object-contain relative z-10 drop-shadow-2xl transition-transform duration-700 group-hover:scale-105 mix-blend-multiply"
                    />
                 </div>
              </div>
@@ -1460,17 +1512,17 @@ export default function Harmony() {
       <section className="py-32 bg-gray-50/30">
          <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-20">
-               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">Common Inquiries</span>
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">COMMON INQUIRIES</span>
                <h2 className="text-4xl md:text-5xl font-black text-[#1A237E] font-serif italic mb-6">Expert Protocol Support</h2>
-               <p className="text-lg text-gray-500 font-medium italic">Everything you need to know about the Hormone Harmony system.</p>
+               <p className="text-lg text-gray-500 font-medium italic">Everything you need to know about the ChronoNAD+ cellular system.</p>
             </div>
             
             <div className="space-y-4">
               {[
-                { q: "How quickly will I notice the systemic shift?", a: "Most women report a distinct wave of calm and reduced bloating within the first 9-14 days of the protocol. Clinical effects stabilize around day 60." },
-                { q: "Is the Hormone Harmony protocol safe with other medications?", a: "While our botanicals are 100% natural, we always recommend consulting with your clinical provider before beginning any new protocol if you are on prescribed medication." },
-                { q: "What happens if I miss a daily dosage?", a: "Simply resume your protocol the following day. Consistency is key for hormonal baseline restoration, but a single missed day will not disrupt long-term progress." },
-                { q: "Why the 4-bottle protocol for optimal transformation?", a: "Hormonal baseline restoration is a systemic process. Clinical data shows that the most profound and lasting metabolic shifts occur between months 3 and 4." }
+                { q: "HOW QUICKLY WILL I NOTICE THE SYSTEMIC SHIFT?", a: "Most users report a noticeable increase in mental clarity and steady, all-day energy within the first 7-14 days. For deep cellular repair and metabolic optimization, we recommend consistent use for at least 60-90 days to allow coenzyme levels to fully stabilize." },
+                { q: "IS THE CHRONONAD+ PROTOCOL SAFE WITH OTHER MEDICATIONS?", a: "ChronoNAD+ is formulated with ultra-pure, clinical-grade ingredients. However, as with any advanced supplementation, we recommend consulting your physician before beginning the protocol, especially if you are currently taking prescription medication." },
+                { q: "WHAT HAPPENS IF I MISS A DAILY DOSAGE?", a: "Consistency is the foundation of cellular health. If you miss a day, simply resume your protocol the following morning. There is no need to double the dose; your body responds best to a steady, daily rhythm of replenishment." },
+                { q: "WHY THE 4-BOTTLE PROTOCOL FOR OPTIMAL TRANSFORMATION?", a: "True biological transformation takes time. While early benefits are felt quickly, the 4-bottle protocol (120 days) is designed to facilitate complete cellular turnover and lock in your new baseline of vitality, ensuring long-term systemic resilience." }
               ].map((faq, index) => (
                 <div key={index} className="bg-white rounded-[2rem] border border-gray-100 overflow-hidden hover:border-[#0D47A1] transition-colors duration-500">
                   <button 
@@ -1539,10 +1591,21 @@ export default function Harmony() {
                <div className="text-[9px] text-white/30 font-bold uppercase tracking-widest max-w-2xl text-center md:text-left leading-relaxed">
                   © 2025 Hormone Harmony. Formulated by Happy Koala, LLC. These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.
                </div>
-               <div className="flex items-center gap-6 grayscale opacity-30 hover:opacity-100 transition-all">
-                  <div className="h-6 w-12 bg-white/10 rounded"></div>
-                  <div className="h-6 w-12 bg-white/10 rounded"></div>
-                  <div className="h-6 w-12 bg-white/10 rounded"></div>
+               <div className="flex items-center gap-8 opacity-40 hover:opacity-100 transition-all duration-500">
+                  {/* PayPal */}
+                  <span className="text-[10px] font-black uppercase tracking-widest text-white">PayPal</span>
+                  {/* Visa */}
+                  <span className="text-[10px] font-black uppercase tracking-widest text-white italic">VISA</span>
+                  {/* Mastercard Circles */}
+                  <div className="flex items-center">
+                     <div className="w-5 h-5 rounded-full bg-white/20 -mr-2 border border-white/10"></div>
+                     <div className="w-5 h-5 rounded-full bg-white/10 border border-white/10"></div>
+                  </div>
+                  {/* SSL Indicator */}
+                  <div className="flex items-center gap-2">
+                     <svg className="w-3 h-3 text-white/50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                     <span className="text-[8px] font-black uppercase tracking-widest text-white/50">256-BIT SSL</span>
+                  </div>
                </div>
             </div>
          </div>
