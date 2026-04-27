@@ -189,82 +189,101 @@ export default function Harmony() {
                      <span className="italic text-[#F06292] font-medium">Clinically Measured.</span>
                   </h2>
                </div>
-               
             </div>
 
-           {/* Testimonial Grid - Compact High-Performance Layout */}
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
-             {[
-               {
-                 name: "HappyFamily",
-                 headline: "NAD+ Boost for Feeling Younger!",
-                 body: "CellStart is a solid pick for anyone wanting to support healthy aging and cellular energy! After a month of one capsule daily with breakfast, I've noticed steadier energy, better focus, and recovery after workouts.",
-                 initial: "H",
-                 tag: "Healthy Aging"
-               },
-               {
-                 name: "Brenda",
-                 headline: "Great quality supplements",
-                 body: "60 capsules in a bottle. Directions say to take two a day. Pills are pretty easy to swallow. I had good results with taking this supplement. More energy and I have better sleep now. My digestion improved also.",
-                 initial: "B",
-                 tag: "Quality & Sleep"
-               },
-               {
-                 name: "Stephanie Jackson",
-                 headline: "Worth the Buy",
-                 body: "I’ve noticed I don’t feel as sluggish during the day, and my recovery after workouts seems quicker. Definitely worth trying if you want extra support for energy, focus, and healthy aging.",
-                 initial: "S",
-                 tag: "Energy & Recovery"
-               },
-               {
-                 name: "James",
-                 headline: "Easy to swallow capsules.",
-                 body: "The CellStart Nad+ Resveratrol capsules come a well-sealed bottle. I like the fact that they are made in the USA and are also Non-GMO. I feel they give me more energy and a better start to my mornings.",
-                 initial: "J",
-                 tag: "Daily Vitality"
-               },
-               {
-                 name: "Danielle",
-                 headline: "A Much Needed Energy Boost for Moms!",
-                 body: "As a 32-year-old mom juggling kids.. within the first week, I noticed a real difference. I wasn’t crashing halfway through the day, and I felt more clear-headed and focused.",
-                 initial: "D",
-                 tag: "Energy Boost"
-               }
-             ].map((review, i) => (
-                   <motion.div 
-                      key={i} 
-                      whileHover={{ y: -5 }}
-                      className={`${['bg-[#E3F2FD]/50', 'bg-[#FFF3E0]/50', 'bg-[#FCE4EC]/50'][i % 3]} p-8 rounded-[2.5rem] border border-[#E3F2FD] shadow-sm relative overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:border-[#F06292]/20`}
-                   >
-                      <span className="absolute -top-10 -right-10 text-[10rem] font-serif italic text-[#E3F2FD]/40 pointer-events-none group-hover:text-[#FCE4EC]/40 transition-colors duration-700">{review.initial}</span>
-                     
-                     <div className="relative z-10">
-                         <div className="flex items-center justify-between mb-8">
-                            <div className="flex items-center gap-3">
-                               <div className="w-8 h-8 rounded-full bg-[#0D47A1] text-white flex items-center justify-center font-black text-[10px] shadow-lg">{review.initial}</div>
-                               <div className="flex flex-col">
-                                  <span className="text-[11px] font-black text-[#1A237E] uppercase tracking-tight">{review.name}</span>
-                                  <div className="flex items-center gap-1.5">
-                                     <div className="w-1 h-1 rounded-full bg-[#F06292] animate-pulse"></div>
-                                     <span className="text-[7px] font-black text-[#0288D1]/40 uppercase tracking-widest">Verified Buyer</span>
-                                  </div>
-                               </div>
-                            </div>
-                            <span className="px-3 py-1 rounded-full border border-[#E3F2FD] text-[7px] font-black uppercase tracking-widest text-[#0D47A1]/40 group-hover:bg-[#F06292] group-hover:text-white group-hover:border-[#F06292] transition-all">{review.tag}</span>
-                   </div>
+            {/* Testimonials Horizontal Scroll - Editorial Style */}
+            <div className="relative -mx-6 px-6 overflow-hidden">
+             <motion.div 
+               drag="x"
+               dragConstraints={{ right: 0, left: -1200 }}
+               className="flex gap-8 pb-12 cursor-grab active:cursor-grabbing"
+             >
+               {[
+                 {
+                   name: "HappyFamily",
+                   headline: "NAD+ Boost for Feeling Younger!",
+                   body: "CellStart is a solid pick for anyone wanting to support healthy aging and cellular energy! After a month of one capsule daily with breakfast, I've noticed steadier energy, better focus, and recovery after workouts.",
+                   initial: "H",
+                   tag: "Healthy Aging",
+                   color: "#0D47A1"
+                 },
+                 {
+                   name: "Brenda",
+                   headline: "Great quality supplements",
+                   body: "60 capsules in a bottle. Directions say to take two a day. Pills are pretty easy to swallow. I had good results with taking this supplement. More energy and I have better sleep now. My digestion improved also.",
+                   initial: "B",
+                   tag: "Quality & Sleep",
+                   color: "#E65100"
+                 },
+                 {
+                   name: "Stephanie Jackson",
+                   headline: "Worth the Buy",
+                   body: "I’ve noticed I don’t feel as sluggish during the day, and my recovery after workouts seems quicker. Definitely worth trying if you want extra support for energy, focus, and healthy aging.",
+                   initial: "S",
+                   tag: "Energy & Recovery",
+                   color: "#F06292"
+                 },
+                 {
+                   name: "James",
+                   headline: "Easy to swallow capsules.",
+                   body: "The CellStart Nad+ Resveratrol capsules come a well-sealed bottle. I like the fact that they are made in the USA and are also Non-GMO. I feel they give me more energy and a better start to my mornings.",
+                   initial: "J",
+                   tag: "Daily Vitality",
+                   color: "#43A047"
+                 },
+                 {
+                   name: "Danielle",
+                   headline: "A Much Needed Energy Boost for Moms!",
+                   body: "As a 32-year-old mom juggling kids.. within the first week, I noticed a real difference. I wasn’t crashing halfway through the day, and I felt more clear-headed and focused.",
+                   initial: "D",
+                   tag: "Energy Boost",
+                   color: "#8E24AA"
+                 }
+               ].map((review, i) => (
+                    <motion.div 
+                       key={i} 
+                       className="min-w-[380px] md:min-w-[450px] bg-white p-12 rounded-[3rem] border border-gray-50 shadow-[0_20px_50px_rgba(0,0,0,0.04)] relative overflow-hidden group transition-all duration-700 hover:shadow-2xl"
+                    >
+                       {/* Background Quote Mark */}
+                       <span className="absolute top-4 right-8 text-[12rem] font-serif font-black italic text-gray-100/40 pointer-events-none group-hover:text-[#F06292]/5 transition-colors duration-700">“</span>
+                      
+                       <div className="relative z-10 flex flex-col h-full">
+                          <div className="flex items-center justify-between mb-10">
+                             <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 rounded-full border-2 border-gray-50 p-1">
+                                   <div className="w-full h-full rounded-full bg-gray-50 flex items-center justify-center font-black text-xs text-gray-400 group-hover:bg-[#1A237E] group-hover:text-white transition-colors">{review.initial}</div>
+                                </div>
+                                <div className="flex flex-col">
+                                   <span className="text-[12px] font-black text-[#1A237E] uppercase tracking-widest">{review.name}</span>
+                                   <div className="flex items-center gap-1.5">
+                                      <div className="w-1 h-1 rounded-full bg-[#F06292] animate-pulse"></div>
+                                      <span className="text-[8px] font-black text-gray-300 uppercase tracking-widest">Verified Transformation</span>
+                                   </div>
+                                </div>
+                             </div>
+                             <div className="flex text-[#F06292] text-[10px] gap-0.5">
+                                {[...Array(5)].map((_, j) => <span key={j}>★</span>)}
+                             </div>
+                          </div>
+                    
+                          <h5 className="text-xl md:text-2xl font-black text-[#1A237E] mb-6 font-serif italic leading-tight">{review.headline}</h5>
+                          <p className="text-lg text-gray-500 leading-relaxed font-light mb-10 italic">"{review.body}"</p>
+                          
+                          <div className="mt-auto pt-8 border-t border-gray-50 flex items-center justify-between">
+                             <span className="px-4 py-1.5 rounded-full bg-gray-50 text-[8px] font-black uppercase tracking-widest text-gray-400 group-hover:bg-[#FCE4EC] group-hover:text-[#F06292] transition-all">{review.tag}</span>
+                             <span className="text-[9px] font-black text-gray-200 uppercase tracking-widest">Clinical Protocol</span>
+                          </div>
+                       </div>
+                    </motion.div>
+               ))}
+             </motion.div>
+             
+             {/* Gradient Overlays for Scroll Indicator */}
+             <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
+             <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
+           </div>
 
-                         <div className="flex text-[#1A237E] mb-4 text-[10px] gap-0.5">
-                            {[...Array(5)].map((_, j) => <span key={j}>★</span>)}
-                         </div>
-                   
-                   <h5 className="text-base font-black text-[#1A237E] mb-3 font-serif italic leading-tight group-hover:text-gray-600 transition-colors">{review.headline}</h5>
-                   <p className="text-sm text-gray-500 leading-relaxed font-light">"{review.body}"</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Final Section CTA */}
+           {/* Final Section CTA */}
           <div className="flex flex-col items-center gap-8">
             <motion.button 
                whileHover={{ scale: 1.02 }}
@@ -523,74 +542,90 @@ export default function Harmony() {
           </div>
         </div>
 
-        {/* 6 Breakthroughs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        {/* 6 Discoveries List - Inspired by Reference UI */}
+        <div className="max-w-5xl mx-auto space-y-4 mb-32">
            {[
              { 
-               tag: "GENOMIC STABILITY", 
-               focus: "DNA Maintenance", 
                num: "1", 
-               text: "NAD+ is required for enzymes called PARPs, which identify and repair routine DNA strand breaks, helping maintain your body’s natural genomic integrity.",
-               bg: "bg-[#E3F2FD]", 
-               accent: "text-[#0288D1]"
+               label: "Genomic Stability",
+               text: "NAD+ is required for enzymes called PARPs, which identify and repair routine DNA strand breaks, helping maintain your body’s natural genomic integrity."
              },
              { 
-               tag: "CELLULAR ENERGY", 
-               focus: "Mitochondrial Power", 
                num: "2", 
-               text: "Mitochondria rely on NAD+ to convert nutrients into ATP. Our formula supports the mitochondrial enzymes responsible for consistent, all-day power generation.",
-               bg: "bg-[#FFF3E0]", 
-               accent: "text-[#E65100]"
+               label: "Cellular Energy",
+               text: "Mitochondria rely on NAD+ to convert nutrients into ATP. Our formula supports the mitochondrial enzymes responsible for consistent, all-day power generation."
              },
              { 
-               tag: "CELLULAR REPAIR", 
-               focus: "Sirtuin Activation", 
                num: "3", 
-               text: "Activates the sirtuin \"longevity genes\" that regulate protein quality-control, helping cells clean up and recycle damaged proteins for deep renewal.",
-               bg: "bg-[#FCE4EC]", 
-               accent: "text-[#D81B60]"
+               label: "Cellular Repair",
+               text: "Activates the sirtuin \"longevity genes\" that regulate protein quality-control, helping cells clean up and recycle damaged proteins for deep renewal."
              },
              { 
-               tag: "HEALTHY COMMUNICATION", 
-               focus: "Signal Coordination", 
                num: "4", 
-               text: "Helps coordinate chemical messengers between cells to maintain tissue balance and support balanced cellular signaling across the entire body.",
-               bg: "bg-[#E3F2FD]", 
-               accent: "text-[#0288D1]"
+               label: "Healthy Communication",
+               text: "Helps coordinate chemical messengers between cells to maintain tissue balance and support balanced cellular signaling across the entire body."
              },
              { 
-               tag: "NUTRIENT SENSING", 
-               focus: "Metabolic Balance", 
                num: "5", 
-               text: "Supports the pathways that regulate metabolism and stress resistance, ensuring your cells respond efficiently to energy availability and metabolic needs.",
-               bg: "bg-[#FFF3E0]", 
-               accent: "text-[#E65100]"
+               label: "Nutrient Sensing",
+               text: "Supports the pathways that regulate metabolism and stress resistance, ensuring your cells respond efficiently to energy availability and metabolic needs."
              },
              { 
-               tag: "CELLULAR SENESCENCE", 
-               focus: "Healthy Renewal", 
                num: "6", 
-               text: "Plays a critical role in regulating healthy cell turnover and renewal, supporting balanced cellular aging and long-term systemic vitality.",
-               bg: "bg-[#FCE4EC]", 
-               accent: "text-[#D81B60]"
+               label: "Cellular Senescence",
+               text: "Plays a critical role in regulating healthy cell turnover and renewal, supporting balanced cellular aging and long-term systemic vitality."
              }
            ].map((item, i) => (
-             <div key={i} className={`relative ${item.bg} p-10 rounded-[3.5rem] group hover:scale-[1.02] transition-all duration-500 shadow-xl hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] overflow-hidden border border-gray-100 text-[#1A237E]`}>
-                {/* Background Number */}
-                <span className="absolute -bottom-10 -right-5 text-[12rem] font-serif font-black italic text-gray-200/20 -z-10 group-hover:text-gray-200/40 transition-colors">{item.num}</span>
-                
-                <div className="flex flex-col gap-1 mb-8 border-b border-[#1A237E]/5 pb-4">
-                   <span className="inline-block text-[10px] font-black uppercase tracking-widest text-[#1A237E]/40">{item.tag}</span>
-                   <span className={`text-[9px] font-bold uppercase tracking-widest ${item.accent} italic`}>{item.focus}</span>
-                 </div>
-                
-                <p className="text-lg md:text-xl text-[#1A237E]/80 leading-relaxed font-medium relative z-10">{item.text}</p>
-                
-                <div className="mt-10 flex items-center gap-3 opacity-60 group-hover:opacity-100 transition-opacity">
-                   <div className="w-2 h-2 rounded-full bg-[#1A237E]"></div>
-                   <span className="text-[10px] font-black uppercase tracking-widest text-[#1A237E]">Clinical Discovery</span>
+             <motion.div 
+               key={i} 
+               initial={{ opacity: 0, x: -20 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true }}
+               transition={{ delay: i * 0.1 }}
+               className={`flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16 p-8 md:p-12 rounded-[2.5rem] transition-all duration-500 hover:shadow-lg border border-white/50 ${
+                 [
+                   'bg-[#E3F2FD]/40', // Soft Blue
+                   'bg-[#FFF3E0]/40', // Soft Peach
+                   'bg-[#FCE4EC]/40', // Soft Pink
+                   'bg-[#E8F5E9]/40', // Soft Green
+                   'bg-[#F3E5F5]/40', // Soft Purple
+                   'bg-[#E1F5FE]/40'  // Soft Sky
+                 ][i % 6]
+               }`}
+             >
+                {/* Number Section */}
+                <div className="flex flex-col items-center md:items-start shrink-0">
+                   <span className={`text-[10px] font-black uppercase tracking-[0.2em] mb-1 ${
+                     [
+                       'text-[#0288D1]', 
+                       'text-[#E65100]', 
+                       'text-[#F06292]',
+                       'text-[#43A047]',
+                       'text-[#8E24AA]',
+                       'text-[#039BE5]'
+                     ][i % 6]
+                   }`}>Breakthrough</span>
+                   <span className={`text-8xl md:text-9xl font-serif font-black leading-none ${
+                     [
+                       'text-[#0288D1]', 
+                       'text-[#E65100]', 
+                       'text-[#F06292]',
+                       'text-[#43A047]',
+                       'text-[#8E24AA]',
+                       'text-[#039BE5]'
+                     ][i % 6]
+                   }`}>{item.num}</span>
                 </div>
-             </div>
+
+                
+                {/* Content Section */}
+                <div className="flex-grow pt-4 md:pt-10 text-center md:text-left">
+                   <h3 className="text-xl md:text-2xl font-black text-[#1A237E] uppercase tracking-widest mb-4 font-serif italic hidden">{item.label}</h3>
+                   <p className="text-xl md:text-2xl text-[#1A237E] leading-relaxed font-medium">
+                      {item.text}
+                   </p>
+                </div>
+             </motion.div>
            ))}
         </div>
 
@@ -921,16 +956,44 @@ export default function Harmony() {
                     desc: "Support your skin’s natural resilience and healthy cell turnover at the source. Fuel the dermal cells responsible for a vibrant, healthy-looking complexion and a natural glow." 
                   }
                 ].map((benefit, i) => (
-                <div key={i} className="group flex items-center gap-8 p-8 bg-gray-50/50 border border-[#E3F2FD] rounded-3xl hover:bg-white hover:border-[#F06292]/30 hover:shadow-2xl transition-all duration-500">
-                     <div className="w-10 h-10 rounded-full bg-white border border-[#E3F2FD] flex items-center justify-center shrink-0 group-hover:bg-[#0D47A1] group-hover:text-white transition-colors shadow-sm">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
-                     </div>
-                     <div>
-                        <h4 className="text-sm font-black text-[#1A237E] uppercase tracking-widest mb-1 group-hover:text-[#F06292] transition-colors">{benefit.title}</h4>
-                        <p className="text-gray-500 font-medium leading-relaxed">{benefit.desc}</p>
-                     </div>
-                  </div>
-                ))}
+                <div 
+                   key={i} 
+                   className={`group flex items-center gap-8 p-8 border transition-all duration-500 rounded-3xl hover:shadow-2xl hover:scale-[1.01] ${
+                     [
+                       'bg-[#E3F2FD]/40 border-[#E3F2FD] hover:border-[#0D47A1]/30', 
+                       'bg-[#FFF3E0]/40 border-[#FFF3E0] hover:border-[#E65100]/30', 
+                       'bg-[#FCE4EC]/40 border-[#FCE4EC] hover:border-[#F06292]/30',
+                       'bg-[#E8F5E9]/40 border-[#E8F5E9] hover:border-[#43A047]/30',
+                       'bg-[#F3E5F5]/40 border-[#F3E5F5] hover:border-[#8E24AA]/30'
+                     ][i % 5]
+                   }`}
+                >
+                      <div className={`w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 transition-colors shadow-sm group-hover:text-white ${
+                        [
+                          'text-[#0D47A1] group-hover:bg-[#0D47A1]', 
+                          'text-[#E65100] group-hover:bg-[#E65100]', 
+                          'text-[#F06292] group-hover:bg-[#F06292]',
+                          'text-[#43A047] group-hover:bg-[#43A047]',
+                          'text-[#8E24AA] group-hover:bg-[#8E24AA]'
+                        ][i % 5]
+                      }`}>
+                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
+                      </div>
+                      <div>
+                         <h4 className={`text-sm font-black uppercase tracking-widest mb-1 transition-colors ${
+                           [
+                             'text-[#0D47A1]', 
+                             'text-[#E65100]', 
+                             'text-[#F06292]',
+                             'text-[#43A047]',
+                             'text-[#8E24AA]'
+                           ][i % 5]
+                         }`}>{benefit.title}</h4>
+                         <p className="text-gray-500 font-medium leading-relaxed">{benefit.desc}</p>
+                      </div>
+                   </div>
+                 ))}
+
               </div>
 
               {/* Success Image - Dramatic Artistic Frame */}
