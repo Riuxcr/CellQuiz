@@ -1202,7 +1202,7 @@ export default function Harmony() {
            </div>
 
           {/* Security & Trust Section - Refined Clinical Aesthetic */}
-          <div className="max-w-6xl mx-auto bg-white p-12 md:p-16 rounded-[4rem] flex flex-col lg:flex-row items-center gap-12 lg:gap-24 shadow-[0_20px_50px_rgba(0,0,0,0.02)] border border-gray-50 mb-20 relative overflow-hidden group">
+          <div className="max-w-6xl mx-auto bg-[#E3F2FD]/40 p-12 md:p-16 rounded-[4rem] flex flex-col lg:flex-row items-center gap-12 lg:gap-24 shadow-[0_20px_50px_rgba(0,0,0,0.02)] border border-[#E3F2FD] mb-20 relative overflow-hidden group">
              {/* Subtle Background Glow */}
              <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#E3F2FD]/20 rounded-full blur-3xl pointer-events-none group-hover:bg-[#E3F2FD]/30 transition-colors duration-1000"></div>
              
