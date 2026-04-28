@@ -113,11 +113,10 @@ export default function Harmony() {
                          initial={{ opacity: 0, y: 20 }}
                          animate={{ opacity: 1, y: 0 }}
                          transition={{ delay: 0.3 }}
-                         className="text-2xl md:text-4xl lg:text-[2.8rem] font-serif text-[#1A237E] leading-[1.1] tracking-tight"
+                         className="text-4xl md:text-7xl font-black text-[#1A237E] leading-[1.05] mb-10 tracking-tighter font-serif"
                       >
-                         Why your glow & energy <br className="hidden md:block" />
-                         start fading... <br className="hidden md:block" />
-                         <span className="italic text-gray-400 font-medium">earlier than you think.</span>
+                         The Future of <br />
+                         <span className="italic text-[#F06292] font-medium">Cellular Vitality.</span>
                       </motion.h1>
 
                       <motion.div 
@@ -143,23 +142,23 @@ export default function Harmony() {
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                          {[
-                            "Deep Cellular Activation",
-                            "Luminous Skin Complexion",
-                            "Peak Biological Energy",
-                            "Metabolic Rhythm Support",
-                            "Mental Clarity & Focus"
+                            { text: "Deep Cellular Activation", color: "bg-blue-50/50 border-blue-100/50" },
+                            { text: "Luminous Skin Complexion", color: "bg-pink-50/50 border-pink-100/50" },
+                            { text: "Peak Biological Energy", color: "bg-orange-50/50 border-orange-100/50" },
+                            { text: "Metabolic Rhythm Support", color: "bg-indigo-50/50 border-indigo-100/50" },
+                            { text: "Mental Clarity & Focus", color: "bg-teal-50/50 border-teal-100/50" }
                          ].map((benefit, i) => (
                             <motion.div 
                                key={i}
                                initial={{ opacity: 0, y: 10 }}
                                animate={{ opacity: 1, y: 0 }}
                                transition={{ delay: 0.5 + (i * 0.1) }}
-                               className="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-gray-50 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-lg transition-all duration-500 cursor-default group"
+                               className={`flex items-center gap-2.5 p-2.5 rounded-lg border ${benefit.color} shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-lg transition-all duration-500 cursor-default group`}
                             >
                                <div className="w-7 h-7 rounded-md bg-[#E8F5E9] text-[#43A047] flex items-center justify-center shrink-0 group-hover:bg-[#43A047] group-hover:text-white transition-colors duration-500">
                                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/></svg>
                                </div>
-                               <span className="text-[12px] md:text-[13px] text-[#1A237E] font-black tracking-tight">{benefit}</span>
+                               <span className="text-[12px] md:text-[13px] text-[#1A237E] font-black tracking-tight">{benefit.text}</span>
                             </motion.div>
                          ))}
                       </div>
@@ -214,14 +213,13 @@ export default function Harmony() {
       {/* FEATURED IN SECTION */}
       <section className="py-24 bg-white border-b border-gray-50">
          <div className="max-w-7xl mx-auto px-6">
-            <motion.h2 
-               initial={{ opacity: 0 }}
-               whileInView={{ opacity: 1 }}
-               viewport={{ once: true }}
-               className="text-center text-2xl md:text-4xl font-black text-[#111827] mb-20 tracking-tight"
-            >
-               Research Backed Ingredients Featured In...
-            </motion.h2>
+            <div className="text-center mb-20 space-y-4">
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Clinical Recognition</span>
+               <h2 className="text-3xl md:text-5xl font-black text-[#1A237E] leading-tight tracking-tight font-serif">
+                  Recognized by the <br />
+                  <span className="italic text-[#F06292] font-medium">Industry Leaders</span>
+               </h2>
+            </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
                {[
@@ -258,21 +256,16 @@ export default function Harmony() {
          <div className="max-w-4xl mx-auto px-6 relative z-10">
             
             {/* Header Area */}
-            <div className="text-center mb-16 space-y-4">
-               <h2 className="text-[10px] md:text-xs font-black text-gray-500 uppercase tracking-[0.2em] leading-relaxed">
-                  See Why 454 Clinicians and 1.4 Million Women Swear By <br /> Hormone Harmony To:
-               </h2>
-               <h3 className="text-4xl md:text-[4.5rem] font-black text-[#1A237E] leading-[1.05] tracking-tight">
+            <div className="text-center mb-16 space-y-6">
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Clinical Trust</span>
+               <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-[1.05] tracking-tight font-serif">
                   Beat Hormonal Weight, <br className="hidden md:block" />
-                  Cortisol Belly, Moon Face, <br className="hidden md:block" />
+                  <span className="italic text-[#F06292] font-medium">Cortisol Belly, Moon Face,</span> <br className="hidden md:block" />
                   and Double Chin
-               </h3>
-               <div className="max-w-2xl mx-auto space-y-2">
-                  <p className="text-sm md:text-base text-gray-600 font-medium leading-relaxed">
-                     Our ingredients are proven in thousands of scientific papers to help optimize hormones for women of all ages... So they can finally END
-                  </p>
-                  <p className="text-[#1A237E] font-bold text-sm md:text-base">
-                     bloating, puffiness, mood swings and poor sleep
+               </h2>
+               <div className="max-w-2xl mx-auto space-y-4">
+                  <p className="text-xl text-gray-500 font-medium italic leading-relaxed">
+                     Our ingredients are proven in thousands of scientific papers to help optimize hormones for women of all ages... So they can finally end <span className="text-[#1A237E] font-black not-italic">bloating, puffiness, mood swings and poor sleep.</span>
                   </p>
                </div>
             </div>
@@ -409,11 +402,12 @@ export default function Harmony() {
                viewport={{ once: true }}
                className="text-center mb-24 max-w-4xl mx-auto"
             >
-               <span className="text-[11px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 mb-8 block">The Silent Driver</span>
-               <h2 className="text-5xl md:text-8xl font-black text-[#1A237E] leading-[1] tracking-tighter mb-10">
-                  As You Age, Your Body’s NAD+ Levels Plummet By <span className="text-[#F06292]">Over 50%</span>...
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 mb-8 block">The Silent Driver</span>
+               <h2 className="text-4xl md:text-7xl font-black text-[#1A237E] leading-[1] tracking-tighter mb-10 font-serif">
+                  As You Age, Your Body’s <br />
+                  <span className="italic text-[#F06292] font-medium">NAD+ Levels Plummet...</span>
                </h2>
-               <p className="text-2xl md:text-3xl text-gray-400 font-medium italic leading-relaxed">
+               <p className="text-xl md:text-2xl text-gray-500 font-medium italic leading-relaxed">
                   And that’s when <span className="text-[#1A237E] font-black not-italic">everything changes</span> in your cells.
                </p>
             </motion.div>
@@ -497,8 +491,11 @@ export default function Harmony() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
              <div className="space-y-12">
                 <div className="space-y-6">
-                   <h3 className="text-3xl font-black text-[#1A237E] font-serif uppercase tracking-tighter">The Internal Struggle</h3>
-                   <div className="h-1 w-20 bg-[#0D47A1]"></div>
+                   <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">The Internal Struggle</span>
+                   <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-tight tracking-tight font-serif mb-6">
+                      Why Clean Eating <br />
+                      <span className="italic text-[#F06292] font-medium">Is No Longer Enough.</span>
+                   </h2>
                 </div>
 
                 <div className="space-y-10">
@@ -541,7 +538,7 @@ export default function Harmony() {
           <div className="max-w-4xl mx-auto text-center space-y-16">
              <div className="space-y-6">
                 <p className="text-2xl md:text-3xl font-serif italic text-[#1A237E] leading-tight">
-                   “Caffeine and clean eating just won't cut it anymore. <span className="text-gray-400">They provide temporary sparks, but they don't fix the empty fuel tank at the root of your cells.”</span>
+                   “Caffeine and clean eating just won't cut it anymore. <span className="text-[#F06292]">They provide temporary sparks, but they don't fix the empty fuel tank at the root of your cells.”</span>
                 </p>
              </div>
 
@@ -578,14 +575,14 @@ export default function Harmony() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12 lg:mb-16">
             <div className="inline-block mb-6">
-               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 border-x border-gray-200 px-6 py-1">THE BREAKTHROUGH</span>
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">The Breakthrough</span>
             </div>
             
-            <h2 className="text-3xl md:text-5xl lg:text-[4.5rem] font-black text-[#1A237E] leading-[1.0] mb-6 tracking-tight font-serif max-w-5xl mx-auto">
-               Finally, It’s Possible To <span className="text-[#0D47A1]">Restore Your Cellular Battery</span> <br className="hidden md:block" />
-               & Activate Your <span className="italic text-gray-400 font-medium">‘Longevity’ Genes</span>
+            <h2 className="text-4xl md:text-6xl lg:text-[4.5rem] font-black text-[#1A237E] leading-[1.0] mb-8 tracking-tight font-serif max-w-5xl mx-auto">
+               Restore Your <span className="italic text-[#F06292] font-medium">Cellular Battery</span> <br className="hidden md:block" />
+               & Activate Vitality
             </h2>
-            <p className="text-lg text-gray-400 font-medium italic">Stay Systemically Vibrant & Resilient with <span className="text-[#1A237E] font-bold not-italic">ChronoNAD+</span></p>
+            <p className="text-xl text-gray-500 font-medium italic leading-relaxed">Stay Systemically Vibrant & Resilient with <span className="text-[#1A237E] font-black not-italic">ChronoNAD+</span></p>
           </div>
 
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 mb-16 lg:mb-20">
@@ -819,11 +816,13 @@ export default function Harmony() {
                </div>
             </motion.div>
             
-            <h2 className="text-3xl md:text-6xl font-black text-[#1A237E] leading-[1.05] mb-6 tracking-tight font-serif max-w-4xl mx-auto">
-               The Protocol To <span className="text-[#0D47A1]">Revitalize Your Cellular Battery</span> & <br />
-               <span className="italic text-gray-400 font-medium">Reverse Biological Decline...</span>
+            <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-[1.05] mb-8 tracking-tight font-serif max-w-4xl mx-auto">
+               Revitalize Your <br />
+               <span className="italic text-gray-400 font-medium">Cellular Battery...</span>
             </h2>
-            <p className="text-xl text-gray-500 font-medium italic">Sustained Energy, Mental Clarity, and Deep Cellular Repair.</p>
+            <p className="text-xl text-gray-500 font-medium italic max-w-2xl mx-auto leading-relaxed">
+               Sustained Energy, Mental Clarity, and Deep Cellular Repair. Addressing the root cause of biological decline.
+            </p>
           </div>
 
            {/* Protocol Grid - Optimized with Authentic Imagery Overlays */}
@@ -878,10 +877,11 @@ export default function Harmony() {
           <div className="h-[1px] w-40 bg-gray-100 mx-auto mb-24"></div>
 
           <div className="text-center mb-20">
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">THE CELLULAR SYSTEM</span>
-             <h2 className="text-4xl md:text-5xl font-black text-[#1A237E] font-serif mb-8">
-                Two Pillars of <span className="italic text-gray-400 font-medium">Human Longevity</span>
-             </h2>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 mb-6 block">The Cellular System</span>
+              <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-tight tracking-tight font-serif">
+                 Two Pillars of <br />
+                 <span className="italic text-[#F06292] font-medium">Human Longevity</span>
+              </h2>
           </div>
 
            {/* Ingredients Showcase - Optimized with Realistic Clinical Imagery */}
@@ -936,11 +936,11 @@ export default function Harmony() {
        <section className="py-32 bg-white overflow-hidden">
          <div className="max-w-7xl mx-auto px-6">
            <div className="text-center mb-24 max-w-4xl mx-auto">
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F06292] mb-6 block">The Transformation</span>
-              <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-[1.05] tracking-tight font-serif mb-8">
-                 What To Expect <br />
-                 <span className="italic text-gray-400 font-medium">On Your Journey</span>
-              </h2>
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 mb-6 block">The Transformation</span>
+               <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-[1.05] tracking-tight font-serif mb-8">
+                  What To Expect <br />
+                  <span className="italic text-[#F06292] font-medium">On Your Journey</span>
+               </h2>
               <p className="text-xl text-gray-500 font-medium italic leading-relaxed">
                  Follow the clinical timeline as ChronoNAD+ restores your cellular vitality and resets your biological clock from the inside out.
               </p>
@@ -1045,13 +1045,13 @@ export default function Harmony() {
       <section className="py-32 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center lg:text-left mb-20 max-w-4xl">
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F06292] mb-6 block">CLINICALLY BACKED VITALITY</span>
+             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Clinically Backed Vitality</span>
              <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-[1.05] tracking-tight font-serif mb-8">
                 Designed For Every Body. <br />
-                <span className="italic text-gray-400 font-medium">No Matter The Age.</span>
+                <span className="italic text-[#F06292] font-medium">No Matter The Age.</span>
              </h2>
              <p className="text-xl text-gray-500 font-medium italic max-w-2xl leading-relaxed">
-                Whether you’re navigating the daily grind or looking to optimize your long-term health, ChronoNAD+ is engineered to replenish your cellular battery and restore your natural vitality.
+                Whether you’re navigating the daily grind or looking to optimize your long-term health, ChronoNAD+ is engineered to replenish your cellular battery.
              </p>
           </div>
 
@@ -1156,9 +1156,9 @@ export default function Harmony() {
                {/* Left Column: Timeline Content */}
                <div className="space-y-12">
                   <div className="space-y-4">
-                     <h2 className="text-4xl md:text-5xl font-black text-[#111827] leading-[1.1]">
-                        What Happens When <br /> You Start Taking <br />
-                        <span className="text-[#0D47A1]">ChronoNAD+?</span>
+                     <h2 className="text-4xl md:text-5xl font-black text-[#1A237E] leading-[1.1] font-serif">
+                        What Happens When <br />
+                        <span className="italic text-[#F06292] font-medium">You Start Taking...</span>
                      </h2>
                   </div>
 
@@ -1233,10 +1233,11 @@ export default function Harmony() {
       {/* TRUST ICONS SECTION */}
       <section className="py-24 bg-white border-y border-gray-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-4 block">Quality Assurance</span>
-             <h2 className="text-2xl md:text-4xl font-black text-[#1A237E] leading-tight font-serif italic">
-               Try Our Diet Friendly Supplement Today!
+          <div className="text-center mb-16 space-y-4">
+             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Quality Assurance</span>
+             <h2 className="text-3xl md:text-5xl font-black text-[#1A237E] leading-tight font-serif">
+               Diet Friendly <br />
+               <span className="italic text-[#F06292] font-medium">Clinical Supplement</span>
              </h2>
           </div>
           
@@ -1305,9 +1306,12 @@ export default function Harmony() {
              </div>
           </div>
 
-          <div className="text-center mb-20">
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">Order Fulfillment</span>
-             <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-tight tracking-tight font-serif italic">Choose Your Clinical Protocol</h2>
+          <div className="text-center mb-20 space-y-4">
+             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Order Fulfillment</span>
+             <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-tight tracking-tight font-serif">
+                Choose Your <br />
+                <span className="italic text-[#F06292] font-medium">Clinical Protocol</span>
+             </h2>
           </div>
 
            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 px-4 items-end">
@@ -1468,11 +1472,11 @@ export default function Harmony() {
       {/* RISK REVERSAL GUARANTEE SECTION */}
       <section className="py-32 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="mb-24 max-w-4xl mx-auto">
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 mb-6 block">CONSUMER PROTECTION</span>
-             <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-tight tracking-tight font-serif mb-8">
+          <div className="mb-24 max-w-4xl mx-auto space-y-6">
+             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Consumer Protection</span>
+             <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-tight tracking-tight font-serif">
                 Your Transformation. <br />
-                <span className="italic text-gray-400 font-medium">Fully Guaranteed.</span>
+                <span className="italic text-[#F06292] font-medium">Fully Guaranteed.</span>
              </h2>
              <p className="text-xl text-gray-500 font-medium italic max-w-2xl mx-auto leading-relaxed">
                 We take all the risk so you can experience the life-changing benefits of ChronoNAD+ with absolute peace of mind.
@@ -1521,13 +1525,13 @@ export default function Harmony() {
       {/* THE PROOF IS IN THE RESULTS - JUDGE.ME STYLE REDESIGN */}
       <section className="py-24 bg-white border-y border-gray-50 overflow-hidden">
          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16 max-w-4xl mx-auto">
-               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">Customer Intelligence</span>
-               <h2 className="text-4xl md:text-5xl font-black text-[#1A237E] leading-tight tracking-tight mb-8">
+            <div className="text-center mb-16 space-y-6 max-w-4xl mx-auto">
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Customer Intelligence</span>
+               <h2 className="text-3xl md:text-5xl font-black text-[#1A237E] leading-tight tracking-tight font-serif">
                   The Proof is in <br />
-                  <span className="text-gray-400 font-medium italic">The Results.</span>
+                  <span className="italic text-[#F06292] font-medium">The Results.</span>
                </h2>
-               <p className="text-sm md:text-base text-gray-500 font-medium italic max-w-2xl mx-auto">
+               <p className="text-xl text-gray-500 font-medium italic max-w-2xl mx-auto leading-relaxed">
                   Join over 53,814 women who have restored their cellular vitality and reclaimed their spark with the ChronoNAD+ cellular protocol.
                </p>
             </div>
@@ -1789,10 +1793,15 @@ export default function Harmony() {
       {/* FAQ SECTION - Redesigned for Premium Minimalist Look */}
       <section className="py-32 bg-gray-50/30">
          <div className="max-w-4xl mx-auto px-6">
-            <div className="text-center mb-20">
-               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">COMMON INQUIRIES</span>
-               <h2 className="text-4xl md:text-5xl font-black text-[#1A237E] font-serif italic mb-6">Expert Protocol Support</h2>
-               <p className="text-lg text-gray-500 font-medium italic">Everything you need to know about the ChronoNAD+ cellular system.</p>
+            <div className="text-center mb-20 space-y-4">
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Common Inquiries</span>
+               <h2 className="text-3xl md:text-5xl font-black text-[#1A237E] leading-tight tracking-tight font-serif">
+                  Expert Protocol <br />
+                  <span className="italic text-[#F06292] font-medium">Support</span>
+               </h2>
+               <p className="text-xl text-gray-500 font-medium italic max-w-2xl mx-auto leading-relaxed">
+                  Everything you need to know about the ChronoNAD+ cellular system.
+               </p>
             </div>
             
             <div className="space-y-4">
