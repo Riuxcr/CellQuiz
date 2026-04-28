@@ -170,202 +170,285 @@ export default function Harmony() {
          </div>
       </section>
 
-
-
-      {/* TESTIMONIALS SECTION - PINK & BLUE (NO BLACK) */}
-      <section className="py-32 bg-white overflow-hidden relative">
-         {/* Decorative Background Accents - Pink & Sky */}
-         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FCE4EC] rounded-full blur-[120px] opacity-40 -z-10"></div>
-         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#E1F5FE] rounded-full blur-[120px] opacity-40 -z-10"></div>
-
+      {/* FEATURED IN SECTION */}
+      <section className="py-24 bg-white border-b border-gray-50">
          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between mb-24 gap-12">
-               <div className="max-w-2xl text-center lg:text-left">
-                  <div className="inline-flex items-center gap-3 bg-[#FCE4EC] text-[#EC407A] px-4 py-1.5 rounded-full mb-6 border border-[#F8BBD0]">
-                     <span className="text-[10px] font-black uppercase tracking-widest">Verified Success Stories</span>
-                  </div>
-                  <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-[1.1] font-serif italic">
-                     Real Results. <br />
-                     <span className="italic text-[#F06292] font-medium">Clinically Measured.</span>
-                  </h2>
+            <motion.h2 
+               initial={{ opacity: 0 }}
+               whileInView={{ opacity: 1 }}
+               viewport={{ once: true }}
+               className="text-center text-2xl md:text-4xl font-black text-[#111827] mb-20 tracking-tight"
+            >
+               Research Backed Ingredients Featured In...
+            </motion.h2>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
+               {[
+                  { name: "COSMOPOLITAN", quote: "It made me so calm and centred, my husband instantly noticed the change.", style: "font-black tracking-tighter" },
+                  { name: "Women's Health", quote: "My confidence is back. My belly feels flat. And I feel like myself again!", style: "font-serif font-black" },
+                  { name: "VOGUE", quote: "Most effective dietary supplements I've discovered recently, and a real game-changer for me.", style: "font-serif tracking-[0.2em] font-medium" },
+                  { name: "marie claire", quote: "Marie Claire's Picks for Perimenopause", style: "font-serif font-black lowercase" },
+                  { name: "USA TODAY", quote: "My happiness is returning and my body is stronger. I'm absolutely blown away by how fast it works!", style: "font-black tracking-tight" },
+                  { name: "BODY+SOUL", quote: "My tummy is definitely better than it was, which is nothing less than a freaking miracle.", style: "font-serif font-bold italic tracking-tighter" }
+               ].map((item, i) => (
+                  <motion.div 
+                     key={i}
+                     initial={{ opacity: 0, y: 20 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ delay: i * 0.1 }}
+                     className="flex flex-col items-center text-center space-y-6 group px-4 py-8 rounded-3xl hover:bg-gray-50/50 transition-all duration-500"
+                  >
+                     <div className={`text-xl md:text-2xl uppercase ${item.style} text-[#111827] group-hover:scale-105 transition-transform duration-500`}>
+                        {item.name}
+                     </div>
+                     <p className="text-[11px] md:text-xs text-gray-500 font-medium leading-relaxed italic group-hover:text-gray-900 transition-colors duration-500">
+                        "{item.quote}"
+                     </p>
+                  </motion.div>
+               ))}
+            </div>
+         </div>
+      </section>
+
+
+      {/* TESTIMONIALS SECTION - PIXEL PERFECT TO SCREENSHOT */}
+      <section className="py-24 bg-[#F9FBFA] overflow-hidden relative">
+         <div className="max-w-4xl mx-auto px-6 relative z-10">
+            
+            {/* Header Area */}
+            <div className="text-center mb-16 space-y-4">
+               <h2 className="text-[10px] md:text-xs font-black text-gray-500 uppercase tracking-[0.2em] leading-relaxed">
+                  See Why 454 Clinicians and 1.4 Million Women Swear By <br /> Hormone Harmony To:
+               </h2>
+               <h3 className="text-4xl md:text-[4.5rem] font-black text-[#1A237E] leading-[1.05] tracking-tight">
+                  Beat Hormonal Weight, <br className="hidden md:block" />
+                  Cortisol Belly, Moon Face, <br className="hidden md:block" />
+                  and Double Chin
+               </h3>
+               <div className="max-w-2xl mx-auto space-y-2">
+                  <p className="text-sm md:text-base text-gray-600 font-medium leading-relaxed">
+                     Our ingredients are proven in thousands of scientific papers to help optimize hormones for women of all ages... So they can finally END
+                  </p>
+                  <p className="text-[#1A237E] font-bold text-sm md:text-base">
+                     bloating, puffiness, mood swings and poor sleep
+                  </p>
                </div>
             </div>
 
-            {/* Testimonials Horizontal Scroll - Editorial Style */}
-            <div className="relative -mx-6 px-6 overflow-hidden">
-             <motion.div 
-               drag="x"
-               dragConstraints={{ right: 0, left: -1200 }}
-               className="flex gap-8 pb-12 cursor-grab active:cursor-grabbing"
-             >
-               {[
-                 {
-                   name: "HappyFamily",
-                   headline: "NAD+ Boost for Feeling Younger!",
-                   body: "CellStart is a solid pick for anyone wanting to support healthy aging and cellular energy! After a month of one capsule daily with breakfast, I've noticed steadier energy, better focus, and recovery after workouts.",
-                   initial: "H",
-                   tag: "Healthy Aging",
-                   color: "#0D47A1"
-                 },
-                 {
-                   name: "Brenda",
-                   headline: "Great quality supplements",
-                   body: "60 capsules in a bottle. Directions say to take two a day. Pills are pretty easy to swallow. I had good results with taking this supplement. More energy and I have better sleep now. My digestion improved also.",
-                   initial: "B",
-                   tag: "Quality & Sleep",
-                   color: "#E65100"
-                 },
-                 {
-                   name: "Stephanie Jackson",
-                   headline: "Worth the Buy",
-                   body: "I’ve noticed I don’t feel as sluggish during the day, and my recovery after workouts seems quicker. Definitely worth trying if you want extra support for energy, focus, and healthy aging.",
-                   initial: "S",
-                   tag: "Energy & Recovery",
-                   color: "#F06292"
-                 },
-                 {
-                   name: "James",
-                   headline: "Easy to swallow capsules.",
-                   body: "The CellStart Nad+ Resveratrol capsules come a well-sealed bottle. I like the fact that they are made in the USA and are also Non-GMO. I feel they give me more energy and a better start to my mornings.",
-                   initial: "J",
-                   tag: "Daily Vitality",
-                   color: "#43A047"
-                 },
-                 {
-                   name: "Danielle",
-                   headline: "A Much Needed Energy Boost for Moms!",
-                   body: "As a 32-year-old mom juggling kids.. within the first week, I noticed a real difference. I wasn’t crashing halfway through the day, and I felt more clear-headed and focused.",
-                   initial: "D",
-                   tag: "Energy Boost",
-                   color: "#8E24AA"
-                 }
-               ].map((review, i) => (
-                    <motion.div 
-                       key={i} 
-                       className="min-w-[380px] md:min-w-[450px] bg-white p-12 rounded-[3rem] border border-gray-50 shadow-[0_20px_50px_rgba(0,0,0,0.04)] relative overflow-hidden group transition-all duration-700 hover:shadow-2xl"
-                    >
-                       {/* Background Quote Mark */}
-                       <span className="absolute top-4 right-8 text-[12rem] font-serif font-black italic text-gray-100/40 pointer-events-none group-hover:text-[#F06292]/5 transition-colors duration-700">“</span>
-                      
-                       <div className="relative z-10 flex flex-col h-full">
-                          <div className="flex items-center justify-between mb-10">
-                             <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-full border-2 border-gray-50 p-1">
-                                   <div className="w-full h-full rounded-full bg-gray-50 flex items-center justify-center font-black text-xs text-gray-400 group-hover:bg-[#1A237E] group-hover:text-white transition-colors">{review.initial}</div>
-                                </div>
-                                <div className="flex flex-col">
-                                   <span className="text-[12px] font-black text-[#1A237E] uppercase tracking-widest">{review.name}</span>
-                                   <div className="flex items-center gap-1.5">
-                                      <div className="w-1 h-1 rounded-full bg-[#F06292] animate-pulse"></div>
-                                      <span className="text-[8px] font-black text-gray-300 uppercase tracking-widest">Verified Transformation</span>
-                                   </div>
-                                </div>
-                             </div>
-                             <div className="flex text-[#F06292] text-[10px] gap-0.5">
-                                {[...Array(5)].map((_, j) => <span key={j}>★</span>)}
-                             </div>
-                          </div>
-                    
-                          <h5 className="text-xl md:text-2xl font-black text-[#1A237E] mb-6 font-serif italic leading-tight">{review.headline}</h5>
-                          <p className="text-lg text-gray-500 leading-relaxed font-light mb-10 italic">"{review.body}"</p>
-                          
-                          <div className="mt-auto pt-8 border-t border-gray-50 flex items-center justify-between">
-                             <span className="px-4 py-1.5 rounded-full bg-gray-50 text-[8px] font-black uppercase tracking-widest text-gray-400 group-hover:bg-[#FCE4EC] group-hover:text-[#F06292] transition-all">{review.tag}</span>
-                             <span className="text-[9px] font-black text-gray-200 uppercase tracking-widest">Clinical Protocol</span>
-                          </div>
-                       </div>
-                    </motion.div>
-               ))}
-             </motion.div>
-             
-             {/* Gradient Overlays for Scroll Indicator */}
-             <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
-             <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
-           </div>
-
-           {/* Final Section CTA */}
-          <div className="flex flex-col items-center gap-8">
-            <motion.button 
-               whileHover={{ scale: 1.02 }}
-               whileTap={{ scale: 0.98 }}
-               onClick={scrollToProducts}
-               className="min-w-[380px] bg-[#0D47A1] text-white font-black text-xl px-12 py-8 rounded-[2.5rem] uppercase tracking-widest hover:bg-[#F06292] transition-all duration-500 shadow-2xl flex items-center justify-center group relative overflow-hidden"
-            >
-               <span className="relative z-10">Start My Transformation</span>
-               <svg className="w-6 h-6 ml-4 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </motion.button>
-            <div className="flex items-center gap-2 text-gray-400">
-               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-               <span className="text-[10px] font-black italic uppercase tracking-widest">Clinical 60-Day Money Back Guarantee</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* THE SILENT DRIVER - NAD+ DECLINE SECTION */}
-      <section className="py-32 bg-gray-50/30 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-24 max-w-4xl mx-auto">
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 mb-6 block">The Silent Driver</span>
-             <h2 className="text-4xl md:text-7xl font-black text-[#1A237E] leading-[1.05] tracking-tight font-serif mb-8">
-                As You Age, Your Body’s NAD+ Levels Plummet By <span className="text-[#0D47A1]">Over 50%</span>...
-             </h2>
-             <p className="text-xl md:text-2xl text-gray-500 font-medium italic leading-relaxed">
-                And that’s when <span className="text-[#1A237E] font-black not-italic">everything changes</span> in your cells.
-             </p>
-          </div>
-
-          {/* Before & After Cellular Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-             {[
-               { 
-                 from: "Persistent Brain Fog & Midday Crashes", 
-                 to: "Sharp Focus & Resilient Energy",
-                 label: "Cognitive Baseline",
-                 bgColor: "bg-[#E3F2FD]/50"
-               },
-               { 
-                 from: "Slow Recovery & Dull, Aging Skin", 
-                 to: "Rapid Cellular Renewal & Youthful Glow",
-                 label: "Cellular Renewal",
-                 bgColor: "bg-[#FFF3E0]/50"
-               },
-               { 
-                 from: "Unexplained Fatigue & Physical \"Heavy\" Feeling", 
-                 to: "Systemic Vitality & Effortless Movement",
-                 label: "Physical Resilience",
-                 bgColor: "bg-[#FCE4EC]/50"
-               }
-             ].map((item, i) => (
-               <div key={i} className={`group ${item.bgColor} rounded-[3rem] p-10 border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-700 relative overflow-hidden`}>
-                  <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                     <span className="text-4xl font-serif font-black italic">0{i+1}</span>
-                  </div>
-                  <div className="space-y-6 relative z-10">
-                     <span className="text-[9px] font-black uppercase tracking-widest text-[#1A237E]/40 border-b border-[#1A237E]/5 pb-2 inline-block">{item.label}</span>
-                     <div className="space-y-4">
-                        <div className="flex items-start gap-3 opacity-40">
-                           <span className="text-lg">✕</span>
-                           <p className="text-sm font-medium line-through decoration-[#1A237E]/20 text-[#1A237E]">{item.from}</p>
-                        </div>
-                        <div className="flex items-start gap-3 text-[#1A237E]">
-                           <span className="text-lg">✅</span>
-                           <p className="text-lg font-black leading-tight">{item.to}</p>
+            {/* Testimonials Grid */}
+            <div className="space-y-6">
+               
+               {/* 1. Jenna T. - Full Width */}
+               <div className="bg-white p-8 md:p-10 rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-gray-100 transition-all duration-500">
+                  <div className="flex items-center justify-between mb-8">
+                     <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center font-black text-gray-300 text-xs">J</div>
+                        <div className="flex flex-col">
+                           <span className="font-black text-sm text-[#111827]">Jenna T.</span>
+                           <div className="flex items-center gap-1 text-[#4CAF50] mt-0.5">
+                              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                              <span className="text-[8px] font-black uppercase tracking-widest">Verified Buyer</span>
+                           </div>
                         </div>
                      </div>
+                     <div className="flex text-[#FFC107] gap-0.5">
+                        {[...Array(5)].map((_, i) => <span key={i} className="text-sm">★</span>)}
+                     </div>
+                  </div>
+                  <h4 className="text-lg font-black text-[#111827] mb-3 uppercase tracking-tight">LIFE-CHANGING!!!</h4>
+                  <p className="text-sm md:text-base text-gray-500 leading-relaxed italic font-medium">
+                     "I feel 20yrs younger, I sleep like a baby, my joints feel oiled... and I’ve lost weight without even trying. These capsules are pure magic. 🙌🔥"
+                  </p>
+               </div>
+
+               {/* 2 & 3. Row of Two */}
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Karen G. */}
+                  <div className="bg-white p-8 md:p-10 rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-gray-100 transition-all duration-500">
+                     <div className="flex items-center justify-between mb-8">
+                        <div className="flex items-center gap-4">
+                           <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center font-black text-gray-300 text-xs">K</div>
+                           <div className="flex flex-col">
+                              <span className="font-black text-sm text-[#111827]">Karen G.</span>
+                              <div className="flex items-center gap-1 text-[#4CAF50] mt-0.5">
+                                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                                 <span className="text-[8px] font-black uppercase tracking-widest">Verified Buyer</span>
+                              </div>
+                           </div>
+                        </div>
+                        <div className="flex text-[#FFC107] gap-0.5">
+                           {[...Array(5)].map((_, i) => <span key={i} className="text-sm">★</span>)}
+                        </div>
+                     </div>
+                     <h4 className="text-base font-black text-[#111827] mb-3 tracking-tight">It’s like I’m aging backwards!</h4>
+                     <p className="text-[13px] text-gray-500 leading-relaxed italic font-medium">
+                        "I feel like I’m glowing from the inside out. My hair’s fuller, my face is tighter, my belly is vanishing...and I feel stronger, sharper, and more alive than I have in YEARS"
+                     </p>
+                  </div>
+
+                  {/* Tina F. */}
+                  <div className="bg-white p-8 md:p-10 rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-gray-100 transition-all duration-500">
+                     <div className="flex items-center justify-between mb-8">
+                        <div className="flex items-center gap-4">
+                           <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center font-black text-gray-300 text-xs">T</div>
+                           <div className="flex flex-col">
+                              <span className="font-black text-sm text-[#111827]">Tina F.</span>
+                              <div className="flex items-center gap-1 text-[#4CAF50] mt-0.5">
+                                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                                 <span className="text-[8px] font-black uppercase tracking-widest">Verified Buyer</span>
+                              </div>
+                           </div>
+                        </div>
+                        <div className="flex text-[#FFC107] gap-0.5">
+                           {[...Array(5)].map((_, i) => <span key={i} className="text-sm">★</span>)}
+                        </div>
+                     </div>
+                     <h4 className="text-base font-black text-[#111827] mb-3 tracking-tight">I’ll never be without this</h4>
+                     <p className="text-[13px] text-gray-500 leading-relaxed italic font-medium">
+                        "I was sweating through my pajamas every night and then I’d be exhausted all day, snapping at everyone. Two weeks into this, I’m sleeping better, I feel calm..."
+                     </p>
                   </div>
                </div>
-             ))}
-          </div>
 
-          <div className="max-w-3xl mx-auto bg-[#E3F2FD]/40 p-12 rounded-[3.5rem] border border-[#E3F2FD] shadow-xl relative overflow-hidden group">
-             <div className="absolute -top-10 -right-10 text-[12rem] font-serif font-black italic text-[#E3F2FD]/30 pointer-events-none">“</div>
-             <p className="text-2xl md:text-3xl font-serif italic text-[#1A237E] leading-relaxed relative z-10">
-                "It's not just a lack of sleep—it's a hormonal and cellular storm. You feel <span className="text-[#0D47A1] font-black not-italic underline decoration-[#E3F2FD] decoration-8 underline-offset-4">wired but tired</span>, unable to recover no matter how much you rest, and your skin begins to lose the 'bounce' it had in your 20s and 30s."
-             </p>
-          </div>
-        </div>
+               {/* 4. Deb A. - Full Width */}
+               <div className="bg-white p-8 md:p-10 rounded-[2rem] shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-gray-100 transition-all duration-500">
+                  <div className="flex items-center justify-between mb-8">
+                     <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center font-black text-gray-300 text-xs">D</div>
+                        <div className="flex flex-col">
+                           <span className="font-black text-sm text-[#111827]">Deb A.</span>
+                           <div className="flex items-center gap-1 text-[#4CAF50] mt-0.5">
+                              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                              <span className="text-[8px] font-black uppercase tracking-widest">Verified Buyer</span>
+                           </div>
+                        </div>
+                     </div>
+                     <div className="flex text-[#FFC107] gap-0.5">
+                        {[...Array(5)].map((_, i) => <span key={i} className="text-sm">★</span>)}
+                     </div>
+                  </div>
+                  <h4 className="text-lg font-black text-[#111827] mb-3 tracking-tight">I finally feel like ME again.</h4>
+                  <p className="text-sm md:text-base text-gray-500 leading-relaxed italic font-medium">
+                     "I didn’t expect much. Just figured I’d try it because I was desperate. But WOW... My pants are looser, my brain fog is gone and my energy is back. Reordering now."
+                  </p>
+               </div>
+
+            </div>
+
+            {/* CTA Area */}
+            <div className="mt-20 flex flex-col items-center gap-6">
+               <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={scrollToProducts}
+                  className="w-full md:w-auto min-w-[380px] bg-[#1A237E] text-white font-black text-xl px-12 py-7 rounded-2xl uppercase tracking-widest shadow-xl"
+               >
+                  Try Our Protocols
+               </motion.button>
+               <div className="flex items-center gap-2 text-gray-400 font-bold uppercase tracking-widest text-[9px]">
+                  <div className="w-5 h-5 bg-[#4CAF50] rounded flex items-center justify-center">
+                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                  <span>60 Day Money Back Guarantee</span>
+               </div>
+            </div>
+
+         </div>
       </section>
+
+
+
+      {/* THE SILENT DRIVER - PREMIUM REDESIGN */}
+      <section className="py-32 bg-white overflow-hidden relative">
+         <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               className="text-center mb-24 max-w-4xl mx-auto"
+            >
+               <span className="text-[11px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 mb-8 block">The Silent Driver</span>
+               <h2 className="text-5xl md:text-8xl font-black text-[#1A237E] leading-[1] tracking-tighter mb-10">
+                  As You Age, Your Body’s NAD+ Levels Plummet By <span className="text-[#F06292]">Over 50%</span>...
+               </h2>
+               <p className="text-2xl md:text-3xl text-gray-400 font-medium italic leading-relaxed">
+                  And that’s when <span className="text-[#1A237E] font-black not-italic">everything changes</span> in your cells.
+               </p>
+            </motion.div>
+
+            {/* Before & After Cellular Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-24">
+               {[
+                  { 
+                     from: "Persistent Brain Fog & Midday Crashes", 
+                     to: "Sharp Focus & Resilient Energy",
+                     label: "Cognitive Baseline",
+                     bgColor: "bg-[#E3F2FD]/30",
+                     accent: "#0D47A1"
+                  },
+                  { 
+                     from: "Slow Recovery & Dull, Aging Skin", 
+                     to: "Rapid Cellular Renewal & Youthful Glow",
+                     label: "Cellular Renewal",
+                     bgColor: "bg-[#FFF3E0]/30",
+                     accent: "#F06292"
+                  },
+                  { 
+                     from: "Unexplained Fatigue & Physical \"Heavy\" Feeling", 
+                     to: "Systemic Vitality & Effortless Movement",
+                     label: "Physical Resilience",
+                     bgColor: "bg-[#FCE4EC]/30",
+                     accent: "#BA68C8"
+                  }
+               ].map((item, i) => (
+                  <motion.div 
+                     key={i} 
+                     initial={{ opacity: 0, y: 20 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ delay: i * 0.1 }}
+                     whileHover={{ y: -10 }}
+                     className={`group ${item.bgColor} rounded-[4rem] p-12 border border-gray-50 shadow-sm hover:shadow-[0_40px_80px_rgba(0,0,0,0.04)] transition-all duration-700 relative overflow-hidden`}
+                  >
+                     <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <span className="text-6xl font-black italic">0{i+1}</span>
+                     </div>
+                     <div className="space-y-8 relative z-10">
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 border-b border-gray-100 pb-2 inline-block">{item.label}</span>
+                        <div className="space-y-6">
+                           <div className="flex items-start gap-4 opacity-30 group-hover:opacity-20 transition-opacity">
+                              <div className="w-6 h-6 rounded-full border border-gray-400 flex items-center justify-center shrink-0 mt-0.5">
+                                 <span className="text-[10px]">✕</span>
+                              </div>
+                              <p className="text-base font-medium line-through decoration-gray-300 text-gray-600">{item.from}</p>
+                           </div>
+                           <div className="flex items-start gap-4 text-[#1A237E]">
+                              <div className="w-6 h-6 rounded-full bg-[#66CDAA] flex items-center justify-center shrink-0 mt-1 shadow-lg shadow-[#66CDAA]/20">
+                                 <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
+                              </div>
+                              <p className="text-2xl font-black leading-tight tracking-tight">{item.to}</p>
+                           </div>
+                        </div>
+                     </div>
+                  </motion.div>
+               ))}
+            </div>
+
+            <motion.div 
+               initial={{ opacity: 0, scale: 0.95 }}
+               whileInView={{ opacity: 1, scale: 1 }}
+               viewport={{ once: true }}
+               className="max-w-4xl mx-auto bg-[#E3F2FD]/30 p-16 rounded-[5rem] border border-[#E3F2FD] shadow-xl relative overflow-hidden group"
+            >
+               <div className="absolute -top-16 -right-16 text-[18rem] font-serif font-black italic text-[#E3F2FD]/40 pointer-events-none">“</div>
+               <p className="text-3xl md:text-4xl font-serif italic text-[#1A237E] leading-relaxed relative z-10">
+                  "It's not just a lack of sleep—it's a hormonal and cellular storm. You feel <span className="text-[#0D47A1] font-black not-italic underline decoration-[#E3F2FD] decoration-8 underline-offset-4">wired but tired</span>, unable to recover no matter how much you rest, and your skin begins to lose the 'bounce' it had in your 20s."
+               </p>
+            </motion.div>
+         </div>
+      </section>
+
 
       {/* THE INTERNAL STRUGGLE - WHY SECTION */}
       <section className="py-32 bg-white">
@@ -1024,6 +1107,88 @@ export default function Harmony() {
         </div>
       </section>
 
+      {/* WHAT HAPPENS WHEN YOU START TAKING HORMONE HARMONY SECTION */}
+      <section className="py-32 bg-white overflow-hidden">
+         <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+               
+               {/* Left Column: Timeline Content */}
+               <div className="space-y-12">
+                  <div className="space-y-4">
+                     <h2 className="text-4xl md:text-5xl font-black text-[#111827] leading-[1.1]">
+                        What Happens When <br /> You Start Taking <br />
+                        <span className="text-[#0D47A1]">ChronoNAD+?</span>
+                     </h2>
+                  </div>
+
+                  {/* Timeline */}
+                  <div className="relative pl-12 space-y-10">
+                     {/* Vertical Line */}
+                     <div className="absolute left-[18px] top-4 bottom-4 w-0.5 bg-gray-100"></div>
+
+                     {[
+                        { 
+                           time: "24 Hours", 
+                           text: "Feel the first wave of calm as cortisol — your body’s main stress hormone — begins to drop. Mood swings feel softer, your head feels clearer, and sleep starts to come easier. Some women even notice the puffiness in their face easing overnight." 
+                        },
+                        { 
+                           time: "Day 7", 
+                           text: "Your clothes start to feel looser as stubborn hormonal belly bloat begins to shrink. Hot flashes and night sweats calm down, leaving you sleeping deeper and waking with more energy. Sugar cravings aren’t controlling your every thought anymore." 
+                        },
+                        { 
+                           time: "Day 14", 
+                           text: "Catch your reflection and see it — your once puffy face now looks more chiseled, your jawline sharper. Your belly is flatter, your skin more vibrant, and your moods far more stable. Energy is steady all day without the caffeine crashes." 
+                        },
+                        { 
+                           time: "A few short weeks from now...", 
+                           text: "Don’t be surprised when your friends and family do a double take — the puffiness, bloating, cranky moods, and stubborn hormonal weight are gone. You feel balanced, confident, and comfortable in your own body again... and the best part? You didn’t have to starve yourself, run a marathon, or give up the foods you love to get here." 
+                        }
+                     ].map((item, i) => (
+                        <motion.div 
+                           key={i}
+                           initial={{ opacity: 0, x: -20 }}
+                           whileInView={{ opacity: 1, x: 0 }}
+                           viewport={{ once: true }}
+                           transition={{ delay: i * 0.1 }}
+                           className="relative"
+                        >
+                           {/* Timeline Dot */}
+                           <div className="absolute -left-[12px] top-2 w-6 h-6 rounded-full bg-[#0D47A1] border-4 border-white shadow-sm z-10"></div>
+                           
+                           <div className="bg-white p-8 md:p-10 rounded-[2rem] border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-xl transition-all duration-500">
+                              <h4 className="text-xl font-black text-[#111827] mb-3">{item.time}</h4>
+                              <p className="text-gray-500 leading-relaxed font-medium text-sm md:text-base">
+                                 {item.text}
+                              </p>
+                           </div>
+                        </motion.div>
+                     ))}
+                  </div>
+
+               </div>
+
+               {/* Right Column: Results Image */}
+               <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  className="relative lg:sticky lg:top-24"
+               >
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#FCE4EC] to-transparent rounded-[4rem] blur-[100px] opacity-30"></div>
+                  <div className="relative rounded-[4rem] overflow-hidden shadow-2xl border border-white">
+                     <img 
+                        src="/hormone_harmony_results_woman.png" 
+                        alt="Hormone Harmony Results" 
+                        className="w-full h-auto object-cover"
+                     />
+                  </div>
+               </motion.div>
+
+            </div>
+         </div>
+      </section>
+
+
       {/* TRUST ICONS SECTION */}
       <section className="py-24 bg-white border-y border-gray-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -1312,154 +1477,163 @@ export default function Harmony() {
       </section>
 
       {/* COMPREHENSIVE REVIEWS SECTION */}
-      <section className="py-32 bg-white border-y border-gray-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-24 max-w-4xl mx-auto">
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">Customer Intelligence</span>
-             <h2 className="text-4xl md:text-6xl font-black text-[#1A237E] leading-tight tracking-tight font-serif italic mb-8">
-                The Proof is in <br />
-                <span className="text-gray-400 font-medium">The Results.</span>
-             </h2>
-             <p className="text-xl text-gray-500 font-medium italic">
-                Join over 53,814 women who have restored their cellular vitality and reclaimed their spark with the ChronoNAD+ cellular protocol.
-             </p>
-          </div>
+      {/* THE PROOF IS IN THE RESULTS - JUDGE.ME STYLE REDESIGN */}
+      <section className="py-24 bg-white border-y border-gray-50 overflow-hidden">
+         <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16 max-w-4xl mx-auto">
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">Customer Intelligence</span>
+               <h2 className="text-4xl md:text-5xl font-black text-[#1A237E] leading-tight tracking-tight mb-8">
+                  The Proof is in <br />
+                  <span className="text-gray-400 font-medium italic">The Results.</span>
+               </h2>
+               <p className="text-sm md:text-base text-gray-500 font-medium italic max-w-2xl mx-auto">
+                  Join over 53,814 women who have restored their cellular vitality and reclaimed their spark with the ChronoNAD+ cellular protocol.
+               </p>
+            </div>
 
-          {/* Trust Dashboard - Redesigned for Premium Look */}
-          <div className="bg-gray-50/50 backdrop-blur-md rounded-[3rem] p-10 md:p-14 mb-20 flex flex-col lg:flex-row items-center justify-between border border-gray-100 gap-12">
-             <div className="flex items-center gap-10">
-                <div className="flex flex-col items-center lg:items-start">
-                   <div className="text-6xl font-serif italic font-black text-[#1A237E]">4.8</div>
-                   <div className="flex text-[#1A237E] text-xl mb-1 mt-2">
-                      {[...Array(5)].map((_, i) => <span key={i}>★</span>)}
-                   </div>
-                   <span className="text-[10px] text-gray-400 font-black uppercase tracking-widest">Global Satisfaction Score</span>
-                </div>
-                <div className="h-20 w-[1px] bg-gray-200 hidden lg:block"></div>
-                <div className="flex flex-col">
-                   <span className="text-3xl font-black text-[#1A237E]">99%</span>
-                   <span className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1 italic">Would Recommend Protocol</span>
-                </div>
-             </div>
-             
-             <div className="flex flex-col items-center lg:items-end gap-6">
-                <div className="flex items-center gap-3">
-                   <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center">
-                      <svg className="w-5 h-5 text-[#1A237E]" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                   </div>
-                   <span className="text-sm font-black uppercase tracking-widest text-[#1A237E]">Verified Clinical Trust Score</span>
-                </div>
-                <div className="flex -space-x-3">
-                   {[...Array(5)].map((_, i) => (
-                      <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center overflow-hidden">
-                         <img src={`https://i.pravatar.cc/100?u=${i}`} alt="user" className="w-full h-full object-cover grayscale" />
-                      </div>
-                   ))}
-                   <div className="w-10 h-10 rounded-full border-2 border-white bg-[#0D47A1] text-white flex items-center justify-center text-[10px] font-black">+53k</div>
-                </div>
-             </div>
-          </div>
-
-          {/* Review Feed - Redesigned as 2-Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-             {[
-               {
-                 name: "Brenda",
-                 title: "Great quality supplements",
-                 body: "60 capsules in a bottle. Directions say to take two a day. Pills are pretty easy to swallow. I had good results with taking this supplement. More energy and I have better sleep now. My digestion improved also.",
-                 date: "2 months ago",
-                 initials: "B"
-               },
-               {
-                 name: "HappyFamily",
-                 title: "NAD+ Boost for Feeling Younger!",
-                 body: "CellStart is a solid pick for anyone wanting to support healthy aging and cellular energy! After a month of one capsule daily with breakfast, I've noticed steadier energy, better focus, and recovery after workouts.",
-                 date: "1 month ago",
-                 initials: "HF"
-               },
-               {
-                 name: "Stephanie Jackson",
-                 title: "Worth the Buy",
-                 body: "I’ve noticed I don’t feel as sluggish during the day, and my recovery after workouts seems quicker. Definitely worth trying if you want extra support for energy, focus, and healthy aging.",
-                 date: "3 months ago",
-                 initials: "SJ"
-               },
-               {
-                 name: "James",
-                 title: "Easy to swallow capsules.",
-                 body: "The CellStart Nad+ Resveratrol capsules come a well-sealed bottle. I like the fact that they are made in the USA and are also Non-GMO. I feel they give me more energy and a better start to my mornings.",
-                 date: "1 month ago",
-                 initials: "J"
-               },
-               {
-                 name: "Danielle",
-                 title: "A Much Needed Energy Boost for Moms!",
-                 body: "As a 32-year-old mom juggling kids.. within the first week, I noticed a real difference. I wasn’t crashing halfway through the day, and I felt more clear-headed and focused.",
-                 date: "2 months ago",
-                 initials: "D"
-               }
-             ].map((review, i) => (
-               <div key={i} className={`group ${['bg-[#E3F2FD]/50', 'bg-[#FFF3E0]/50', 'bg-[#FCE4EC]/50'][i % 3]} p-10 md:p-14 rounded-[3.5rem] border border-gray-100 hover:border-[#0D47A1] hover:shadow-2xl transition-all duration-700 relative overflow-hidden flex flex-col`}>
-                  {/* Background Initial */}
-                  <span className="absolute top-10 right-10 text-6xl font-serif font-black italic text-gray-50/50 -z-10 group-hover:text-gray-100/50 transition-colors">{review.initials}</span>
-                  
-                  <div className="flex items-start gap-4 mb-8">
-                     <div className="w-12 h-12 rounded-full bg-[#0D47A1] text-white flex items-center justify-center font-black text-xs uppercase tracking-widest">{review.initials}</div>
-                     <div>
-                        <div className="flex items-center gap-2">
-                           <p className="font-black text-[#1A237E] uppercase tracking-tight">{review.name}</p>
-                           <svg className="w-4 h-4 text-[#1A237E]" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+            {/* Trust Dashboard Bar */}
+            <div className="bg-white rounded-[2rem] p-8 md:p-10 mb-16 flex flex-col lg:flex-row items-center justify-between border border-gray-100 gap-10 shadow-[0_10px_30px_rgba(0,0,0,0.02)]">
+               <div className="flex items-center gap-12">
+                  <div className="flex flex-col items-center lg:items-start">
+                     <div className="flex items-center gap-3">
+                        <span className="text-4xl font-black text-[#111827]">4.8</span>
+                        <div className="flex text-[#FFC107] text-sm">
+                           {[...Array(5)].map((_, i) => <span key={i}>★</span>)}
                         </div>
-                        <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest">Verified Protocol User</p>
                      </div>
+                     <span className="text-[9px] text-gray-400 font-black uppercase tracking-widest mt-1">Global Satisfaction Score</span>
                   </div>
+                  <div className="h-12 w-[1px] bg-gray-100 hidden lg:block"></div>
+                  <div className="flex flex-col items-center lg:items-start">
+                     <span className="text-2xl font-black text-[#111827]">99%</span>
+                     <span className="text-[9px] text-gray-400 font-black uppercase tracking-widest mt-1">Would Recommend Protocol</span>
+                  </div>
+               </div>
+               
+               <div className="flex flex-col items-center lg:items-end gap-3">
+                  <div className="flex items-center gap-2">
+                     <div className="w-5 h-5 bg-[#0D47A1] rounded-full flex items-center justify-center">
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                     </div>
+                     <span className="text-[10px] font-black uppercase tracking-widest text-[#111827]">Verified Clinical Trust Score</span>
+                  </div>
+                  <div className="flex -space-x-2">
+                     {[...Array(5)].map((_, i) => (
+                        <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-gray-100 overflow-hidden shadow-sm">
+                           <img src={`https://i.pravatar.cc/100?u=stats-${i}`} alt="user" className="w-full h-full object-cover" />
+                        </div>
+                     ))}
+                     <div className="w-8 h-8 rounded-full border-2 border-white bg-[#0D47A1] text-white flex items-center justify-center text-[8px] font-black shadow-sm">+53k</div>
+                  </div>
+               </div>
+            </div>
 
-                  <div className="flex-grow">
+            {/* Review Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+               {[
+                  {
+                     name: "BRENDA",
+                     title: "Great quality supplements",
+                     body: "60 capsules in a bottle. Directions say to take two a day. Pills are pretty easy to swallow. I had good results with taking this supplement. More energy and I have better sleep now. My digestion improved also.",
+                     date: "2 MONTHS AGO",
+                     bg: "bg-[#E3F2FD]/30",
+                     initial: "B"
+                  },
+                  {
+                     name: "HAPPYFAMILY",
+                     title: "NAD+ Boost for Feeling Younger!",
+                     body: "CellStart is a solid pick for anyone wanting to support healthy aging and cellular energy! After a month of one capsule daily with breakfast, I've noticed steadier energy, better focus, and recovery after workouts.",
+                     date: "1 MONTH AGO",
+                     bg: "bg-[#FFF3E0]/30",
+                     initial: "HF"
+                  },
+                  {
+                     name: "STEPHANIE JACKSON",
+                     title: "Worth the Buy",
+                     body: "I’ve noticed I don’t feel as sluggish during the day, and my recovery after workouts seems quicker. Definitely worth trying if you want extra support for energy, focus, and healthy aging.",
+                     date: "3 MONTHS AGO",
+                     bg: "bg-[#FCE4EC]/30",
+                     initial: "SJ"
+                  },
+                  {
+                     name: "JAMES",
+                     title: "Easy to swallow capsules.",
+                     body: "The CellStart Nad+ Resveratrol capsules come a well-sealed bottle. I like the fact that they are made in the USA and are also Non-GMO. I feel they give me more energy and a better start to my mornings.",
+                     date: "1 MONTH AGO",
+                     bg: "bg-[#E8F5E9]/30",
+                     initial: "J"
+                  },
+                  {
+                     name: "DANIELLE",
+                     title: "A Much Needed Energy Boost for Moms!",
+                     body: "As a 32-year-old mom juggling kids.. within the first week, I noticed a real difference. I wasn’t crashing halfway through the day, and I felt more clear-headed and focused.",
+                     date: "2 MONTHS AGO",
+                     bg: "bg-[#FFFDE7]/40",
+                     initial: "D"
+                  }
+               ].map((review, i) => (
+                  <div key={i} className={`${review.bg} p-8 md:p-10 rounded-[2rem] border border-white flex flex-col group hover:shadow-xl transition-all duration-500`}>
                      <div className="flex justify-between items-start mb-6">
-                        <div className="flex text-[#1A237E] text-lg">
-                           {[...Array(5)].map((_, j) => <span key={j}>★</span>)}
+                        <div className="flex items-center gap-3">
+                           <div className="w-10 h-10 rounded-full bg-[#0D47A1] text-white flex items-center justify-center font-black text-xs">{review.initial}</div>
+                           <div className="flex flex-col">
+                              <div className="flex items-center gap-1.5">
+                                 <span className="font-black text-[11px] text-[#111827] uppercase tracking-tight">{review.name}</span>
+                                 <div className="w-3.5 h-3.5 bg-[#0D47A1] rounded-full flex items-center justify-center">
+                                    <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                                 </div>
+                              </div>
+                              <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Verified Protocol User</span>
+                           </div>
                         </div>
-                        <span className="text-[10px] font-black text-gray-300 uppercase tracking-widest">{review.date}</span>
+                        <span className="text-[9px] font-black text-gray-300 uppercase tracking-widest">{review.date}</span>
                      </div>
-                     <h4 className="text-2xl font-black text-[#1A237E] font-serif italic mb-6 leading-tight">{review.title}</h4>
-                     <p className="text-lg text-gray-500 leading-relaxed font-medium mb-8">"{review.body}"</p>
+                     
+                     <div className="flex text-[#FFC107] text-[10px] mb-4">
+                        {[...Array(5)].map((_, j) => <span key={j}>★</span>)}
+                     </div>
+
+                     <h4 className="text-xl font-black text-[#0D47A1] mb-4 font-serif italic tracking-tight">{review.title}</h4>
+                     <p className="text-[13px] md:text-sm text-gray-500 leading-relaxed font-medium mb-8">"{review.body}"</p>
+
+                     <div className="mt-auto pt-6 border-t border-white/50 flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-white/50 flex items-center justify-center p-1 border border-white">
+                           <img src="/60_Capsules.jpg" alt="product" className="w-full h-full object-contain mix-blend-multiply" />
+                        </div>
+                        <div className="text-[8px] font-black uppercase tracking-widest text-gray-400">
+                           <p className="mb-0.5 opacity-60">Authenticated Protocol Review</p>
+                           <p className="text-[#0D47A1]">ChronoNAD+ Cellular Protocol™</p>
+                        </div>
+                     </div>
                   </div>
+               ))}
+            </div>
 
-                  <div className="mt-auto flex items-center gap-3 py-4 border-t border-gray-50">
-                     <div className="w-10 h-14 bg-gray-50 rounded-xl overflow-hidden shrink-0 border border-gray-100">
-                        <img src="/60_Capsules.jpg" alt="Reviewing Product" className="w-full h-full object-contain p-2 grayscale group-hover:grayscale-0 transition-all duration-700 mix-blend-multiply" />
-                     </div>
-                     <div className="text-[9px] leading-tight font-black uppercase tracking-widest text-gray-400">
-                        <p className="mb-1">Authenticated Protocol Review</p>
-                        <p className="text-[#1A237E]">Hormone Harmony™</p>
-                     </div>
-                  </div>
-               </div>
-             ))}
-          </div>
-
-          <div className="flex flex-col items-center gap-12">
-             <button className="text-xs font-black uppercase tracking-[0.4em] text-[#1A237E] border-b-2 border-[#0D47A1] pb-2 hover:text-gray-400 hover:border-gray-400 transition-all">
-                Access All 53,814 Reviews
-             </button>
-
-             <div className="flex flex-col items-center gap-6 w-full">
-               <button 
-                 onClick={scrollToProducts}
-                 className="w-full md:w-auto min-w-[400px] bg-[#0D47A1] text-white font-black text-xl md:text-2xl px-12 py-8 rounded-[2rem] uppercase tracking-widest hover:bg-[#F06292] transition-all duration-300 shadow-2xl flex items-center justify-center group"
-               >
-                 Start My Transformation
-                 <svg className="w-6 h-6 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            {/* Bottom Actions */}
+            <div className="flex flex-col items-center gap-12">
+               <button className="text-[10px] font-black uppercase tracking-[0.3em] text-[#0D47A1] border-b-2 border-[#0D47A1]/20 pb-1.5 hover:border-[#0D47A1] transition-all">
+                  Access All 53,814 Reviews
                </button>
-               <div className="flex items-center gap-3">
-                 <div className="w-5 h-5 rounded bg-[#0D47A1] flex items-center justify-center">
-                    <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
-                 </div>
-                 <span className="text-lg font-bold text-[#1A237E] italic">60-Day Clinical Guarantee</span>
+
+               <div className="flex flex-col items-center gap-6 w-full max-w-xl">
+                  <motion.button 
+                     whileHover={{ scale: 1.02 }}
+                     whileTap={{ scale: 0.98 }}
+                     onClick={scrollToProducts}
+                     className="w-full bg-[#0D47A1] text-white font-black text-lg px-12 py-7 rounded-2xl uppercase tracking-widest shadow-2xl flex items-center justify-center group"
+                  >
+                     Start My Transformation
+                     <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                  </motion.button>
+                  <div className="flex items-center gap-2 text-gray-500 font-bold uppercase tracking-widest text-[9px]">
+                     <div className="w-5 h-5 bg-[#0D47A1] rounded flex items-center justify-center">
+                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
+                     </div>
+                     <span>60-Day Clinical Guarantee</span>
+                  </div>
                </div>
-             </div>
-          </div>
-        </div>
+            </div>
+         </div>
       </section>
 
       {/* SUPPLEMENT FACTS TRANSPARENCY SECTION */}
