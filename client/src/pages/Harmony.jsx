@@ -96,52 +96,93 @@ export default function Harmony() {
                transition={{ duration: 0.8, ease: "easeOut" }}
                className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
             >
-               {/* Left Column: Text Content */}
-               <div className="text-center lg:text-left space-y-10">
-                  <div className="space-y-6">
-                     <div className="inline-flex items-center gap-3 bg-[#FCE4EC] text-[#F06292] px-4 py-1.5 rounded-full mb-2">
-                        <span className="text-[10px] font-black uppercase tracking-widest">Protocol Breakthrough</span>
-                     </div>
-                     <h1 className="text-3xl md:text-5xl lg:text-[4.2rem] font-serif text-[#1A237E] leading-[1.0] tracking-tight">
-                        Support Your Cells. <br />
-                        <span className="italic text-[#F06292] font-medium">Bring Your Glow Back.</span>
-                     </h1>
-                     <p className="text-lg md:text-xl text-[#283593]/70 font-medium italic leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                        CHRONONAD+ helps restore declining NAD+ levels — supporting your skin’s ability to repair and renew from within, so you look brighter, feel more energized, and less run down day to day.
-                     </p>
-                  </div>
+                {/* Left Column: Text Content */}
+                <div className="text-center lg:text-left space-y-8 relative">
+                   <div className="space-y-6 relative z-10">
+                      <motion.div 
+                         initial={{ opacity: 0, x: -20 }}
+                         animate={{ opacity: 1, x: 0 }}
+                         transition={{ delay: 0.2 }}
+                         className="inline-flex items-center gap-3 bg-white border border-gray-100 text-[#0D47A1] px-4 py-1.5 rounded-full shadow-sm"
+                      >
+                         <div className="w-1.5 h-1.5 rounded-full bg-[#F06292] animate-pulse"></div>
+                         <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] italic">Protocol Access Enabled</span>
+                      </motion.div>
 
-                  {/* Clinical Metrics Overlay */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-8 border-y border-[#E3F2FD]">
-                     {[
-                        { text: "NAD+ levels decline by your mid-30s", val: "Up to 30%", accent: "#F06292" },
-                        { text: "Visible skin + energy improvements", val: "8–12 Weeks", accent: "#03A9F4" },
-                        { text: "Deeper cellular repair formula", val: "2-in-1", accent: "#BA68C8" }
-                     ].map((item, i) => (
-                        <div key={i} className="flex flex-col items-center lg:items-start text-center lg:text-left">
-                           <span className="text-2xl font-black text-[#0D47A1] mb-1">{item.val}</span>
-                           <div className="flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: item.accent }}></div>
-                              <span className="text-[8px] font-black text-[#0288D1]/50 uppercase tracking-widest leading-tight">{item.text}</span>
-                           </div>
-                        </div>
-                     ))}
-                  </div>
+                      <motion.h1 
+                         initial={{ opacity: 0, y: 20 }}
+                         animate={{ opacity: 1, y: 0 }}
+                         transition={{ delay: 0.3 }}
+                         className="text-2xl md:text-4xl lg:text-[2.8rem] font-serif text-[#1A237E] leading-[1.1] tracking-tight"
+                      >
+                         Why your glow & energy <br className="hidden md:block" />
+                         start fading... <br className="hidden md:block" />
+                         <span className="italic text-gray-400 font-medium">earlier than you think.</span>
+                      </motion.h1>
 
-                  <div className="flex flex-col items-center lg:items-start gap-5">
-                     <button 
-                        onClick={scrollToProducts}
-                        className="min-w-[320px] bg-[#0D47A1] text-white font-black text-lg px-10 py-6 rounded-[2rem] uppercase tracking-widest hover:bg-[#F06292] transition-all duration-300 shadow-xl flex items-center justify-center group relative overflow-hidden"
-                     >
-                        <span className="relative z-10">Start My Protocol</span>
-                        <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                     </button>
-                     <div className="flex items-center gap-2 text-[#0D47A1]/40">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                        <span className="text-[10px] font-bold italic uppercase tracking-widest">Clinical 60-Day Guarantee</span>
-                     </div>
-                  </div>
-               </div>
+                      <motion.div 
+                         initial={{ opacity: 0 }}
+                         animate={{ opacity: 1 }}
+                         transition={{ delay: 0.4 }}
+                         className="space-y-3 max-w-2xl mx-auto lg:mx-0 border-l-2 border-gray-100 pl-6"
+                      >
+                         <p className="text-sm md:text-lg text-[#283593]/80 font-medium leading-relaxed">
+                            Groundbreaking research identifies declining NAD+ as the <span className="text-[#F06292] font-black underline decoration-2 underline-offset-4 decoration-[#F06292]/10">"hidden driver"</span> of visible aging. Restore your cellular battery from within.
+                         </p>
+                         <p className="text-[10px] text-gray-400 font-black uppercase tracking-[0.3em]">
+                            Metabolic Baseline Shift // Established Mid-20s
+                         </p>
+                      </motion.div>
+                   </div>
+
+                   {/* Modern Benefits Spec-Sheet - Constant Colors */}
+                   <div className="space-y-4 pt-2 relative z-10">
+                      <div className="flex items-center gap-4 mb-4">
+                         <div className="h-px flex-1 bg-gray-100"></div>
+                         <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.5em]">Systemic Benefits</p>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                         {[
+                            "Deep Cellular Activation",
+                            "Luminous Skin Complexion",
+                            "Peak Biological Energy",
+                            "Metabolic Rhythm Support",
+                            "Mental Clarity & Focus"
+                         ].map((benefit, i) => (
+                            <motion.div 
+                               key={i}
+                               initial={{ opacity: 0, y: 10 }}
+                               animate={{ opacity: 1, y: 0 }}
+                               transition={{ delay: 0.5 + (i * 0.1) }}
+                               className="flex items-center gap-2.5 p-2.5 rounded-lg bg-white border border-gray-50 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-lg transition-all duration-500 cursor-default group"
+                            >
+                               <div className="w-7 h-7 rounded-md bg-[#E8F5E9] text-[#43A047] flex items-center justify-center shrink-0 group-hover:bg-[#43A047] group-hover:text-white transition-colors duration-500">
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/></svg>
+                               </div>
+                               <span className="text-[12px] md:text-[13px] text-[#1A237E] font-black tracking-tight">{benefit}</span>
+                            </motion.div>
+                         ))}
+                      </div>
+                   </div>
+
+                   <div className="flex flex-col items-center lg:items-start gap-5 pt-2">
+                      <motion.button 
+                         whileHover={{ scale: 1.02 }}
+                         whileTap={{ scale: 0.98 }}
+                         onClick={scrollToProducts}
+                         className="min-w-[280px] bg-[#0D47A1] text-white font-black text-base px-8 py-5 rounded-xl uppercase tracking-widest hover:bg-[#1A237E] transition-all duration-300 shadow-xl flex items-center justify-center group relative overflow-hidden"
+                      >
+                         <span className="relative z-10">Start My Protocol</span>
+                         <svg className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                      </motion.button>
+                      <div className="flex items-center gap-2 text-[#0D47A1]/40 text-[10px] font-black uppercase tracking-widest">
+                         <div className="w-4 h-4 bg-[#4CAF50] rounded flex items-center justify-center">
+                            <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
+                         </div>
+                         <span>60 Day Money Back Guarantee</span>
+                      </div>
+                   </div>
+                </div>
 
                {/* Right Column: Transformation Graphic */}
                <div className="relative group">
