@@ -14,6 +14,7 @@ export default function Harmony() {
   const [activeSection, setActiveSection] = useState('hero')
   const [navScrolled, setNavScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [hoveredNav, setHoveredNav] = useState(null)
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index)
@@ -21,23 +22,40 @@ export default function Harmony() {
 
   const navLinks = [
     { id: 'hero',         label: 'Home' },
-    { id: 'science',      label: 'Science' },
+    { 
+      id: 'science',      
+      label: 'Science',
+      dropdown: [
+        { id: 'cortisol',      label: 'Cortisol & Hormones' },
+        { id: 'breakthroughs', label: 'Key Breakthroughs' },
+        { id: 'ingredients',   label: 'Protocol & Ingredients' },
+        { id: 'formula',       label: 'Formula Transparency' },
+      ]
+    },
     { id: 'timeline',     label: 'Timeline' },
-    { id: 'pricing-grid', label: 'Pricing' },
-    { id: 'results',      label: 'Results' },
-    { id: 'team',         label: 'Team' },
+    { 
+      id: 'pricing-grid', 
+      label: 'Pricing',
+      dropdown: [
+        { id: 'guarantee',     label: '30-Day Guarantee' },
+      ]
+    },
+    { 
+      id: 'results',      
+      label: 'Results',
+      dropdown: [
+        { id: 'testimonials',  label: 'Testimonials' },
+        { id: 'featured',      label: 'As Featured In' },
+      ]
+    },
+    { 
+      id: 'team',         
+      label: 'Team',
+      dropdown: [
+        { id: 'trust',         label: 'Quality & Trust' },
+      ]
+    },
     { id: 'faq',          label: 'FAQ' },
-  ]
-
-  const moreLinks = [
-    { id: 'featured',      label: 'As Featured In' },
-    { id: 'testimonials',  label: 'Testimonials' },
-    { id: 'cortisol',      label: 'Cortisol & Hormones' },
-    { id: 'breakthroughs', label: 'Key Breakthroughs' },
-    { id: 'ingredients',   label: 'Protocol & Ingredients' },
-    { id: 'trust',         label: 'Quality & Trust' },
-    { id: 'guarantee',     label: '30-Day Guarantee' },
-    { id: 'formula',       label: 'Formula Transparency' },
   ]
 
   const scrollToSection = (id) => {
@@ -163,60 +181,58 @@ export default function Harmony() {
 
           {/* Primary Nav Items */}
           {navLinks.map((link) => (
-            <button
+            <div
               key={link.id}
-              onClick={() => scrollToSection(link.id)}
-              className={`relative px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 ${
-                activeSection === link.id
-                  ? 'bg-[#0D47A1] text-white shadow-md shadow-[#0D47A1]/30'
-                  : 'text-gray-500 hover:text-[#0D47A1] hover:bg-blue-50/60'
-              }`}
+              className="relative"
+              onMouseEnter={() => setHoveredNav(link.id)}
+              onMouseLeave={() => setHoveredNav(null)}
             >
-              {link.label}
-            </button>
-          ))}
-
-          {/* More Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setMobileMenuOpen(prev => prev === 'more' ? false : 'more')}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 ${
-                moreLinks.some(l => l.id === activeSection)
-                  ? 'bg-[#0D47A1] text-white shadow-md shadow-[#0D47A1]/30'
-                  : 'text-gray-500 hover:text-[#0D47A1] hover:bg-blue-50/60'
-              }`}
-            >
-              More
-              <svg className={`w-3 h-3 transition-transform duration-200 ${mobileMenuOpen === 'more' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-            <AnimatePresence>
-              {mobileMenuOpen === 'more' && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                  transition={{ duration: 0.18 }}
-                  className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-56 bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-100 p-3 flex flex-col gap-1 z-50"
-                >
-                  {moreLinks.map((link) => (
-                    <button
-                      key={link.id}
-                      onClick={() => { scrollToSection(link.id); setMobileMenuOpen(false) }}
-                      className={`w-full text-left px-4 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.12em] transition-all duration-200 ${
-                        activeSection === link.id
-                          ? 'bg-[#0D47A1] text-white'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-[#0D47A1]'
-                      }`}
+              <button
+                onClick={() => scrollToSection(link.id)}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 ${
+                  activeSection === link.id || (link.dropdown && link.dropdown.some(l => l.id === activeSection))
+                    ? 'bg-[#0D47A1] text-white shadow-md shadow-[#0D47A1]/30'
+                    : 'text-gray-500 hover:text-[#0D47A1] hover:bg-blue-50/60'
+                }`}
+              >
+                {link.label}
+                {link.dropdown && (
+                  <svg className={`w-3 h-3 transition-transform duration-200 ${hoveredNav === link.id ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                )}
+              </button>
+              
+              {/* Dropdown Menu */}
+              {link.dropdown && (
+                <AnimatePresence>
+                  {hoveredNav === link.id && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                      transition={{ duration: 0.18 }}
+                      className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-56 bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-100 p-3 flex flex-col gap-1 z-50"
                     >
-                      {link.label}
-                    </button>
-                  ))}
-                </motion.div>
+                      {link.dropdown.map((subLink) => (
+                        <button
+                          key={subLink.id}
+                          onClick={() => { scrollToSection(subLink.id); setHoveredNav(null) }}
+                          className={`w-full text-left px-4 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.12em] transition-all duration-200 ${
+                            activeSection === subLink.id
+                              ? 'bg-[#0D47A1] text-white'
+                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#0D47A1]'
+                          }`}
+                        >
+                          {subLink.label}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               )}
-            </AnimatePresence>
-          </div>
+            </div>
+          ))}
 
           <div className="h-5 w-px bg-gray-200 mx-1"></div>
 
@@ -254,7 +270,7 @@ export default function Harmony() {
 
         {/* Mobile Dropdown */}
         <AnimatePresence>
-          {mobileMenuOpen && mobileMenuOpen !== 'more' && (
+          {mobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -262,43 +278,36 @@ export default function Harmony() {
               transition={{ duration: 0.2 }}
               className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-100 p-3 flex flex-col gap-1 max-h-[80vh] overflow-y-auto"
             >
-              {/* Primary links */}
               {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className={`w-full text-left px-4 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-200 ${
-                    activeSection === link.id
-                      ? 'bg-[#0D47A1] text-white'
-                      : 'text-gray-600 hover:bg-gray-50'
-                  }`}
-                >
-                  {link.label}
-                </button>
-              ))}
-              {/* Divider */}
-              <div className="flex items-center gap-3 px-2 py-1">
-                <div className="h-px flex-1 bg-gray-100"></div>
-                <span className="text-[9px] font-black text-gray-300 uppercase tracking-widest">More Sections</span>
-                <div className="h-px flex-1 bg-gray-100"></div>
-              </div>
-              {/* More links */}
-              {moreLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className={`w-full text-left px-4 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.12em] transition-all duration-200 ${
-                    activeSection === link.id
-                      ? 'bg-[#0D47A1] text-white'
-                      : 'text-gray-600 hover:bg-blue-50 hover:text-[#0D47A1]'
-                  }`}
-                >
-                  {link.label}
-                </button>
+                <div key={link.id} className="flex flex-col gap-1">
+                  <button
+                    onClick={() => scrollToSection(link.id)}
+                    className={`w-full text-left px-4 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-200 ${
+                      activeSection === link.id
+                        ? 'bg-[#0D47A1] text-white'
+                        : 'text-gray-600 hover:bg-gray-50'
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                  {link.dropdown && link.dropdown.map(subLink => (
+                    <button
+                      key={subLink.id}
+                      onClick={() => scrollToSection(subLink.id)}
+                      className={`w-full text-left px-8 py-2 rounded-2xl text-[10px] font-bold uppercase tracking-[0.12em] transition-all duration-200 ${
+                        activeSection === subLink.id
+                          ? 'text-[#0D47A1] bg-blue-50/50'
+                          : 'text-gray-500 hover:bg-gray-50 hover:text-[#0D47A1]'
+                      }`}
+                    >
+                      - {subLink.label}
+                    </button>
+                  ))}
+                </div>
               ))}
               <button
                 onClick={() => scrollToSection('pricing-grid')}
-                className="w-full mt-1 bg-[#0D47A1] text-white text-[11px] font-black uppercase tracking-[0.2em] px-4 py-3 rounded-2xl"
+                className="w-full mt-2 bg-[#0D47A1] text-white text-[11px] font-black uppercase tracking-[0.2em] px-4 py-3 rounded-2xl"
               >
                 Get Started
               </button>
