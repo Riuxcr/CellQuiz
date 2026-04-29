@@ -2166,62 +2166,65 @@ export default function Harmony() {
             </div>
          </div>
 
-         {/* Expert Cards Grid */}
-         <div className="py-24 md:py-32 bg-gray-50/30">
-            <div className="max-w-7xl mx-auto px-6">
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-                  {[
-                     {
-                        name: "Tobie Kokot, MA",
-                        role: "Chief Nutritional Scientist",
-                        bio: "Tobie comes from Germany where he graduated with a master's degree in nutrition science. Tobie creates our natural formulas with the 'German precision' that sets us apart from other brands.",
-                        img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600&h=800"
-                     },
-                     {
-                        name: "Matt Murphy, BBus",
-                        role: "CEO, Founder and BioHacker",
-                        bio: "Matt founded Happy Mammoth in 2017. Driven by curiosity, learning, an obsession with high quality product formulation and a passion for natural health and, his search for potent plant-based ingredients takes him around the world working to improve lives.",
-                        img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600&h=800"
-                     },
-                     {
-                        name: "Aimée Gould Shunney, N.D",
-                        role: "Women's Hormonal Doctor",
-                        bio: "Dr. Aimée has been in private practice since 2001, currently at Santa Cruz Integrative Medicine in Santa Cruz, CA. She specializes in women's health including menopause management, bio-identical hormone balancing, and functional digestive issues.",
-                        img: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=600&h=800"
-                     },
-                     {
-                        name: "Annie Savage, ND",
-                        role: "Hormone, PMS and Menopause Doctor",
-                        bio: "Annie is a licensed naturopathic doctor from Vancouver, Canada, with a passion for natural healthcare. Annie has extensive knowledge in women's health, natural medicine, and has developed an online coaching program 'The Symptom-Free Period System.'",
-                        img: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600&h=800"
-                     }
-                  ].map((member, i) => (
+         {/* Scientific Leadership - Dr. Anthony Njapa */}
+         <div className="py-24 md:py-32 bg-white">
+            <div className="max-w-6xl mx-auto px-6">
+               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                  
+                  {/* Left Column: Image & Badge */}
+                  <div className="relative">
+                     {/* Decorative background border */}
+                     <div className="absolute -top-6 -left-6 w-full h-full border-t border-l border-[#0D47A1]/20 rounded-tl-[4rem] -z-10"></div>
+                     
+                     <div className="relative z-10 rounded-[3rem] overflow-hidden bg-gray-100">
+                        <img 
+                           src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800&h=1000" 
+                           alt="Dr. Anthony Njapa" 
+                           className="w-full h-[500px] lg:h-[600px] object-cover object-top"
+                        />
+                     </div>
+
+                     {/* Floating Badge */}
                      <motion.div 
-                        key={i} 
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: i * 0.1 }}
-                        className="bg-white rounded-[3rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] flex flex-col h-full border border-gray-50 group hover:-translate-y-2 transition-all duration-700"
+                        className="absolute -bottom-8 right-0 lg:-right-12 bg-[#002855] text-white p-8 rounded-3xl shadow-2xl z-20 min-w-[280px]"
                      >
-                        <div className="h-[320px] overflow-hidden">
-                           <img 
-                              src={member.img} 
-                              alt={member.name} 
-                              className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
-                           />
-                        </div>
-                        <div className="p-10 space-y-5 flex-grow">
-                           <div>
-                              <h4 className="text-2xl font-black text-[#111827] mb-1 tracking-tight leading-tight">{member.name}</h4>
-                              <p className="text-[10px] font-black text-[#0D47A1] uppercase tracking-[0.2em]">{member.role}</p>
-                           </div>
-                           <p className="text-gray-500 text-[13px] leading-relaxed font-medium">
-                              {member.bio}
-                           </p>
-                        </div>
+                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 mb-2 font-accent">Clinical Background</p>
+                        <p className="text-xl font-bold tracking-tight">22+ Years in Medicine</p>
                      </motion.div>
-                  ))}
+                  </div>
+
+                  {/* Right Column: Text Content */}
+                  <div className="mt-12 lg:mt-0 lg:pl-10">
+                     <div className="inline-block bg-[#F0F7FF] text-[#0D47A1] text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full mb-8 font-accent">
+                        Scientific Leadership
+                     </div>
+                     
+                     <h3 className="text-4xl md:text-5xl font-black text-[#002855] mb-8 font-heading tracking-tight">
+                        Dr. Anthony Njapa
+                     </h3>
+                     
+                     <p className="text-lg text-gray-600 font-medium leading-relaxed mb-12">
+                        With more than 22 years of clinical medical experience, Dr. Anthony Njapa leads the ChronoNAD+ Clinical Advisory Board with an unwavering commitment to patient care and wellness. Dr. Njapa's clinical expertise and leadership ensures that ChronoNAD+ products are guided by medical insight and grounded in proven science.
+                     </p>
+
+                     <div className="flex flex-col sm:flex-row gap-12 sm:gap-20">
+                        <div>
+                           <p className="text-4xl font-black text-[#002855] tracking-tighter mb-2">22+</p>
+                           <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] font-accent">Years Experience</p>
+                        </div>
+                        <div>
+                           <p className="text-4xl font-black text-[#002855] tracking-tighter mb-2 flex items-center gap-2">
+                              5/5 
+                              <span className="text-2xl tracking-widest mt-1">★★★★★</span>
+                           </p>
+                           <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] font-accent">Patient Rating</p>
+                        </div>
+                     </div>
+                  </div>
+
                </div>
             </div>
          </div>
