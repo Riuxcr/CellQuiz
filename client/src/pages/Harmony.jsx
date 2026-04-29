@@ -11,9 +11,27 @@ import womenAllAgesResult from '../assets/women-all-ages-result.png'
 export default function Harmony() {
   const navigate = useNavigate()
   const [activeFaq, setActiveFaq] = useState(null)
+  const [activeSection, setActiveSection] = useState('hero')
+  const [navScrolled, setNavScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index)
+  }
+
+  const navLinks = [
+    { id: 'hero',        label: 'Home' },
+    { id: 'science',     label: 'Science' },
+    { id: 'timeline',    label: 'Timeline' },
+    { id: 'pricing-grid', label: 'Pricing' },
+    { id: 'results',     label: 'Results' },
+    { id: 'team',        label: 'Team' },
+    { id: 'faq',         label: 'FAQ' },
+  ]
+
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    setMobileMenuOpen(false)
   }
   
   const [isMobile, setIsMobile] = useState(false)
@@ -25,6 +43,22 @@ export default function Harmony() {
     checkMobile()
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Track scroll for navbar active state & background
+  useEffect(() => {
+    const handleScroll = () => {
+      setNavScrolled(window.scrollY > 60)
+      const sections = navLinks.map(l => document.getElementById(l.id)).filter(Boolean)
+      const scrollMid = window.scrollY + window.innerHeight / 2
+      let current = 'hero'
+      sections.forEach(sec => {
+        if (sec.offsetTop <= scrollMid) current = sec.id
+      })
+      setActiveSection(current)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   // Refs for scroll sections
@@ -89,9 +123,118 @@ export default function Harmony() {
 
   return (
     <div className="font-sans antialiased text-[#111827] bg-white selection:bg-[#0D47A1] selection:text-white">
-      
+
+      {/* ===== FLOATING CAPSULE NAVBAR ===== */}
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+        className="fixed top-5 left-1/2 -translate-x-1/2 z-[999] w-auto"
+      >
+        {/* Desktop Pill */}
+        <div className={`hidden md:flex items-center gap-1 px-3 py-2 rounded-full transition-all duration-500 ${
+          navScrolled
+            ? 'bg-white/90 backdrop-blur-xl shadow-[0_8px_40px_rgba(13,71,161,0.15)] border border-gray-100/80'
+            : 'bg-white/70 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-gray-100/60'
+        }`}>
+          {/* Logo / Brand */}
+          <button
+            onClick={() => scrollToSection('hero')}
+            className="flex items-center gap-2 px-4 py-2 mr-1"
+          >
+            <div className="w-6 h-6 bg-[#0D47A1] rounded-full flex items-center justify-center">
+              <div className="w-2.5 h-2.5 bg-white rounded-full opacity-90"></div>
+            </div>
+            <span className="text-[11px] font-black uppercase tracking-[0.25em] text-[#0D47A1]">ChronoNAD+</span>
+          </button>
+
+          <div className="h-5 w-px bg-gray-200 mx-1"></div>
+
+          {/* Nav Items */}
+          {navLinks.map((link) => (
+            <button
+              key={link.id}
+              onClick={() => scrollToSection(link.id)}
+              className={`relative px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 ${
+                activeSection === link.id
+                  ? 'bg-[#0D47A1] text-white shadow-md shadow-[#0D47A1]/30'
+                  : 'text-gray-500 hover:text-[#0D47A1] hover:bg-blue-50/60'
+              }`}
+            >
+              {link.label}
+            </button>
+          ))}
+
+          <div className="h-5 w-px bg-gray-200 mx-1"></div>
+
+          {/* CTA */}
+          <button
+            onClick={() => scrollToSection('pricing-grid')}
+            className="bg-[#0D47A1] text-white text-[11px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full shadow-lg shadow-[#0D47A1]/20 hover:bg-[#1565C0] transition-all duration-300 hover:scale-105 ml-1"
+          >
+            Get Started
+          </button>
+        </div>
+
+        {/* Mobile Pill */}
+        <div className={`flex md:hidden items-center gap-3 px-4 py-2.5 rounded-full transition-all duration-500 ${
+          navScrolled
+            ? 'bg-white/90 backdrop-blur-xl shadow-[0_8px_40px_rgba(13,71,161,0.15)] border border-gray-100/80'
+            : 'bg-white/70 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-gray-100/60'
+        }`}>
+          <div className="w-5 h-5 bg-[#0D47A1] rounded-full flex items-center justify-center">
+            <div className="w-2 h-2 bg-white rounded-full"></div>
+          </div>
+          <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#0D47A1]">ChronoNAD+</span>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="ml-2 w-8 h-8 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center"
+          >
+            <svg className="w-4 h-4 text-[#0D47A1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {mobileMenuOpen
+                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 8h16M4 16h16" />
+              }
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile Dropdown */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-56 bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-100 p-3 flex flex-col gap-1"
+            >
+              {navLinks.map((link) => (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`w-full text-left px-4 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-200 ${
+                    activeSection === link.id
+                      ? 'bg-[#0D47A1] text-white'
+                      : 'text-gray-600 hover:bg-gray-50'
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
+              <button
+                onClick={() => scrollToSection('pricing-grid')}
+                className="w-full mt-1 bg-[#0D47A1] text-white text-[11px] font-black uppercase tracking-[0.2em] px-4 py-3 rounded-2xl"
+              >
+                Get Started
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
+
       {/* HERO SECTION - BLACK & BLUE THEME */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center bg-white overflow-hidden py-16 lg:py-20 px-6">
+      <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center bg-white overflow-hidden py-16 lg:py-20 px-6">
          {/* Subtle Background Clinical Grid - Deep Blue */}
          <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(#0D47A1 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
          
@@ -698,6 +841,7 @@ export default function Harmony() {
       </section>
 
       {/* BREAKTHROUGHS SECTION */}
+      {/* id added for nav */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
@@ -852,7 +996,7 @@ export default function Harmony() {
       </section>
 
       {/* 3 CAPSULES A DAY SECTION - REFINED BLUE & BLACK */}
-      <section className="py-32 bg-white overflow-hidden border-y border-gray-50">
+      <section id="science" className="py-32 bg-white overflow-hidden border-y border-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16 space-y-6">
              <h2 className="text-3xl md:text-5xl font-bold text-[#111827] leading-tight tracking-tight font-heading">
@@ -1063,7 +1207,8 @@ export default function Harmony() {
       </section>
 
        {/* CHRONONAD+ TRANSFORMATION TIMELINE SECTION - REDESIGNED HORIZONTAL */}
-       <section className="py-32 bg-white overflow-hidden">
+       {/* id="timeline" injected below */}
+       <section id="timeline" className="py-32 bg-white overflow-hidden">
          <div className="max-w-7xl mx-auto px-6">
            <div className="text-center mb-24 max-w-4xl mx-auto">
                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 mb-6 block">The Transformation</span>
@@ -1663,7 +1808,7 @@ export default function Harmony() {
 
       {/* COMPREHENSIVE REVIEWS SECTION */}
       {/* THE PROOF IS IN THE RESULTS - JUDGE.ME STYLE REDESIGN */}
-      <section className="py-24 bg-white border-y border-gray-50 overflow-hidden">
+      <section id="results" className="py-24 bg-white border-y border-gray-50 overflow-hidden">
          <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16 space-y-6 max-w-4xl mx-auto">
                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Customer Intelligence</span>
@@ -1928,7 +2073,7 @@ export default function Harmony() {
       </section>
 
       {/* MISSION & EXPERT TEAM SECTION - REFINED BLUE & BLACK */}
-      <section className="py-0 overflow-hidden bg-white">
+      <section id="team" className="py-0 overflow-hidden bg-white">
          {/* Mission Header Bar */}
          <div className="bg-white py-20 md:py-24 border-y border-gray-50">
             <div className="max-w-7xl mx-auto px-6 text-center">
@@ -2005,7 +2150,7 @@ export default function Harmony() {
 
       {/* FAQ */}
       {/* FAQ SECTION - Redesigned for Premium Minimalist Look */}
-      <section className="py-32 bg-gray-50/30">
+      <section id="faq" className="py-32 bg-gray-50/30">
          <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-20 space-y-4">
                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Common Inquiries</span>
