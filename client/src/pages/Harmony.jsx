@@ -367,9 +367,9 @@ export default function Harmony() {
                          {[
                             { text: "Deep Cellular Activation", color: "bg-blue-50/50 border-blue-100/50" },
                             { text: "Luminous Skin Complexion", color: "bg-blue-50/50 border-blue-100/50" },
-                            { text: "Peak Biological Energy", color: "bg-orange-50/50 border-orange-100/50" },
-                            { text: "Metabolic Rhythm Support", color: "bg-indigo-50/50 border-indigo-100/50" },
-                            { text: "Mental Clarity & Focus", color: "bg-teal-50/50 border-teal-100/50" }
+                            { text: "Peak Biological Energy", color: "bg-blue-50/50 border-blue-100/50" },
+                            { text: "Metabolic Rhythm Support", color: "bg-blue-50/50 border-blue-100/50" },
+                            { text: "Mental Clarity & Focus", color: "bg-blue-50/50 border-blue-100/50" }
                          ].map((benefit, i) => (
                             <motion.div 
                                key={i}
@@ -378,7 +378,7 @@ export default function Harmony() {
                                transition={{ delay: 0.5 + (i * 0.1) }}
                                className={`flex items-center gap-2 p-2 rounded-lg border ${benefit.color} shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-lg transition-all duration-500 cursor-default group`}
                             >
-                               <div className="w-6 h-6 rounded-md bg-[#E8F5E9] text-[#43A047] flex items-center justify-center shrink-0 group-hover:bg-[#43A047] group-hover:text-white transition-colors duration-500">
+                               <div className="w-6 h-6 rounded-md bg-blue-50 text-[#0D47A1] flex items-center justify-center shrink-0 group-hover:bg-[#0D47A1] group-hover:text-white transition-colors duration-500">
                                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/></svg>
                                </div>
                                <span className="text-[11px] text-[#111827] font-black tracking-tight">{benefit.text}</span>
@@ -398,10 +398,10 @@ export default function Harmony() {
                          <svg className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                       </motion.button>
                       <div className="flex items-center gap-2 text-[#0D47A1]/40 text-[10px] font-black uppercase tracking-widest font-accent">
-                         <div className="w-4 h-4 bg-[#4CAF50] rounded flex items-center justify-center">
+                         <div className="w-4 h-4 bg-[#0D47A1] rounded flex items-center justify-center">
                             <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
                          </div>
-                         <span>60 Day Money Back Guarantee</span>
+                         <span>30 Day Money Back Guarantee</span>
                       </div>
                    </div>
                 </div>
@@ -471,7 +471,7 @@ export default function Harmony() {
 
 
       {/* TESTIMONIALS SECTION - PIXEL PERFECT TO SCREENSHOT */}
-      <section id="testimonials" className="py-24 bg-[#F9FBFA] overflow-hidden relative">
+      <section id="testimonials" className="py-24 bg-[#F8FAFC] overflow-hidden relative">
          <div className="max-w-4xl mx-auto px-6 relative z-10">
             
             {/* Header Area */}
@@ -499,7 +499,7 @@ export default function Harmony() {
                         <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center font-black text-gray-300 text-xs">J</div>
                         <div className="flex flex-col">
                            <span className="font-black text-sm text-[#111827]">Jenna T.</span>
-                           <div className="flex items-center gap-1 text-[#4CAF50] mt-0.5">
+                           <div className="flex items-center gap-1 text-[#0D47A1] mt-0.5">
                               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                               <span className="text-[8px] font-black uppercase tracking-widest">Verified Buyer</span>
                            </div>
@@ -524,7 +524,7 @@ export default function Harmony() {
                            <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center font-black text-gray-300 text-xs">K</div>
                            <div className="flex flex-col">
                               <span className="font-black text-sm text-[#111827]">Karen G.</span>
-                              <div className="flex items-center gap-1 text-[#4CAF50] mt-0.5">
+                              <div className="flex items-center gap-1 text-[#0D47A1] mt-0.5">
                                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                                  <span className="text-[8px] font-black uppercase tracking-widest">Verified Buyer</span>
                               </div>
@@ -547,7 +547,7 @@ export default function Harmony() {
                            <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center font-black text-gray-300 text-xs">T</div>
                            <div className="flex flex-col">
                               <span className="font-black text-sm text-[#111827]">Tina F.</span>
-                              <div className="flex items-center gap-1 text-[#4CAF50] mt-0.5">
+                              <div className="flex items-center gap-1 text-[#0D47A1] mt-0.5">
                                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                                  <span className="text-[8px] font-black uppercase tracking-widest">Verified Buyer</span>
                               </div>
@@ -571,7 +571,7 @@ export default function Harmony() {
                         <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center font-black text-gray-300 text-xs">D</div>
                         <div className="flex flex-col">
                            <span className="font-black text-sm text-[#111827]">Deb A.</span>
-                           <div className="flex items-center gap-1 text-[#4CAF50] mt-0.5">
+                           <div className="flex items-center gap-1 text-[#0D47A1] mt-0.5">
                               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                               <span className="text-[8px] font-black uppercase tracking-widest">Verified Buyer</span>
                            </div>
@@ -595,15 +595,15 @@ export default function Harmony() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={scrollToProducts}
-                  className="w-full md:w-auto min-w-[380px] bg-[#111827] text-white font-black text-xl px-12 py-7 rounded-2xl uppercase tracking-widest shadow-xl"
+                  className="w-full md:w-auto min-w-[380px] bg-[#0D47A1] text-white font-black text-xl px-12 py-7 rounded-2xl uppercase tracking-widest shadow-xl hover:bg-[#111827] transition-all duration-300"
                >
                   Try Our Protocols
                </motion.button>
                <div className="flex items-center gap-2 text-gray-400 font-bold uppercase tracking-widest text-[9px]">
-                  <div className="w-5 h-5 bg-[#4CAF50] rounded flex items-center justify-center">
+                  <div className="w-5 h-5 bg-[#0D47A1] rounded flex items-center justify-center">
                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
                   </div>
-                  <span>60 Day Money Back Guarantee</span>
+                  <span>30 Day Money Back Guarantee</span>
                </div>
             </div>
 
@@ -727,7 +727,7 @@ export default function Harmony() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={scrollToProducts}
-                      className="w-full md:w-auto min-w-[400px] bg-[#4CAF50] text-white font-black text-xl px-12 py-8 rounded-3xl uppercase tracking-widest shadow-[0_20px_50px_rgba(76,175,80,0.3)] hover:shadow-[0_25px_60px_rgba(76,175,80,0.4)] transition-all duration-500"
+                      className="w-full md:w-auto min-w-[400px] bg-[#0D47A1] text-white font-black text-xl px-12 py-8 rounded-3xl uppercase tracking-widest shadow-2xl hover:bg-[#111827] transition-all duration-500"
                    >
                       Restore Your NAD+
                    </motion.button>
@@ -780,8 +780,8 @@ export default function Harmony() {
                      from: "Unexplained Fatigue & Physical \"Heavy\" Feeling", 
                      to: "Systemic Vitality & Effortless Movement",
                      label: "Physical Resilience",
-                     bgColor: "bg-[#FCE4EC]/30",
-                     accent: "#BA68C8"
+                     bgColor: "bg-[#E3F2FD]/30",
+                     accent: "#0D47A1"
                   }
                ].map((item, i) => (
                   <motion.div 
@@ -904,7 +904,7 @@ export default function Harmony() {
                <div className="w-4 h-4 rounded-full bg-[#0D47A1] flex items-center justify-center">
                   <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
                </div>
-               <span className="text-[10px] font-bold text-[#111827] italic uppercase tracking-widest">60 Day Clinical Efficacy Guarantee</span>
+               <span className="text-[10px] font-bold text-[#111827] italic uppercase tracking-widest">30 Day Clinical Efficacy Guarantee</span>
             </div>
           </div>
         </div>
@@ -1059,7 +1059,7 @@ export default function Harmony() {
               <div className="w-5 h-5 rounded bg-[#0D47A1] flex items-center justify-center">
                  <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
               </div>
-              <span className="text-lg font-bold text-[#111827] italic">60 Day Money Back Guarantee</span>
+              <span className="text-lg font-bold text-[#111827] italic">30 Day Money Back Guarantee</span>
             </div>
           </div>
         </div>
@@ -1611,7 +1611,7 @@ export default function Harmony() {
                   }
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-5 group">
-                     <div className="shrink-0 w-8 h-8 rounded-full bg-[#4CAF50] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                     <div className="shrink-0 w-8 h-8 rounded-full bg-[#0D47A1] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
                      </div>
                      <div className="space-y-1">
