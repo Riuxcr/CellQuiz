@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import skinTransformation from '../assets/skin-transformation.png'
+
 
 export default function Harmony() {
   const navigate = useNavigate()
@@ -191,7 +193,7 @@ export default function Harmony() {
                         <span className="bg-[#0D47A1] text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">Clinical Observation</span>
                      </div>
                      <img 
-                        src="/transformation_hero.png" 
+                        src={skinTransformation} 
                         alt="Cellular Transformation Progress" 
                         className="w-full h-auto object-contain mix-blend-multiply"
                      />
