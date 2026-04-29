@@ -20,13 +20,24 @@ export default function Harmony() {
   }
 
   const navLinks = [
-    { id: 'hero',        label: 'Home' },
-    { id: 'science',     label: 'Science' },
-    { id: 'timeline',    label: 'Timeline' },
+    { id: 'hero',         label: 'Home' },
+    { id: 'science',      label: 'Science' },
+    { id: 'timeline',     label: 'Timeline' },
     { id: 'pricing-grid', label: 'Pricing' },
-    { id: 'results',     label: 'Results' },
-    { id: 'team',        label: 'Team' },
-    { id: 'faq',         label: 'FAQ' },
+    { id: 'results',      label: 'Results' },
+    { id: 'team',         label: 'Team' },
+    { id: 'faq',          label: 'FAQ' },
+  ]
+
+  const moreLinks = [
+    { id: 'featured',      label: 'As Featured In' },
+    { id: 'testimonials',  label: 'Testimonials' },
+    { id: 'cortisol',      label: 'Cortisol & Hormones' },
+    { id: 'breakthroughs', label: 'Key Breakthroughs' },
+    { id: 'ingredients',   label: 'Protocol & Ingredients' },
+    { id: 'trust',         label: 'Quality & Trust' },
+    { id: 'guarantee',     label: '30-Day Guarantee' },
+    { id: 'formula',       label: 'Formula Transparency' },
   ]
 
   const scrollToSection = (id) => {
@@ -150,7 +161,7 @@ export default function Harmony() {
 
           <div className="h-5 w-px bg-gray-200 mx-1"></div>
 
-          {/* Nav Items */}
+          {/* Primary Nav Items */}
           {navLinks.map((link) => (
             <button
               key={link.id}
@@ -164,6 +175,48 @@ export default function Harmony() {
               {link.label}
             </button>
           ))}
+
+          {/* More Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setMobileMenuOpen(prev => prev === 'more' ? false : 'more')}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 ${
+                moreLinks.some(l => l.id === activeSection)
+                  ? 'bg-[#0D47A1] text-white shadow-md shadow-[#0D47A1]/30'
+                  : 'text-gray-500 hover:text-[#0D47A1] hover:bg-blue-50/60'
+              }`}
+            >
+              More
+              <svg className={`w-3 h-3 transition-transform duration-200 ${mobileMenuOpen === 'more' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <AnimatePresence>
+              {mobileMenuOpen === 'more' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                  transition={{ duration: 0.18 }}
+                  className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-56 bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-100 p-3 flex flex-col gap-1 z-50"
+                >
+                  {moreLinks.map((link) => (
+                    <button
+                      key={link.id}
+                      onClick={() => { scrollToSection(link.id); setMobileMenuOpen(false) }}
+                      className={`w-full text-left px-4 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.12em] transition-all duration-200 ${
+                        activeSection === link.id
+                          ? 'bg-[#0D47A1] text-white'
+                          : 'text-gray-600 hover:bg-gray-50 hover:text-[#0D47A1]'
+                      }`}
+                    >
+                      {link.label}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           <div className="h-5 w-px bg-gray-200 mx-1"></div>
 
@@ -201,22 +254,43 @@ export default function Harmony() {
 
         {/* Mobile Dropdown */}
         <AnimatePresence>
-          {mobileMenuOpen && (
+          {mobileMenuOpen && mobileMenuOpen !== 'more' && (
             <motion.div
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-56 bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-100 p-3 flex flex-col gap-1"
+              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-100 p-3 flex flex-col gap-1 max-h-[80vh] overflow-y-auto"
             >
+              {/* Primary links */}
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className={`w-full text-left px-4 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-200 ${
+                  className={`w-full text-left px-4 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-200 ${
                     activeSection === link.id
                       ? 'bg-[#0D47A1] text-white'
                       : 'text-gray-600 hover:bg-gray-50'
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
+              {/* Divider */}
+              <div className="flex items-center gap-3 px-2 py-1">
+                <div className="h-px flex-1 bg-gray-100"></div>
+                <span className="text-[9px] font-black text-gray-300 uppercase tracking-widest">More Sections</span>
+                <div className="h-px flex-1 bg-gray-100"></div>
+              </div>
+              {/* More links */}
+              {moreLinks.map((link) => (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`w-full text-left px-4 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.12em] transition-all duration-200 ${
+                    activeSection === link.id
+                      ? 'bg-[#0D47A1] text-white'
+                      : 'text-gray-600 hover:bg-blue-50 hover:text-[#0D47A1]'
                   }`}
                 >
                   {link.label}
@@ -234,7 +308,7 @@ export default function Harmony() {
       </motion.nav>
 
       {/* HERO SECTION - BLACK & BLUE THEME */}
-      <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center bg-white overflow-hidden py-16 lg:py-20 px-6">
+      <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center bg-white overflow-hidden pt-28 pb-12 lg:pt-32 lg:pb-16 px-6">
          {/* Subtle Background Clinical Grid - Deep Blue */}
          <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(#0D47A1 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
          
@@ -243,26 +317,26 @@ export default function Harmony() {
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, ease: "easeOut" }}
-               className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+               className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
             >
                 {/* Left Column: Text Content */}
-                <div className="text-center lg:text-left space-y-8 relative">
-                   <div className="space-y-6 relative z-10">
+                <div className="text-center lg:text-left space-y-5 relative">
+                   <div className="space-y-4 relative z-10">
                       <motion.div 
                          initial={{ opacity: 0, x: -20 }}
                          animate={{ opacity: 1, x: 0 }}
                          transition={{ delay: 0.2 }}
-                         className="inline-flex items-center gap-3 bg-white border border-gray-100 text-[#0D47A1] px-4 py-1.5 rounded-full shadow-sm"
+                         className="inline-flex items-center gap-3 bg-white border border-gray-100 text-[#0D47A1] px-3 py-1 rounded-full shadow-sm"
                       >
                          <div className="w-1.5 h-1.5 rounded-full bg-[#0D47A1] animate-pulse"></div>
-                         <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] italic font-accent">Protocol Access Enabled</span>
+                         <span className="text-[8px] font-black uppercase tracking-[0.4em] italic font-accent">Protocol Access Enabled</span>
                       </motion.div>
 
                       <motion.h1 
                          initial={{ opacity: 0, y: 20 }}
                          animate={{ opacity: 1, y: 0 }}
                          transition={{ delay: 0.3 }}
-                         className="text-4xl md:text-7xl font-semibold text-[#111827] leading-[1.05] mb-10 tracking-tighter font-heading"
+                         className="text-3xl md:text-5xl font-semibold text-[#111827] leading-[1.05] tracking-tighter font-heading"
                       >
                          The Future of <br />
                          <span className="italic text-[#0D47A1] font-medium">Cellular Vitality.</span>
@@ -272,9 +346,9 @@ export default function Harmony() {
                          initial={{ opacity: 0 }}
                          animate={{ opacity: 1 }}
                          transition={{ delay: 0.4 }}
-                         className="space-y-3 max-w-2xl mx-auto lg:mx-0 border-l-2 border-gray-100 pl-6"
+                         className="space-y-2 max-w-xl mx-auto lg:mx-0 border-l-2 border-gray-100 pl-4"
                       >
-                         <p className="text-sm md:text-lg text-[#283593]/80 font-medium leading-relaxed">
+                         <p className="text-sm text-[#283593]/80 font-medium leading-relaxed">
                             Groundbreaking research identifies declining NAD+ as the <span className="text-[#0D47A1] font-black underline decoration-2 underline-offset-4 decoration-[#0D47A1]/10">"hidden driver"</span> of visible aging. Restore your cellular battery from within.
                          </p>
                          <p className="text-[10px] text-gray-400 font-black uppercase tracking-[0.3em] font-accent">
@@ -283,13 +357,13 @@ export default function Harmony() {
                       </motion.div>
                    </div>
 
-                   {/* Modern Benefits Spec-Sheet - Constant Colors */}
-                   <div className="space-y-4 pt-2 relative z-10">
-                      <div className="flex items-center gap-4 mb-4">
+                   {/* Modern Benefits Spec-Sheet */}
+                   <div className="space-y-3 relative z-10">
+                      <div className="flex items-center gap-4 mb-2">
                          <div className="h-px flex-1 bg-gray-100"></div>
                          <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.5em] font-accent">Systemic Benefits</p>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                          {[
                             { text: "Deep Cellular Activation", color: "bg-blue-50/50 border-blue-100/50" },
                             { text: "Luminous Skin Complexion", color: "bg-blue-50/50 border-blue-100/50" },
@@ -302,23 +376,23 @@ export default function Harmony() {
                                initial={{ opacity: 0, y: 10 }}
                                animate={{ opacity: 1, y: 0 }}
                                transition={{ delay: 0.5 + (i * 0.1) }}
-                               className={`flex items-center gap-2.5 p-2.5 rounded-lg border ${benefit.color} shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-lg transition-all duration-500 cursor-default group`}
+                               className={`flex items-center gap-2 p-2 rounded-lg border ${benefit.color} shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-lg transition-all duration-500 cursor-default group`}
                             >
-                               <div className="w-7 h-7 rounded-md bg-[#E8F5E9] text-[#43A047] flex items-center justify-center shrink-0 group-hover:bg-[#43A047] group-hover:text-white transition-colors duration-500">
-                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/></svg>
+                               <div className="w-6 h-6 rounded-md bg-[#E8F5E9] text-[#43A047] flex items-center justify-center shrink-0 group-hover:bg-[#43A047] group-hover:text-white transition-colors duration-500">
+                                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/></svg>
                                </div>
-                               <span className="text-[12px] md:text-[13px] text-[#111827] font-black tracking-tight">{benefit.text}</span>
+                               <span className="text-[11px] text-[#111827] font-black tracking-tight">{benefit.text}</span>
                             </motion.div>
                          ))}
                       </div>
                    </div>
 
-                   <div className="flex flex-col items-center lg:items-start gap-5 pt-2">
+                   <div className="flex flex-col items-center lg:items-start gap-3 pt-1">
                       <motion.button 
                          whileHover={{ scale: 1.02 }}
                          whileTap={{ scale: 0.98 }}
                          onClick={scrollToProducts}
-                         className="min-w-[280px] bg-[#0D47A1] text-white font-black text-base px-8 py-5 rounded-xl uppercase tracking-widest hover:bg-[#111827] transition-all duration-300 shadow-xl flex items-center justify-center group relative overflow-hidden"
+                         className="min-w-[240px] bg-[#0D47A1] text-white font-black text-sm px-7 py-4 rounded-xl uppercase tracking-widest hover:bg-[#111827] transition-all duration-300 shadow-xl flex items-center justify-center group relative overflow-hidden"
                       >
                          <span className="relative z-10">Start My Protocol</span>
                          <svg className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
@@ -332,26 +406,22 @@ export default function Harmony() {
                    </div>
                 </div>
 
-               {/* Right Column: Transformation Graphic */}
-               <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#E3F2FD] to-[#FCE4EC] rounded-[4rem] blur-[80px] opacity-30 group-hover:opacity-50 transition-opacity"></div>
-                  <div className="relative bg-white rounded-[4rem] p-4 shadow-2xl border border-white overflow-hidden transform hover:scale-[1.02] transition-transform duration-700">
-                     <div className="absolute top-6 left-6 z-20">
-                        <span className="bg-[#0D47A1] text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">Clinical Observation</span>
+               {/* Right Column: Transformation Graphic - No Card */}
+               <div className="relative flex flex-col items-center justify-center">
+                  <img 
+                     src={skinTransformation} 
+                     alt="Cellular Transformation Progress" 
+                     className="w-full h-auto max-h-[480px] object-contain mix-blend-multiply"
+                  />
+                  {/* Labels below each face */}
+                  <div className="flex items-center justify-center w-full px-4 mt-2 gap-8">
+                     <div className="flex flex-col items-center gap-1">
+                        <div className="h-px w-12 bg-gray-300"></div>
+                        <span className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">Without NAD+</span>
                      </div>
-                     <img 
-                        src={skinTransformation} 
-                        alt="Cellular Transformation Progress" 
-                        className="w-full h-auto object-contain mix-blend-multiply"
-                     />
-                     {/* Floating Labels */}
-                     <div className="absolute bottom-10 left-10 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl border border-gray-100 flex flex-col">
-                        <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1 font-accent">Baseline</span>
-                        <span className="text-sm font-bold text-[#111827]">Without NAD+</span>
-                     </div>
-                     <div className="absolute bottom-10 right-10 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl border border-[#0D47A1]/20 flex flex-col">
-                        <span className="text-[9px] font-black text-[#0D47A1] uppercase tracking-widest mb-1 font-accent">Optimal</span>
-                        <span className="text-sm font-bold text-[#111827]">With NAD+</span>
+                     <div className="flex flex-col items-center gap-1">
+                        <div className="h-px w-12 bg-[#0D47A1]/40"></div>
+                        <span className="text-[11px] font-black text-[#0D47A1] uppercase tracking-[0.2em]">With NAD+</span>
                      </div>
                   </div>
                </div>
@@ -360,7 +430,7 @@ export default function Harmony() {
       </section>
 
       {/* FEATURED IN SECTION */}
-      <section className="py-24 bg-white border-b border-gray-50">
+      <section id="featured" className="py-24 bg-white border-b border-gray-50">
          <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20 space-y-4">
                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block font-accent">Clinical Recognition</span>
@@ -401,7 +471,7 @@ export default function Harmony() {
 
 
       {/* TESTIMONIALS SECTION - PIXEL PERFECT TO SCREENSHOT */}
-      <section className="py-24 bg-[#F9FBFA] overflow-hidden relative">
+      <section id="testimonials" className="py-24 bg-[#F9FBFA] overflow-hidden relative">
          <div className="max-w-4xl mx-auto px-6 relative z-10">
             
             {/* Header Area */}
@@ -541,7 +611,7 @@ export default function Harmony() {
       </section>
       
       {/* CORTISOL IMPACT & TRANSFORMATION SECTION - NEW */}
-      <section className="py-32 bg-[#F9FAFB]">
+      <section id="cortisol" className="py-32 bg-[#F9FAFB]">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16 space-y-6">
              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block font-accent">Hormonal Reality</span>
@@ -842,7 +912,7 @@ export default function Harmony() {
 
       {/* BREAKTHROUGHS SECTION */}
       {/* id added for nav */}
-      <section className="py-24 bg-white overflow-hidden">
+      <section id="breakthroughs" className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-bold text-[#111827] mb-6 leading-tight tracking-tight font-heading">
@@ -1077,7 +1147,7 @@ export default function Harmony() {
       </section>
 
       {/* PROTOCOL & INGREDIENTS SECTION */}
-      <section className="py-24 bg-white border-y border-gray-50 overflow-hidden">
+      <section id="ingredients" className="py-24 bg-white border-y border-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-24">
             <motion.div 
@@ -1567,7 +1637,7 @@ export default function Harmony() {
       </section>
 
       {/* TRUST ICONS SECTION */}
-      <section className="py-24 bg-white border-y border-gray-50">
+      <section id="trust" className="py-24 bg-white border-y border-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 space-y-4">
              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Quality Assurance</span>
@@ -1728,7 +1798,8 @@ export default function Harmony() {
       </section>
 
       {/* PURCHASE PROTECTION & GUARANTEE SECTION - CELLSTART REFINED */}
-      <section className="py-32 bg-white overflow-hidden border-t border-gray-50">
+      {/* id injected on section below */}
+      <section id="guarantee" className="py-32 bg-white overflow-hidden border-t border-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-24 max-w-5xl mx-auto space-y-6">
              <h2 className="text-4xl md:text-5xl font-black text-[#111827] leading-tight tracking-tight">
@@ -1967,7 +2038,7 @@ export default function Harmony() {
       </section>
 
       {/* SUPPLEMENT FACTS TRANSPARENCY SECTION */}
-      <section className="py-32 bg-white overflow-hidden">
+      <section id="formula" className="py-32 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-24 max-w-4xl mx-auto">
              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-6 block">Formula Transparency</span>
