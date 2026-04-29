@@ -1278,7 +1278,7 @@ export default function Harmony() {
         </div>
       </section>
 
-      {/* WHAT HAPPENS WHEN YOU START TAKING HORMONE HARMONY SECTION */}
+      {/* WHAT HAPPENS WHEN YOU START TAKING CHRONONAD+ SECTION */}
       <section className="py-32 bg-white overflow-hidden">
          <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
@@ -1349,7 +1349,7 @@ export default function Harmony() {
                   <div className="relative rounded-[4rem] overflow-hidden shadow-2xl border border-white">
                      <img 
                         src="/hormone_harmony_results_woman.png" 
-                        alt="Hormone Harmony Results" 
+                        alt="ChronoNAD+ Results" 
                         className="w-full h-auto object-cover"
                      />
                   </div>
@@ -2061,7 +2061,7 @@ export default function Harmony() {
          <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row justify-between items-start gap-20 mb-20">
                <div className="max-w-md">
-                  <h3 className="text-3xl font-black mb-6 font-heading italic tracking-tighter">Hormone Harmony™</h3>
+                  <h3 className="text-3xl font-black mb-6 font-heading italic tracking-tighter">ChronoNAD+™</h3>
                   <p className="text-white/50 leading-relaxed font-medium">
                      A clinical-potency botanical protocol designed for systemic hormonal restoration and metabolic vitality. Part of the Happy Mammoth ecosystem.
                   </p>
@@ -2090,7 +2090,7 @@ export default function Harmony() {
             
             <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
                <div className="text-[9px] text-white/30 font-bold uppercase tracking-widest max-w-2xl text-center md:text-left leading-relaxed">
-                  © 2025 Hormone Harmony. Formulated by Happy Koala, LLC. These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.
+                  © 2025 ChronoNAD+. Formulated by Happy Koala, LLC. These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.
                </div>
                <div className="flex items-center gap-8 opacity-40 hover:opacity-100 transition-all duration-500">
                   {/* PayPal */}
