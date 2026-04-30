@@ -1673,7 +1673,7 @@ export default function Harmony() {
          {/* MISSION & EXPERT TEAM SECTION - REFINED CLINICAL PREMIUM */}
          <section id="team" className="py-0 overflow-hidden bg-white">
             {/* Mission Header Bar */}
-            <div className="bg-white py-24 md:py-32 border-y border-gray-50">
+            <div className="bg-white py-12 md:py-16 border-y border-gray-50">
                <div className="max-w-7xl mx-auto px-6 text-center space-y-8">
                   <h2 className="text-sm md:text-base font-black text-[#0D47A1] uppercase tracking-[0.4em] font-heading">
                      The CellStart Mission
@@ -1689,8 +1689,8 @@ export default function Harmony() {
             </div>
 
             {/* Scientific Leadership - Dr. Anthony Njapa */}
-            <div className="py-24 md:py-32 bg-white">
-               <div className="max-w-6xl mx-auto px-6">
+            <div className="py-16 md:py-20 bg-white">
+               <div className="max-w-7xl mx-auto px-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
                      {/* Left Column: Image & Badge */}
@@ -1700,22 +1700,27 @@ export default function Harmony() {
 
                         <div className="relative z-10 rounded-[3rem] overflow-hidden bg-gray-100">
                            <img
-                              src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=800&h=1000"
+                              src="/Dr-Njapa-photo.jpg"
                               alt="Dr. Anthony Njapa"
                               className="w-full h-[500px] lg:h-[600px] object-cover object-top"
                            />
                         </div>
 
-                        {/* Floating Badge */}
-                        <motion.div
-                           initial={{ opacity: 0, y: 20 }}
-                           whileInView={{ opacity: 1, y: 0 }}
-                           viewport={{ once: true }}
-                           className="absolute -bottom-8 right-0 lg:-right-12 bg-[#002855] text-white p-4 md:p-8 rounded-2xl md:rounded-3xl shadow-2xl z-20 min-w-[200px] md:min-w-[280px]"
-                        >
-                           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 mb-2 font-accent">Clinical Background</p>
-                           <p className="text-xl font-bold tracking-tight">22+ Years in Medicine</p>
-                        </motion.div>
+                         {/* Floating Badge - IMPROVED CONTRAST */}
+                         <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="absolute -bottom-8 right-0 lg:-right-8 bg-[#001B3D] text-white p-6 md:p-10 rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] z-20 min-w-[240px] md:min-w-[320px] border border-white/10 backdrop-blur-sm"
+                         >
+                            <div className="flex flex-col gap-3">
+                               <div className="flex items-center gap-3">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></div>
+                                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400/80 font-accent">Clinical Background</p>
+                               </div>
+                               <p className="text-2xl md:text-3xl font-black tracking-tight text-white">22+ Years <span className="block text-blue-400 font-medium italic text-lg">in Medicine</span></p>
+                            </div>
+                         </motion.div>
                      </div>
 
                      {/* Right Column: Text Content */}
@@ -1806,56 +1811,80 @@ export default function Harmony() {
             </div>
          </section>
 
-         {/* FINAL EDITORIAL FOOTER */}
-         <footer className="py-10 md:py-16 lg:py-24 bg-[#0D47A1] text-white">
+         {/* FINAL CLINICAL PREMIUM FOOTER */}
+         <footer className="py-20 md:py-28 bg-[#111827] text-white overflow-hidden relative">
+            {/* Subtle background glow */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0D47A1]/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+            
             <div className="max-w-7xl mx-auto px-6">
-               <div className="flex flex-col lg:flex-row justify-between items-start gap-20 mb-20">
-                  <div className="max-w-md">
-                     <h3 className="text-3xl font-black mb-6 font-heading italic tracking-tighter">ChronoNAD+™</h3>
-                     <p className="text-white/50 leading-relaxed font-medium">
-                        A clinical-potency botanical protocol designed for systemic hormonal restoration and metabolic vitality. Part of the Happy Mammoth ecosystem.
-                     </p>
+               <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-24">
+                  
+                  {/* Brand & Mission Column */}
+                  <div className="lg:col-span-5 space-y-10">
+                     <div className="space-y-8">
+                        <img src="/logo.png" alt="CellStart Logo" className="h-10 w-auto brightness-0 invert" />
+                        <p className="text-gray-400 text-lg leading-relaxed max-w-sm">
+                           The definitive protocol for cellular restoration and metabolic vitality. Part of the <span className="text-white">CellStart</span> health collective.
+                        </p>
+                     </div>
+                     
+                     <div className="flex gap-4">
+                        {/* Social Links Placeholders */}
+                        <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#0D47A1] transition-all duration-300 cursor-pointer">
+                           <span className="text-[10px] font-black">IG</span>
+                        </div>
+                        <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#0D47A1] transition-all duration-300 cursor-pointer">
+                           <span className="text-[10px] font-black">FB</span>
+                        </div>
+                        <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#0D47A1] transition-all duration-300 cursor-pointer">
+                           <span className="text-[10px] font-black">TW</span>
+                        </div>
+                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-12 text-[10px] font-black uppercase tracking-[0.3em]">
-                     <div className="space-y-4">
-                        <p className="text-white/20 mb-6">Protocol</p>
-                        <a href="#" className="block hover:text-gray-400 transition-colors">Safety Data</a>
-                        <a href="#" className="block hover:text-gray-400 transition-colors">Shipping</a>
-                        <a href="#" className="block hover:text-gray-400 transition-colors">Guarantee</a>
+                  {/* Navigation Columns */}
+                  <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
+                     <div className="space-y-8">
+                        <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]">The Protocol</h4>
+                        <ul className="space-y-4 text-sm font-medium text-gray-400">
+                           <li><a href="#hero" className="hover:text-white transition-colors duration-300">How It Works</a></li>
+                           <li><a href="#formula" className="hover:text-white transition-colors duration-300">Clinical Formula</a></li>
+                           <li><a href="#results" className="hover:text-white transition-colors duration-300">Success Stories</a></li>
+                        </ul>
                      </div>
-                     <div className="space-y-4">
-                        <p className="text-white/20 mb-6">Support</p>
-                        <a href="#" className="block hover:text-gray-400 transition-colors">Contact Expert</a>
-                        <a href="#" className="block hover:text-gray-400 transition-colors">Track Order</a>
-                        <a href="#" className="block hover:text-gray-400 transition-colors">FAQ</a>
-                     </div>
-                     <div className="space-y-4">
-                        <p className="text-white/20 mb-6">Legal</p>
-                        <a href="#" className="block hover:text-gray-400 transition-colors">Privacy</a>
-                        <a href="#" className="block hover:text-gray-400 transition-colors">Terms</a>
+                     <div className="space-y-8">
+                        <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]">Expertise</h4>
+                        <ul className="space-y-4 text-sm font-medium text-gray-400">
+                           <li><a href="#team" className="hover:text-white transition-colors duration-300">Scientific Leadership</a></li>
+                           <li><a href="#faq" className="hover:text-white transition-colors duration-300">Common Questions</a></li>
+                        </ul>
                      </div>
                   </div>
                </div>
 
-               <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
-                  <div className="text-[9px] text-white/30 font-bold uppercase tracking-widest max-w-2xl text-center md:text-left leading-relaxed">
-                     © 2025 ChronoNAD+. Formulated by Happy Koala, LLC. These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.
+               {/* Bottom Bar */}
+               <div className="pt-12 border-t border-white/5 flex flex-col xl:flex-row justify-between items-center gap-12">
+                  <div className="text-[10px] text-gray-500 font-bold uppercase tracking-widest max-w-3xl text-center xl:text-left leading-loose">
+                     © 2025 CHRONONAD+™. ALL RIGHTS RESERVED. THESE STATEMENTS HAVE NOT BEEN EVALUATED BY THE FOOD AND DRUG ADMINISTRATION. THIS PRODUCT IS NOT INTENDED TO DIAGNOSE, TREAT, CURE, OR PREVENT ANY DISEASE.
                   </div>
-                  <div className="flex items-center gap-8 opacity-40 hover:opacity-100 transition-all duration-500">
-                     {/* PayPal */}
-                     <span className="text-[10px] font-black uppercase tracking-widest text-white">PayPal</span>
-                     {/* Visa */}
-                     <span className="text-[10px] font-black uppercase tracking-widest text-white italic">VISA</span>
-                     {/* Mastercard Circles */}
-                     <div className="flex items-center">
-                        <div className="w-5 h-5 rounded-full bg-white/20 -mr-2 border border-white/10"></div>
-                        <div className="w-5 h-5 rounded-full bg-white/10 border border-white/10"></div>
+                  
+                  <div className="flex flex-wrap items-center justify-center gap-8 opacity-40 hover:opacity-100 transition-opacity duration-700">
+                     <div className="flex items-center gap-3">
+                        <div className="w-8 h-5 rounded bg-gray-400"></div>
+                        <span className="text-[9px] font-black uppercase tracking-widest">Mastercard</span>
                      </div>
-                     {/* SSL Indicator */}
+                     <div className="flex items-center gap-3">
+                        <div className="w-8 h-5 rounded bg-gray-300"></div>
+                        <span className="text-[9px] font-black uppercase tracking-widest italic">Visa</span>
+                     </div>
+                     <div className="flex items-center gap-3">
+                        <div className="w-8 h-5 rounded bg-gray-200"></div>
+                        <span className="text-[9px] font-black uppercase tracking-widest">Amex</span>
+                     </div>
+                     <div className="h-4 w-[1px] bg-white/20 hidden md:block"></div>
                      <div className="flex items-center gap-2">
-                        <svg className="w-3 h-3 text-white/50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
-                        <span className="text-[8px] font-black uppercase tracking-widest text-white/50">256-BIT SSL</span>
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
+                        <span className="text-[9px] font-black uppercase tracking-[0.2em]">256-Bit Encrypted</span>
                      </div>
                   </div>
                </div>
