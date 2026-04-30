@@ -1,25 +1,38 @@
 @import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Cabin:wght@400;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Josefin+Sans:wght@300;400;600;700&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   DESIGN SYSTEM: TYPOGRAPHY TOKENS
+   ============================================
+   H1 (Page Hero):      text-3xl md:text-4xl, font-black, font-heading, uppercase tracking-tight
+   H2 (Section):        text-3xl md:text-4xl, font-black, font-heading, tracking-tight
+   H3 (Sub-section):    text-xl md:text-2xl, font-bold, font-heading, tracking-tight
+   H4 (Card title):     text-base md:text-lg, font-bold, font-heading
+   Label (Eyebrow):     text-[10px], font-black, uppercase, tracking-[0.4em], font-accent
+   Body (Primary):      text-base, font-medium, leading-relaxed (gray-600)
+   Body (Secondary):    text-sm, font-medium, leading-relaxed (gray-500)
+   Button (Primary):    text-sm, font-black, uppercase, tracking-widest
+   ============================================ */
 
 @theme {
-  --font-sans: 'Source Sans 3', 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: 'Source Sans 3', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-montserrat: 'Montserrat', sans-serif;
-  --font-cabin: 'Cabin', sans-serif;
-  --font-josefin: 'Josefin Sans', sans-serif;
   --font-poppins: 'Poppins', sans-serif;
   --color-ios-blue: #007AFF;
   --color-ios-gray: #8E8E93;
   --color-ios-bg: #F2F2F7;
+  --color-brand-blue: #0D47A1;
+  --color-brand-black: #111827;
 }
 
 @layer utilities {
+  /* ── Glass Morphism ── */
   .glass {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
-  
   .glass-dark {
     background: rgba(17, 24, 39, 0.7);
     backdrop-filter: blur(20px);
@@ -27,10 +40,95 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  /* ── Typography Utilities ── */
+  .font-heading   { font-family: var(--font-montserrat); }
+  .font-accent    { font-family: var(--font-poppins); }
+  .font-body      { font-family: var(--font-sans); }
+
+  /* ── Standardized Type Scale ── */
+  /* H1 — Hero headline */
+  .ty-h1 {
+    font-family: var(--font-montserrat);
+    font-size: clamp(1.75rem, 4vw, 2.5rem); /* 28px → 40px */
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #111827;
+  }
+
+  /* H2 — Section headline */
+  .ty-h2 {
+    font-family: var(--font-montserrat);
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem); /* 28px → 36px */
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #111827;
+  }
+
+  /* H3 — Sub-section headline */
+  .ty-h3 {
+    font-family: var(--font-montserrat);
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem); /* 20px → 24px */
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: #111827;
+  }
+
+  /* H4 — Card title */
+  .ty-h4 {
+    font-family: var(--font-montserrat);
+    font-size: 1rem; /* 16px */
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: #111827;
+  }
+
+  /* Eyebrow / Section label */
+  .ty-label {
+    font-family: var(--font-poppins);
+    font-size: 0.625rem; /* 10px */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: rgba(13, 71, 161, 0.4);
+  }
+
+  /* Body — Primary */
+  .ty-body {
+    font-family: var(--font-sans);
+    font-size: 1rem; /* 16px */
+    font-weight: 500;
+    line-height: 1.75;
+    color: #4B5563;
+  }
+
+  /* Body — Secondary / smaller */
+  .ty-body-sm {
+    font-family: var(--font-sans);
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    line-height: 1.7;
+    color: #6B7280;
+  }
+
+  /* CTA Button text */
+  .ty-btn {
+    font-family: var(--font-montserrat);
+    font-size: 0.75rem; /* 12px */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* ── Shadows ── */
   .shadow-ios {
     box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.15), 0 20px 50px -25px rgba(0, 0, 0, 0.1);
   }
 
+  /* ── Animations ── */
   .animate-in {
     animation-duration: 500ms;
     animation-fill-mode: both;
@@ -43,59 +141,53 @@
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
 @layer base {
   * {
     -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
   }
-  
+
   body {
     font-family: var(--font-sans);
-    background-color: var(--color-ios-bg);
+    background-color: #ffffff;
     color: #111827;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    font-size: 1rem;
+    line-height: 1.75;
   }
 
+  /* Global heading baseline — Montserrat for all headings */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-montserrat);
+    color: #111827;
+    line-height: 1.2;
+    font-weight: 800;
+  }
+
+  /* Paragraph baseline */
+  p {
+    font-family: var(--font-sans);
+    color: #4B5563;
+    line-height: 1.75;
   }
 
   button {
     font-family: var(--font-montserrat);
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    cursor: pointer;
   }
 
-  /* Custom Scrollbar for a cleaner look */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #d1d5db;
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #9ca3af;
-  }
+  a { text-decoration: none; }
+
+  /* ── Custom Scrollbar ── */
+  ::-webkit-scrollbar       { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
 }
-
-@layer utilities {
-  .font-subheading {
-    font-family: var(--font-josefin);
-  }
-  .font-accent {
-    font-family: var(--font-poppins);
-  }
-  .font-heading {
-    font-family: var(--font-montserrat);
-  }
-  .font-heading-alt {
-    font-family: var(--font-cabin);
-  }
-}
-
