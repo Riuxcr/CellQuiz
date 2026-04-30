@@ -11,59 +11,11 @@ import womenAllAgesResult from '../assets/women-all-ages-result.png'
 export default function Harmony() {
   const navigate = useNavigate()
   const [activeFaq, setActiveFaq] = useState(null)
-  const [activeSection, setActiveSection] = useState('hero')
-  const [navScrolled, setNavScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [hoveredNav, setHoveredNav] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index)
   }
-
-  const navLinks = [
-    { id: 'hero',         label: 'Home' },
-    { 
-      id: 'science',      
-      label: 'Science',
-      dropdown: [
-        { id: 'cortisol',      label: 'Cortisol & Hormones' },
-        { id: 'breakthroughs', label: 'Key Breakthroughs' },
-        { id: 'ingredients',   label: 'Protocol & Ingredients' },
-        { id: 'formula',       label: 'Formula Transparency' },
-      ]
-    },
-    { id: 'timeline',     label: 'Timeline' },
-    { 
-      id: 'pricing-grid', 
-      label: 'Pricing',
-      dropdown: [
-        { id: 'guarantee',     label: '30-Day Guarantee' },
-      ]
-    },
-    { 
-      id: 'results',      
-      label: 'Results',
-      dropdown: [
-        { id: 'testimonials',  label: 'Testimonials' },
-        { id: 'featured',      label: 'As Featured In' },
-      ]
-    },
-    { 
-      id: 'team',         
-      label: 'Team',
-      dropdown: [
-        { id: 'trust',         label: 'Quality & Trust' },
-      ]
-    },
-    { id: 'faq',          label: 'FAQ' },
-  ]
-
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    setMobileMenuOpen(false)
-  }
-  
-  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const checkMobile = () => {
@@ -72,22 +24,6 @@ export default function Harmony() {
     checkMobile()
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  // Track scroll for navbar active state & background
-  useEffect(() => {
-    const handleScroll = () => {
-      setNavScrolled(window.scrollY > 60)
-      const sections = navLinks.map(l => document.getElementById(l.id)).filter(Boolean)
-      const scrollMid = window.scrollY + window.innerHeight / 2
-      let current = 'hero'
-      sections.forEach(sec => {
-        if (sec.offsetTop <= scrollMid) current = sec.id
-      })
-      setActiveSection(current)
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   // Refs for scroll sections
@@ -151,170 +87,13 @@ export default function Harmony() {
   const productImg = isMobile ? "/mobilehero.png" : chronoNadIsolated
 
   return (
-    <div className="font-sans antialiased text-[#111827] bg-white selection:bg-[#0D47A1] selection:text-white">
+    <div className="font-sans antialiased text-[#111827] bg-white selection:bg-[#0D47A1] selection:text-white relative">
+      
+      {/* ===== LOGO ===== */}
+      <div className="absolute top-8 left-16 z-[999]">
+         <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
+      </div>
 
-      {/* ===== FLOATING CAPSULE NAVBAR ===== */}
-      <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
-        className="fixed top-5 left-1/2 -translate-x-1/2 z-[999] w-auto"
-      >
-        {/* Desktop Pill */}
-        <div className={`hidden md:flex items-center gap-1 px-3 py-2 rounded-full transition-all duration-500 ${
-          navScrolled
-            ? 'bg-white/90 backdrop-blur-xl shadow-[0_8px_40px_rgba(13,71,161,0.15)] border border-gray-100/80'
-            : 'bg-white/70 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-gray-100/60'
-        }`}>
-          {/* Logo / Brand */}
-          <button
-            onClick={() => scrollToSection('hero')}
-            className="flex items-center gap-2 px-4 py-2 mr-1"
-          >
-            <div className="w-6 h-6 bg-[#0D47A1] rounded-full flex items-center justify-center">
-              <div className="w-2.5 h-2.5 bg-white rounded-full opacity-90"></div>
-            </div>
-            <span className="text-[11px] font-black uppercase tracking-[0.25em] text-[#0D47A1]">ChronoNAD+</span>
-          </button>
-
-          <div className="h-5 w-px bg-gray-200 mx-1"></div>
-
-          {/* Primary Nav Items */}
-          {navLinks.map((link) => (
-            <div
-              key={link.id}
-              className="relative"
-              onMouseEnter={() => setHoveredNav(link.id)}
-              onMouseLeave={() => setHoveredNav(null)}
-            >
-              <button
-                onClick={() => scrollToSection(link.id)}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-300 ${
-                  activeSection === link.id || (link.dropdown && link.dropdown.some(l => l.id === activeSection))
-                    ? 'bg-[#0D47A1] text-white shadow-md shadow-[#0D47A1]/30'
-                    : 'text-gray-500 hover:text-[#0D47A1] hover:bg-blue-50/60'
-                }`}
-              >
-                {link.label}
-                {link.dropdown && (
-                  <svg className={`w-3 h-3 transition-transform duration-200 ${hoveredNav === link.id ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7"/>
-                  </svg>
-                )}
-              </button>
-              
-              {/* Dropdown Menu */}
-              {link.dropdown && (
-                <AnimatePresence>
-                  {hoveredNav === link.id && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -8, scale: 0.96 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                      transition={{ duration: 0.18 }}
-                      className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-56 bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-100 p-3 flex flex-col gap-1 z-50"
-                    >
-                      {link.dropdown.map((subLink) => (
-                        <button
-                          key={subLink.id}
-                          onClick={() => { scrollToSection(subLink.id); setHoveredNav(null) }}
-                          className={`w-full text-left px-4 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.12em] transition-all duration-200 ${
-                            activeSection === subLink.id
-                              ? 'bg-[#0D47A1] text-white'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-[#0D47A1]'
-                          }`}
-                        >
-                          {subLink.label}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              )}
-            </div>
-          ))}
-
-          <div className="h-5 w-px bg-gray-200 mx-1"></div>
-
-          {/* CTA */}
-          <button
-            onClick={() => scrollToSection('pricing-grid')}
-            className="bg-[#0D47A1] text-white text-[11px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full shadow-lg shadow-[#0D47A1]/20 hover:bg-[#1565C0] transition-all duration-300 hover:scale-105 ml-1"
-          >
-            Get Started
-          </button>
-        </div>
-
-        {/* Mobile Pill */}
-        <div className={`flex md:hidden items-center gap-3 px-4 py-2.5 rounded-full transition-all duration-500 ${
-          navScrolled
-            ? 'bg-white/90 backdrop-blur-xl shadow-[0_8px_40px_rgba(13,71,161,0.15)] border border-gray-100/80'
-            : 'bg-white/70 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.08)] border border-gray-100/60'
-        }`}>
-          <div className="w-5 h-5 bg-[#0D47A1] rounded-full flex items-center justify-center">
-            <div className="w-2 h-2 bg-white rounded-full"></div>
-          </div>
-          <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#0D47A1]">ChronoNAD+</span>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="ml-2 w-8 h-8 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center"
-          >
-            <svg className="w-4 h-4 text-[#0D47A1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileMenuOpen
-                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
-                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 8h16M4 16h16" />
-              }
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile Dropdown */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-100 p-3 flex flex-col gap-1 max-h-[80vh] overflow-y-auto"
-            >
-              {navLinks.map((link) => (
-                <div key={link.id} className="flex flex-col gap-1">
-                  <button
-                    onClick={() => scrollToSection(link.id)}
-                    className={`w-full text-left px-4 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.15em] transition-all duration-200 ${
-                      activeSection === link.id
-                        ? 'bg-[#0D47A1] text-white'
-                        : 'text-gray-600 hover:bg-gray-50'
-                    }`}
-                  >
-                    {link.label}
-                  </button>
-                  {link.dropdown && link.dropdown.map(subLink => (
-                    <button
-                      key={subLink.id}
-                      onClick={() => scrollToSection(subLink.id)}
-                      className={`w-full text-left px-8 py-2 rounded-2xl text-[10px] font-bold uppercase tracking-[0.12em] transition-all duration-200 ${
-                        activeSection === subLink.id
-                          ? 'text-[#0D47A1] bg-blue-50/50'
-                          : 'text-gray-500 hover:bg-gray-50 hover:text-[#0D47A1]'
-                      }`}
-                    >
-                      - {subLink.label}
-                    </button>
-                  ))}
-                </div>
-              ))}
-              <button
-                onClick={() => scrollToSection('pricing-grid')}
-                className="w-full mt-2 bg-[#0D47A1] text-white text-[11px] font-black uppercase tracking-[0.2em] px-4 py-3 rounded-2xl"
-              >
-                Get Started
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
 
       {/* HERO SECTION - BLACK & BLUE THEME */}
       <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center bg-white overflow-hidden pt-28 pb-12 lg:pt-32 lg:pb-16 px-6">
@@ -623,13 +402,13 @@ export default function Harmony() {
       <section id="cortisol" className="py-32 bg-[#F9FAFB]">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16 space-y-6">
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block font-accent">Hormonal Reality</span>
+             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block font-accent">Cellular Reality</span>
              <h2 className="text-4xl md:text-5xl font-bold text-[#111827] leading-tight tracking-tight font-heading">
-                As Women Age, Their Bodies Produce <br className="hidden md:block" />
-                Up To <span className="text-[#0D47A1]">20% MORE Cortisol</span> Every Year.
+                As women age, their <br className="hidden md:block" />
+                <span className="text-[#0D47A1]">NAD+ levels drop by 30%</span> by Age 30.
              </h2>
              <p className="text-xl text-gray-500 font-medium italic">
-                And that’s when <span className="text-[#111827] font-black underline decoration-[#0D47A1]/20 underline-offset-8">everything changes</span> in their bodies.
+                And that’s when <span className="text-[#111827] font-black underline decoration-[#0D47A1]/20 underline-offset-8">everything changes in your body.</span>
              </p>
           </div>
 
@@ -644,105 +423,163 @@ export default function Harmony() {
 
           <div className="space-y-16 text-center">
              <div className="max-w-2xl mx-auto space-y-10">
+                <div className="space-y-4 text-left bg-white p-8 md:p-12 rounded-[3rem] shadow-sm border border-gray-50">
+                   {[
+                      "The dull, weathered complexion...",
+                      "The heavy, persistent brain fog...",
+                      "The slow, ‘biological rust’ recovery..."
+                   ].map((item, i) => (
+                      <div key={i} className="flex items-center gap-4 text-lg text-gray-600 font-medium">
+                         <span className="text-xl">❌</span>
+                         <span>{item}</span>
+                      </div>
+                   ))}
+                </div>
+
                 <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-medium">
-                   Are all symptoms of declining <span className="text-[#111827] font-black">NAD+ levels</span>, that causes your cells to weaken, and in turn causes dull skin, low energy and visible aging signs. 
+                   Are all symptoms of <span className="text-[#111827] font-black">cellular decay</span> that forces the body to stay <span className="text-[#0D47A1] font-black">DRAINED and WEATHERED…</span> And that’s only what you see in the mirror.
                    <br /><br />
-                   And that's only what you notice on the outside. <br />
-                   <span className="text-[#0D47A1] font-black italic">On the inside?</span> There's a cellular energy crisis quietly draining your body's ability to function, recover and repair.
+                   <span className="text-xl md:text-2xl text-[#111827] font-black italic">On the inside?</span> <br />
+                   There’s a biological brownout wreaking havoc on your youthfulness and energy.
                 </p>
                 
-                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm space-y-4">
-                   <p className="text-gray-500 italic font-medium italic leading-relaxed">
-                      "You feel exhausted before the day is even over… Your skin looks dull no matter how well you rest or how good your skincare is…"
-                   </p>
-                   <p className="text-sm text-gray-400 font-bold uppercase tracking-widest">
-                      If that's ever happened to you, it's not your fault. These are symptoms of NAD+ decline in the body…
-                   </p>
-                </div>
-             </div>
-
-             <div className="space-y-4">
-                <div className="bg-[#111827] text-white p-10 rounded-[2.5rem] shadow-2xl">
-                   <p className="text-xl md:text-2xl font-black uppercase tracking-tighter leading-tight">
-                      By the time you reach your 40s and 50s, <br />
-                      your NAD+ levels can drop by up to 50%...
-                   </p>
-                   <div className="h-[1px] w-24 bg-[#0D47A1] mx-auto my-6"></div>
-                   <p className="text-sm opacity-80 font-medium max-w-xl mx-auto">
-                      These are the levels that keep your energy steady, your skin renewing, your cells repairing damage overnight, and your mind sharp and clear… Just like they did in your 20s.
-                   </p>
-                </div>
-                
-                <div className="max-w-xl mx-auto pt-8">
-                   <p className="text-lg text-[#0D47A1] font-bold italic">
-                      This means that as you age… Not only does your energy become harder to sustain… But your recovery slows down too.
-                   </p>
-                </div>
-             </div>
-
-             {/* The Mitochondrial Driver */}
-             <div className="bg-white border-2 border-gray-100 p-12 rounded-[3rem] shadow-sm text-left max-w-3xl mx-auto">
-                <h3 className="text-2xl font-bold text-[#111827] mb-6 font-heading">Here's why that happens:</h3>
-                <div className="space-y-6">
-                   <p className="text-gray-600 leading-relaxed font-medium">
-                      Declining NAD+ levels slow down your cellular energy production… Which makes your body less efficient at repairing damage, recovering from stress, and renewing itself overnight…
-                   </p>
-                   <div className="p-6 bg-[#E3F2FD]/50 rounded-2xl border-l-4 border-[#0D47A1]">
-                      <p className="text-[#111827] font-black uppercase tracking-widest text-sm mb-2">The Power Failure</p>
-                      <p className="text-gray-500 text-sm font-medium">
-                         Your mitochondria — the power source of every cell — starts running on less and less fuel… So your body starts showing it. On the outside and the inside.
-                      </p>
-                   </div>
-                </div>
-             </div>
-
-             {/* Symptom Checklist - Updated */}
-             <div className="py-12">
-                <h3 className="text-2xl font-bold text-[#111827] mb-10 font-heading">So if you've ever experienced…</h3>
-                <div className="flex flex-col items-center gap-6">
+                <div className="grid grid-cols-1 gap-6">
                    {[
-                      "Skin that looks dull and tired no matter what you put on it…",
-                      "Waking up exhausted no matter how long you slept…",
-                      "A mind that feels foggy, slow and harder to switch on…",
-                      "A body that takes days to recover from things that never used to affect you…"
-                   ].map((symptom, i) => (
-                      <div key={i} className="flex items-center gap-4 text-left w-full max-w-lg group">
-                         <span className="text-2xl group-hover:scale-125 transition-transform">➡️</span>
-                         <span className="text-base md:text-lg text-[#1F2937] font-medium italic border-b border-gray-100 pb-2 flex-grow">{symptom}</span>
+                      "You feel mentally gray and lagging during the day…",
+                      "Drained yet restless when your body needs to recover or sleep…",
+                      "And unable to reclaim your glow, no matter what serums you use."
+                   ].map((text, i) => (
+                      <div key={i} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                         <p className="text-gray-500 italic font-medium leading-relaxed">"{text}"</p>
                       </div>
                    ))}
                 </div>
              </div>
 
-             <div className="space-y-6 pt-8 max-w-2xl mx-auto">
-                <p className="text-2xl font-black text-[#111827] uppercase tracking-tighter font-heading">
-                   You're not alone… It happens to MILLIONS of people as they get older.
+             <div className="space-y-8">
+                <div className="bg-[#111827] text-white p-12 rounded-[3rem] shadow-2xl relative overflow-hidden">
+                   <div className="absolute top-0 right-0 w-64 h-64 bg-[#0D47A1]/10 rounded-full blur-[100px] -mr-32 -mt-32"></div>
+                   <p className="text-lg md:text-xl opacity-90 font-medium max-w-2xl mx-auto mb-8">
+                      If that ever happened to you, it’s not your fault. These are symptoms of a <span className="text-[#0D47A1] font-black italic">'biological lag'</span> caused by crashing NAD+ levels…
+                   </p>
+                   <p className="text-sm opacity-60 font-bold uppercase tracking-[0.3em] mb-8">And unfortunately, it doesn’t stop here.</p>
+                   <div className="h-[1px] w-24 bg-[#0D47A1] mx-auto mb-8"></div>
+                   <p className="text-2xl md:text-4xl font-black uppercase tracking-tighter leading-tight mb-8">
+                      By the time you reach your 40s, your NAD+ levels, which is the fuel for every single cell, <span className="text-[#0D47A1]">plummet by a whopping 50%...</span>
+                   </p>
+                   <p className="text-base md:text-lg opacity-80 font-medium max-w-2xl mx-auto italic">
+                      This is the molecule that keeps your skin tight and luminous, your DNA shielded, your metabolism firing, and your cellular recovery on autopilot…
+                      <br />
+                      Just like in your 20s and 30s.
+                   </p>
+                </div>
+                
+                <div className="max-w-2xl mx-auto pt-8 space-y-4">
+                   <p className="text-xl text-[#0D47A1] font-bold italic">
+                      This means that, as you age…
+                   </p>
+                   <p className="text-lg text-gray-600 font-medium">
+                      Not only do you accumulate visible <span className="text-[#111827] font-black">'biological rust'</span> against your will… <br />
+                      But your cells actually lose the ability to repair themselves.
+                   </p>
+                   <p className="text-lg text-gray-500 font-medium italic">
+                      And as if that weren’t enough… <br />
+                      Your focus goes out the window, and your youthfulness becomes a memory of the past.
+                   </p>
+                </div>
+             </div>
+
+             {/* The Root Cause Section */}
+             <div className="bg-white border-2 border-gray-100 p-12 rounded-[3rem] shadow-sm text-left max-w-3xl mx-auto space-y-8">
+                <h3 className="text-2xl font-bold text-[#111827] font-heading underline decoration-[#0D47A1]/10 underline-offset-8">Here’s why that happens:</h3>
+                <div className="space-y-6">
+                   <div className="flex items-start gap-4">
+                      <div className="w-2 h-2 rounded-full bg-[#0D47A1] mt-2 shrink-0"></div>
+                      <p className="text-gray-600 leading-relaxed font-medium">
+                         <span className="text-[#111827] font-black">Crashing NAD+ levels stall your cellular engines…</span> Which dulls the skin and creates that 'perpetually tired' look…
+                      </p>
+                   </div>
+                   <div className="flex items-start gap-4">
+                      <div className="w-2 h-2 rounded-full bg-[#0D47A1] mt-2 shrink-0"></div>
+                      <p className="text-gray-600 leading-relaxed font-medium">
+                         Other NAD+ dependent 'youth' processes fail, and DNA damage accumulates… <br />
+                         So the body stubbornly feels <span className="text-[#111827] font-black">older, heavier, and slower</span> than you actually are.
+                      </p>
+                   </div>
+                </div>
+             </div>
+
+             {/* Symptom Checklist */}
+             <div className="py-12 bg-[#F8FAFC] rounded-[3rem] border border-gray-100">
+                <h3 className="text-2xl font-bold text-[#111827] mb-10 font-heading">So if you’ve ever witnessed…</h3>
+                <div className="flex flex-col items-center gap-6 px-6">
+                   {[
+                      "New fine-lines appearing where a glow used to be…",
+                      "A 'brain fog' that makes simple tasks feel like a climb…",
+                      "Slow recovery that keeps you sore and tired for days…",
+                      "Or Dull wrinkled skin losing its firm, youthful definition…"
+                   ].map((symptom, i) => (
+                      <div key={i} className="flex items-center gap-4 text-left w-full max-w-lg group">
+                         <span className="text-2xl group-hover:translate-x-1 transition-transform">➡️</span>
+                         <span className="text-base md:text-lg text-[#1F2937] font-medium italic border-b border-gray-100 pb-2 flex-grow">{symptom}</span>
+                      </div>
+                   ))}
+                </div>
+                
+                <div className="mt-12 space-y-4">
+                   <p className="text-2xl font-black text-[#0D47A1] uppercase tracking-tighter">➡️ You’re not alone… ⬅️</p>
+                   <p className="text-lg text-gray-500 font-medium">It happens to <span className="text-[#111827] font-black">MILLIONS of women 🙋♀️</span> just like you.</p>
+                </div>
+             </div>
+
+             <div className="space-y-8 pt-8 max-w-2xl mx-auto">
+                <p className="text-lg text-gray-600 font-medium leading-relaxed">
+                   If you’ve experienced some of these symptoms… then you probably noticed that… <br />
+                   <span className="text-[#111827] font-black underline decoration-[#0D47A1]/20 underline-offset-8">Standard vitamins and 'skincare only' routines just won’t cut it anymore.</span>
                 </p>
-                <div className="h-[2px] w-20 bg-gray-100 mx-auto"></div>
-                <p className="text-lg text-gray-500 font-medium italic">
-                   If you've felt some of these things… then you've probably already noticed that… <br />
-                   <span className="text-[#111827] font-black not-italic underline decoration-[#0D47A1]/20">Eating well and exercising just won't fully cut it anymore.</span>
+                <p className="text-gray-500 italic font-medium">
+                   Sure, they’ll help on the surface… <br />
+                   But they won’t fix the <span className="text-[#111827] font-black">cellular bankruptcy</span> happening at the root… or the rapid downfall of your longevity molecules.
                 </p>
              </div>
 
              <div className="pt-12 space-y-12">
-                <div className="max-w-2xl mx-auto text-gray-600 font-medium leading-relaxed">
-                   <p>Fortunately — there's a way to support that. And it all starts by going to the root cause…</p>
-                   <p className="text-[#0D47A1] font-bold mt-4">Because once you start replenishing your NAD+ levels… And give your cells the fuel they need to repair, recover and renew…</p>
+                <div className="max-w-2xl mx-auto text-gray-600 font-medium leading-relaxed space-y-6">
+                   <p className="text-xl font-bold text-[#111827]">Fortunately – there’s a way to reverse that.</p>
+                   <p>And it all starts by going to the root cause…</p>
+                   <p className="text-[#0D47A1] font-black text-xl italic">
+                      Because once you restore your NAD+ levels… <br />
+                      And activate the cellular repair your body is now missing…
+                   </p>
+                   <div className="bg-blue-50 p-8 rounded-3xl border border-blue-100">
+                      <p className="text-[#111827] font-black text-2xl tracking-tight leading-tight">
+                         You can get back that <span className="italic text-[#0D47A1]">sexy confidence…</span> <br />
+                         The beautiful complexion, the sharp mind, the revitalized body…
+                      </p>
+                      <p className="text-[#111827] font-bold mt-4 text-lg">
+                         So you can LOVE your life once again…
+                      </p>
+                      <p className="text-sm text-gray-400 mt-2 font-black uppercase tracking-widest">
+                         No matter your age, genetics, or unique biological profile!
+                      </p>
+                   </div>
                 </div>
 
-                <div className="space-y-6">
+                <div className="flex flex-col items-center gap-6">
                    <motion.button 
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={scrollToProducts}
-                      className="w-full md:w-auto min-w-[400px] bg-[#0D47A1] text-white font-black text-xl px-12 py-8 rounded-3xl uppercase tracking-widest shadow-2xl hover:bg-[#111827] transition-all duration-500"
+                      className="w-full md:w-auto min-w-[400px] bg-[#0D47A1] text-white font-black text-2xl px-12 py-8 rounded-3xl uppercase tracking-[0.2em] shadow-2xl hover:bg-[#111827] transition-all duration-500"
                    >
-                      Restore Your NAD+
+                      TRY CHRONONAD+
                    </motion.button>
-                   <p className="text-sm font-bold text-[#111827] uppercase tracking-[0.2em] italic">
-                      Feel like yourself once more… No matter your age or lifestyle.
-                   </p>
+                   <div className="flex items-center gap-3">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">
+                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
+                      </div>
+                      <span className="text-sm font-black text-[#111827] uppercase tracking-widest">✅ 30 Day Money Back Guarantee</span>
+                   </div>
                 </div>
              </div>
           </div>
@@ -846,14 +683,16 @@ export default function Harmony() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12 lg:mb-16">
             <div className="inline-block mb-6">
-               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">The Breakthrough</span>
+               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Finally, a breakthrough for every body and every age</span>
             </div>
             
-            <h2 className="text-4xl md:text-6xl lg:text-[4.5rem] font-bold text-[#111827] leading-[1.0] mb-8 tracking-tight font-heading max-w-5xl mx-auto">
-               Restore Your <span className="italic text-[#0D47A1] font-medium">Cellular Battery</span> <br className="hidden md:block" />
-               & Activate Vitality
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#111827] leading-[1.1] mb-8 tracking-tighter font-heading max-w-5xl mx-auto">
+               It’s Now Possible To <span className="italic text-[#0D47A1] font-medium">Reverse Cellular Bankruptcy</span>, <br className="hidden md:block" />
+               and Restore Your ‘Youth’ Molecules…
             </h2>
-            <p className="text-xl text-gray-500 font-medium italic leading-relaxed">Stay Systemically Vibrant & Resilient with <span className="text-[#111827] font-black not-italic">ChronoNAD+</span></p>
+            <p className="text-xl md:text-2xl text-gray-500 font-medium italic leading-relaxed">
+               And Stay <span className="text-[#111827] font-black not-italic">Naturally Sharp, Luminous, and Revitalized</span> with ChronoNAD+.
+            </p>
           </div>
 
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 mb-16 lg:mb-20">
@@ -876,27 +715,25 @@ export default function Harmony() {
 
              {/* Science & Proof Copy - Compact Editorial */}
              <div className="w-full lg:w-[60%] space-y-10 text-left">
-                <div className="space-y-4">
-                   <h3 className="text-xl md:text-2xl font-bold text-[#111827] leading-tight font-heading-alt italic">“We have finally done it.”</h3>
-                   <p className="text-base md:text-lg text-gray-500 leading-relaxed font-light">
-                      We have spent the last <span className="font-bold text-[#111827]">20+ years on the cutting-edge</span> of NAD+ and cellular longevity science to develop a protocol that doesn't just mask aging, but addresses it at the source.
+                <div className="space-y-6">
+                   <h3 className="text-xl md:text-2xl font-bold text-[#111827] leading-tight font-heading">We have spent years at the cutting-edge of longevity and molecular biology…</h3>
+                   <p className="text-base md:text-lg text-gray-600 leading-relaxed font-medium">
+                      And after searching far and wide for the most groundbreaking, up-to-date clinical research on the planet…
                    </p>
                 </div>
                 
-                <div className="grid grid-cols-1 gap-6">
-                   {[
-                     { title: "The First of Its Kind:", text: "After decades of clinical research, we created the world’s first dual-action cellular protocol that combines pure NAD+ fuel with a Sirtuin activator." },
-                     { title: "Clinical Synergy:", text: "A synergistic blend of clinically-backed nutrients targeting the root cause of biological decline—mitochondrial efficiency." },
-                     { title: "Total Vitality:", text: "Eliminate mental fog and persistent physical fatigue as quickly, effectively, and safely as possible." }
-                   ].map((item, i) => (
-                      <div key={i} className="flex items-start gap-5 group">
-                         <span className="text-3xl font-heading text-[#111827]/5 font-black italic group-hover:text-[#111827]/10 transition-colors">0{i+1}</span>
-                         <div className="space-y-1">
-                            <p className="text-sm font-bold text-[#111827] uppercase tracking-widest font-accent">{item.title}</p>
-                            <p className="text-base md:text-lg text-[#1F2937] leading-relaxed">{item.text}</p>
-                         </div>
-                      </div>
-                   ))}
+                <div className="bg-[#111827] p-8 md:p-12 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group">
+                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#0D47A1]/20 rounded-full blur-3xl"></div>
+                   <h4 className="text-2xl font-black uppercase tracking-tighter mb-6">We have finally done it:</h4>
+                   <p className="text-lg md:text-xl opacity-90 leading-relaxed font-medium mb-8">
+                      We’ve created the world’s most advanced <span className="text-[#0D47A1] font-black">NAD+ precursor formula</span> that packs high-purity, bioavailable longevity activators into a single formula.
+                   </p>
+                   <div className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/10">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#0D47A1] mt-2.5 shrink-0"></div>
+                      <p className="text-base opacity-80 leading-relaxed italic">
+                         To target the real, root cause of biological rust, skin aging, and metabolic stalling as quickly, effectively, and safely as possible.
+                      </p>
+                   </div>
                 </div>
              </div>
           </div>
@@ -940,33 +777,33 @@ export default function Harmony() {
            {[
              { 
                num: "1", 
-               label: "Genomic Stability",
-               text: "NAD+ is required for enzymes called PARPs, which identify and repair routine DNA strand breaks, helping maintain your body’s natural genomic integrity."
+               label: "Cellular Breakthrough 1",
+               text: "The discovery that NAD+ is the essential fuel for longevity genes that regulate aging, metabolism, and stress resistance."
              },
              { 
                num: "2", 
-               label: "Cellular Energy",
-               text: "Mitochondria rely on NAD+ to convert nutrients into ATP. Our formula supports the mitochondrial enzymes responsible for consistent, all-day power generation."
+               label: "Cellular Breakthrough 2",
+               text: "Research confirms replenishing NAD+ can reverse mitochondrial decay, giving \"old\" cells the energy production capacity of \"young\" cells."
              },
              { 
                num: "3", 
-               label: "Cellular Repair",
-               text: "Activates the sirtuin \"longevity genes\" that regulate protein quality-control, helping cells clean up and recycle damaged proteins for deep renewal."
+               label: "Cellular Breakthrough 3",
+               text: "The master clock synchronizer that regulates your circadian rhythm at a microscopic level for deep sleep and zero brain fog."
              },
              { 
                num: "4", 
-               label: "Healthy Communication",
-               text: "Helps coordinate chemical messengers between cells to maintain tissue balance and support balanced cellular signaling across the entire body."
+               label: "Cellular Breakthrough 4",
+               text: "The DNA-defense fuel that powers \"paramedic\" enzymes to detect and fix daily cellular damage caused by toxins, stress, and time."
              },
              { 
                num: "5", 
-               label: "Nutrient Sensing",
-               text: "Supports the pathways that regulate metabolism and stress resistance, ensuring your cells respond efficiently to energy availability and metabolic needs."
+               label: "Cellular Breakthrough 5",
+               text: "The age-defying molecule that rejuvenates deteriorating stem cells, supporting tissue vitality, faster recovery, and lean muscle mass maintenance."
              },
              { 
                num: "6", 
-               label: "Cellular Senescence",
-               text: "Plays a critical role in regulating healthy cell turnover and renewal, supporting balanced cellular aging and long-term systemic vitality."
+               label: "Cellular Breakthrough 6",
+               text: "The metabolic master-key that optimizes how cells convert food into pure ATP energy, helping to stop age-related metabolic slowdown."
              }
            ].map((item, i) => (
              <motion.div 
@@ -1043,10 +880,10 @@ export default function Harmony() {
                    <div className="inline-block px-4 py-1 bg-white/10 rounded-full mb-2">
                       <span className="text-[10px] font-black uppercase tracking-[0.2em]">SCIENTIFIC SPOTLIGHT</span>
                    </div>
-                   <h4 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight font-heading">UNDENIABLE CLINICAL RESULTS</h4>
-                   <p className="text-lg md:text-xl leading-relaxed text-gray-400 italic font-light max-w-2xl">
-                      “In clinical observations, 94% of users reported a dramatic shift in cellular energy, mental clarity, and metabolic resilience while following the ChronoNAD+ protocol.”
-                   </p>
+                   <h4 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight font-heading">UNDENIABLE RESULTS</h4>
+                    <p className="text-lg md:text-xl leading-relaxed text-gray-400 italic font-medium max-w-2xl">
+                       In landmark research spanning the last two decades, scientists have confirmed that NAD+ is not just a participant, but the master regulator of cellular metabolism, DNA repair, and vitality in human cells. Declining NAD+ is now recognized as a primary driver of the aging process itself.
+                    </p>
                    <div className="pt-4 flex flex-wrap justify-center lg:justify-start gap-8 opacity-50">
                       <span className="text-xs font-black uppercase tracking-widest">USA MANUFACTURED</span>
                       <span className="text-xs font-black uppercase tracking-widest">THIRD-PARTY TESTED</span>
@@ -1074,47 +911,43 @@ export default function Harmony() {
         </div>
       </section>
 
-      {/* 3 CAPSULES A DAY SECTION - REFINED BLUE & BLACK */}
+      {/* 2 CAPSULES A DAY SECTION - REFINED BLUE & BLACK */}
       <section id="science" className="py-32 bg-white overflow-hidden border-y border-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16 space-y-6">
              <h2 className="text-3xl md:text-5xl font-bold text-[#111827] leading-tight tracking-tight font-heading">
-                All It Takes Is <span className="text-[#0D47A1]">3 Capsules A Day</span> To Beat <br className="hidden md:block" />
-                Hormonal Weight, Puffiness and Bloating...
+                All It Takes Is <span className="text-[#0D47A1]">2 Capsules A Day</span> To Beat <br className="hidden md:block" />
+                New Fine Wrinkles, Feeling Drained, and Looking Dull…
              </h2>
              <p className="text-xl md:text-2xl text-gray-400 font-medium italic">
-                While Bringing Back Uplifting Good Mood, Deep Sleep and Sexy Libido
+                While Revitalizing Your DNA Repair, Skin Glow, and Energy
              </p>
           </div>
 
           <div className="max-w-4xl mx-auto space-y-8 mb-24">
              {[
                { 
-                 icon: "🌿", 
-                 text: "Contains 12 natural extracts, adaptogens, and nutrients hand-selected by our leading nutrition and hormonal weight loss experts." 
+                 icon: "🍀", 
+                 text: "Contains 2 powerful nutrients- longevity-support compounds carefully selected by our leading longevity experts." 
                },
                { 
                  icon: "🔬", 
-                 text: "Backed by decades of research and thousands of studies ensuring safety and effectiveness." 
+                 text: "Backed by decades of research and thousands of clinical studies supporting NAD+ restoration, cellular repair, and healthy aging." 
                },
                { 
-                 icon: "💊", 
-                 text: "Perfectly measured in the exact scientific dose to target the root cause of hormonal imbalances." 
+                 icon: "🥛", 
+                 text: "Precisely dosed to help replenish declining NAD+ levels and target the root cause of low energy and visible aging." 
                },
                { 
-                 icon: "🎈", 
-                 text: "Helps relieve puffiness, bloating, and stubborn fat while also supporting sleep and mood balance." 
-               },
-               { 
-                 icon: "🏋️", 
-                 text: "Works without hormone replacement therapies, strict diets, or intense exercise." 
+                 icon: "✨", 
+                 text: "Supports sustained energy, radiant skin, mental clarity, and overall cellular vitality from within." 
                }
              ].map((item, i) => (
                <div key={i} className="flex items-start gap-5 group">
                   <span className="text-2xl pt-1 group-hover:scale-125 transition-transform">{item.icon}</span>
                   <p className="text-base md:text-lg text-[#111827] font-medium leading-relaxed">
                      {item.text.split(' ').map((word, index) => {
-                        const boldWords = ["12", "natural", "extracts,", "adaptogens,", "nutrients", "decades", "research", "thousands", "studies", "exact", "scientific", "dose", "puffiness,", "bloating,", "stubborn", "fat", "sleep", "mood", "balance.", "without", "hormone", "replacement", "therapies,", "strict", "diets,", "intense", "exercise."];
+                        const boldWords = ["2", "powerful", "nutrients-", "longevity-support", "compounds", "decades", "research", "thousands", "clinical", "studies", "NAD+", "restoration,", "cellular", "repair,", "healthy", "aging.", "replenish", "declining", "root", "cause", "sustained", "energy,", "radiant", "skin,", "mental", "clarity,", "overall", "cellular", "vitality"];
                         return boldWords.includes(word.replace(/[.,]/g, '')) ? <span key={index} className="font-black text-[#0D47A1]">{word} </span> : word + " ";
                      })}
                   </p>
@@ -1126,19 +959,19 @@ export default function Harmony() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
              {[
                {
-                 name: "Ashwagandha Extract",
-                 img: "https://images.unsplash.com/photo-1544473244-f6895a69ad41?auto=format&fit=crop&q=80&w=600&h=600",
-                 desc: "Ashwagandha drops cortisol levels by up to 44% in just a few minutes by gently blocking cortisol – the hormone that bloats and causes water retention, while blocking the body's ability to burn fat."
+                 name: "NMN / NR Protocol",
+                 img: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&q=80&w=600&h=600",
+                 desc: "The gold-standard precursors that bypass digestion to replenish your cellular NAD+ levels and fuel deep DNA repair."
                },
                {
-                 name: "Gelatinised Maca Extract",
-                 img: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&q=80&w=600&h=600",
-                 desc: "Maca reduces hot flashes and night sweats by up to 87% in just 4-7 days, while turning up the heat in the bedroom by naturally boosting desire. It also stimulates your glands for better hormone production."
+                 name: "Pure Resveratrol",
+                 img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=600&h=600",
+                 desc: "A potent Sirtuin activator that signals your 'longevity genes' to start repairing and rejuvenating every cell in your body."
                },
                {
-                 name: "Rhodiola Rosea Extract",
-                 img: "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&q=80&w=600&h=600",
-                 desc: "Rhodiola is shown to lift your mood, boost energy and clear your head in just 30 minutes, while helping balance cortisol, so your energy stays steady all day."
+                 name: "99%+ Purity Seal",
+                 img: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&q=80&w=600&h=600",
+                 desc: "Third-party tested for clinical-grade precision. No fillers, no synthetic additives—just raw cellular fuel."
                }
              ].map((ing, i) => (
                <div key={i} className="flex flex-col items-center group">
@@ -1512,7 +1345,7 @@ export default function Harmony() {
                   <div className="space-y-4">
                      <h2 className="text-4xl md:text-5xl font-bold text-[#111827] leading-[1.1] font-heading">
                         What Happens When <br />
-                        <span className="italic text-[#0D47A1] font-medium">You Start Taking...</span>
+                        <span className="italic text-[#0D47A1] font-medium">You Start Taking CHRONONAD+?</span>
                      </h2>
                   </div>
 
@@ -1588,10 +1421,10 @@ export default function Harmony() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20 space-y-4">
              <h2 className="text-2xl md:text-3xl font-bold text-[#0D47A1] uppercase tracking-tight font-heading">
-                Works For Women Of All Ages & Body Types:
+                Works For Women Of All Ages & Body Types
              </h2>
              <p className="text-3xl md:text-5xl font-black text-[#111827] leading-tight max-w-5xl mx-auto">
-                No Matter How Long You’ve Been Struggling With Stubborn Weight, Bloating and Water Retention
+                No Matter How Long You’ve Been Feeling Low Energy, Dull, or “Not Yourself”
              </p>
           </div>
 
@@ -1599,24 +1432,28 @@ export default function Harmony() {
              <div className="lg:w-1/2 space-y-10">
                 {[
                   {
-                    title: "Slim your jawline, and flatten ‘cortisol’ belly fast",
-                    desc: "Get back your toned look as fat & puffiness leave your body and face"
+                    title: "Reveal a more sculpted, refreshed look as your skin appears firmer and less puffy",
+                    desc: "Bring back that naturally toned, vibrant appearance as your glow returns from within"
                   },
                   {
-                    title: "Sleep like a baby without tossing and turning",
-                    desc: "Get more deep sleep, restful sleep and get back control over your body"
+                    title: "Sleep deeply and wake up restored",
+                    desc: "Enjoy more restful, uninterrupted sleep so your body can fully recharge overnight"
                   },
                   {
-                    title: "Rekindle desire and bring back your old spark",
-                    desc: "Enjoy your libido like you used to, before feeling ‘too tired’ and moody"
+                    title: "Feel like yourself again",
+                    desc: "Support balanced mood, clearer thinking, and steady energy throughout the day"
                   },
                   {
-                    title: "Drop stubborn pounds effortlessly without diets",
-                    desc: "No punishing workouts, counting calories, or boring rabbit food required"
+                    title: "Stay energized without the crashes",
+                    desc: "No more dragging afternoons, brain fog, or relying on constant caffeine just to function"
                   },
                   {
-                    title: "Enjoy your favorite meals without the usual bloat",
-                    desc: "Say yes to dinner with friends and ‘cheat’ foods without guilt or worries"
+                    title: "Support graceful aging from within",
+                    desc: "Help your skin look smoother, brighter, and more youthful without relying on endless products"
+                  },
+                  {
+                    title: "Enjoy life without overthinking your energy",
+                    desc: "Say yes to long days, late nights, and busy schedules without feeling completely drained after"
                   }
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-5 group">
@@ -1632,10 +1469,10 @@ export default function Harmony() {
              </div>
 
              <div className="lg:w-1/2">
-                <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white transform rotate-2 hover:rotate-0 transition-transform duration-700">
+                <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white transition-all duration-700">
                    <img 
-                      src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800&h=1000" 
-                      alt="Women Transformation Result" 
+                      src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&q=80&w=800&h=1000" 
+                      alt="Radiant Transformation Result" 
                       className="w-full h-auto object-cover"
                    />
                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -1813,7 +1650,7 @@ export default function Harmony() {
           <div className="text-center mb-24 max-w-5xl mx-auto space-y-6">
              <h2 className="text-4xl md:text-5xl font-black text-[#111827] leading-tight tracking-tight">
                 Your Purchase Is Protected By Our <br />
-                <span className="text-[#4A90E2]">30 Day 100% Money Back Guarantee</span>
+                <span className="text-[#0D47A1]">30 Day 100% Money Back Guarantee</span>
              </h2>
              <p className="text-lg md:text-xl text-gray-600 font-medium max-w-4xl mx-auto leading-relaxed">
                 At CellStart, we believe in making sure our customers love our products, or you shouldn’t have 
@@ -1838,7 +1675,7 @@ export default function Harmony() {
              </div>
 
              {/* 30 Day Guarantee Card */}
-             <div className="bg-[#F0F7FF] p-12 rounded-[3rem] text-center space-y-8 border border-[#E1EFFE]">
+             <div className="bg-[#F0F7FF] p-12 rounded-[3rem] text-center space-y-8 border border-[#0D47A1]/20">
                 <div className="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm">
                    <span className="text-5xl">🛡️</span>
                 </div>
@@ -1852,7 +1689,7 @@ export default function Harmony() {
              </div>
 
              {/* Instant Refunds Card */}
-             <div className="bg-[#F9FFF9] p-12 rounded-[3rem] text-center space-y-8 border border-[#E8F5E9]">
+             <div className="bg-[#F8FAFC] p-12 rounded-[3rem] text-center space-y-8 border border-[#E2E8F0]">
                 <div className="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm">
                    <span className="text-5xl">💸</span>
                 </div>
@@ -1876,7 +1713,7 @@ export default function Harmony() {
                 TRY CHRONONAD+ NOW
              </motion.button>
              <div className="flex items-center gap-3 text-gray-500 font-black uppercase tracking-widest text-xs">
-                <div className="w-5 h-5 bg-[#4A90E2] rounded flex items-center justify-center">
+                <div className="w-5 h-5 bg-[#0D47A1] rounded flex items-center justify-center">
                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"/></svg>
                 </div>
                 <span>30 Day Money Back Guarantee</span>
@@ -2069,8 +1906,8 @@ export default function Harmony() {
                    <div className="border-b-[10px] border-[#0D47A1] pb-4 mb-8">
                       <h4 className="text-5xl font-black italic leading-none font-heading tracking-tighter">Supplement Facts</h4>
                       <div className="mt-4 flex justify-between text-xs font-black uppercase tracking-widest">
-                         <span>Serving Size: 3 Capsules</span>
-                         <span>Servings Per Container: 24</span>
+                         <span>Serving Size: 2 Capsules</span>
+                         <span>Servings Per Container: 30</span>
                       </div>
                    </div>
                    
@@ -2084,54 +1921,29 @@ export default function Harmony() {
 
                    <div className="space-y-4 text-xs md:text-sm">
                       <div className="flex justify-between items-end border-b border-gray-100 pb-2">
-                         <span className="font-bold">Vitamin B6 (as Pyridoxine HCl)</span>
+                         <span className="font-bold">NAD+ Vitality Complex™</span>
                          <div className="flex gap-16 font-black">
-                            <span>1.70 mg</span>
-                            <span>100%</span>
+                            <span>1000 mg</span>
+                            <span>**</span>
                          </div>
                       </div>
+                      <p className="text-[10px] italic py-2 leading-relaxed text-gray-500 font-medium">
+                         NMN (Nicotinamide Mononucleotide), Trans-Resveratrol (99% Purity), NR (Nicotinamide Riboside).
+                      </p>
 
-                      <div className="pt-4">
-                         <div className="flex justify-between items-end font-black border-b-2 border-[#0D47A1] pb-2">
-                            <span className="text-lg">HM5 MenoBalance Complex™</span>
-                            <div className="flex gap-16">
-                               <span>1135 mg</span>
-                               <span>**</span>
-                            </div>
+                      <div className="flex justify-between items-end border-b border-gray-100 pb-2 pt-4">
+                         <span className="font-bold">Bioavailability & Absorption Factor</span>
+                         <div className="flex gap-16 font-black">
+                            <span>50 mg</span>
+                            <span>**</span>
                          </div>
-                         <p className="text-[10px] italic py-3 leading-relaxed text-gray-500 font-medium">
-                            KSM-66® Ashwagandha (Root), Maca 10:1 (Root), Chaste Tree 20:1 (Berry), Wild Yam 8:1 (Dioscorea), Broccoli 20:1 (Sprout).
-                         </p>
                       </div>
-
-                      <div className="pt-4">
-                         <div className="flex justify-between items-end font-black border-b-2 border-[#0D47A1] pb-2">
-                            <span className="text-lg">HM4 MenoShred Complex™</span>
-                            <div className="flex gap-16">
-                               <span>642 mg</span>
-                               <span>**</span>
-                            </div>
-                         </div>
-                         <p className="text-[10px] italic py-3 leading-relaxed text-gray-500 font-medium">
-                            American Ginseng 4:1 (Root), Gymnema Sylvestre (Leaf), Coleus Forskohlii (Root), Rosemary (Leaf).
-                         </p>
-                      </div>
-
-                      <div className="pt-4">
-                         <div className="flex justify-between items-end font-black border-b-2 border-[#0D47A1] pb-2">
-                            <span className="text-lg">HM2 MenoMood Complex™</span>
-                            <div className="flex gap-16">
-                               <span>300 mg</span>
-                               <span>**</span>
-                            </div>
-                         </div>
-                         <p className="text-[10px] italic py-3 leading-relaxed text-gray-500 font-medium">
-                            Chamomile 10:1 (Flower), Rhodiola 10:1 (Root).
-                         </p>
-                      </div>
+                      <p className="text-[10px] italic py-2 leading-relaxed text-gray-500 font-medium">
+                         Bioperine® (Black Pepper Extract), Quercetin Dihydrate.
+                      </p>
                       
                       <div className="pt-6 border-t-[10px] border-[#0D47A1] text-[9px] font-bold text-gray-400 leading-relaxed italic">
-                         ** Daily Value (DV) not established. Other ingredients: Vegetable Cellulose (Capsule), Rice Flour, Magnesium Stearate.
+                         ** Daily Value (DV) not established. Other ingredients: Vegetable Cellulose (Capsule), Microcrystalline Cellulose, Silica.
                       </div>
                    </div>
                 </div>
