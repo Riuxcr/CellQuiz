@@ -208,18 +208,24 @@ export default function Harmony() {
             </div>
          </section>
 
-         {/* FEATURED IN SECTION */}
-         <section id="featured" className="py-10 md:py-12 lg:py-16 bg-white border-b border-gray-50">
-            <div className="max-w-7xl mx-auto px-6">
-               <div className="text-center mb-12 space-y-3">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block font-accent">Clinical Recognition</span>
-                  <h2 className="text-2xl md:text-3xl font-black text-[#111827] leading-tight tracking-tight font-heading">
+         {/* FEATURED IN SECTION - ARCHITECTURAL PRESS MASTERPIECE */}
+         <section id="featured" className="relative py-24 md:py-32 bg-white overflow-hidden">
+            {/* Massive Spherical Background Backdrop */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-[#F9FAFB] rounded-full z-0 opacity-50"></div>
+            
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+               <div className="text-center mb-24 space-y-6">
+                  <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-[#0D47A1]/5 border border-[#0D47A1]/10">
+                     <span className="w-2 h-2 rounded-full bg-[#0D47A1] animate-pulse"></span>
+                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#0D47A1]">Clinical Recognition</span>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#111827] leading-[1.1] tracking-tight">
                      Research Backed <br />
                      <span className="italic text-[#0D47A1] font-medium">Ingredients Featured In…</span>
                   </h2>
                </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10">
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                   {[
                      {
                         name: "ALLURE",
@@ -252,116 +258,150 @@ export default function Harmony() {
                   ].map((item, i) => (
                      <motion.div
                         key={i}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: i * 0.1 }}
-                        className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 group px-6 py-8 rounded-[2rem] bg-gray-50/30 hover:bg-white hover:shadow-xl transition-all duration-500 border border-transparent hover:border-gray-100"
+                        transition={{ delay: i * 0.1, duration: 0.8 }}
+                        className="relative group h-full"
                      >
-                        <div className="space-y-1">
-                           <div className={`text-xl uppercase ${item.style} text-[#111827] group-hover:scale-105 transition-transform duration-500`}>
-                              {item.name}
+                        {/* The 'Cut' Card Layout */}
+                        <div className="relative h-full bg-white p-8 md:p-10 rounded-[2.5rem] border border-gray-100 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+                           {/* Architectural Cut Accent */}
+                           <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50/50 rounded-bl-[4rem] z-0 transform translate-x-12 -translate-y-12 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-700"></div>
+                           
+                           <div className="relative z-10 flex flex-col h-full space-y-6">
+                              <div className="space-y-1">
+                                 <div className={`text-2xl uppercase ${item.style} text-[#111827] border-b-2 border-[#0D47A1]/10 pb-2 inline-block`}>
+                                    {item.name}
+                                 </div>
+                                 <p className="text-[9px] font-black text-gray-300 uppercase tracking-widest pt-2">{item.date}</p>
+                              </div>
+                              
+                              <p className="text-base text-gray-500 leading-relaxed font-medium italic flex-grow">
+                                 {item.quote}
+                              </p>
+                              
+                              <div className="pt-6">
+                                 <a
+                                    href={item.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-[10px] font-black text-[#0D47A1] uppercase tracking-[0.2em] group/link"
+                                 >
+                                    Read Article
+                                    <svg className="w-3 h-3 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                                 </a>
+                              </div>
                            </div>
-                           <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{item.date}</p>
                         </div>
-                        <p className="text-sm text-gray-500 leading-relaxed font-medium italic">
-                           {item.quote}
-                        </p>
-                        <a
-                           href={item.link}
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="text-[9px] font-black text-[#0D47A1] uppercase tracking-[0.2em] border-b border-[#0D47A1]/20 pb-0.5 hover:border-[#0D47A1] transition-all"
-                        >
-                           Read Full Article
-                        </a>
                      </motion.div>
                   ))}
                </div>
             </div>
          </section>
 
-         {/* TESTIMONIALS SECTION */}
-         <section id="testimonials" className="py-10 md:py-12 lg:py-16 bg-[#F8FAFC]">
-            <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
+         {/* TESTIMONIALS SECTION - VITALITY VOICE MASTERPIECE */}
+         <section id="testimonials" className="relative py-24 md:py-32 lg:py-48 bg-white overflow-hidden">
+            {/* Background Orbital Spheres */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50/50 rounded-full blur-3xl opacity-40 -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#F9FAFB] rounded-full z-0 opacity-80 -translate-x-1/3 translate-y-1/3"></div>
 
-               {/* Header Area */}
-               <div className="text-center mb-16 space-y-4">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block font-accent">Clinical Trust</span>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#111827] leading-tight tracking-tight font-heading">
-                     Reclaim Your Energy, <br className="hidden md:block" />
-                     <span className="italic text-[#0D47A1] font-medium">Mental Clarity, and</span> <br className="hidden md:block" />
-                     Youthful Vitality
-                  </h2>
-                  <div className="max-w-2xl mx-auto">
-                     <p className="text-lg text-gray-500 font-medium italic leading-relaxed">
-                        Our NAD+ protocol is clinically formulated to restore cellular energy for women of all ages... So you can finally end <span className="text-[#111827] font-black not-italic">daily sluggishness, brain fog, and poor sleep.</span>
-                     </p>
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+               {/* Header Area Area */}
+               <div className="text-center mb-24 space-y-6">
+                  <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#0D47A1]/5 border border-[#0D47A1]/10">
+                     <span className="w-1.5 h-1.5 rounded-full bg-[#0D47A1]"></span>
+                     <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[#0D47A1]">Community Authority</span>
                   </div>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#111827] leading-[1.1] tracking-tight max-w-5xl mx-auto">
+                     Reclaim Your Energy, <br />
+                     <span className="text-[#0D47A1]">Mental Clarity, and Youthful Vitality</span>
+                  </h2>
+                  <p className="text-lg text-gray-500 font-medium italic leading-relaxed max-w-2xl mx-auto">
+                     Clinically formulated to restore cellular energy for women of all ages... finally ending <span className="text-[#111827] font-black not-italic">sluggishness and brain fog.</span>
+                  </p>
                </div>
-               {/* Testimonials Bento Grid */}
-               <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6 lg:gap-8">
+
+               {/* Testimonials Architectural Bento Grid */}
+               <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-8">
                   {[
                      {
                         name: "HappyFamily",
                         initial: "H",
                         title: "NAD+ Boost for Feeling Younger!",
-                        body: "CellStart is a solid pick for anyone wanting to support healthy aging and cellular energy! After a month of one capsule daily with breakfast, I've noticed steadier energy, better focus, and recovery after workouts.",
-                        className: "md:col-span-2 lg:col-span-2 bg-white"
+                        body: "CellStart is a solid pick for anyone wanting to support healthy aging and cellular energy! After a month of one capsule daily with breakfast, I've noticed steadier energy, better focus, and recovery.",
+                        className: "md:col-span-3 lg:col-span-4 bg-white"
                      },
                      {
                         name: "Brenda",
                         initial: "B",
                         title: "Great quality supplements",
                         body: "60 capsules in a bottle. Pills are pretty easy to swallow. I had good results with taking this supplement. More energy and I have better sleep now.",
-                        className: "md:col-span-2 lg:col-span-2 bg-blue-50/30"
+                        className: "md:col-span-3 lg:col-span-4 bg-[#F9FAFB]"
                      },
                      {
                         name: "James",
                         initial: "J",
                         title: "Easy to swallow capsules.",
-                        body: "The CellStart Nad+ Resveratrol capsules come a well-sealed bottle. I like the fact that they are made in the USA and are also Non-GMO. I feel they give me more energy and a better start to my mornings.",
-                        className: "md:col-span-2 lg:col-span-2 bg-white"
+                        body: "The CellStart Nad+ Resveratrol capsules come a well-sealed bottle. I like the fact that they are made in the USA and are also Non-GMO. I feel they give me more energy.",
+                        className: "md:col-span-3 lg:col-span-4 bg-white"
                      },
                      {
                         name: "Danielle",
                         initial: "D",
-                        title: "A Much Needed Energy Boost for Moms!",
+                        title: "Energy Boost for Moms!",
                         body: "As a 32-year-old mom juggling kids.. within the first week, I noticed a real difference. I wasn’t crashing halfway through the day, and I felt more clear-headed and focused.",
-                        className: "md:col-span-2 lg:col-span-3 bg-white"
+                        className: "md:col-span-3 lg:col-span-5 bg-white"
                      },
                      {
                         name: "Stephanie Jackson",
                         initial: "S",
                         title: "Worth the Buy",
                         body: "I’ve noticed I don’t feel as sluggish during the day, and my recovery after workouts seems quicker. Definitely worth trying if you want extra support for energy, focus, and healthy aging.",
-                        className: "md:col-span-4 lg:col-span-3 bg-[#111827] text-white"
+                        className: "md:col-span-6 lg:col-span-7 bg-[#111827] text-white"
                      }
                   ].map((review, i) => (
                      <motion.div
                         key={i}
-                        whileHover={{ y: -5 }}
-                        className={`flex flex-col p-8 rounded-[2.5rem] shadow-sm border border-gray-100/50 hover:shadow-2xl hover:border-[#0D47A1]/10 transition-all duration-500 ${review.className}`}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1 }}
+                        className={`relative group ${review.className}`}
                      >
-                        <div className={`flex ${review.className.includes('text-white') ? 'text-[#FFD700]' : 'text-[#FFB400]'} gap-0.5 mb-4`}>
-                           {[...Array(5)].map((_, j) => (
-                              <svg key={j} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                           ))}
-                        </div>
-                        <h4 className={`text-xl font-bold mb-4 tracking-tight leading-snug ${review.className.includes('text-white') ? 'text-white' : 'text-[#0D47A1]'}`}>
-                           {review.title}
-                        </h4>
-                        <p className={`text-base leading-relaxed italic mb-8 font-medium ${review.className.includes('text-white') ? 'text-gray-300' : 'text-gray-600'}`}>
-                           "{review.body}"
-                        </p>
+                        {/* Architectural Card Shell */}
+                        <div className={`relative h-full p-10 md:p-12 rounded-[3.5rem] border border-gray-100 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2 ${review.className.includes('bg-[#111827]') ? 'border-transparent' : ''}`}>
+                           
+                           {/* Surgical Cut Corner Accent */}
+                           <div className={`absolute top-0 right-0 w-24 h-24 rounded-bl-[4rem] z-0 transform translate-x-12 -translate-y-12 transition-all duration-700 group-hover:translate-x-0 group-hover:translate-y-0 ${review.className.includes('text-white') ? 'bg-white/5' : 'bg-[#0D47A1]/5'}`}></div>
 
-                        <div className="mt-auto flex items-center gap-4">
-                           <div className={`w-12 h-12 rounded-full flex items-center justify-center font-black text-base shadow-md ${review.className.includes('text-white') ? 'bg-white text-[#111827]' : 'bg-[#0D47A1] text-white'}`}>
-                              {review.initial}
-                           </div>
-                           <div className="flex flex-col">
-                              <span className={`font-bold text-sm ${review.className.includes('text-white') ? 'text-white' : 'text-[#111827]'}`}>{review.name}</span>
-                              <span className={`text-[10px] font-black uppercase tracking-widest ${review.className.includes('text-white') ? 'text-gray-400' : 'text-gray-400'}`}>Verified Buyer</span>
+                           <div className="relative z-10 flex flex-col h-full">
+                              <div className="flex text-[#FFB400] gap-0.5 mb-8">
+                                 {[...Array(5)].map((_, j) => (
+                                    <svg key={j} className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                 ))}
+                              </div>
+                              
+                              <h4 className={`text-2xl font-black mb-6 tracking-tight leading-[1.2] ${review.className.includes('text-white') ? 'text-white' : 'text-[#111827]'}`}>
+                                 {review.title}
+                              </h4>
+                              
+                              <p className={`text-base leading-relaxed italic mb-10 flex-grow ${review.className.includes('text-white') ? 'text-gray-300' : 'text-gray-500 font-medium'}`}>
+                                 "{review.body}"
+                              </p>
+
+                              <div className="pt-8 border-t border-gray-100/10 flex items-center gap-5">
+                                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-black text-lg shadow-xl transform rotate-3 group-hover:rotate-0 transition-transform ${review.className.includes('text-white') ? 'bg-white text-[#111827]' : 'bg-[#0D47A1] text-white'}`}>
+                                    {review.initial}
+                                 </div>
+                                 <div className="space-y-0.5">
+                                    <p className={`text-base font-black ${review.className.includes('text-white') ? 'text-white' : 'text-[#111827]'}`}>{review.name}</p>
+                                    <div className="flex items-center gap-2">
+                                       <svg className="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                                       <span className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400">Verified Buyer</span>
+                                    </div>
+                                 </div>
+                              </div>
                            </div>
                         </div>
                      </motion.div>
@@ -369,23 +409,23 @@ export default function Harmony() {
                </div>
 
                {/* CTA Area */}
-               <div className="mt-12 flex flex-col items-center gap-5">
+               <div className="mt-24 text-center">
                   <motion.button
                      whileHover={{ scale: 1.02 }}
                      whileTap={{ scale: 0.98 }}
                      onClick={scrollToProducts}
-                     className="w-full md:w-auto min-w-[320px] bg-[#0D47A1] text-white font-black text-sm px-10 py-5 rounded-2xl uppercase tracking-widest shadow-xl hover:bg-[#111827] transition-all duration-300"
+                     className="bg-[#0D47A1] text-white font-black text-sm px-12 py-6 rounded-2xl uppercase tracking-[0.2em] hover:bg-[#111827] transition-all duration-300 shadow-2xl flex items-center justify-center mx-auto group"
                   >
                      Try Our Protocols
+                     <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </motion.button>
-                  <div className="flex items-center gap-2 text-gray-400 font-bold uppercase tracking-widest text-[9px]">
-                     <div className="w-5 h-5 bg-[#0D47A1] rounded flex items-center justify-center">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" /></svg>
+                  <div className="mt-6 flex items-center justify-center gap-3">
+                     <div className="w-5 h-5 rounded bg-[#0D47A1] flex items-center justify-center">
+                        <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" /></svg>
                      </div>
-                     <div className="text-[#0D47A1]/40 text-[10px] font-black uppercase tracking-widest font-accent"><span>30 Day Money Back Guarantee</span></div>
+                     <span className="text-[10px] font-black uppercase tracking-widest text-[#0D47A1]">30 Day Money Back Guarantee</span>
                   </div>
                </div>
-
             </div>
          </section>
 
@@ -564,8 +604,8 @@ export default function Harmony() {
                            </p>
                         </div>
                      </div>
-
-                     <div className="flex flex-col items-center gap-6">
+                      
+                     <div className="flex flex-col items-center gap-6 mt-12">
                         <motion.button
                            whileHover={{ scale: 1.02 }}
                            whileTap={{ scale: 0.98 }}
@@ -574,96 +614,100 @@ export default function Harmony() {
                         >
                            TRY CHRONONAD+
                         </motion.button>
-                        <div className="flex items-center gap-3">
-                           <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" /></svg>
-                           </div>
-                           <span className="text-sm font-black text-[#111827] uppercase tracking-widest">✅ 30 Day Money Back Guarantee</span>
-                        </div>
                      </div>
                   </div>
                </div>
             </div>
          </section>
 
-
-
-         {/* SOLUTION REVEAL SECTION - OPTIMIZED FOR VISIBILITY */}
-         <section className="relative min-h-[90vh] flex flex-col items-center justify-center bg-white border-y border-gray-50 overflow-hidden py-16 lg:py-20 px-6">
-            <div className="max-w-7xl mx-auto px-6">
-               <div className="text-center mb-12 lg:mb-16">
-                  <div className="inline-block mb-6">
-                     <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Finally, a breakthrough for every body and every age</span>
+         {/* DYNAMIC LAYERED SOLUTION SECTION - ULTRA-WIDE ARCHITECTURAL */}
+         <section id="solution" className="py-12 md:py-20 bg-white px-4 md:px-10 overflow-hidden">
+            <div className="max-w-[1600px] mx-auto relative">
+               {/* 1. Background Architecture: Deep Blue Card - MAX WIDTH */}
+               <div className="absolute top-0 right-0 w-full lg:w-[95%] h-full bg-[#0D47A1] rounded-[4.5rem] shadow-[0_40px_100px_-20px_rgba(13,71,161,0.2)] overflow-hidden hidden lg:block">
+                  <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]">
+                     <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
+                        <circle cx="0" cy="0" r="80" fill="white" />
+                     </svg>
                   </div>
-
-                  <h2 className="text-2xl md:text-3xl font-black text-[#111827] leading-tight tracking-tight font-heading max-w-5xl mx-auto">
-                     It’s Now Possible To <span className="italic text-[#0D47A1] font-medium">Reverse Cellular Bankruptcy</span>, <br className="hidden md:block" />
-                     and Restore Your ‘Youth’ Molecules…
-                  </h2>
-                  <p className="text-base text-gray-500 font-medium italic leading-relaxed">
-                     And Stay <span className="text-[#111827] font-black not-italic">Naturally Sharp, Luminous, and Revitalized</span> with ChronoNAD+.
-                  </p>
                </div>
 
-               <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 mb-16 lg:mb-20">
-                  {/* Product Visual Area - Compact Luxury */}
-                  <div className="w-full lg:w-[45%]">
-                     <div className="relative w-full aspect-square flex items-center justify-center group bg-white rounded-[4rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.05)] border border-gray-50 overflow-hidden">
-                        <img
-                           src={chronoNadIsolated}
-                           alt="ChronoNAD+ Advanced Protocol"
-                           className="w-[85%] h-[85%] object-contain transform group-hover:scale-105 transition-all duration-[3000ms] mix-blend-multiply"
+               <div className="relative flex flex-col lg:flex-row items-center gap-12 lg:gap-20 px-4 md:px-12">
+                  {/* 2. Image Component: Massive Circular Porthole */}
+                  <div className="w-full lg:w-[40%] relative py-8 lg:py-12">
+                     <div className="relative aspect-square rounded-full overflow-hidden border-[16px] border-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.3)] z-30 transform hover:scale-[1.02] transition-transform duration-700">
+                        <img 
+                           src="/Result.jpg" 
+                           alt="ChronoNAD+ Protocol Results" 
+                           className="w-full h-full object-cover"
                         />
-                        {/* Optional: Add a subtle glow behind the image instead of a card */}
-                        <div className="absolute inset-0 bg-[#0D47A1]/5 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-
-                        <div className="absolute top-6 right-6 bg-[#0D47A1] text-white px-6 py-2 rounded-full shadow-xl z-20">
-                           <span className="text-[10px] font-black uppercase tracking-widest">Clinical Strength</span>
-                        </div>
                      </div>
+                     {/* Decorative Floating Rings */}
+                     <div className="absolute -inset-10 border border-blue-100 rounded-full animate-[spin_25s_linear_infinite] opacity-40 z-10"></div>
+                     <div className="absolute -inset-20 border border-blue-50 rounded-full animate-[spin_35s_linear_infinite_reverse] opacity-20 z-0"></div>
                   </div>
 
-                  {/* Science & Proof Copy - Compact Editorial */}
-                  <div className="w-full lg:w-[60%] space-y-10 text-left">
+                  {/* 3. Content Area: Ultra-Wide Layout */}
+                  <div className="w-full lg:w-[60%] py-8 lg:py-12 space-y-10 z-40 lg:pl-10">
                      <div className="space-y-6">
-                        <h3 className="text-xl md:text-2xl font-bold text-[#111827] leading-snug tracking-tight font-heading">We have spent years at the cutting-edge of longevity and molecular biology…</h3>
-                        <p className="text-base md:text-lg text-gray-600 leading-relaxed font-medium">
-                           And after searching far and wide for the most groundbreaking, up-to-date clinical research on the planet…
+                        <div className="inline-flex items-center gap-4 px-5 py-2 rounded-full bg-blue-50 lg:bg-white/10 border border-blue-100 lg:border-white/20 backdrop-blur-xl">
+                           <span className="w-2 h-2 rounded-full bg-blue-500 lg:bg-blue-300 animate-pulse"></span>
+                           <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1] lg:text-white">Clinical Discovery</span>
+                        </div>
+
+                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight text-[#111827] lg:text-white">
+                           It’s Now Possible To <br />
+                           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 lg:from-blue-200 lg:to-white">Reverse Cellular Bankruptcy</span>
+                        </h2>
+                        
+                        <p className="text-lg md:text-xl text-gray-500 lg:text-white/80 font-medium italic leading-relaxed max-w-3xl">
+                           Restore Your ‘Youth’ Molecules and stay naturally sharp, luminous, and revitalized with ChronoNAD+.
                         </p>
                      </div>
 
-                     <div className="bg-[#111827] p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] text-white shadow-2xl relative overflow-hidden border border-white/5">
-                        <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl -mr-24 -mt-24"></div>
-                        <h4 className="text-2xl font-black uppercase tracking-tighter mb-6 text-white">We have finally done it:</h4>
-                        <p className="text-xl md:text-2xl leading-relaxed font-medium mb-10 text-gray-100">
-                           We’ve created the world’s most advanced <span className="text-blue-400 font-black drop-shadow-[0_0_15px_rgba(96,165,250,0.4)]">NAD+ precursor formula</span> that packs high-purity, bioavailable longevity activators into a single formula.
-                        </p>
-                        <div className="flex items-start gap-5 p-8 bg-white/5 rounded-[1.5rem] border border-white/10 backdrop-blur-sm">
-                           <div className="w-2 h-2 rounded-full bg-blue-400 mt-2.5 shrink-0 shadow-[0_0_10px_rgba(96,165,250,0.8)]"></div>
-                           <p className="text-lg text-gray-300 leading-relaxed font-medium italic">
-                              To target the real, root cause of biological rust, skin aging, and metabolic stalling as quickly, effectively, and safely as possible.
-                           </p>
+                     {/* 4. Feature Grid: Compact Glass Cards */}
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="p-7 rounded-[2.5rem] bg-white lg:bg-white/5 border border-gray-100 lg:border-white/10 shadow-sm backdrop-blur-xl group hover:shadow-xl transition-all">
+                           <div className="w-12 h-12 rounded-xl bg-blue-50 lg:bg-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                              <svg className="w-6 h-6 text-[#0D47A1] lg:text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                 <path d="M12 2c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/>
+                                 <path d="M10.2 11.5a5 5 0 0 1 3.6 0"/>
+                                 <path d="M10.2 16.5a5 5 0 0 1 3.6 0"/>
+                                 <path d="M12 8v14"/>
+                                 <path d="m9 15 3 1 3-1"/>
+                                 <path d="m9 20 3 1 3-1"/>
+                              </svg>
+                           </div>
+                           <h4 className="font-black uppercase tracking-[0.4em] text-[11px] text-[#0D47A1] lg:text-blue-200 mb-3">DNA Protection</h4>
+                           <p className="text-base text-gray-500 lg:text-white/80 leading-relaxed font-medium">Advanced support for PARP enzymes that repair DNA damage daily.</p>
+                        </div>
+
+                        <div className="p-7 rounded-[2.5rem] bg-white lg:bg-white/5 border border-gray-100 lg:border-white/10 shadow-sm backdrop-blur-xl group hover:shadow-xl transition-all">
+                           <div className="w-12 h-12 rounded-xl bg-blue-50 lg:bg-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                              <svg className="w-6 h-6 text-[#0D47A1] lg:text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                 <path d="M13 2 L3 14 L12 14 L11 22 L21 10 L12 10 L13 2 Z"/>
+                              </svg>
+                           </div>
+                           <h4 className="font-black uppercase tracking-[0.4em] text-[11px] text-[#0D47A1] lg:text-blue-200 mb-3">Energy Rebound</h4>
+                           <p className="text-base text-gray-500 lg:text-white/80 leading-relaxed font-medium">Replenishes mitochondrial fuel for sustained focus and zero brain-fog.</p>
                         </div>
                      </div>
-                  </div>
-               </div>
 
-               <div className="flex flex-col items-center gap-6">
-                  <button
-                     onClick={scrollToProducts}
-                     className="w-full md:w-auto md:min-w-[340px] bg-[#0D47A1] text-white font-black text-sm px-10 py-5 rounded-2xl uppercase tracking-widest hover:bg-[#111827] transition-all duration-300 shadow-2xl flex items-center justify-center group"
-                  >
-                     START YOUR PROTOCOL
-                     <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                  </button>
-                  <div className="flex items-center gap-2 text-gray-400">
-                     <div className="w-4 h-4 rounded-full bg-[#0D47A1] flex items-center justify-center">
-                        <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" /></svg>
+                     <div className="pt-6">
+                        <motion.button 
+                           whileHover={{ scale: 1.05, y: -5 }}
+                           whileTap={{ scale: 0.95 }}
+                           onClick={scrollToProducts}
+                           className="bg-[#0D47A1] lg:bg-white text-white lg:text-[#0D47A1] px-14 py-5 rounded-full font-black text-[10px] uppercase tracking-[0.35em] shadow-[0_20px_60px_rgba(13,71,161,0.25)] lg:shadow-[0_20px_70px_rgba(255,255,255,0.25)]"
+                        >
+                           Start your protocol
+                        </motion.button>
                      </div>
-                     <span className="text-[10px] font-bold text-[#111827] italic uppercase tracking-widest">30 Day Clinical Efficacy Guarantee</span>
                   </div>
                </div>
             </div>
+
          </section>
 
          {/* BREAKTHROUGHS SECTION */}
@@ -722,36 +766,12 @@ export default function Harmony() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1 }}
-                        className={`flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16 p-8 md:p-12 rounded-[2.5rem] transition-all duration-500 hover:shadow-lg border border-white/50 ${[
-                           'bg-[#E3F2FD]/40', // Soft Blue
-                           'bg-[#FFF3E0]/40', // Soft Peach
-                           'bg-[#E3F2FD]/40', // Soft Blue
-                           'bg-[#E8F5E9]/40', // Soft Green
-                           'bg-[#F3E5F5]/40', // Soft Purple
-                           'bg-[#E1F5FE]/40'  // Soft Sky
-                        ][i % 6]
-                           }`}
+                        className={`flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16 p-8 md:p-12 rounded-[2.5rem] transition-all duration-500 hover:shadow-lg border border-blue-100 bg-[#F0F7FF]/50`}
                      >
                         {/* Number Section */}
                         <div className="flex flex-col items-center md:items-start shrink-0">
-                           <span className={`text-[10px] font-black uppercase tracking-[0.2em] mb-1 ${[
-                              'text-[#0288D1]',
-                              'text-[#E65100]',
-                              'text-[#0D47A1]',
-                              'text-[#43A047]',
-                              'text-[#8E24AA]',
-                              'text-[#039BE5]'
-                           ][i % 6]
-                              }`}>Breakthrough</span>
-                           <span className={`text-6xl md:text-8xl lg:text-9xl font-heading font-black leading-none ${[
-                              'text-[#0288D1]',
-                              'text-[#E65100]',
-                              'text-[#0D47A1]',
-                              'text-[#43A047]',
-                              'text-[#8E24AA]',
-                              'text-[#039BE5]'
-                           ][i % 6]
-                              }`}>{item.num}</span>
+                           <span className="text-[10px] font-black uppercase tracking-[0.2em] mb-1 text-[#0D47A1]">Breakthrough</span>
+                           <span className="text-6xl md:text-8xl lg:text-9xl font-heading font-black leading-none text-[#0D47A1]">{item.num}</span>
                         </div>
 
 
@@ -787,14 +807,14 @@ export default function Harmony() {
                         <div className="inline-block px-4 py-1 bg-white/10 rounded-full mb-2">
                            <span className="text-[10px] font-black uppercase tracking-[0.2em]">SCIENTIFIC SPOTLIGHT</span>
                         </div>
-                        <h4 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight font-heading">UNDENIABLE RESULTS</h4>
-                        <p className="text-lg md:text-xl leading-relaxed text-gray-400 italic font-medium max-w-2xl">
+                        <h4 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight font-heading text-white">UNDENIABLE RESULTS</h4>
+                        <p className="text-lg md:text-xl leading-relaxed text-white/90 italic font-medium max-w-2xl">
                            In landmark research spanning the last two decades, scientists have confirmed that NAD+ is not just a participant, but the master regulator of cellular metabolism, DNA repair, and vitality in human cells. Declining NAD+ is now recognized as a primary driver of the aging process itself.
                         </p>
-                        <div className="pt-4 flex flex-wrap justify-center lg:justify-start gap-8 opacity-50">
-                           <span className="text-xs font-black uppercase tracking-widest">USA MANUFACTURED</span>
-                           <span className="text-xs font-black uppercase tracking-widest">THIRD-PARTY TESTED</span>
-                           <span className="text-xs font-black uppercase tracking-widest">GMP CERTIFIED</span>
+                        <div className="pt-4 flex flex-wrap justify-center lg:justify-start gap-8">
+                           <span className="text-xs font-black uppercase tracking-widest text-white">USA MANUFACTURED</span>
+                           <span className="text-xs font-black uppercase tracking-widest text-white">THIRD-PARTY TESTED</span>
+                           <span className="text-xs font-black uppercase tracking-widest text-white">GMP CERTIFIED</span>
                         </div>
                      </div>
                   </div>
@@ -818,79 +838,93 @@ export default function Harmony() {
             </div>
          </section>
 
-         {/* 2 CAPSULES A DAY SECTION - REFINED BLUE & BLACK */}
-         <section id="science" className="py-16 md:py-24 lg:py-32 bg-white overflow-hidden border-y border-gray-50">
-            <div className="max-w-6xl mx-auto px-6">
-               <div className="text-center mb-16 space-y-6">
-                  <h2 className="text-2xl md:text-3xl font-black text-[#111827] leading-tight tracking-tight font-heading">
-                     All It Takes Is <span className="text-[#0D47A1]">2 Capsules A Day</span> To Beat <br className="hidden md:block" />
-                     New Fine Wrinkles, Feeling Drained, and Looking Dull…
-                  </h2>
-                  <p className="text-base text-gray-400 font-medium italic">
-                     While Revitalizing Your DNA Repair, Skin Glow, and Energy
-                  </p>
-               </div>
+         {/* 2 CAPSULES A DAY SECTION - SURGICAL CUTS & EDITORIAL LAYOUT */}
+         <section id="science" className="relative py-24 md:py-32 lg:py-48 bg-white overflow-hidden">
+            {/* Background Architectural Cuts */}
+            <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full bg-[#F9FAFB] transform -skew-x-12 translate-x-24 z-0"></div>
+            <div className="absolute top-0 right-0 w-1/3 h-full bg-[#0D47A1]/[0.02] transform -skew-x-12 translate-x-48 z-0"></div>
 
-               <div className="max-w-4xl mx-auto space-y-8 mb-24">
-                  {[
-                     {
-                        icon: "🍀",
-                        text: "Contains 2 powerful nutrients- longevity-support compounds carefully selected by our leading longevity experts."
-                     },
-                     {
-                        icon: "🔬",
-                        text: "Backed by decades of research and thousands of clinical studies supporting NAD+ restoration, cellular repair, and healthy aging."
-                     },
-                     {
-                        icon: "🥛",
-                        text: "Precisely dosed to help replenish declining NAD+ levels and target the root cause of low energy and visible aging."
-                     },
-                     {
-                        icon: "✨",
-                        text: "Supports sustained energy, radiant skin, mental clarity, and overall cellular vitality from within."
-                     }
-                  ].map((item, i) => (
-                     <div key={i} className="flex items-start gap-5 group">
-                        <span className="text-2xl pt-1 group-hover:scale-125 transition-transform">{item.icon}</span>
-                        <p className="text-base md:text-lg text-[#111827] font-medium leading-relaxed">
-                           {item.text.split(' ').map((word, index) => {
-                              const boldWords = ["2", "powerful", "nutrients-", "longevity-support", "compounds", "decades", "research", "thousands", "clinical", "studies", "NAD+", "restoration,", "cellular", "repair,", "healthy", "aging.", "replenish", "declining", "root", "cause", "sustained", "energy,", "radiant", "skin,", "mental", "clarity,", "overall", "cellular", "vitality"];
-                              return boldWords.includes(word.replace(/[.,]/g, '')) ? <span key={index} className="font-black text-[#0D47A1]">{word} </span> : word + " ";
-                           })}
-                        </p>
-                     </div>
-                  ))}
-               </div>
-
-               {/* Ingredient Circle Grid */}
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-                  {[
-                     {
-                        name: "NMN / NR Protocol",
-                        img: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&q=80&w=600&h=600",
-                        desc: "The gold-standard precursors that bypass digestion to replenish your cellular NAD+ levels and fuel deep DNA repair."
-                     },
-                     {
-                        name: "Pure Resveratrol",
-                        img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=600&h=600",
-                        desc: "A potent Sirtuin activator that signals your 'longevity genes' to start repairing and rejuvenating every cell in your body."
-                     },
-                     {
-                        name: "99%+ Purity Seal",
-                        img: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&q=80&w=600&h=600",
-                        desc: "Third-party tested for clinical-grade precision. No fillers, no synthetic additives—just raw cellular fuel."
-                     }
-                  ].map((ing, i) => (
-                     <div key={i} className="flex flex-col items-center group">
-                        <div className="w-36 h-36 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden mb-6 md:mb-8 border-4 border-gray-50 shadow-xl transition-transform duration-700 group-hover:scale-105">
-                           <img src={ing.img} alt={ing.name} className="w-full h-full object-cover" />
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+               <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+                  
+                  {/* Left: Staggered Spherical Imagery with Surgical Frames */}
+                  <div className="lg:col-span-5 relative">
+                     <div className="flex flex-col gap-8 md:gap-12">
+                        {/* 1. NMN / NR Protocol - Offset Top */}
+                        <div className="flex items-center gap-6 group">
+                           <div className="w-32 h-32 md:w-44 md:h-44 rounded-full border-[10px] border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] overflow-hidden shrink-0 transform group-hover:scale-105 transition-transform duration-700">
+                              <img src="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&q=80&w=400&h=400" className="w-full h-full object-cover" alt="NMN" />
+                           </div>
+                           <div className="space-y-1">
+                              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-[#0D47A1]">Pillar 01</h4>
+                              <p className="text-sm font-bold text-[#111827]">NMN / NR Protocol</p>
+                           </div>
                         </div>
-                        <h4 className="text-xl font-bold text-[#0D47A1] mb-4 font-heading">{ing.name}</h4>
-                        <p className="text-sm text-gray-500 leading-relaxed max-w-xs font-medium">
-                           {ing.desc}
+
+                        {/* 2. Pure Resveratrol - Offset Middle Right */}
+                        <div className="flex items-center gap-6 self-end md:mr-[-40px] group">
+                           <div className="space-y-1 text-right">
+                              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-[#0D47A1]">Pillar 02</h4>
+                              <p className="text-sm font-bold text-[#111827]">Pure Resveratrol</p>
+                           </div>
+                           <div className="w-32 h-32 md:w-44 md:h-44 rounded-full border-[10px] border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] overflow-hidden shrink-0 transform group-hover:scale-105 transition-transform duration-700">
+                              <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=400&h=400" className="w-full h-full object-cover" alt="Resveratrol" />
+                           </div>
+                        </div>
+
+                        {/* 3. 99%+ Purity Seal - Offset Bottom */}
+                        <div className="flex items-center gap-6 group">
+                           <div className="w-32 h-32 md:w-44 md:h-44 rounded-full border-[10px] border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] overflow-hidden shrink-0 transform group-hover:scale-105 transition-transform duration-700">
+                              <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&q=80&w=400&h=400" className="w-full h-full object-cover" alt="Purity" />
+                           </div>
+                           <div className="space-y-1">
+                              <h4 className="text-xs font-black uppercase tracking-[0.2em] text-[#0D47A1]">Pillar 03</h4>
+                              <p className="text-sm font-bold text-[#111827]">99%+ Purity Seal</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  {/* Right: Architectural Content Area */}
+                  <div className="lg:col-span-7 space-y-16">
+                     <div className="space-y-8">
+                        <div className="w-20 h-1.5 bg-[#0D47A1] rounded-full"></div>
+                        <h2 className="text-4xl md:text-6xl font-black text-[#111827] leading-[1.05] tracking-tighter">
+                           Precision Dosing. <br />
+                           <span className="text-[#0D47A1]">Maximum Bioavailability.</span>
+                        </h2>
+                        <p className="text-xl md:text-2xl text-gray-500 font-medium italic leading-relaxed max-w-2xl">
+                           "All it takes is 2 capsules a day to reverse cellular decline and reclaim your natural vitality."
                         </p>
                      </div>
-                  ))}
+
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-gray-100 pt-16">
+                        <div className="space-y-4">
+                           <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#0D47A1]">The Core Formula</h4>
+                           <p className="text-base text-[#111827] font-medium leading-relaxed">
+                              Contains 2 powerful nutrients carefully selected by our leading longevity experts for <span className="font-black">maximum cellular impact.</span>
+                           </p>
+                        </div>
+                        <div className="space-y-4">
+                           <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#0D47A1]">Clinical Validation</h4>
+                           <p className="text-base text-[#111827] font-medium leading-relaxed">
+                              Backed by decades of research and <span className="font-black">thousands of studies</span> supporting NAD+ restoration.
+                           </p>
+                        </div>
+                        <div className="space-y-4">
+                           <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#0D47A1]">Cellular Repair</h4>
+                           <p className="text-base text-[#111827] font-medium leading-relaxed">
+                              Precisely dosed to target the <span className="font-black">root cause</span> of low energy and visible aging.
+                           </p>
+                        </div>
+                        <div className="space-y-4">
+                           <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#0D47A1]">Holistic Glow</h4>
+                           <p className="text-base text-[#111827] font-medium leading-relaxed">
+                              Supports radiant skin, mental clarity, and <span className="font-black">overall cellular vitality</span> from within.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
          </section>
@@ -898,202 +932,342 @@ export default function Harmony() {
 
 
 
-         {/* WHAT HAPPENS WHEN YOU START TAKING CHRONONAD+ SECTION */}
-         <section className="py-16 md:py-24 lg:py-32 bg-white overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6">
-               <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+         {/* WHAT HAPPENS WHEN YOU START TAKING CHRONONAD+ SECTION - VITALITY GENESIS PATH */}
+         <section id="journey" className="relative py-24 md:py-32 lg:py-48 bg-white overflow-hidden">
+            {/* Background Geometric Accents */}
+            <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-[0.03] z-0">
+               <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path d="M0 0 L 100 100" stroke="#0D47A1" strokeWidth="0.1" fill="none" />
+                  <circle cx="50" cy="50" r="40" stroke="#0D47A1" strokeWidth="0.05" fill="none" />
+               </svg>
+            </div>
 
-                  {/* Left Column: Timeline Content */}
-                  <div className="space-y-12">
-                     <div className="space-y-4">
-                        <h2 className="text-2xl md:text-3xl font-black text-[#111827] leading-tight tracking-tight font-heading">
-                           What Happens When <br />
-                           <span className="italic text-[#0D47A1] font-medium">You Start Taking CHRONONAD+?</span>
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+               <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+
+                  {/* Left Column: Genesis Journey Content */}
+                  <div className="lg:col-span-7 space-y-16">
+                     <div className="space-y-6">
+                        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#0D47A1]/5 border border-[#0D47A1]/10">
+                           <span className="w-1.5 h-1.5 rounded-full bg-[#0D47A1]"></span>
+                           <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[#0D47A1]">Biological Timeline</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-[#111827] leading-[1.05] tracking-tight font-heading">
+                           The Journey to <br />
+                           <span className="text-[#0D47A1]">Total Cellular Recovery</span>
                         </h2>
+                        <p className="text-xl text-gray-400 font-medium italic max-w-2xl">
+                           What unfolds when you restore your body's essential energy molecules? <br />
+                           <span className="text-[#111827] font-bold">Experience the Renaissance of your vitality.</span>
+                        </p>
                      </div>
 
-                     {/* Timeline */}
-                     <div className="relative pl-12 space-y-10">
-                        {/* Vertical Line */}
-                        <div className="absolute left-[18px] top-4 bottom-4 w-0.5 bg-gray-100"></div>
+                     {/* The Genesis Path - Vertical Architectural Timeline */}
+                     <div className="relative pl-16 md:pl-20 space-y-16">
+                        {/* Clinical Gradient Beam */}
+                        <div className="absolute left-[23px] md:left-[27px] top-6 bottom-6 w-0.5 bg-gradient-to-b from-[#0D47A1] via-blue-200 to-gray-50"></div>
 
                         {[
                            {
+                              phase: "Phase 01",
+                              title: "The Activation",
                               time: "1 Week",
-                              text: "Your cells begin replenishing their NAD+ levels — the essential coenzyme responsible for energy production and repair. You may notice a subtle lift in mental clarity, a calmer, more focused mind, and the first signs of steady, clean energy without the usual dips. Sleep may feel deeper, more restorative."
+                              text: "Your cells begin replenishing their NAD+ levels. You may notice a subtle lift in mental clarity, a calmer, more focused mind, and the first signs of steady, clean energy. Sleep feels deeper and more restorative."
                            },
                            {
+                              phase: "Phase 02",
+                              title: "The Alignment",
                               time: "3-5 Weeks",
-                              text: "Energy starts to feel more consistent throughout the day — no more heavy crashes or dragging afternoons. Your skin may begin to look more refreshed and hydrated, with a softer, healthier glow. Brain fog lifts, focus sharpens, and your body starts to feel more “in sync.”"
+                              text: "Energy becomes consistent throughout the day — no more heavy crashes. Your skin begins to look more refreshed and hydrated, with a softer, healthier glow. Brain fog lifts and your body feels 'in sync'."
                            },
                            {
+                              phase: "Phase 03",
+                              title: "The Luminosity",
                               time: "6-8 Weeks",
-                              text: "Now it’s visible. Skin looks brighter, smoother, and more radiant — the kind of glow that doesn’t come from a bottle. Fine lines may appear softer, and your overall appearance more rested and youthful. Energy, mood, and mental clarity feel steady and reliable from morning to night."
+                              text: "Now it’s visible. Skin looks brighter, smoother, and more radiant. Fine lines appear softer, and your overall appearance is more rested and youthful. Mood and mental clarity feel steady and reliable."
                            },
                            {
-                              time: "A few months from now…",
-                              text: "Don’t be surprised when people start asking what you’ve changed — your skin looks fresher, your energy feels different, and there’s a noticeable vibrancy about you. You feel sharper, lighter, and more like yourself again… And the best part? You didn’t need extreme routines, endless products, or complicated protocols to get here."
+                              phase: "Phase 04",
+                              title: "The Renaissance",
+                              time: "Months later",
+                              text: "Your energy feels transformed. There is a noticeable vibrancy about you. You feel sharper, lighter, and more like yourself again... having achieved total cellular resonance."
                            }
                         ].map((item, i) => (
                            <motion.div
                               key={i}
                               initial={{ opacity: 0, x: -20 }}
                               whileInView={{ opacity: 1, x: 0 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: i * 0.1 }}
-                              className="relative"
+                              viewport={{ once: true, margin: "-100px" }}
+                              transition={{ duration: 0.8, delay: i * 0.15 }}
+                              className="relative group"
                            >
-                              {/* Timeline Dot */}
-                              <div className="absolute -left-[12px] top-2 w-8 h-8 rounded-full bg-[#0D47A1] border-4 border-white shadow-sm z-10"></div>
+                              {/* Glass Phase Node */}
+                              <div className="absolute -left-[64px] md:-left-[72px] top-1 flex flex-col items-center gap-3">
+                                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white border border-gray-100 shadow-xl flex items-center justify-center group-hover:scale-110 group-hover:border-[#0D47A1]/20 transition-all duration-500 z-20 overflow-hidden">
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-[#0D47A1]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <span className="text-[10px] font-black text-[#0D47A1] relative z-10">{item.phase}</span>
+                                 </div>
+                              </div>
 
-                              <div className="bg-white p-8 md:p-10 rounded-[2rem] border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-xl transition-all duration-500">
-                                 <h4 className="text-xl font-bold text-[#111827] mb-3 font-subheading">{item.time}</h4>
-                                 <p className="text-gray-500 leading-relaxed font-medium text-sm md:text-base">
+                              {/* Story Card */}
+                              <div className="space-y-3">
+                                 <div className="flex items-center gap-4">
+                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#0D47A1]/50">{item.time}</span>
+                                    <div className="h-[1px] w-8 bg-blue-50"></div>
+                                 </div>
+                                 <h4 className="text-2xl md:text-3xl font-black text-[#111827] tracking-tight group-hover:text-[#0D47A1] transition-colors duration-300">
+                                    {item.title}
+                                 </h4>
+                                 <p className="text-gray-500 leading-relaxed font-medium text-base md:text-lg max-w-2xl">
                                     {item.text}
                                  </p>
                               </div>
                            </motion.div>
                         ))}
                      </div>
-
                   </div>
 
-                  {/* Right Column: Results Image */}
-                  <motion.div
-                     initial={{ opacity: 0, scale: 0.9 }}
-                     whileInView={{ opacity: 1, scale: 1 }}
-                     viewport={{ once: true }}
-                     className="relative lg:sticky lg:top-24"
-                  >
-                     <div className="absolute inset-0 bg-gradient-to-tr from-[#FCE4EC] to-transparent rounded-[4rem] blur-[100px] opacity-30"></div>
-                     <div className="relative rounded-[4rem] overflow-hidden shadow-2xl border border-white">
-                        <img
-                           src="/hormone_harmony_results_woman.png"
-                           alt="ChronoNAD+ Results"
-                           className="w-full h-auto object-cover"
-                        />
-                     </div>
-                  </motion.div>
-
-               </div>
-            </div>
-         </section>
-
-         {/* WORKS FOR ALL AGES SECTION - MODERNIZED */}
-         <section className="py-12 md:py-16 lg:py-24 bg-white overflow-hidden">
-            <div className="max-w-6xl mx-auto px-6">
-               <div className="text-center mb-16 space-y-4">
-                  <h2 className="text-sm md:text-base font-black text-[#0D47A1] uppercase tracking-[0.15em] font-heading">
-                     Works For Women Of All Ages & Body Types
-                  </h2>
-                  <p className="text-3xl md:text-[44px] font-black text-[#111827] leading-[1.2] max-w-4xl mx-auto tracking-tight">
-                     No Matter How Long You’ve Been Feeling <br className="hidden md:block" />
-                     Low Energy, Dull, or “Not Yourself”
-                  </p>
-               </div>
-
-               <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-                  <div className="lg:w-1/2 space-y-10">
-                     {[
-                        {
-                           title: "Reveal a more sculpted, refreshed look as your skin appears firmer and less puffy",
-                           desc: "Bring back that naturally toned, vibrant appearance as your glow returns from within"
-                        },
-                        {
-                           title: "Sleep deeply and wake up restored",
-                           desc: "Enjoy more restful, uninterrupted sleep so your body can fully recharge overnight"
-                        },
-                        {
-                           title: "Feel like yourself again",
-                           desc: "Support balanced mood, clearer thinking, and steady energy throughout the day"
-                        },
-                        {
-                           title: "Stay energized without the crashes",
-                           desc: "No more dragging afternoons, brain fog, or relying on constant caffeine just to function"
-                        },
-                        {
-                           title: "Support graceful aging from within",
-                           desc: "Help your skin look smoother, brighter, and more youthful without relying on endless products"
-                        },
-                        {
-                           title: "Enjoy life without overthinking your energy",
-                           desc: "Say yes to long days, late nights, and busy schedules without feeling completely drained after"
-                        }
-                     ].map((item, i) => (
-                        <div key={i} className="flex items-start gap-5 group">
-                           <div className="shrink-0 w-8 h-8 rounded-full bg-[#0D47A1] flex items-center justify-center shadow-md mt-0.5 group-hover:scale-110 transition-transform">
-                              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" /></svg>
-                           </div>
-                           <div className="space-y-1.5">
-                              <h4 className="text-[17px] font-black text-[#111827] leading-snug">{item.title}</h4>
-                              <p className="text-[15px] text-gray-500 font-medium leading-relaxed">{item.desc}</p>
-                           </div>
-                        </div>
-                     ))}
-                  </div>
-
-                  <div className="lg:w-1/2 w-full max-w-[500px] mx-auto">
-                     <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_rgba(13,71,161,0.1)] ring-[10px] ring-white transition-all duration-700">
-                        <img
-                           src={womenAllAgesResult}
-                           alt="Radiant Transformation Result"
-                           className="w-full h-auto object-cover"
-                        />
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </section>
-
-         {/* TRUST ICONS SECTION */}
-         <section id="trust" className="py-12 md:py-16 lg:py-24 bg-white border-y border-gray-50">
-            <div className="max-w-7xl mx-auto px-6">
-               <div className="text-center mb-16 space-y-4">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0D47A1]/40 block">Quality Assurance</span>
-                  <h2 className="text-2xl md:text-3xl font-black text-[#111827] leading-tight tracking-tight font-heading">
-                     Diet Friendly <br />
-                     <span className="italic text-[#0D47A1] font-medium">Clinical Supplement</span>
-                  </h2>
-               </div>
-
-               <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 lg:gap-16">
-                  {[
-                     {
-                        label: "Keto, Paleo & Vegan Friendly",
-                        img: "/Sugar_Free.png"
-                     },
-                     {
-                        label: "Non-GMO & Caffeine Free",
-                        img: "/Non-GMO.png"
-                     },
-                     {
-                        label: "cGMP Certified Facility",
-                        img: "/cGMP.png"
-                     },
-                     {
-                        label: "Clinically Tested Formula",
-                        img: "/Clinically_Tested.png"
-                     },
-                     {
-                        label: "Made In The USA",
-                        img: "/Made_In_USA-removebg-preview_1.png"
-                     }
-                  ].map((item, i) => (
-                     <div key={i} className="flex flex-col items-center text-center group">
-                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center mb-8 shadow-sm group-hover:border-[#0D47A1] group-hover:bg-white group-hover:shadow-xl transition-all duration-500 overflow-hidden p-6">
+                  {/* Right Column: Inspirational Cinematic Visual */}
+                  <div className="lg:col-span-5 relative">
+                     <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2 }}
+                        className="relative"
+                     >
+                        {/* Architectural Frame Accents */}
+                        <div className="absolute -inset-8 border border-blue-50 rounded-[5rem] z-0 opacity-50 translate-x-4 translate-y-4"></div>
+                        
+                        {/* Main Image Container */}
+                        <div className="relative aspect-[4/5] rounded-[4.5rem] overflow-hidden shadow-[0_50px_100px_-30px_rgba(0,0,0,0.2)] border-[12px] border-white z-10">
                            <img
-                              src={item.img}
-                              alt={item.label}
-                              className="w-full h-full object-contain transition-all duration-500"
-                              onError={(e) => { e.target.src = 'https://via.placeholder.com/150?text=Icon'; }}
+                              src="/hormone_harmony_results_woman.png"
+                              alt="The Vitality Renaissance"
+                              className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-[2000ms]"
+                           />
+
+                        </div>
+
+                        {/* Floating Metric Spheres */}
+                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-white rounded-full shadow-2xl flex flex-col items-center justify-center border border-gray-50 z-20 animate-bounce-slow">
+                           <span className="text-2xl font-black text-[#0D47A1]">100%</span>
+                           <span className="text-[8px] font-black uppercase text-gray-400 tracking-tighter">Bio-Available</span>
+                        </div>
+                     </motion.div>
+                  </div>
+
+               </div>
+            </div>
+         </section>
+
+         {/* WORKS FOR ALL AGES SECTION - REFINED PROPER LAYOUT */}
+         <section id="transformation" className="py-24 md:py-32 bg-white overflow-hidden relative">
+            {/* Soft Architectural Background Scoop */}
+            <div className="absolute bottom-0 right-0 w-full lg:w-[45%] h-full bg-[#F9FAFB] lg:rounded-l-[10rem] z-0 hidden lg:block"></div>
+            
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+               <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                  
+                  {/* Left Column: Benefits & Header */}
+                  <div className="w-full lg:w-[60%] space-y-12">
+                     <div className="space-y-6">
+                        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#0D47A1]/5 border border-[#0D47A1]/10">
+                           <span className="w-1.5 h-1.5 rounded-full bg-[#0D47A1]"></span>
+                           <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[#0D47A1]">Vitality Transformation</span>
+                        </div>
+                        <h2 className="text-3xl md:text-5xl font-black text-[#111827] leading-[1.1] tracking-tight">
+                           No Matter How Long You’ve Been Feeling <br />
+                           <span className="text-[#0D47A1]">Low Energy, Dull, or “Not Yourself”</span>
+                        </h2>
+                     </div>
+
+                     {/* Clean Benefit Grid - Compact & Proper */}
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+                        {[
+                           { 
+                              title: "Sculpted Glow", 
+                              desc: "Reveal a more refreshed look as skin appears firmer.", 
+                              icon: (
+                                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                                 </svg>
+                              )
+                           },
+                           { 
+                              title: "Restorative Sleep", 
+                              desc: "Deep sleep so your body can fully recharge.", 
+                              icon: (
+                                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                                 </svg>
+                              )
+                           },
+                           { 
+                              title: "Mental Clarity", 
+                              desc: "Balanced mood and clearer thinking daily.", 
+                              icon: (
+                                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.54Z"/>
+                                    <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.54Z"/>
+                                 </svg>
+                              )
+                           },
+                           { 
+                              title: "Steady Vigor", 
+                              desc: "Stay energized without the crashes or fog.", 
+                              icon: (
+                                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M13 2 L3 14 L12 14 L11 22 L21 10 L12 10 L13 2 Z"/>
+                                 </svg>
+                              )
+                           },
+                           { 
+                              title: "Graceful Aging", 
+                              desc: "Support smoother, brighter, youthful skin.", 
+                              icon: (
+                                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M6 3h12l4 5-10 13L2 8z"/>
+                                    <path d="M11 21 2 8h20L13 21z"/>
+                                    <path d="M2 8h20"/>
+                                 </svg>
+                              )
+                           },
+                           { 
+                              title: "Total Freedom", 
+                              desc: "Enjoy long days without feeling drained.", 
+                              icon: (
+                                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="12" cy="12" r="4"/>
+                                    <path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
+                                 </svg>
+                              )
+                           }
+                        ].map((item, i) => (
+                           <div key={i} className="flex gap-5 group">
+                              <div className="shrink-0 w-10 h-10 rounded-xl bg-[#F9FAFB] flex items-center justify-center text-[#0D47A1] shadow-sm border border-gray-100 group-hover:bg-[#0D47A1] group-hover:text-white transition-all">
+                                 {item.icon}
+                              </div>
+                              <div className="space-y-1">
+                                 <h4 className="text-base font-bold text-[#111827]">{item.title}</h4>
+                                 <p className="text-sm text-gray-500 font-medium leading-relaxed">{item.desc}</p>
+                              </div>
+                           </div>
+                        ))}
+                     </div>
+                  </div>
+
+                  {/* Right Column: Premium Image Showcase */}
+                  <div className="w-full lg:w-[40%]">
+                     <div className="relative">
+                        {/* Decorative Rings */}
+                        <div className="absolute -inset-10 border border-blue-50 rounded-full opacity-50 z-0"></div>
+                        
+                        <div className="relative z-10 rounded-[4rem] overflow-hidden shadow-2xl border-[16px] border-white ring-1 ring-gray-100">
+                           <img
+                              src={womenAllAgesResult}
+                              alt="Radiant Transformation Result"
+                              className="w-full h-auto object-cover"
                            />
                         </div>
-                        <p className="text-[11px] md:text-xs font-bold text-[#111827] leading-relaxed uppercase tracking-[0.2em] max-w-[160px]">
-                           {item.label}
-                        </p>
-                        <div className="mt-4 h-[1px] w-0 bg-[#0D47A1] group-hover:w-8 transition-all duration-500"></div>
+
+                        {/* Integrated Metric Tag */}
+                        <div className="absolute -bottom-6 right-10 bg-white px-8 py-4 rounded-3xl shadow-xl z-20 border border-gray-100">
+                           <div className="flex items-center gap-3">
+                              <span className="text-3xl font-black text-[#0D47A1]">98%</span>
+                              <span className="text-[8px] font-black uppercase tracking-widest text-gray-400 leading-tight">Satisfaction <br /> Rate</span>
+                           </div>
+                        </div>
                      </div>
-                  ))}
+                  </div>
+
+               </div>
+            </div>
+         </section>
+
+         {/* TRUST ICONS SECTION - ORBITAL CLINICAL CERTIFICATION */}
+         <section id="trust" className="relative py-24 md:py-32 lg:py-48 bg-white overflow-hidden">
+            {/* Background Architectural Capsule */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[300px] md:h-[400px] bg-gray-50/50 rounded-[10rem] border border-gray-100/50 pointer-events-none z-0 hidden lg:block">
+               <div className="absolute top-0 right-0 w-32 h-32 bg-white transform rotate-45 translate-x-16 -translate-y-16 border-b border-l border-gray-100"></div>
+            </div>
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+               <div className="text-center mb-24 space-y-6">
+                  <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#0D47A1]/5 border border-[#0D47A1]/10">
+                     <span className="w-1.5 h-1.5 rounded-full bg-[#0D47A1]"></span>
+                     <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[#0D47A1]">Purity Standard</span>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-[#111827] leading-[1.05] tracking-tight font-heading">
+                     Clinical Purity. <br />
+                     <span className="text-[#0D47A1]">Zero Compromise.</span>
+                  </h2>
+               </div>
+
+               <div className="relative">
+                  {/* Orbital Beam Path */}
+                  <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#0D47A1]/10 to-transparent hidden md:block"></div>
+
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 relative">
+                     {[
+                        {
+                           label: "Keto, Paleo & Vegan Friendly",
+                           img: "/Sugar_Free.png",
+                           y: "md:-translate-y-4"
+                        },
+                        {
+                           label: "Non-GMO & Caffeine Free",
+                           img: "/Non-GMO.png",
+                           y: "md:translate-y-4"
+                        },
+                        {
+                           label: "cGMP Certified Facility",
+                           img: "/cGMP.png",
+                           y: "md:-translate-y-8"
+                        },
+                        {
+                           label: "Clinically Tested Formula",
+                           img: "/Clinically_Tested.png",
+                           y: "md:translate-y-4"
+                        },
+                        {
+                           label: "Made In The USA",
+                           img: "/Made_In_USA-removebg-preview_1.png",
+                           y: "md:-translate-y-4"
+                        }
+                     ].map((item, i) => (
+                        <motion.div
+                           key={i}
+                           initial={{ opacity: 0, y: 20 }}
+                           whileInView={{ opacity: 1, y: 0 }}
+                           viewport={{ once: true }}
+                           transition={{ duration: 0.8, delay: i * 0.1 }}
+                           className={`flex flex-col items-center text-center group ${item.y}`}
+                        >
+                           <div className="relative">
+                              {/* Pulsing Aura */}
+                              <div className="absolute inset-0 rounded-full bg-[#0D47A1]/5 group-hover:bg-[#0D47A1]/10 transition-all duration-700 blur-2xl opacity-0 group-hover:opacity-100 scale-150"></div>
+                              
+                              {/* The Spherical Node */}
+                              <div className="w-24 h-24 md:w-36 md:h-36 rounded-full bg-white border border-gray-100 flex items-center justify-center mb-8 shadow-[0_15px_40px_rgba(0,0,0,0.03)] group-hover:shadow-[0_30px_70px_rgba(13,71,161,0.12)] group-hover:border-[#0D47A1]/20 group-hover:-translate-y-2 transition-all duration-700 relative z-10 p-6 md:p-8">
+                                 <img
+                                    src={item.img}
+                                    alt={item.label}
+                                    className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-110"
+                                    onError={(e) => { e.target.src = 'https://via.placeholder.com/150?text=Icon'; }}
+                                 />
+                              </div>
+                           </div>
+
+                           <div className="space-y-3 relative z-10">
+                              <p className="text-[10px] md:text-[11px] font-black text-[#111827] leading-relaxed uppercase tracking-[0.25em] max-w-[140px] transition-colors group-hover:text-[#0D47A1]">
+                                 {item.label}
+                              </p>
+                              <div className="mx-auto h-[2px] w-0 bg-[#0D47A1] group-hover:w-8 transition-all duration-700"></div>
+                           </div>
+                        </motion.div>
+                     ))}
+                  </div>
                </div>
             </div>
          </section>
@@ -1253,80 +1427,117 @@ export default function Harmony() {
             </div>
          </section>
 
-         {/* PURCHASE PROTECTION & GUARANTEE SECTION - CELLSTART REFINED */}
-         {/* id injected on section below */}
-         <section id="guarantee" className="py-20 bg-white overflow-hidden border-t border-gray-50">
-            <div className="max-w-6xl mx-auto px-6">
-               <div className="text-center mb-16 max-w-4xl mx-auto space-y-4">
-                  <h2 className="text-2xl md:text-3xl font-black text-[#111827] leading-tight tracking-tight font-heading">
-                     Your Purchase Is Protected By Our <br />
-                     <span className="text-[#0D47A1]">30 Day 100% Money Back Guarantee</span>
+         {/* PURCHASE PROTECTION & GUARANTEE SECTION - ARCHITECTURAL ASSURANCE SUITE */}
+         <section id="guarantee" className="relative py-24 md:py-32 lg:py-48 bg-white overflow-hidden">
+            {/* Background Orbital Accents */}
+            <div className="absolute top-0 right-0 w-full h-full pointer-events-none opacity-[0.02] z-0">
+               <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <circle cx="90" cy="10" r="40" stroke="#0D47A1" strokeWidth="0.1" fill="none" />
+                  <path d="M0 100 L 100 0" stroke="#0D47A1" strokeWidth="0.05" fill="none" />
+               </svg>
+            </div>
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+               <div className="text-center mb-24 max-w-5xl mx-auto space-y-8">
+                  <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-[#0D47A1]/5 border border-[#0D47A1]/10">
+                     <span className="w-1.5 h-1.5 rounded-full bg-[#0D47A1]"></span>
+                     <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[#0D47A1]">The CellStart Promise</span>
+                  </div>
+                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-[#111827] leading-[1.05] tracking-tight font-heading">
+                     Clinical Integrity, <br />
+                     <span className="text-[#0D47A1]">Total Assurance.</span>
                   </h2>
-                  <p className="text-base md:text-lg text-gray-600 font-medium max-w-3xl mx-auto leading-relaxed">
-                     At CellStart, we believe in making sure our customers love our products, or you shouldn’t have
-                     to pay for it. We’ll refund 100% of your investment on your first bottle. We’re so confident
-                     in the science of NAD+ that we’ll bear all the risk.
+                  <p className="text-xl md:text-2xl text-gray-400 font-medium italic max-w-3xl mx-auto leading-relaxed">
+                     At CellStart, we believe in the surgical precision of our science. If our protocol doesn't redefine your vitality, <span className="text-[#111827] font-bold">we bear 100% of the risk.</span>
                   </p>
                </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-                  {/* Free Shipping Card */}
-                  <div className="bg-[#F8FAFC] p-8 md:p-10 rounded-[2.5rem] text-center space-y-6 border border-[#E2E8F0]">
-                     <div className="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm">
-                        <span className="text-4xl">🚚</span>
-                     </div>
-                     <div className="space-y-3">
-                        <h4 className="text-xl font-black text-[#111827]">Free Shipping On All Monthly or 2 or more bottle orders.</h4>
-                        <p className="text-sm text-gray-600 font-medium leading-relaxed">
-                           No one likes paying for shipping. That’s why when you purchase either our monthly delivery or
-                           two bottles or more, we take care of the shipping for you. You save more when you buy more!
-                        </p>
-                     </div>
-                  </div>
+               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-24">
+                  {[
+                     {
+                        title: "Global Fulfillment",
+                        subtitle: "Free Expedited Shipping",
+                        desc: "Enjoy free shipping on all monthly protocols or orders of 2+ bottles. We handle the logistics so you can focus on your cellular recovery.",
+                        icon: (
+                           <svg className="w-8 h-8 text-[#0D47A1]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="1" y="3" width="15" height="13" />
+                              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                              <circle cx="5.5" cy="18.5" r="2.5" />
+                              <circle cx="18.5" cy="18.5" r="2.5" />
+                           </svg>
+                        )
+                     },
+                     {
+                        title: "Clinical Integrity",
+                        subtitle: "30-Day Money Back",
+                        desc: "True cellular restoration is a journey. If you don't feel a measurable shift in your energy and clarity within 30 days, we'll refund your first bottle in full.",
+                        icon: (
+                           <svg className="w-8 h-8 text-[#0D47A1]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                              <path d="m9 12 2 2 4-4" />
+                           </svg>
+                        ),
+                        featured: true
+                     },
+                     {
+                        title: "Instant Resolution",
+                        subtitle: "Hassle-Free Refunds",
+                        desc: "Our 'No-Questions-Asked' policy means your refund is processed immediately. We prioritize your satisfaction over our bottom line, always.",
+                        icon: (
+                           <svg className="w-8 h-8 text-[#0D47A1]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M12 2v20M5 5h14M5 19h14M17 9l-5-5-5 5M7 15l5 5 5-5" />
+                           </svg>
+                        )
+                     }
+                  ].map((item, i) => (
+                     <motion.div
+                        key={i}
+                        whileHover={{ y: -10 }}
+                        className={`relative group h-full flex flex-col`}
+                     >
+                        {/* THE ARCHITECTURAL CUT-OUT CARD */}
+                        <div className={`relative flex-grow bg-[#F8FAFC] p-10 md:p-12 rounded-b-[4rem] rounded-tl-[4rem] border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] group-hover:shadow-2xl transition-all duration-500 overflow-hidden ${item.featured ? 'bg-[#F0F7FF] border-[#0D47A1]/10' : ''}`}>
+                           
+                           {/* The Diagonal Architectural Cut */}
+                           <div className="absolute top-0 right-0 w-24 h-24 bg-white transform translate-x-12 -translate-y-12 rotate-45 group-hover:translate-x-10 group-hover:-translate-y-10 transition-transform duration-700 border-b border-l border-gray-100 z-20"></div>
 
-                  {/* 30 Day Guarantee Card */}
-                  <div className="bg-[#F0F7FF] p-8 md:p-10 rounded-[2.5rem] text-center space-y-6 border border-[#0D47A1]/20">
-                     <div className="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm">
-                        <span className="text-4xl">🛡️</span>
-                     </div>
-                     <div className="space-y-3">
-                        <h4 className="text-xl font-black text-[#111827]">30 Day Money Back Guarantee</h4>
-                        <p className="text-sm text-gray-600 font-medium leading-relaxed">
-                           True cellular restoration is a journey, not an overnight fix. While some notice a "brain fog lift" early on,
-                           deep DNA repair typically happens on a 90 to 120-day cycle. If you don’t feel confident...
-                        </p>
-                     </div>
-                  </div>
-
-                  {/* Instant Refunds Card */}
-                  <div className="bg-[#F8FAFC] p-8 md:p-10 rounded-[2.5rem] text-center space-y-6 border border-[#E2E8F0]">
-                     <div className="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm">
-                        <span className="text-4xl">💸</span>
-                     </div>
-                     <div className="space-y-3">
-                        <h4 className="text-xl font-black text-[#111827]">Instant Refunds</h4>
-                        <p className="text-sm text-gray-600 font-medium leading-relaxed">
-                           We want you to feel the transformative effects of youthful NAD+ levels. If you aren’t happy with how
-                           ChronoNAD works for you, we’ll give you a hassle-free, no-questions-asked refund on your first bottle.
-                        </p>
-                     </div>
-                  </div>
+                           {/* Content */}
+                           <div className="relative z-10 space-y-8 h-full flex flex-col">
+                              <div className="w-16 h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                                 {item.icon}
+                              </div>
+                              <div className="space-y-4 flex-grow">
+                                 <div className="space-y-1">
+                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#0D47A1]/40">{item.title}</span>
+                                    <h4 className="text-2xl font-black text-[#111827] tracking-tight">{item.subtitle}</h4>
+                                 </div>
+                                 <p className="text-base text-gray-500 font-medium leading-relaxed">
+                                    {item.desc}
+                                 </p>
+                              </div>
+                              <div className="pt-4">
+                                 <div className="h-[2px] w-12 bg-[#0D47A1]/10 group-hover:w-full transition-all duration-700"></div>
+                              </div>
+                           </div>
+                        </div>
+                     </motion.div>
+                  ))}
                </div>
 
-               <div className="flex flex-col items-center gap-8">
+               <div className="flex flex-col items-center gap-10">
                   <motion.button
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
                      onClick={scrollToProducts}
-                     className="bg-[#0D47A1] text-white font-black text-lg px-12 py-6 rounded-2xl uppercase tracking-widest shadow-xl shadow-[#0D47A1]/10"
+                     className="bg-[#0D47A1] text-white font-black text-xs md:text-sm px-16 py-7 rounded-full uppercase tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500"
                   >
-                     TRY CHRONONAD+ NOW
+                     Secure Your Protocol
                   </motion.button>
-                  <div className="flex items-center gap-3 text-gray-500 font-black uppercase tracking-widest text-xs">
-                     <div className="w-5 h-5 bg-[#0D47A1] rounded flex items-center justify-center">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" /></svg>
+                  <div className="flex items-center gap-4 text-gray-400 font-black uppercase tracking-[0.3em] text-[10px]">
+                     <div className="w-5 h-5 bg-[#0D47A1]/5 rounded-full flex items-center justify-center border border-[#0D47A1]/10">
+                        <svg className="w-2.5 h-2.5 text-[#0D47A1]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="4"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                      </div>
-                     <div className="text-[#0D47A1]/40 text-[10px] font-black uppercase tracking-widest font-accent"><span>30 Day Money Back Guarantee</span></div>
+                     <span>Verified Clinical Satisfaction Guarantee</span>
                   </div>
                </div>
             </div>
