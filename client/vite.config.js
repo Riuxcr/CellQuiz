@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 const apiProxy = {
   '/api': {
-    target: 'http://127.0.0.1:5002',
+    target: 'http://127.0.0.1:5005',
     changeOrigin: true,
   },
 }
