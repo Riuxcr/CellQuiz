@@ -930,68 +930,16 @@ export default function Harmony() {
                      {/* Clean Benefit Grid - Compact & Proper */}
                      <div className="grid grid-cols-1 gap-y-6">
                         {[
-                           { 
-                              title: "Sculpted Glow", 
-                              desc: "Reveal a more refreshed look as skin appears firmer.", 
-                              icon: (
-                                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-                                 </svg>
-                              )
-                           },
-                           { 
-                              title: "Restorative Sleep", 
-                              desc: "Deep sleep so your body can fully recharge.", 
-                              icon: (
-                                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-                                 </svg>
-                              )
-                           },
-                           { 
-                              title: "Mental Clarity", 
-                              desc: "Balanced mood and clearer thinking daily.", 
-                              icon: (
-                                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.54Z"/>
-                                    <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.54Z"/>
-                                 </svg>
-                              )
-                           },
-                           { 
-                              title: "Steady Vigor", 
-                              desc: "Stay energized without the crashes or fog.", 
-                              icon: (
-                                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M13 2 L3 14 L12 14 L11 22 L21 10 L12 10 L13 2 Z"/>
-                                 </svg>
-                              )
-                           },
-                           { 
-                              title: "Graceful Aging", 
-                              desc: "Support smoother, brighter, youthful skin.", 
-                              icon: (
-                                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M6 3h12l4 5-10 13L2 8z"/>
-                                    <path d="M11 21 2 8h20L13 21z"/>
-                                    <path d="M2 8h20"/>
-                                 </svg>
-                              )
-                           },
-                           { 
-                              title: "Total Freedom", 
-                              desc: "Enjoy long days without feeling drained.", 
-                              icon: (
-                                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <circle cx="12" cy="12" r="4"/>
-                                    <path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
-                                 </svg>
-                              )
-                           }
+                           { title: "Sculpted Glow", desc: "Reveal a more refreshed look as skin appears firmer." },
+                           { title: "Restorative Sleep", desc: "Deep sleep so your body can fully recharge." },
+                           { title: "Mental Clarity", desc: "Balanced mood and clearer thinking daily." },
+                           { title: "Steady Vigor", desc: "Stay energized without the crashes or fog." },
+                           { title: "Graceful Aging", desc: "Support smoother, brighter, youthful skin." },
+                           { title: "Total Freedom", desc: "Enjoy long days without feeling drained." }
                         ].map((item, i) => (
                            <div key={i} className="flex gap-7 group">
-                              <div className="shrink-0 w-14 h-14 rounded-2xl bg-[#F9FAFB] flex items-center justify-center text-[#0D47A1] shadow-sm border border-gray-100 group-hover:bg-[#0D47A1] group-hover:text-white transition-all">
-                                 {item.icon}
+                              <div className="shrink-0 w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
+                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" d="M5 13l4 4L19 7" /></svg>
                               </div>
                               <div className="space-y-0.5">
                                  <h4 className="text-xl md:text-2xl font-bold text-[#111827]">{item.title}</h4>
