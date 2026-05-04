@@ -104,7 +104,7 @@ export default function Harmony() {
          <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="fixed top-4 left-1/2 -translate-x-1/2 lg:left-16 lg:translate-x-0 z-[9999] glass px-6 py-3 rounded-full border border-gray-100/50 shadow-[0_8px_32px_rgba(0,0,0,0.05)]"
+            className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] glass px-6 py-3 rounded-full border border-gray-100/50 shadow-[0_8px_32px_rgba(0,0,0,0.05)]"
          >
             <img src="/logo.png" alt="Logo" className="h-8 lg:h-10 w-auto" />
          </motion.div>
@@ -123,17 +123,15 @@ export default function Harmony() {
                   className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
                >
                   {/* Left Column: Text Content */}
-                  <div className="flex flex-col items-start lg:items-start space-y-8 relative text-left lg:text-left order-2 lg:order-1">
-                     <div className="space-y-6 relative z-10">
+                  <div className="flex flex-col items-start lg:items-start space-y-4 relative text-left lg:text-left order-2 lg:order-1">
+                     <div className="space-y-3 relative z-10">
                         <motion.h1
                            initial={{ opacity: 0, y: 20 }}
                            animate={{ opacity: 1, y: 0 }}
                            transition={{ delay: 0.3 }}
-                           className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-[1.1] tracking-tight font-heading"
+                           className="text-xl md:text-2xl lg:text-3xl font-bold text-[#111827] leading-[1.2] tracking-tight font-heading"
                         >
-                           How 3 Million Women Over 30 Are <br />
-                           <span className="text-[#0D47A1]">Reclaiming Their Youthful Glow,</span><br />
-                           <span className="text-[#0D47A1]">Energy, and Metabolism</span>
+                           How 3 Million Women Over 30 Are Reclaiming Their <span className="text-[#0D47A1]">Youthful Glow, Energy, and Metabolism</span> From declining NAD levels
                         </motion.h1>
 
                         <motion.div
@@ -143,19 +141,22 @@ export default function Harmony() {
                            className="max-w-xl"
                         >
                            <p className="text-lg md:text-xl text-[#111827] font-medium leading-relaxed">
-                              Declining NAD+ levels are a hidden driver of dull skin and low energy.
-                              <span className="font-bold"> ChronoNAD+</span> restores these levels at the source to reclaim your natural vitality and glow.
+                              New research shows declining NAD+ levels are one of the biggest hidden drivers of dull skin, low energy, and visible aging. <br />
+                              And for many women, this drop starts as early as 30 <br />
+                              <span className="font-bold text-[#0D47A1]">ChronoNad+</span> supports and restores declining NAD levels at the cells, so your skin glows, your energy stays consistent, and you ditch the visible signs of aging.
                            </p>
                         </motion.div>
                      </div>
  
-                     <div className="space-y-4 relative z-10 w-full flex flex-col items-start lg:items-start">
+                     <div className="space-y-2 relative z-10 w-full flex flex-col items-start lg:items-start">
+                        <p className="text-base md:text-lg text-[#0D47A1] font-bold">With ingredients designed to:</p>
+                        <div className="space-y-2.5">
                         {[
-                           { text: "Restore NAD+ At The Source" },
-                           { text: "Brighter, More Even Skin" },
-                           { text: "Boost Energy & Vitality" },
-                           { text: "Weight Management Support" },
-                           { text: "Emotional Wellbeing Boost" }
+                           { text: "Restore NAD+ At The Source by 40%" },
+                           { text: "Promote brighter, more even-looking skin" },
+                           { text: "Boost energy so you feel less run down" },
+                           { text: "Support Healthy Weight Management" },
+                           { text: "Boost Emotional Wellbeing" }
                         ].map((benefit, i) => (
                            <motion.div
                               key={i}
@@ -164,15 +165,16 @@ export default function Harmony() {
                               transition={{ delay: 0.5 + (i * 0.05) }}
                               className="flex items-start gap-4 group text-left"
                            >
-                              <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
-                                 <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" d="M5 13l4 4L19 7" /></svg>
+                              <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-1">
+                                 <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" d="M5 13l4 4L19 7" /></svg>
                               </div>
-                              <span className="text-lg md:text-xl text-[#111827] font-bold tracking-tight">{benefit.text}</span>
+                              <span className="text-base md:text-lg text-[#111827] font-bold tracking-tight">{benefit.text}</span>
                            </motion.div>
                         ))}
+                        </div>
                      </div>
  
-                     <div className="pt-2 w-full flex justify-start">
+                     <div className="pt-0 w-full flex flex-col items-start space-y-6">
                         <motion.button
                            whileHover={{ scale: 1.05 }}
                            whileTap={{ scale: 0.95 }}
@@ -182,6 +184,9 @@ export default function Harmony() {
                            <span className="relative z-10">Try ChronoNAD+</span>
                            <svg className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                         </motion.button>
+                        <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.2em] pl-4">
+                           <span className="text-lg">✅</span> 30 Day Money Back Guarantee
+                        </div>
                      </div>
                   </div>
 
@@ -199,7 +204,7 @@ export default function Harmony() {
          </section>
 
          {/* FEATURED IN SECTION - ARCHITECTURAL PRESS MASTERPIECE */}
-         <section id="featured" className="relative py-24 md:py-32 bg-white overflow-hidden">
+         <section id="featured" className="relative py-16 md:py-24 bg-white overflow-hidden">
             {/* Massive Spherical Background Backdrop */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-[#F9FAFB] rounded-full z-0 opacity-50"></div>
             
@@ -219,11 +224,11 @@ export default function Harmony() {
                         quote: "“I feel like the NAD has helped me regain a little more mental clarity and my overall energy level has definitely improved.”"
                      },
                      {
-                        logo: "/wired-vector-logo-small.png",
+                        logo: "/Wired.jpeg",
                         quote: "“Improvements in energy, mental clarity, migraines, and circadian disruption after using NAD-related therapies.”"
                      },
                      {
-                        logo: "/Elle.png",
+                        logo: "/Elle.jpeg",
                         quote: "“We’re learning about replacing compounds—like NAD+—that degrade as you age.”"
                      },
                      {
@@ -262,7 +267,7 @@ export default function Harmony() {
          </section>
 
          {/* TESTIMONIALS SECTION - VITALITY VOICE MASTERPIECE */}
-         <section id="testimonials" className="relative py-24 md:py-32 lg:py-48 bg-white overflow-hidden">
+         <section id="testimonials" className="relative py-16 md:py-24 lg:py-32 bg-white overflow-hidden">
             {/* Background Orbital Spheres */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50/50 rounded-full blur-3xl opacity-40 -translate-y-1/2 translate-x-1/2"></div>
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#F9FAFB] rounded-full z-0 opacity-80 -translate-x-1/3 translate-y-1/3"></div>
@@ -370,22 +375,27 @@ export default function Harmony() {
 
                {/* CTA Area */}
                <div className="mt-24 text-center">
-                  <motion.button
-                     whileHover={{ scale: 1.05 }}
-                     whileTap={{ scale: 0.95 }}
-                     onClick={scrollToProducts}
-                     className="bg-[#0D47A1] text-white font-black text-xs md:text-sm px-16 py-7 rounded-full uppercase tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center mx-auto group"
-                  >
-                     Try ChronoNAD+
-                     <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                  </motion.button>
+                  <div className="flex flex-col items-center space-y-6">
+                     <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={scrollToProducts}
+                        className="bg-[#0D47A1] text-white font-black text-xs md:text-sm px-16 py-7 rounded-full uppercase tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center mx-auto group"
+                     >
+                        Try ChronoNAD+
+                        <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                     </motion.button>
+                     <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.2em]">
+                        <span className="text-lg">✅</span> 30 Day Money Back Guarantee
+                     </div>
+                  </div>
 
                </div>
             </div>
          </section>
 
          {/* CORTISOL IMPACT & TRANSFORMATION SECTION - NEW */}
-          <section id="story" className="py-24 md:py-32 lg:py-40 bg-white">
+          <section id="story" className="py-16 md:py-24 lg:py-32 bg-white">
              <div className="max-w-3xl mx-auto px-6 text-center">
                 <div className="mb-12 space-y-12">
                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-[1.1] tracking-tight">
@@ -402,21 +412,21 @@ export default function Harmony() {
                 </div>
 
                 <div className="space-y-2 text-base md:text-lg font-medium text-[#111827] leading-relaxed">
-                   <p className="text-base md:text-lg font-black text-[#E53935] leading-tight">
+                   <p className="inline-block px-6 py-2 bg-[#E53935] text-white font-medium text-base md:text-lg leading-tight rounded-sm mb-4">
                       And that’s when everything changes in your body.
                    </p>
 
                    <div className="space-y-1">
-                      <p className="font-bold text-[#111827]">The dull, weathered complexion...</p>
-                      <p className="font-bold text-[#111827]">The heavy, persistent brain fog...</p>
-                      <p className="font-bold text-[#111827]">The slow, ‘biological rust’ recovery...</p>
+                      <p className="text-[#111827]">The dull, weathered complexion...</p>
+                      <p className="text-[#111827]">The heavy, persistent brain fog...</p>
+                      <p className="text-[#111827]">The slow, ‘biological rust’ recovery...</p>
                    </div>
 
                    <p className="max-w-2xl mx-auto text-[#111827]">
-                      Are all symptoms of <span className="font-black underline decoration-gray-200 underline-offset-8">cellular decay</span> that forces the body to stay <span className="font-black">DRAINED and WEATHERED…</span> And that’s only what you see in the mirror.
+                      Are all symptoms of cellular decay that forces the body to stay DRAINED and WEATHERED… And that’s only what you see in the mirror.
                    </p>
 
-                   <p className="text-base md:text-lg font-bold text-[#111827]">
+                   <p className="text-base md:text-lg text-[#111827]">
                       On the inside? There’s a biological brownout wreaking havoc on your youthfulness and energy.
                    </p>
 
@@ -427,7 +437,7 @@ export default function Harmony() {
                    </div>
 
                    <p className="text-base md:text-lg font-medium text-[#111827]">
-                      If that ever happened to you, <span className="font-black">it’s not your fault.</span> These are symptoms of a 'biological lag' caused by crashing NAD+ levels…
+                      If that ever happened to you, it’s not your fault. These are symptoms of a 'biological lag' caused by crashing NAD+ levels…
                    </p>
 
                    <div className="flex flex-col items-center py-4">
@@ -435,9 +445,9 @@ export default function Harmony() {
                       <div className="h-[2px] w-24 bg-gray-100"></div>
                    </div>
 
-                   <p className="text-base md:text-lg font-black text-[#E53935] leading-tight tracking-tighter">
+                   <p className="inline-block px-6 py-3 bg-[#0D47A1] text-white font-medium text-base md:text-lg leading-tight tracking-tight rounded-sm mb-4">
                       By the time you reach your 40s, your NAD+ levels, which is the fuel for every single cell, <br />
-                      <span className="font-black">plummet by a whopping 50%...</span>
+                      plummet by a whopping 50%...
                    </p>
 
                    <p className="max-w-2xl mx-auto text-[#111827]">
@@ -448,85 +458,85 @@ export default function Harmony() {
                       Just like in your 20s and 30s.
                    </p>
 
-                   <p className="font-bold text-[#111827] text-base md:text-lg pt-2">
+                   <p className="font-medium text-[#111827] text-base md:text-lg pt-2">
                       This means that, as you age…
                    </p>
 
                    <p className="max-w-2xl mx-auto text-[#111827]">
-                      Not only do you accumulate visible <span className="font-black">'biological rust'</span> against your will… But your cells actually <span className="font-bold underline decoration-gray-200">lose the ability to repair themselves.</span>
+                      Not only do you accumulate visible 'biological rust' against your will… But your cells actually lose the ability to repair themselves.
                    </p>
 
                    <p className="text-[#111827] max-w-2xl mx-auto">
                       And as if that weren’t enough… Your focus goes out the window, and your youthfulness becomes a memory of the past.
                    </p>
 
-                   <h3 className="text-base md:text-lg font-bold text-[#111827] pt-4">Here’s why that happens:</h3>
+                   <h3 className="text-base md:text-lg font-medium text-[#111827] pt-4">Here’s why that happens:</h3>
 
                    <div className="space-y-4 max-w-2xl mx-auto text-[#111827]">
                       <p>
-                         <span className="font-black text-[#111827]">Crashing NAD+ levels stall your cellular engines…</span> <br />
+                         Crashing NAD+ levels stall your cellular engines… <br />
                          Which dulls the skin and creates that 'perpetually tired' look…
                       </p>
                       <p>
                          Other NAD+ dependent 'youth' processes fail, and DNA damage accumulates… <br />
-                         So the body stubbornly feels <span className="font-bold text-[#111827]">older, heavier, and slower</span> than you actually are.
+                         So the body stubbornly feels older, heavier, and slower than you actually are.
                       </p>
                    </div>
 
-                   <h3 className="text-base md:text-lg font-bold text-[#111827] pt-4">So if you’ve ever witnessed…</h3>
+                   <h3 className="text-base md:text-lg font-medium text-[#111827] pt-4">So if you’ve ever witnessed…</h3>
 
                    <div className="space-y-4 max-w-xl mx-auto text-[#111827]">
                       {[
                          "New fine-lines appearing where a glow used to be…",
                          "A 'brain fog' that makes simple tasks feel like a climb…",
                          "Slow recovery that keeps you sore and tired for days…",
-                         "Or Dull wrinkled skin losing its firm, youthful definition…"
+                         "Or dull wrinkled skin losing its firm, youthful definition…"
                       ].map((item, i) => (
                          <div key={i} className="text-center group">
-                            <p className="font-medium border-b border-gray-100 pb-4 text-[#111827]">{item}</p>
+                            <p className="border-b border-gray-100 pb-4 text-[#111827]">{item}</p>
                          </div>
                       ))}
                    </div>
 
-                   <div className="text-center py-4 space-y-2">
-                      <p className="text-base md:text-lg font-black text-[#E53935] tracking-tighter">"You’re not alone…"</p>
-                      <p className="text-base md:text-lg text-[#E53935]">It happens to <span className="font-black text-[#E53935]">MILLIONS of women</span> just like you.</p>
+                   <div className="text-center py-6 space-y-4">
+                      <p className="inline-block px-6 py-2 bg-[#E53935] text-white font-medium text-base md:text-lg tracking-tighter rounded-sm">"You’re not alone…"</p>
+                      <p className="text-base md:text-lg text-[#E53935]">It happens to MILLIONS of women just like you.</p>
                    </div>
 
-                   <p className="font-bold text-[#111827] text-base md:text-lg pt-2 max-w-2xl mx-auto">
+                   <p className="text-[#111827] text-base md:text-lg pt-2 max-w-2xl mx-auto">
                       If you’ve experienced some of these symptoms… <br />
                       then you probably noticed that…
                    </p>
 
-                   <p className="text-base md:text-lg font-black leading-tight text-[#111827] underline decoration-gray-100 underline-offset-8">
+                   <p className="text-base md:text-lg leading-tight text-[#111827] underline decoration-gray-100 underline-offset-8">
                       Standard vitamins and 'skincare only' routines just won’t cut it anymore.
                    </p>
 
                    <p className="text-[#111827] max-w-2xl mx-auto">
                       Sure, they’ll help on the surface… <br />
-                      But they won’t fix the <span className="font-black text-[#111827]">cellular bankruptcy</span> happening at the root… or the rapid downfall of your longevity molecules.
+                      But they won’t fix the cellular bankruptcy happening at the root… or the rapid downfall of your longevity molecules.
                    </p>
 
                    <div className="py-6 space-y-4">
-                      <p className="text-base md:text-lg font-black text-[#111827] leading-tight tracking-tighter">
+                      <p className="inline-block px-6 py-3 bg-[#0D47A1] text-white font-medium text-base md:text-lg leading-tight tracking-tighter rounded-sm mb-2">
                          Fortunately – there’s a way to <br />
-                         <span className="font-black">reverse</span> that.
+                         reverse that.
                       </p>
-                      <p className="text-base md:text-lg font-medium text-[#111827]">And it all starts by going to the <span className="font-black">root cause…</span></p>
+                      <p className="text-base md:text-lg font-medium text-[#111827]">And it all starts by going to the root cause…</p>
 
-                      <div className="space-y-6 text-base md:text-lg font-bold text-[#111827] leading-tight">
-                         <p>Because once you <span className="font-black">restore your NAD+ levels…</span></p>
+                      <div className="space-y-6 text-base md:text-lg text-[#111827] leading-tight">
+                         <p>Because once you restore your NAD+ levels…</p>
                          <p>And activate the cellular repair your body is now missing…</p>
                       </div>
 
                       <div className="space-y-4 pt-4">
-                         <p className="text-base md:text-lg font-black text-[#E53935]">You can get back that <br /><span className="font-black">sexy confidence…</span></p>
+                         <p className="inline-block px-6 py-3 bg-[#E53935] text-white font-medium text-base md:text-lg rounded-sm">You can get back that <br />sexy confidence…</p>
                          <p className="text-base md:text-lg text-[#111827]">The beautiful complexion, the sharp mind, the revitalized body…</p>
-                         <p className="text-base md:text-lg font-bold pt-4 text-[#111827]">So you can LOVE your life once again…</p>
+                         <p className="text-base md:text-lg pt-4 text-[#111827]">So you can LOVE your life once again…</p>
                          <p className="text-base font-black uppercase tracking-[0.3em] text-[#111827]">No matter your age, genetics, or unique biological profile!</p>
                       </div>
 
-                      <div className="pt-20 flex flex-col items-center">
+                      <div className="pt-20 flex flex-col items-center space-y-6">
                           <motion.button
                              whileHover={{ scale: 1.05 }}
                              whileTap={{ scale: 0.95 }}
@@ -535,7 +545,9 @@ export default function Harmony() {
                           >
                              Try ChronoNAD+
                           </motion.button>
-
+                          <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.2em]">
+                              <span className="text-lg">✅</span> 30 Day Money Back Guarantee
+                           </div>
                        </div>
                     </div>
                  </div>
@@ -543,13 +555,13 @@ export default function Harmony() {
            </section>
  
            {/* SOLUTION SECTION - BLACK & BLUE COMBINATION */}
-           <section id="solution" className="py-16 md:py-20 bg-[#F8FAFC]">
+           <section id="solution" className="py-12 md:py-16 bg-[#F8FAFC]">
               <div className="max-w-7xl mx-auto px-6">
                  {/* Top Label */}
-                 <div className="text-center mb-6 flex items-center justify-center gap-6">
-                    <span className="text-[#0D47A1] text-2xl font-black">↓</span>
-                    <span className="text-black font-bold text-lg md:text-2xl tracking-tight uppercase">Finally, a breakthrough for women of every age</span>
-                    <span className="text-[#0D47A1] text-2xl font-black">↓</span>
+                 <div className="text-center mb-6 flex items-center justify-center gap-8">
+                    <span className="text-[#0D47A1] text-4xl md:text-5xl font-black">↓</span>
+                    <span className="text-[#0D47A1] font-bold text-lg md:text-2xl tracking-tight">Finally, A Breakthrough For Women Of Every Age</span>
+                    <span className="text-[#0D47A1] text-4xl md:text-5xl font-black">↓</span>
                  </div>
  
                  {/* Headline */}
@@ -604,17 +616,17 @@ export default function Harmony() {
 
          {/* BREAKTHROUGHS SECTION */}
          {/* id added for nav */}
-         <section id="breakthroughs" className="py-12 md:py-16 lg:py-24 bg-white overflow-hidden">
+         <section id="breakthroughs" className="py-8 md:py-12 lg:py-16 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
                <div className="text-center mb-20">
                   <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-black mb-6 leading-tight tracking-tight">
                      The 6 Biggest Scientific Cellular Energy Breakthroughs <br />
                      Of The Past 20 Years…
                   </h2>
-                  <div className="flex items-center justify-center gap-4">
-                     <div className="h-[1px] w-12 bg-gray-200"></div>
-                     <span className="text-xs font-black uppercase tracking-[0.4em] text-black">Locked Into One Daily Protocol</span>
-                     <div className="h-[1px] w-12 bg-gray-200"></div>
+                  <div className="flex items-center justify-center gap-12">
+                     <div className="h-[2px] w-24 md:w-48 bg-gray-200"></div>
+                     <span className="text-[#0D47A1] font-black text-3xl md:text-5xl tracking-tight">Locked Into One Daily Protocol</span>
+                     <div className="h-[2px] w-24 md:w-48 bg-gray-200"></div>
                   </div>
                </div>
 
@@ -661,7 +673,7 @@ export default function Harmony() {
                         className={`flex flex-col md:flex-row items-center gap-8 md:gap-16 p-8 md:p-12 rounded-[2.5rem] transition-all duration-500 hover:shadow-lg border border-blue-100 bg-[#F0F7FF]/50`}
                      >
                         {/* Number Section */}
-                        <div className="flex flex-col items-center md:items-start shrink-0">
+                        <div className="flex flex-col items-center md:items-center shrink-0">
                            <span className="text-[10px] font-black uppercase tracking-[0.2em] mb-1 text-[#0D47A1]">Breakthrough</span>
                            <span className="text-5xl md:text-6xl lg:text-7xl font-heading font-black leading-none text-[#0D47A1]">{item.num}</span>
                         </div>
@@ -692,7 +704,6 @@ export default function Harmony() {
                         <p className="text-lg md:text-xl leading-relaxed text-white/90 font-medium max-w-4xl mx-auto">
                            In landmark research spanning the last two decades, scientists have confirmed that NAD+ is not just a participant, but the master regulator of cellular metabolism, DNA repair, and vitality in human cells. Declining NAD+ is now recognized as a primary driver of the aging process itself.
                         </p>
-
                      </div>
                   </div>
                </div>
@@ -707,13 +718,15 @@ export default function Harmony() {
                      Try ChronoNAD+
                      <svg className="w-6 h-6 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </motion.button>
-
+                  <div className="flex items-center justify-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.2em]">
+                     <span className="text-lg">✅</span> 30 Day Money Back Guarantee
+                  </div>
                </div>
             </div>
          </section>
 
          {/* 2 CAPSULES A DAY SECTION - SCREENSHOT STYLE */}
-         <section id="science" className="relative py-24 md:py-32 bg-[#F0F7FF] overflow-hidden">
+         <section id="science" className="relative py-16 md:py-24 bg-[#F0F7FF] overflow-hidden">
             <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
                
                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-[1.1] tracking-tight mb-6">
@@ -805,7 +818,7 @@ export default function Harmony() {
 
 
          {/* WHAT HAPPENS WHEN YOU START TAKING CHRONONAD+ SECTION - VITALITY GENESIS PATH */}
-         <section id="journey" className="relative py-24 md:py-32 lg:py-48 bg-white overflow-hidden">
+         <section id="journey" className="relative py-16 md:py-24 lg:py-32 bg-white overflow-hidden">
             {/* Background Geometric Accents */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-[0.03] z-0">
                <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -838,25 +851,25 @@ export default function Harmony() {
                               phase: "Phase 01",
                               title: "The Activation",
                               time: "1 Week",
-                              text: "Your cells begin replenishing their NAD+ levels. You may notice a subtle lift in mental clarity, a calmer, more focused mind, and the first signs of steady, clean energy. Sleep feels deeper and more restorative."
+                              text: "Your cells begin replenishing their NAD+ levels — the essential coenzyme responsible for energy production and repair. You may notice a subtle lift in mental clarity, a calmer, more focused mind, and the first signs of steady, clean energy without the usual dips. Sleep may feel deeper, more restorative."
                            },
                            {
                               phase: "Phase 02",
                               title: "The Alignment",
                               time: "3-5 Weeks",
-                              text: "Energy becomes consistent throughout the day — no more heavy crashes. Your skin begins to look more refreshed and hydrated, with a softer, healthier glow. Brain fog lifts and your body feels 'in sync'."
+                              text: "Energy starts to feel more consistent throughout the day — no more heavy crashes or dragging afternoons. Your skin may begin to look more refreshed and hydrated, with a softer, healthier glow. Brain fog lifts, focus sharpens, and your body starts to feel more “in sync.”"
                            },
                            {
                               phase: "Phase 03",
                               title: "The Luminosity",
                               time: "6-8 Weeks",
-                              text: "Now it’s visible. Skin looks brighter, smoother, and more radiant. Fine lines appear softer, and your overall appearance is more rested and youthful. Mood and mental clarity feel steady and reliable."
+                              text: "Now it’s visible. Skin looks brighter, smoother, and more radiant — the kind of glow that doesn’t come from a bottle. Fine lines may appear softer, and your overall appearance more rested and youthful. Energy, mood, and mental clarity feel steady and reliable from morning to night."
                            },
                            {
                               phase: "Phase 04",
                               title: "The Renaissance",
-                              time: "Months later",
-                              text: "Your energy feels transformed. There is a noticeable vibrancy about you. You feel sharper, lighter, and more like yourself again... having achieved total cellular resonance."
+                              time: "A few months from now…",
+                              text: "Don’t be surprised when people start asking what you’ve changed — your skin looks fresher, your energy feels different, and there’s a noticeable vibrancy about you. You feel sharper, lighter, and more like yourself again…\nAnd the best part? You didn’t need extreme routines, endless products, or complicated protocols to get here."
                            }
                         ].map((item, i) => (
                            <motion.div
@@ -918,78 +931,76 @@ export default function Harmony() {
                   </div>
 
                </div>
+
+               {/* Section CTA */}
+               <div className="mt-24 flex flex-col items-center space-y-6">
+                  <motion.button
+                     whileHover={{ scale: 1.05 }}
+                     whileTap={{ scale: 0.98 }}
+                     className="group relative px-12 py-6 bg-[#0D47A1] text-white rounded-full font-black text-lg md:text-xl shadow-[0_20px_40px_-10px_rgba(13,71,161,0.3)] transition-all flex items-center overflow-hidden"
+                  >
+                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                     <span className="relative z-10 tracking-widest uppercase">Try ChronoNAD+</span>
+                     <svg className="w-6 h-6 ml-4 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </motion.button>
+                  <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.2em]">
+                     <span className="text-lg">✅</span> 30 Day Money Back Guarantee
+                  </div>
+               </div>
             </div>
          </section>
 
-         {/* WORKS FOR ALL AGES SECTION - REFINED PROPER LAYOUT */}
-         <section id="transformation" className="py-24 md:py-32 bg-white overflow-hidden relative">
-            {/* Soft Architectural Background Scoop */}
-            <div className="absolute top-0 right-0 w-full lg:w-[55%] h-full bg-[#F9FAFB] lg:rounded-bl-[40rem] z-0 hidden lg:block"></div>
-            
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
+         {/* WORKS FOR ALL AGES SECTION - CLEAN SIMPLIFIED VERSION */}
+         <section id="transformation" className="py-16 md:py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-6">
                {/* Centered Header */}
                <div className="flex flex-col items-center text-center space-y-6 mb-20">
-
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-[1.1] tracking-tight max-w-5xl">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-[1.2] tracking-tight max-w-4xl">
                      Works For Women Of All Ages & Body Types <br />
                      <span className="text-[#0D47A1] font-semibold">No Matter How Long You’ve Been Struggling With New Lines, Dull Skin , or “Not Yourself”</span>
                   </h2>
                </div>
 
-               <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
-                  
-                  {/* Left Column: Benefits & Header */}
-                  <div className="w-full lg:w-1/2 space-y-12">
-
-
-
-                     {/* Clean Benefit Grid - Compact & Proper */}
-                     <div className="grid grid-cols-1 gap-y-6">
+               <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
+                  {/* Left Column: Benefits */}
+                  <div className="w-full lg:w-[50%] space-y-10">
+                     <div className="grid grid-cols-1 gap-y-8">
                         {[
-                           { title: "Sculpted Glow", desc: "Reveal a more refreshed look as skin appears firmer." },
-                           { title: "Restorative Sleep", desc: "Deep sleep so your body can fully recharge." },
-                           { title: "Mental Clarity", desc: "Balanced mood and clearer thinking daily." },
-                           { title: "Steady Vigor", desc: "Stay energized without the crashes or fog." },
-                           { title: "Graceful Aging", desc: "Support smoother, brighter, youthful skin." },
-                           { title: "Total Freedom", desc: "Enjoy long days without feeling drained." }
+                           { title: "Reveal a more sculpted, refreshed look", desc: "As your skin appears firmer and less puffy. Bring back that naturally toned, vibrant appearance as your glow returns from within" },
+                           { title: "Sleep Deeply and Wake Up Restored", desc: "Experience a sharp, focused mind upon waking as your cells undergo deep repair and DNA shielding overnight." },
+                           { title: "Reignite Your Peak Physical Vitality", desc: "Bring back your original spark by clearing 'biological rust' and fueling the cellular engines that keep you energized and thriving." },
+                           { title: "Optimize Your Metabolism Without Rigid Restrictions", desc: "Support an efficient, high-functioning body that processes fuel cleanly, allowing you to stay revitalized without punishing routines." },
+                           { title: "Protect Your DNA While Enjoying Your Lifestyle", desc: "Say yes to high-performance living knowing your internal 'repair crew' is fully fueled to handle whatever the day brings." }
                         ].map((item, i) => (
-                           <div key={i} className="flex gap-7 group">
-                              <div className="shrink-0 w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
-                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" d="M5 13l4 4L19 7" /></svg>
+                           <div key={i} className="flex gap-6 items-start">
+                              <div className="shrink-0 w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500 border border-emerald-100">
+                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" /></svg>
                               </div>
-                              <div className="space-y-0.5">
-                                 <h4 className="text-lg md:text-xl font-bold text-[#111827] tracking-tight">{item.title}</h4>
-                                 <span className="text-base md:text-lg text-gray-500 font-medium leading-relaxed">{item.desc}</span>
+                              <div className="space-y-1">
+                                 <h4 className="text-xl md:text-2xl font-bold text-[#111827] tracking-tight leading-tight">{item.title}</h4>
+                                 <p className="text-base md:text-lg text-gray-500 font-medium leading-relaxed">{item.desc}</p>
                               </div>
                            </div>
                         ))}
                      </div>
                   </div>
 
-                  {/* Right Column: Premium Image Showcase */}
-                  <div className="w-full lg:w-[40%]">
-                     <div className="relative">
-                        {/* Decorative Rings */}
-                        <div className="absolute -inset-10 border border-blue-50 rounded-full opacity-50 z-0"></div>
-                        
-                        <div className="relative z-10 rounded-[4rem] overflow-hidden shadow-2xl border-[16px] border-white ring-1 ring-gray-100">
-                           <img
-                              src="/image12.png"
-                              alt="Radiant Transformation Result"
-                              className="w-full aspect-[4/5] object-cover object-top"
-                           />
-                        </div>
-
-
+                  {/* Right Column: Image */}
+                  <div className="w-full lg:w-[35%]">
+                     <div className="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-gray-50">
+                        <img
+                           src="/image12.png"
+                           alt="Transformation Results"
+                           className="w-full aspect-[4/5] object-cover object-top"
+                        />
                      </div>
                   </div>
-
                </div>
             </div>
          </section>
 
          {/* TRUST ICONS SECTION - ORBITAL CLINICAL CERTIFICATION */}
-         <section id="trust" className="relative py-24 md:py-32 bg-white overflow-hidden">
+         <section id="trust" className="relative py-16 md:py-24 bg-white overflow-hidden">
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                <div className="text-center mb-24 space-y-6">
@@ -1060,7 +1071,7 @@ export default function Harmony() {
          </section>
 
          {/* CHECKOUT BUNDLE SECTION - MATCHING REFERENCE UI */}
-         <section id="pricing-grid" className="py-12 md:py-16 lg:py-24 bg-gray-50/50 scroll-mt-20 border-y border-gray-100">
+         <section id="pricing-grid" className="py-8 md:py-12 lg:py-16 bg-gray-50/50 scroll-mt-20 border-y border-gray-100">
             <div className="max-w-7xl mx-auto px-6">
                {/* Checkout Progress Stepper */}
                <div className="max-w-4xl mx-auto mb-20 px-4 md:px-10">
@@ -1196,6 +1207,15 @@ export default function Harmony() {
                         <div className="h-8 md:h-10 px-4 bg-[#F2F5F7] rounded flex items-center">
                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-4 md:h-5" />
                         </div>
+                        {/* Visa Logo */}
+                        {/* Visa Logo */}
+                        <div className="h-8 md:h-10 px-4 bg-[#F2F5F7] rounded flex items-center">
+                           <img src="/Visa.jpeg" alt="Visa" className="h-3 md:h-4" />
+                        </div>
+                        {/* Mastercard Logo */}
+                        <div className="h-8 md:h-10 px-4 bg-[#F2F5F7] rounded flex items-center">
+                           <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-5 md:h-6" />
+                        </div>
 
                      </div>
                   </div>
@@ -1204,13 +1224,8 @@ export default function Harmony() {
  
                   <div className="flex flex-col md:flex-row items-center gap-8 lg:w-2/3">
                      <div className="flex-shrink-0">
-                        <div className="w-16 h-16 md:w-20 md:h-20 bg-[#F0F7FF] rounded-full flex items-center justify-center relative">
-                           <svg className="w-10 h-10 md:w-12 md:h-12 text-[#0D47A1]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                           </svg>
-                           <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
-                              <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                           </div>
+                        <div className="w-20 h-20 md:w-28 md:h-28 flex items-center justify-center">
+                           <img src="/SSL.jpeg" alt="SSL Secure" className="w-full h-full object-contain" />
                         </div>
                      </div>
                      <div className="text-center md:text-left space-y-2">
@@ -1224,7 +1239,7 @@ export default function Harmony() {
          </section>
 
          {/* PURCHASE PROTECTION & GUARANTEE SECTION - ARCHITECTURAL ASSURANCE SUITE */}
-         <section id="guarantee" className="relative py-24 md:py-32 lg:py-48 bg-white overflow-hidden">
+         <section id="guarantee" className="relative py-16 md:py-24 lg:py-32 bg-white overflow-hidden">
             {/* Background Orbital Accents */}
             <div className="absolute top-0 right-0 w-full h-full pointer-events-none opacity-[0.02] z-0">
                <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -1313,13 +1328,8 @@ export default function Harmony() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                      </svg>
                   </motion.button>
-                  <div className="flex items-center gap-3 text-[#0D47A1] font-black text-[10px] tracking-[0.2em] uppercase">
-                     <div className="w-5 h-5 bg-[#0D47A1] rounded flex items-center justify-center">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                     </div>
-                     <span>30 Day Money Back Guarantee</span>
+                  <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.2em] mt-4">
+                     <span className="text-lg">✅</span> 30 Day Money Back Guarantee
                   </div>
                </div>
             </div>
@@ -1328,7 +1338,7 @@ export default function Harmony() {
 
          {/* COMPREHENSIVE REVIEWS SECTION */}
          {/* THE PROOF IS IN THE RESULTS - JUDGE.ME STYLE REDESIGN */}
-         <section id="results" className="py-12 md:py-16 lg:py-24 bg-white border-y border-gray-50 overflow-hidden">
+         <section id="results" className="py-8 md:py-12 lg:py-16 bg-gray-50 border-y border-gray-100 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
                <div className="text-center mb-16 space-y-6 max-w-6xl mx-auto">
 
@@ -1337,9 +1347,9 @@ export default function Harmony() {
                      <span className="text-[#0D47A1]">Join Thousands of Women All Over The World that Trust ChronoNAD+</span>
                   </h2>
                   <div className="pt-2">
-                     <p className="text-base md:text-lg text-[#111827] font-medium max-w-4xl mx-auto leading-relaxed">
+                     <p className="text-lg md:text-xl text-[#111827] font-semibold max-w-4xl mx-auto leading-relaxed">
                         <span className="text-[#0D47A1]">Note:</span> All reviews below are from actual paying customers. <br />
-                        <span className="text-gray-400 font-medium">They have been authenticated and verified</span>
+                        <span className="text-gray-500 font-medium text-base md:text-lg">They have been authenticated and verified</span>
                      </p>
                   </div>
                </div>
@@ -1347,7 +1357,7 @@ export default function Harmony() {
 
 
                {/* Review Cards List - Single Column Horizontal Style */}
-               <div className="grid grid-cols-1 gap-6 mb-16 max-w-6xl mx-auto">
+               <div className="grid grid-cols-1 gap-8 mb-16 max-w-7xl mx-auto">
                   {(() => {
                      const allReviews = [
                         {
@@ -1446,7 +1456,7 @@ export default function Harmony() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: i * 0.1 }}
-                                    className={`${review.bg} p-6 md:p-10 rounded-3xl border border-white flex flex-col`}
+                                    className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] transition-all duration-500 flex flex-col group"
                                  >
                                     <div className="flex justify-between items-start mb-6">
                                        <div className="flex items-center gap-4">
@@ -1528,24 +1538,19 @@ export default function Harmony() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                      </svg>
                   </motion.button>
-                  <div className="flex items-center gap-3 text-[#0D47A1] font-black text-[10px] tracking-[0.2em] uppercase">
-                     <div className="w-5 h-5 bg-[#0D47A1] rounded flex items-center justify-center">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                     </div>
-                     <span>30 Day Money Back Guarantee</span>
+                  <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.2em] mt-4">
+                     <span className="text-lg">✅</span> 30 Day Money Back Guarantee
                   </div>
                </div>
             </div>
          </section>
 
          {/* SUPPLEMENT FACTS TRANSPARENCY SECTION - MINIMALIST MODERN */}
-         <section id="formula" className="py-20 md:py-28 lg:py-32 bg-[#F8FBFF]">
+         <section id="formula" className="py-12 md:py-16 lg:py-20 bg-[#F8FBFF]">
             <div className="max-w-7xl mx-auto px-6">
                {/* Centered Header Inspired by Reference */}
                <div className="text-center mb-8 md:mb-12 space-y-6">
-                  <span className="text-lg md:text-xl font-black uppercase tracking-[0.3em] text-[#0D47A1]">What’s Inside ChronoNAD+?</span>
+                  <span className="text-xl md:text-2xl font-black text-[#0D47A1] tracking-tight">What’s Inside ChronoNAD+?</span>
                   <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] tracking-tight leading-[1.1]">
                      Nothing But Natural, Science-Backed Ingredients
                   </h2>
@@ -1596,15 +1601,15 @@ export default function Harmony() {
             {/* Mission Header Bar */}
             <div className="bg-white pt-12 pb-6 md:pt-16 md:pb-8 border-y border-gray-50">
                <div className="max-w-7xl mx-auto px-6 text-center space-y-8">
-                  <h2 className="text-lg md:text-xl font-black text-[#0D47A1] uppercase tracking-[0.4em] font-heading">
-                     Our Core Mission
-                  </h2>
-                  <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-[1.1] max-w-5xl mx-auto tracking-tight">
-                     Helping 50,000,000 Women <br className="hidden md:block" />
-                     Restore Their <span className="italic text-[#0D47A1] font-semibold">Cellular Youth.</span>
-                  </p>
-                  <p className="text-base md:text-lg text-[#111827] font-medium">
-                     And Reclaim Their Peak.
+                  <div className="flex justify-center mb-6">
+                     <span className="px-8 py-3 bg-[#0D47A1]/5 text-[#0D47A1] text-xs md:text-sm font-black uppercase tracking-[0.3em] rounded-full border border-[#0D47A1]/10">
+                        Clinical Leadership
+                     </span>
+                  </div>
+                  <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-[1.2] max-w-5xl mx-auto tracking-tight">
+                     We’ve Set Out To Help <span className="text-[#0D47A1]">50,000,000 Women</span> <br className="hidden md:block" />
+                     Naturally, Safely Fight Father Time In 2026… <br className="hidden md:block" />
+                     And Step Back Into Their <span className="italic text-[#0D47A1] font-semibold">Prime</span>
                   </p>
                </div>
             </div>
@@ -1679,7 +1684,7 @@ export default function Harmony() {
 
          {/* FAQ */}
          {/* FAQ SECTION - Redesigned for Premium Minimalist Look */}
-         <section id="faq" className="py-16 md:py-24 lg:py-32 bg-gray-50/30">
+         <section id="faq" className="py-12 md:py-16 lg:py-20 bg-gray-50/30">
             <div className="max-w-4xl mx-auto px-6">
                <div className="text-center mb-20 space-y-4">
                   <span className="text-lg md:text-xl font-black uppercase tracking-[0.4em] text-[#0D47A1] block">Still Not Sure?</span>
@@ -1733,22 +1738,77 @@ export default function Harmony() {
             </div>
          </section>
 
-          <footer className="py-16 md:py-20 bg-[#111827] text-white overflow-hidden relative">
-             {/* Subtle background glow */}
-             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0D47A1]/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
-             
-             <div className="max-w-7xl mx-auto px-6">
-                <div className="flex flex-col items-center space-y-12">
-                   <img src="/logo.png" alt="CellStart Logo" className="h-10 w-auto brightness-0 invert" />
-                   
-                   <div className="w-full h-[1px] bg-white/5"></div>
-
-                   <div className="text-[10px] text-gray-500 font-bold uppercase tracking-widest max-w-4xl text-center leading-loose">
-                      © 2025 CHRONONAD+™. ALL RIGHTS RESERVED. THESE STATEMENTS HAVE NOT BEEN EVALUATED BY THE FOOD AND DRUG ADMINISTRATION. THIS PRODUCT IS NOT INTENDED TO DIAGNOSE, TREAT, CURE, OR PREVENT ANY DISEASE.
-                   </div>
-                </div>
-             </div>
-          </footer>
+           <footer className="py-20 bg-[#111827] text-white overflow-hidden relative border-t border-white/5">
+              <div className="max-w-7xl mx-auto px-6">
+                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                    {/* Brand Column */}
+                    <div className="space-y-8">
+                       <img src="/logo.png" alt="CellStart Logo" className="h-10 w-auto brightness-0 invert" />
+                       <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+                          Pioneering the future of cellular longevity through advanced NAD+ science and clinical-grade protocols.
+                       </p>
+                       <div className="flex items-center gap-4">
+                          <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#0D47A1] transition-colors cursor-pointer">
+                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                          </div>
+                          <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#0D47A1] transition-colors cursor-pointer">
+                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                          </div>
+                       </div>
+                    </div>
+  
+                    {/* Shop Column */}
+                    <div className="space-y-6">
+                       <h4 className="text-xs font-black uppercase tracking-[0.2em] text-[#0D47A1]">Shop</h4>
+                       <ul className="space-y-4 text-sm font-medium text-gray-300">
+                          <li><a href="#products" className="hover:text-white transition-colors">ChronoNAD+ Protocol</a></li>
+                          <li><a href="#products" className="hover:text-white transition-colors">Bulk Subscription</a></li>
+                          <li><a href="#products" className="hover:text-white transition-colors">Gift Cards</a></li>
+                       </ul>
+                    </div>
+  
+                    {/* About Column */}
+                    <div className="space-y-6">
+                       <h4 className="text-xs font-black uppercase tracking-[0.2em] text-[#0D47A1]">Company</h4>
+                       <ul className="space-y-4 text-sm font-medium text-gray-300">
+                          <li><a href="#story" className="hover:text-white transition-colors">Our Story</a></li>
+                          <li><a href="#breakthroughs" className="hover:text-white transition-colors">Scientific Leadership</a></li>
+                          <li><a href="#" className="hover:text-white transition-colors">Clinical Research</a></li>
+                       </ul>
+                    </div>
+  
+                    {/* Support Column */}
+                    <div className="space-y-6">
+                       <h4 className="text-xs font-black uppercase tracking-[0.2em] text-[#0D47A1]">Support</h4>
+                       <ul className="space-y-4 text-sm font-medium text-gray-300">
+                          <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
+                          <li><a href="#" className="hover:text-white transition-colors">Shipping Policy</a></li>
+                          <li><a href="#" className="hover:text-white transition-colors">Returns & Refunds</a></li>
+                          <li><a href="#" className="hover:text-white transition-colors">Contact Support</a></li>
+                       </ul>
+                    </div>
+                 </div>
+  
+                 <div className="w-full h-[1px] bg-white/5 mb-12"></div>
+  
+                 {/* FDA Disclaimer */}
+                 <div className="max-w-4xl mx-auto space-y-8">
+                    <p className="text-[10px] md:text-xs text-gray-500 font-medium text-center leading-relaxed italic border border-white/5 p-6 rounded-2xl">
+                       *These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. The information provided on this site is for informational purposes only and is not intended as a substitute for advice from your physician or other health care professional.
+                    </p>
+                    
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                       <div className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+                          © 2025 CHRONONAD+™. ALL RIGHTS RESERVED.
+                       </div>
+                       <div className="flex items-center gap-8 text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+                          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                          <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </footer>
 
       </div>
    )
