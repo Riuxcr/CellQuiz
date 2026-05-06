@@ -21,26 +21,31 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { name: 'Story', href: '#story' },
-    { name: 'Science', href: '#science' },
-    { name: 'Reviews', href: '#testimonials' },
-    { name: 'FAQ', href: '#faq' },
+    { name: 'Home', href: '/' },
+    { name: 'Shop', href: '#pricing-grid' },
+    { name: 'Learn', href: '#science' },
+    { name: 'About Us', href: '#story' },
+    { name: 'Contact', href: '#faq' },
   ]
 
   const scrollToSection = (e, href) => {
-    e.preventDefault()
-    const element = document.querySelector(href)
-    if (element) {
-      const offset = 80 // Adjust for navbar height
-      const bodyRect = document.body.getBoundingClientRect().top
-      const elementRect = element.getBoundingClientRect().top
-      const elementPosition = elementRect - bodyRect
-      const offsetPosition = elementPosition - offset
+    if (href.startsWith('#')) {
+      e.preventDefault()
+      const element = document.querySelector(href)
+      if (element) {
+        const offset = 100 // Adjust for rounded navbar height
+        const bodyRect = document.body.getBoundingClientRect().top
+        const elementRect = element.getBoundingClientRect().top
+        const elementPosition = elementRect - bodyRect
+        const offsetPosition = elementPosition - offset
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }
+    } else {
+      navigate(href)
     }
     setIsMobileMenuOpen(false)
   }
@@ -70,20 +75,20 @@ export default function Navbar() {
         layout
         initial={false}
         animate={{
-          y: isScrolled ? -100 : 0,
+          y: isScrolled ? -120 : 0,
           opacity: isScrolled ? 0 : 1,
           pointerEvents: isScrolled ? 'none' : 'auto',
           backgroundColor: 'rgba(255, 255, 255, 1)',
-          width: '100%'
+          width: 'min(1200px, 95%)'
         }}
         transition={{ 
           duration: 0.4,
           ease: "easeInOut"
         }}
-        className="pointer-events-auto flex items-center justify-between h-16 lg:h-20 overflow-hidden px-10 md:px-24"
+        className="pointer-events-auto flex items-center justify-between h-16 lg:h-20 overflow-hidden px-10 md:px-24 rounded-full shadow-sm"
       >
         {/* Logo */}
-        <div className="flex items-center shrink-0 cursor-pointer" onClick={() => navigate('/home')}>
+        <div className="flex items-center shrink-0 cursor-pointer" onClick={() => navigate('/')}>
           <img src="/logo.png" alt="CellStart" className="h-7 md:h-9 w-auto" />
         </div>
 
@@ -94,33 +99,40 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="text-[11px] font-bold text-[#111827] hover:text-[#0D47A1] transition-colors tracking-[0.2em] uppercase whitespace-nowrap"
+              className="text-[14px] font-bold text-[#111827] hover:text-[#0D47A1] transition-colors whitespace-nowrap"
             >
               {link.name}
             </a>
           ))}
         </div>
 
-        {/* Icons Only */}
+        {/* Icons & Button */}
         <div className="flex items-center gap-6">
-          <div className="hidden md:flex items-center gap-5">
+          <div className="hidden md:flex items-center gap-6">
+            <button 
+              onClick={() => navigate('/quiz')}
+              className="bg-[#0D47A1] text-white px-7 py-3 rounded-full text-[13px] font-black uppercase tracking-widest hover:bg-[#111827] transition-all shadow-lg hover:shadow-xl active:scale-95"
+            >
+              Take the Quiz
+            </button>
+            <div className="h-6 w-[1px] bg-gray-200 mx-2"></div>
             <button 
               onClick={() => setIsSearchOpen(true)}
               className="text-[#111827] hover:text-[#0D47A1] transition-colors"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             </button>
             <button 
               onClick={() => setIsAccountModalOpen(true)}
               className="text-[#111827] hover:text-[#0D47A1] transition-colors"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
             </button>
             <button 
               onClick={() => setIsCartOpen(true)}
               className="text-[#111827] hover:text-[#0D47A1] transition-colors relative"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 0a2 2 0 100 4 2 2 0 000-4z" /></svg>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 0a2 2 0 100 4 2 2 0 000-4z" /></svg>
             </button>
           </div>
 

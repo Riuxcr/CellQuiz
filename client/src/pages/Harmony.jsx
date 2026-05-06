@@ -123,11 +123,11 @@ export default function Harmony() {
                            initial={{ opacity: 0, y: 20 }}
                            animate={{ opacity: 1, y: 0 }}
                            transition={{ delay: 0.3 }}
-                           className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.3] tracking-tight font-heading"
+                           className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight font-heading"
                         >
                            How 3 Million Women Over 30 Save <br />
-                           <span className="text-black">Their Youthful Glow, Energy, and Metabolism</span> <br />
-                           From Declining NAD levels
+                           <span className="text-black">Their Youthful Glow, Energy, and</span> <br />
+                           Metabolism From Declining NAD levels
                         </motion.h1>
 
                         <motion.div
@@ -190,7 +190,7 @@ export default function Harmony() {
                      <img
                         src="/module_hero.png"
                         alt="Cellular Transformation Progress"
-                        className="w-full h-auto max-h-[500px] lg:max-h-[600px] object-contain mix-blend-multiply scale-110 lg:scale-125 transition-transform duration-700"
+                        className="w-full h-auto max-h-[500px] lg:max-h-[600px] object-contain mix-blend-multiply scale-100 lg:scale-110 transition-transform duration-700"
                      />
 
                   </div>
@@ -206,7 +206,7 @@ export default function Harmony() {
             <div className="w-full px-10 md:px-24 relative z-10">
                <div className="text-center mb-16 space-y-6">
 
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.1] tracking-tight">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight">
                      Research Backed <br />
                      <span className="text-[#0D47A1] font-semibold">Ingredients Featured In…</span>
                   </h2>
@@ -271,7 +271,7 @@ export default function Harmony() {
                {/* Header Area Area */}
                <div className="text-center mb-24 space-y-6">
 
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.1] tracking-tight max-w-5xl mx-auto">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight max-w-5xl mx-auto">
                      See Why Thousands Of Women Are Turning To <span className="text-[#0D47A1] font-semibold">CHRONONAD+ To:</span>
                   </h2>
                   <p className="text-xl md:text-2xl text-[#111827] font-bold leading-tight max-w-4xl mx-auto">
@@ -393,7 +393,7 @@ export default function Harmony() {
           <section id="story" className="py-16 md:py-24 lg:py-32 bg-white">
              <div className="max-w-5xl mx-auto px-6 text-center">
                 <div className="mb-12 space-y-12">
-                   <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.1] tracking-tight">
+                   <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight">
                        As women age, their <br />
                        <span className="font-semibold">NAD+ levels drop by 30%</span> by Age 30.
                    </h2>
@@ -565,7 +565,7 @@ export default function Harmony() {
                  </div>
  
                  {/* Headline */}
-                 <h2 className="text-lg md:text-xl lg:text-2xl text-black text-center leading-tight mb-12 max-w-5xl mx-auto tracking-tighter">
+                 <h2 className="text-2xl lg:text-[32px] text-black text-center leading-tight mb-12 max-w-5xl mx-auto tracking-tighter">
                     <span className="font-bold block mb-4">It’s Now Possible To Block Cellular Bankruptcy, and Restore Your ‘Youth’ Molecules...</span>
                     <span className="font-semibold block mb-4 text-black">And Stay Naturally Sharp, Luminous, and Revitalized with</span>
                     <span className="text-[#0D47A1] font-black block underline decoration-blue-100 underline-offset-8">ChronoNAD+</span>
@@ -620,7 +620,7 @@ export default function Harmony() {
          <section id="breakthroughs" className="py-8 md:py-12 lg:py-16 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
                <div className="text-center mb-20">
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-black mb-6 leading-tight tracking-tight">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-black mb-6 leading-tight tracking-tight">
                      The 6 Biggest Scientific Cellular Energy Breakthroughs <br />
                      Of The Past 20 Years…
                   </h2>
@@ -730,7 +730,7 @@ export default function Harmony() {
          <section id="science" className="relative py-16 md:py-24 bg-[#F0F7FF] overflow-hidden">
             <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
                
-               <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.1] tracking-tight mb-6">
+               <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight mb-6">
                   All It Takes Is <span className="text-[#0D47A1] font-black">2 Capsules A Day</span> To Beat <br className="hidden md:block" />
                   New Fine Wrinkles, Feeling Drained, and Looking Dull…
                </h2>
@@ -832,7 +832,7 @@ export default function Harmony() {
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                {/* Centered Header */}
                <div className="flex flex-col items-center text-center space-y-6 mb-20">
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-black leading-[1.1] tracking-tight">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-black leading-[1.1] tracking-tight">
                      What Happens When <br />
                      <span className="text-[#0D47A1] font-semibold">You Start Taking CHRONONAD+?</span>
                   </h2>
@@ -894,7 +894,7 @@ export default function Harmony() {
                               <div className="space-y-3">
                                  <div className="flex items-center gap-4">
                                     <span className="text-xl md:text-2xl font-black uppercase tracking-tight text-[#0D47A1]">{item.time}</span>
-                                    <div className="h-[1px] w-8 bg-blue-50"></div>
+                     <div className="h-[1px] w-8 bg-blue-50"></div>
                                  </div>
 
                                  <p className="text-[#111827] leading-relaxed font-medium text-base md:text-lg max-w-2xl">
@@ -907,28 +907,22 @@ export default function Harmony() {
                   </div>
 
                   {/* Right Column: Inspirational Cinematic Visual */}
-                  <div className="lg:col-span-5 relative">
+                  <div className="lg:col-span-5 relative flex items-center justify-center">
                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.2 }}
-                        className="relative"
+                        className="w-full"
                      >
-                        {/* Architectural Frame Accents */}
-                        <div className="absolute -inset-8 border border-blue-50 rounded-[5rem] z-0 opacity-50 translate-x-4 translate-y-4"></div>
-                        
                         {/* Main Image Container */}
-                        <div className="relative aspect-[4/5] rounded-[4.5rem] overflow-hidden shadow-[0_50px_100px_-30px_rgba(0,0,0,0.2)] border-[12px] border-white z-10">
+                        <div className="relative w-full h-full">
                            <img
-                              src="/main2.png"
+                              src="/landing page images (1).png"
                               alt="The Vitality Renaissance"
-                              className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-[2000ms]"
+                              className="w-full h-auto max-h-[650px] object-cover rounded-3xl"
                            />
-
                         </div>
-
-
                      </motion.div>
                   </div>
 
@@ -957,7 +951,7 @@ export default function Harmony() {
             <div className="max-w-7xl mx-auto px-6">
                {/* Centered Header */}
                <div className="flex flex-col items-center text-center space-y-6 mb-20">
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.2] tracking-tight max-w-4xl">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.2] tracking-tight max-w-4xl">
                      Works For Women Of All Ages & Body Types <br />
                      <span className="text-[#0D47A1] font-semibold">No Matter How Long You’ve Been Struggling With New Lines, Dull Skin , or “Not Yourself”</span>
                   </h2>
@@ -965,8 +959,8 @@ export default function Harmony() {
 
                <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
                   {/* Left Column: Benefits */}
-                  <div className="w-full lg:w-[50%] space-y-10">
-                     <div className="grid grid-cols-1 gap-y-8">
+                  <div className="w-full lg:w-[50%] space-y-6">
+                     <div className="grid grid-cols-1 gap-y-4">
                         {[
                            { title: "Reveal a more sculpted, refreshed look", desc: "As your skin appears firmer and less puffy. Bring back that naturally toned, vibrant appearance as your glow returns from within" },
                            { title: "Sleep Deeply and Wake Up Restored", desc: "Experience a sharp, focused mind upon waking as your cells undergo deep repair and DNA shielding overnight." },
@@ -988,12 +982,12 @@ export default function Harmony() {
                   </div>
 
                   {/* Right Column: Image */}
-                  <div className="w-full lg:w-[35%]">
-                     <div className="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-gray-50">
+                  <div className="w-full lg:w-[40%] relative flex items-center justify-center">
+                     <div className="relative w-full h-auto">
                         <img
-                           src="/main1.png"
+                           src="/landing page images (2).png"
                            alt="Transformation Results"
-                           className="w-full aspect-[4/5] object-cover object-top"
+                           className="w-full h-auto max-h-[550px] object-cover rounded-3xl"
                         />
                      </div>
                   </div>
@@ -1006,7 +1000,7 @@ export default function Harmony() {
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                <div className="text-center mb-24 space-y-6">
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.1] tracking-tight">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight">
                      Clinical Purity. <br />
                      <span className="text-[#0D47A1] font-semibold">Zero Compromise.</span>
                   </h2>
@@ -1101,7 +1095,7 @@ export default function Harmony() {
                </div>
 
                <div className="text-center mb-8">
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-black leading-[1.1] tracking-tight uppercase">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-black leading-[1.1] tracking-tight uppercase">
                      Choose Your Package Below
                   </h2>
                </div>
@@ -1110,7 +1104,8 @@ export default function Harmony() {
                   {[
                      {
                         title: "STARTER ORDER",
-                        headerBg: "bg-[#0D47A1]",
+                        headerBg: "bg-gray-500",
+                        borderColor: "ring-2 ring-gray-400 border-gray-400",
                         headerText: "text-white",
                         price: "$19.99",
                         total: "$19.99",
@@ -1121,7 +1116,7 @@ export default function Harmony() {
                         countLabel: "90ct"
                      },
                      {
-                        title: "MOST POPULAR",
+                        title: "BIGGEST SAVINGS",
                         headerBg: "bg-[#0D47A1]",
                         headerText: "text-white",
                         borderColor: "ring-2 ring-[#0D47A1]",
@@ -1142,10 +1137,10 @@ export default function Harmony() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1 }}
-                        className={`relative flex flex-col bg-[#F0F7FF] rounded-3xl overflow-hidden shadow-2xl border border-blue-100/50 ${pkg.borderColor || ''}`}
+                        className={`relative flex flex-col bg-[#F0F7FF] rounded-3xl shadow-2xl border border-blue-100/50 ${pkg.borderColor || ''}`}
                      >
                         {/* Header */}
-                        <div className={`${pkg.headerBg} py-4 text-center relative`}>
+                        <div className={`${pkg.headerBg} py-4 text-center relative rounded-t-3xl`}>
                            <span className={`text-lg font-black tracking-[0.2em] uppercase ${pkg.headerText}`}>{pkg.title}</span>
                         </div>
 
@@ -1157,7 +1152,7 @@ export default function Harmony() {
                                  <motion.div 
                                     initial={{ scale: 0, rotate: -20 }}
                                     animate={{ scale: 1, rotate: -12 }}
-                                    className="absolute top-0 right-0 md:-right-6 z-20 bg-red-600 text-white text-xs md:text-sm font-black w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full shadow-xl uppercase tracking-tighter leading-tight text-center border-2 border-white"
+                                    className="absolute top-0 right-0 md:-right-10 z-20 bg-[#0D47A1] text-white text-lg md:text-2xl font-black w-24 h-24 md:w-32 md:h-32 flex items-center justify-center rounded-full shadow-2xl uppercase tracking-tighter leading-tight text-center border-4 border-white"
                                  >
                                     {pkg.savings}
                                  </motion.div>
@@ -1266,7 +1261,7 @@ export default function Harmony() {
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                <div className="text-center mb-12 max-w-5xl mx-auto space-y-1">
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.1] tracking-tight">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight">
                      Your Purchase Is Protected By Our
                   </h2>
                   <p className="text-lg md:text-xl lg:text-2xl font-black text-[#0D47A1] uppercase tracking-tight">
@@ -1346,7 +1341,7 @@ export default function Harmony() {
             <div className="max-w-7xl mx-auto px-6">
                <div className="text-center mb-16 space-y-6 max-w-6xl mx-auto">
 
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.1] tracking-tight">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight">
                      Real People, Real Results: <br />
                      <span className="text-[#0D47A1]">Join Thousands of Women All Over The World that Trust ChronoNAD+</span>
                   </h2>
@@ -1553,7 +1548,7 @@ export default function Harmony() {
                {/* Centered Header Inspired by Reference */}
                <div className="text-center mb-8 md:mb-12 space-y-6">
                   <span className="text-xl md:text-2xl font-black text-[#0D47A1] tracking-tight">What’s Inside ChronoNAD+?</span>
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] tracking-tight leading-[1.1]">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] tracking-tight leading-[1.1]">
                      Nothing But Natural, Science-Backed Ingredients
                   </h2>
                   <div className="pt-4">
@@ -1584,7 +1579,7 @@ export default function Harmony() {
             <div className="bg-white pt-12 pb-6 md:pt-16 md:pb-8 border-y border-gray-50">
                <div className="max-w-7xl mx-auto px-6 text-center space-y-8">
 
-                  <p className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.2] max-w-5xl mx-auto tracking-tight">
+                  <p className="text-xl md:text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] max-w-5xl mx-auto tracking-tight">
                      We’ve Set Out To Help <span className="text-[#0D47A1]">50,000,000 Women</span> <br className="hidden md:block" />
                      Naturally, Safely Fight Father Time In 2026… <br className="hidden md:block" />
                      And Step Back Into Their <span className="italic text-[#0D47A1] font-semibold">Prime</span>
@@ -1672,7 +1667,7 @@ export default function Harmony() {
             <div className="max-w-4xl mx-auto px-6">
                <div className="text-center mb-20 space-y-4">
                   <span className="text-lg md:text-xl font-black uppercase tracking-[0.4em] text-[#0D47A1] block">Still Not Sure?</span>
-                  <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.1] tracking-tight max-w-2xl mx-auto">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight max-w-2xl mx-auto">
                      Frequently Asked Questions
                   </h2>
                </div>
