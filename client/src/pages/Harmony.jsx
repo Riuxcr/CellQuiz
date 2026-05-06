@@ -7,6 +7,7 @@ import cortisolTransformation from '../assets/cortisol-transformation.png'
 import womenAllAgesResult from '../assets/women-all-ages-result.png'
 import supplementFacts from '../assets/supplement_facts.png'
 import chrononadProduct from '../assets/chrononad/chrononad_product_render_1776860430492.png'
+import Navbar from '../components/Navbar.jsx'
 
 
 export default function Harmony() {
@@ -100,18 +101,11 @@ export default function Harmony() {
    return (
       <div className="font-sans antialiased text-[#111827] bg-white selection:bg-[#0D47A1] selection:text-white relative">
 
-         {/* ===== FLOATING LOGO ===== */}
-         <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] glass px-6 py-3 rounded-full border border-gray-100/50 shadow-[0_8px_32px_rgba(0,0,0,0.05)]"
-         >
-            <img src="/logo.png" alt="Logo" className="h-8 lg:h-10 w-auto" />
-         </motion.div>
+         <Navbar />
 
 
          {/* HERO SECTION - BLACK & BLUE THEME */}
-         <section id="hero" className="relative min-h-[60vh] md:min-h-[80vh] flex flex-col items-center justify-center bg-white overflow-hidden pt-20 pb-10 md:pt-24 lg:pt-24 px-4 md:px-6">
+         <section id="hero" className="relative min-h-[60vh] md:min-h-[80vh] flex flex-col items-center justify-center bg-white overflow-hidden pt-28 pb-10 md:pt-32 lg:pt-36 px-4 md:px-6">
             {/* Subtle Background Clinical Grid - Deep Blue */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(#0D47A1 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
 
@@ -129,9 +123,11 @@ export default function Harmony() {
                            initial={{ opacity: 0, y: 20 }}
                            animate={{ opacity: 1, y: 0 }}
                            transition={{ delay: 0.3 }}
-                           className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.2] tracking-tight font-heading"
+                           className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.3] tracking-tight font-heading"
                         >
-                           How 3 Million Women Over 30 Are Reclaiming Their <span className="text-[#0D47A1]">Youthful Glow, Energy, and Metabolism</span> From declining NAD levels
+                           How 3 Million Women Over 30 Save <br />
+                           <span className="text-black">Their Youthful Glow, Energy, and Metabolism</span> <br />
+                           From Declining NAD levels
                         </motion.h1>
 
                         <motion.div
@@ -142,8 +138,7 @@ export default function Harmony() {
                         >
                            <p className="text-lg md:text-xl text-[#111827] font-medium leading-relaxed">
                               New research shows declining NAD+ levels are one of the biggest hidden drivers of dull skin, low energy, and visible aging. <br />
-                              And for many women, this drop starts as early as 30 <br />
-                              <span className="font-bold text-[#0D47A1]">ChronoNad+</span> supports and restores declining NAD levels at the cells, so your skin glows, your energy stays consistent, and you ditch the visible signs of aging.
+                              And for many women, this drop starts as early as 30
                            </p>
                         </motion.div>
                      </div>
@@ -152,7 +147,7 @@ export default function Harmony() {
                         <p className="text-base md:text-lg text-[#0D47A1] font-bold">With ingredients designed to:</p>
                         <div className="space-y-2.5">
                         {[
-                           { text: "Restore NAD+ At The Source by 40%" },
+                           { text: "Restore NAD+ by up to 100%*" },
                            { text: "Promote brighter, more even-looking skin" },
                            { text: "Boost energy so you feel less run down" },
                            { text: "Support Healthy Weight Management" },
@@ -179,12 +174,12 @@ export default function Harmony() {
                            whileHover={{ scale: 1.05 }}
                            whileTap={{ scale: 0.95 }}
                            onClick={scrollToProducts}
-                           className="bg-[#0D47A1] text-white font-black text-[10px] md:text-sm px-10 md:px-16 py-6 md:py-7 rounded-full uppercase tracking-[0.2em] md:tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center group relative overflow-hidden w-full md:w-auto"
+                           className="bg-[#0D47A1] text-white font-bold text-[10px] md:text-sm px-10 md:px-16 py-4 md:py-5 rounded-full uppercase tracking-[0.2em] md:tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center group relative overflow-hidden w-full md:w-auto"
                         >
                            <span className="relative z-10">Try ChronoNAD+</span>
                            <svg className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                         </motion.button>
-                        <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.05em] pl-4">
+                        <div className="flex items-center gap-2 text-xs md:text-sm font-bold text-[#0D47A1] uppercase tracking-[0.05em] pl-4">
                            <span className="text-lg">✅</span> 30 Day Money Back Guarantee
                         </div>
                      </div>
@@ -380,7 +375,7 @@ export default function Harmony() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={scrollToProducts}
-                        className="bg-[#0D47A1] text-white font-black text-xs md:text-sm px-16 py-7 rounded-full uppercase tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center mx-auto group"
+                        className="bg-[#0D47A1] text-white font-bold text-[10px] md:text-sm px-10 md:px-16 py-4 md:py-5 rounded-full uppercase tracking-[0.2em] md:tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center mx-auto group"
                      >
                         Try ChronoNAD+
                         <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -399,8 +394,8 @@ export default function Harmony() {
              <div className="max-w-5xl mx-auto px-6 text-center">
                 <div className="mb-12 space-y-12">
                    <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-[#111827] leading-[1.1] tracking-tight">
-                      As women age, their <br />
-                      <span className="font-semibold">NAD+ levels drop by 30%</span> by Age 30.
+                       As women age, their <br />
+                       <span className="font-semibold">NAD+ levels drop by 30%</span> by Age 30.
                    </h2>
 
                    <div className="relative group max-w-4xl mx-auto">
@@ -412,9 +407,9 @@ export default function Harmony() {
                 </div>
 
                 <div className="space-y-4 text-lg md:text-xl font-medium text-[#111827] leading-relaxed">
-                   <p className="inline-block px-6 py-2 bg-[#E53935] text-white font-medium text-lg md:text-xl leading-tight rounded-sm mb-4">
-                      And that’s when everything changes in your body.
-                   </p>
+                    <p className="text-lg md:text-xl leading-tight mb-4">
+                       And that’s when everything changes in your body.
+                    </p>
 
                    <div className="space-y-1">
                       <p className="text-[#111827]">The dull, weathered complexion...</p>
@@ -441,20 +436,20 @@ export default function Harmony() {
                    </p>
 
                    <div className="flex flex-col items-center py-4">
-                      <p className="text-sm font-black uppercase tracking-[0.1em] text-[#111827] mb-4">And unfortunately, it doesn’t stop here.</p>
+                      <p className="text-sm font-medium uppercase tracking-[0.1em] text-[#111827] mb-4">And unfortunately, it doesn’t stop here.</p>
                       <div className="h-[2px] w-24 bg-gray-100"></div>
                    </div>
 
-                   <p className="inline-block px-6 py-3 bg-[#0D47A1] text-white font-medium text-lg md:text-xl leading-tight tracking-tight rounded-sm mb-4">
-                      By the time you reach your 40s, your NAD+ levels, which is the fuel for every single cell, <br />
-                      plummet by a whopping 50%...
-                   </p>
+                    <p className="text-lg md:text-xl leading-tight tracking-tight mb-4 text-[#111827]">
+                       By the time you reach your 40s, your NAD+ levels, which is the fuel for every single cell, <br />
+                       plummet by a whopping 50%...
+                    </p>
 
                    <p className="max-w-2xl mx-auto text-[#111827]">
                       This is the molecule that keeps your skin tight and luminous, your DNA shielded, your metabolism firing, and your cellular recovery on autopilot…
                    </p>
 
-                   <p className="text-lg md:text-xl font-bold text-[#111827]">
+                   <p className="text-lg md:text-xl text-[#111827]">
                       Just like in your 20s and 30s.
                    </p>
 
@@ -473,10 +468,12 @@ export default function Harmony() {
                    <h3 className="text-lg md:text-xl font-medium text-[#111827] pt-4">Here’s why that happens:</h3>
 
                    <div className="space-y-4 max-w-2xl mx-auto text-[#111827]">
-                      <p>
-                         Crashing NAD+ levels stall your cellular engines… <br />
-                         Which dulls the skin and creates that 'perpetually tired' look…
-                      </p>
+                    <div className="flex flex-col items-center py-6">
+                       <p className="inline-block px-8 py-4 bg-[#E53935] text-white font-medium text-lg md:text-xl leading-tight rounded-sm text-center max-w-3xl">
+                          Crashing NAD+ levels stall your cellular engines… <br />
+                          Which dulls the skin and creates that 'perpetually tired' look…
+                       </p>
+                    </div>
                       <p>
                          Other NAD+ dependent 'youth' processes fail, and DNA damage accumulates… <br />
                          So the body stubbornly feels older, heavier, and slower than you actually are.
@@ -498,10 +495,12 @@ export default function Harmony() {
                       ))}
                    </div>
 
-                   <div className="text-center py-6 space-y-4">
-                      <p className="inline-block px-6 py-2 bg-[#E53935] text-white font-medium text-lg md:text-xl tracking-tighter rounded-sm">"You’re not alone…"</p>
-                      <p className="text-lg md:text-xl text-[#E53935]">It happens to MILLIONS of women just like you.</p>
-                   </div>
+                    <div className="flex flex-col items-center py-6">
+                       <div className="inline-block px-10 py-5 bg-[#0D47A1] rounded-sm text-center">
+                          <p className="text-lg md:text-xl tracking-tighter font-medium text-white">"You’re not alone…"</p>
+                          <p className="text-lg md:text-xl font-medium text-white">It happens to MILLIONS of women just like you.</p>
+                       </div>
+                    </div>
 
                    <p className="text-[#111827] text-lg md:text-xl pt-2 max-w-2xl mx-auto">
                       If you’ve experienced some of these symptoms… <br />
@@ -518,7 +517,7 @@ export default function Harmony() {
                    </p>
 
                    <div className="py-6 space-y-4">
-                      <p className="inline-block px-6 py-3 bg-[#0D47A1] text-white font-medium text-lg md:text-xl leading-tight tracking-tighter rounded-sm mb-2">
+                      <p className="text-lg md:text-xl leading-tight tracking-tighter mb-2 text-[#111827]">
                          Fortunately – there’s a way to <br />
                          reverse that.
                       </p>
@@ -530,10 +529,10 @@ export default function Harmony() {
                       </div>
 
                       <div className="space-y-4 pt-4">
-                         <p className="inline-block px-6 py-3 bg-[#E53935] text-white font-medium text-lg md:text-xl rounded-sm">You can get back that <br />sexy confidence…</p>
+                          <p className="text-lg md:text-xl mb-2 text-[#111827]">You can get back that <br />sexy confidence…</p>
                          <p className="text-lg md:text-xl text-[#111827]">The beautiful complexion, the sharp mind, the revitalized body…</p>
                          <p className="text-lg md:text-xl pt-4 text-[#111827]">So you can LOVE your life once again…</p>
-                         <p className="text-lg font-black uppercase tracking-[0.1em] text-[#111827]">No matter your age, genetics, or unique biological profile!</p>
+                         <p className="text-lg text-[#111827]">No matter your age, genetics, or unique biological profile!</p>
                       </div>
 
                       <div className="pt-20 flex flex-col items-center space-y-6">
@@ -541,9 +540,10 @@ export default function Harmony() {
                              whileHover={{ scale: 1.05 }}
                              whileTap={{ scale: 0.95 }}
                              onClick={scrollToProducts}
-                             className="bg-[#0D47A1] text-white font-black text-xs md:text-sm px-16 py-7 rounded-full uppercase tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center mx-auto"
+                             className="bg-[#0D47A1] text-white font-bold text-xs md:text-sm px-16 py-5 rounded-full uppercase tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center mx-auto group"
                           >
                              Try ChronoNAD+
+                             <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                           </motion.button>
                           <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.05em]">
                               <span className="text-lg">✅</span> 30 Day Money Back Guarantee
@@ -605,9 +605,10 @@ export default function Harmony() {
                        whileHover={{ scale: 1.05 }}
                        whileTap={{ scale: 0.95 }}
                        onClick={scrollToProducts}
-                       className="bg-[#0D47A1] text-white font-black text-xs md:text-sm px-16 py-7 rounded-full uppercase tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center mx-auto"
+                       className="bg-[#0D47A1] text-white font-bold text-xs md:text-sm px-10 md:px-16 py-4 md:py-5 rounded-full uppercase tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center mx-auto group"
                     >
                        Try ChronoNAD+
+                       <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                     </motion.button>
 
                  </div>
@@ -713,7 +714,7 @@ export default function Harmony() {
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
                      onClick={scrollToProducts}
-                     className="bg-[#0D47A1] text-white font-black text-xs md:text-sm px-16 py-7 rounded-full uppercase tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center mx-auto group"
+                     className="bg-[#0D47A1] text-white font-bold text-[10px] md:text-sm px-10 md:px-16 py-4 md:py-5 rounded-full uppercase tracking-[0.2em] md:tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center mx-auto group"
                   >
                      Try ChronoNAD+
                      <svg className="w-6 h-6 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -892,11 +893,11 @@ export default function Harmony() {
                               {/* Story Card */}
                               <div className="space-y-3">
                                  <div className="flex items-center gap-4">
-                                    <span className="text-2xl md:text-3xl font-black uppercase tracking-tight text-[#0D47A1]">{item.time}</span>
+                                    <span className="text-xl md:text-2xl font-black uppercase tracking-tight text-[#0D47A1]">{item.time}</span>
                                     <div className="h-[1px] w-8 bg-blue-50"></div>
                                  </div>
 
-                                 <p className="text-[#111827] leading-relaxed font-medium text-lg md:text-xl max-w-2xl">
+                                 <p className="text-[#111827] leading-relaxed font-medium text-base md:text-lg max-w-2xl">
                                     {item.text}
                                  </p>
                               </div>
@@ -938,13 +939,13 @@ export default function Harmony() {
                   <motion.button
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.98 }}
-                     className="group relative px-12 py-6 bg-[#0D47A1] text-white rounded-full font-black text-lg md:text-xl shadow-[0_20px_40px_-10px_rgba(13,71,161,0.3)] transition-all flex items-center overflow-hidden"
+                     onClick={scrollToProducts}
+                     className="bg-[#0D47A1] text-white font-bold text-[10px] md:text-sm px-10 md:px-16 py-4 md:py-5 rounded-full uppercase tracking-[0.2em] md:tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center group relative overflow-hidden w-full md:w-auto"
                   >
-                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                      <span className="relative z-10 tracking-widest uppercase">Try ChronoNAD+</span>
-                     <svg className="w-6 h-6 ml-4 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                     <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </motion.button>
-                  <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.2em]">
+                  <div className="flex items-center gap-2 text-xs md:text-sm font-bold text-[#0D47A1] uppercase tracking-[0.2em]">
                      <span className="text-lg">✅</span> 30 Day Money Back Guarantee
                   </div>
                </div>
@@ -1087,11 +1088,11 @@ export default function Harmony() {
                         { step: 2, label: "Billing Information", active: false },
                         { step: 3, label: "Thank You", active: false }
                      ].map((s, idx) => (
-                        <div key={idx} className="flex flex-col items-center relative z-10">
-                           <span className={`text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] mb-4 text-center transition-colors ${s.active ? 'text-black' : 'text-gray-300'}`}>
+                        <div key={idx} className="flex flex-col items-center relative z-10 w-1/3">
+                           <span className={`text-[8px] md:text-[10px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em] mb-2 md:mb-4 text-center transition-colors leading-tight min-h-[2.5em] flex items-end justify-center ${s.active ? 'text-black' : 'text-gray-300'}`}>
                               {s.label}
                            </span>
-                           <div className={`w-12 h-12 md:w-14 md:h-14 rounded-full border-[4px] flex items-center justify-center text-xl md:text-2xl font-black bg-white transition-all ${s.active ? 'border-black text-black' : 'border-gray-100 text-gray-300'}`}>
+                           <div className={`w-10 h-10 md:w-14 md:h-14 rounded-full border-[3px] md:border-[4px] flex items-center justify-center text-lg md:text-2xl font-black bg-white transition-all ${s.active ? 'border-black text-black' : 'border-gray-100 text-gray-300'}`}>
                               {s.step}
                            </div>
                         </div>
@@ -1111,26 +1112,28 @@ export default function Harmony() {
                         title: "STARTER ORDER",
                         headerBg: "bg-[#0D47A1]",
                         headerText: "text-white",
-                        price: "$15.99",
-                        total: "$15.99",
+                        price: "$19.99",
+                        total: "$19.99",
                         image: "/Product1.png",
                         isPopular: false,
                         savings: null,
-                        installments: "$4.00"
+                        installments: "$5.00",
+                        countLabel: "90ct"
                      },
                      {
                         title: "MOST POPULAR",
                         headerBg: "bg-[#0D47A1]",
                         headerText: "text-white",
-                        borderColor: "ring-4 ring-black/5",
-                        price: "$12.79",
-                        total: "$25.58",
-                        originalTotal: "$31.98",
+                        borderColor: "ring-2 ring-[#0D47A1]",
+                        price: "$14.99",
+                        total: "$29.99",
+                        originalTotal: "$39.98",
                         image: "/Product1.png",
                         count: 2,
                         isPopular: true,
-                        savings: "20% OFF",
-                        installments: "$6.40"
+                        savings: "25% OFF",
+                        installments: "$7.50",
+                        countLabel: "90ct"
                      }
                   ].map((pkg, i) => (
                      <motion.div
@@ -1142,7 +1145,7 @@ export default function Harmony() {
                         className={`relative flex flex-col bg-[#F0F7FF] rounded-3xl overflow-hidden shadow-2xl border border-blue-100/50 ${pkg.borderColor || ''}`}
                      >
                         {/* Header */}
-                        <div className={`${pkg.headerBg} py-4 text-center`}>
+                        <div className={`${pkg.headerBg} py-4 text-center relative`}>
                            <span className={`text-lg font-black tracking-[0.2em] uppercase ${pkg.headerText}`}>{pkg.title}</span>
                         </div>
 
@@ -1150,19 +1153,28 @@ export default function Harmony() {
 
                         <div className="flex-grow flex flex-col items-center pt-2 md:pt-4 lg:pt-6 px-4 md:px-8 pb-4 md:pb-6 text-center">
                            <div className="h-[300px] md:h-[400px] lg:h-[440px] w-full mb-0 relative flex items-center justify-center overflow-visible">
+                              {pkg.savings && (
+                                 <motion.div 
+                                    initial={{ scale: 0, rotate: -20 }}
+                                    animate={{ scale: 1, rotate: -12 }}
+                                    className="absolute top-0 right-0 md:-right-6 z-20 bg-red-600 text-white text-xs md:text-sm font-black w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-full shadow-xl uppercase tracking-tighter leading-tight text-center border-2 border-white"
+                                 >
+                                    {pkg.savings}
+                                 </motion.div>
+                              )}
                               {pkg.count === 2 ? (
                                  <div className="relative w-full h-full flex items-center justify-center translate-y-4 md:translate-y-6">
                                     {/* Back Bottle */}
                                     <img
                                        src={pkg.image}
                                        alt={pkg.title}
-                                       className="w-[85%] h-[85%] object-contain scale-115 md:scale-130 lg:scale-140 absolute -translate-x-12 md:-translate-x-16 z-0 brightness-[0.98] blur-[0.5px]"
+                                       className="w-full h-full object-contain scale-110 md:scale-120 lg:scale-130 absolute -translate-x-12 md:-translate-x-16 z-0 brightness-[0.98] blur-[0.5px]"
                                     />
                                     {/* Front Bottle */}
                                     <img
                                        src={pkg.image}
                                        alt={pkg.title}
-                                       className="w-[85%] h-[85%] object-contain scale-115 md:scale-130 lg:scale-140 absolute translate-x-12 md:translate-x-16 z-10 drop-shadow-[20px_0_30px_rgba(0,0,0,0.15)]"
+                                       className="w-full h-full object-contain scale-110 md:scale-120 lg:scale-130 absolute translate-x-12 md:translate-x-16 z-10 drop-shadow-[20px_0_30px_rgba(0,0,0,0.15)]"
                                     />
                                  </div>
                               ) : (
@@ -1177,23 +1189,26 @@ export default function Harmony() {
                            {/* Price Highlight */}
                            <div className="mb-2 space-y-0">
                               <div className="text-4xl font-black text-[#0D47A1] tracking-tighter">{pkg.price}</div>
-                              <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Per Jar</div>
+                              <div className="text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.3em] mb-2">{pkg.countLabel || "Per Jar"}</div>
                            </div>
 
                            {/* Total & Installments */}
                            <div className="mb-4 w-full">
-                              <div className="text-base font-bold text-black mb-1">
-                                 Total {pkg.originalTotal && <span className="line-through text-gray-300 font-medium mr-2">{pkg.originalTotal}</span>}
+                              <div className="text-xl font-black text-black mb-1">
+                                 Total {pkg.originalTotal && <span className="line-through text-gray-400 font-bold mr-2">{pkg.originalTotal}</span>}
                                  {pkg.total}
                               </div>
 
                            </div>
 
                            {/* BUY NOW Button */}
-                           <button className="w-full py-6 rounded-full bg-[#0D47A1] text-white font-black text-sm tracking-[0.3em] shadow-xl hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-3 mb-6 group">
-                              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" /></svg>
-                              <span>BUY NOW</span>
-                           </button>
+                           <button 
+                               onClick={() => window.open('https://cellstart.com/products/nad?selling_plan=3903586561&variant=46896557195521', '_blank')}
+                               className="w-full py-6 rounded-full bg-[#0D47A1] text-white font-black text-sm tracking-[0.3em] shadow-xl hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-3 mb-6 group"
+                            >
+                               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" /></svg>
+                               <span>BUY NOW</span>
+                            </button>
                         </div>
                      </motion.div>
                   ))}
@@ -1268,13 +1283,8 @@ export default function Harmony() {
                         subtitle: "Free Shipping On All Monthly or 2 or more bottle orders.",
                         desc: "No one likes paying for shipping. That’s why when you purchase either our monthly delivery or two bottles or more, we take care of the shipping for you. You save more when you buy more!",
                         icon: (
-                           <div className="w-16 h-16 bg-[#0D47A1]/5 rounded-full flex items-center justify-center mb-6 mx-auto">
-                              <svg className="w-6 h-6 text-[#0D47A1]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                 <rect x="1" y="3" width="15" height="13" />
-                                 <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-                                 <circle cx="5.5" cy="18.5" r="2.5" />
-                                 <circle cx="18.5" cy="18.5" r="2.5" />
-                              </svg>
+                           <div className="w-20 h-20 bg-[#0D47A1]/5 rounded-full flex items-center justify-center mb-6 mx-auto">
+                              <img src="/free-shipping.png" alt="Free Shipping" className="w-12 h-12 object-contain" />
                            </div>
                         )
                      },
@@ -1282,11 +1292,8 @@ export default function Harmony() {
                         subtitle: "30 Day Money Back Guarantee",
                         desc: "True cellular restoration is a journey, not an overnight fix. While some notice a \"brain fog lift\" early on, deep DNA repair typically happens on a 90 to 120-day cycle. If you don’t feel confident that you’re building a stronger cellular foundation, you can claim a full refund on your first bottle.",
                         icon: (
-                           <div className="w-16 h-16 bg-[#0D47A1]/5 rounded-full flex items-center justify-center mb-6 mx-auto">
-                              <svg className="w-6 h-6 text-[#0D47A1]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                                 <path d="m9 12 2 2 4-4" />
-                              </svg>
+                           <div className="w-20 h-20 bg-[#0D47A1]/5 rounded-full flex items-center justify-center mb-6 mx-auto">
+                              <img src="/check.png" alt="30 Day Guarantee" className="w-12 h-12 object-contain" />
                            </div>
                         )
                      },
@@ -1294,10 +1301,8 @@ export default function Harmony() {
                         subtitle: "Instant Refunds",
                         desc: "We want you to feel the transformative effects of youthful NAD+ levels. If you aren’t happy with how ChronoNAD works for you, we’ll give you a hassle-free, no-questions-asked refund on your first bottle. We’re here to support your longevity, not complicate it.",
                         icon: (
-                           <div className="w-16 h-16 bg-[#0D47A1]/5 rounded-full flex items-center justify-center mb-6 mx-auto">
-                              <svg className="w-6 h-6 text-[#0D47A1]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                 <path d="M12 2v20M5 5h14M5 19h14M17 9l-5-5-5 5M7 15l5 5 5-5" />
-                              </svg>
+                           <div className="w-20 h-20 bg-[#0D47A1]/5 rounded-full flex items-center justify-center mb-6 mx-auto">
+                              <img src="/cashback.png" alt="Instant Refunds" className="w-12 h-12 object-contain" />
                            </div>
                         )
                      }
@@ -1322,14 +1327,12 @@ export default function Harmony() {
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
                      onClick={scrollToProducts}
-                     className="bg-[#0D47A1] text-white font-black text-sm md:text-base px-20 py-6 rounded-full uppercase tracking-[0.2em] shadow-lg hover:bg-[#111827] transition-all duration-300 flex items-center gap-3"
+                     className="bg-[#0D47A1] text-white font-bold text-[10px] md:text-sm px-10 md:px-16 py-4 md:py-5 rounded-full uppercase tracking-[0.2em] md:tracking-[0.3em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center mx-auto group"
                   >
                      <span>Try ChronoNAD+</span>
-                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                     </svg>
+                     <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </motion.button>
-                  <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.2em] mt-4">
+                  <div className="flex items-center gap-2 text-xs md:text-sm font-bold text-[#0D47A1] uppercase tracking-[0.2em] mt-4">
                      <span className="text-lg">✅</span> 30 Day Money Back Guarantee
                   </div>
                </div>
@@ -1532,12 +1535,10 @@ export default function Harmony() {
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
                      onClick={scrollToProducts}
-                     className="bg-[#0D47A1] text-white font-black text-sm md:text-base px-20 py-6 rounded-full uppercase tracking-[0.2em] shadow-lg hover:bg-[#111827] transition-all duration-300 flex items-center gap-3"
+                     className="bg-[#0D47A1] text-white font-black text-sm md:text-base px-16 py-5 rounded-full uppercase tracking-[0.2em] shadow-lg hover:bg-[#111827] transition-all duration-300 flex items-center gap-3 group"
                   >
                      <span>Try ChronoNAD+</span>
-                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                     </svg>
+                     <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </motion.button>
                   <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.2em] mt-4">
                      <span className="text-lg">✅</span> 30 Day Money Back Guarantee
@@ -1729,12 +1730,12 @@ export default function Harmony() {
                           Pioneering the future of cellular longevity through advanced NAD+ science and clinical-grade protocols.
                        </p>
                        <div className="flex items-center gap-4">
-                          <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#0D47A1] transition-colors cursor-pointer">
-                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-                          </div>
-                          <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#0D47A1] transition-colors cursor-pointer">
+                          <a href="https://www.tiktok.com/@cellstart?_r=1&_t=ZT-968fHgbsKRK" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#0D47A1] transition-colors cursor-pointer">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.01.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.28-2.26.74-4.63 2.58-5.91 1.05-.72 2.3-.99 3.52-1.01v4.03c-.85.03-1.72.3-2.4 1.1-.8.81-1.2 2.1-1 3.2.1.9.7 1.7 1.5 2.1.8.4 1.8.5 2.6.2.9-.3 1.6-1.1 1.8-2 .1-.4.2-.8.2-1.2V0z"/></svg>
+                           </a>
+                          <a href="https://www.instagram.com/accounts/login/?next=%2Fcellstart_%2F&source=omni_redirect" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#0D47A1] transition-colors cursor-pointer">
                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                          </div>
+                          </a>
                        </div>
                     </div>
   
