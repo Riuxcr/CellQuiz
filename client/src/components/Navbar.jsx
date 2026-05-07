@@ -79,13 +79,13 @@ export default function Navbar() {
           opacity: isScrolled ? 0 : 1,
           pointerEvents: isScrolled ? 'none' : 'auto',
           backgroundColor: 'rgba(255, 255, 255, 1)',
-          width: 'min(1200px, 95%)'
+          width: 'min(1200px, 92%)'
         }}
         transition={{ 
           duration: 0.4,
           ease: "easeInOut"
         }}
-        className="pointer-events-auto flex items-center justify-between h-16 lg:h-20 overflow-hidden px-10 md:px-24 rounded-full shadow-sm"
+        className="pointer-events-auto flex items-center justify-between h-16 lg:h-20 overflow-hidden px-6 md:px-24 rounded-full shadow-sm border border-gray-100"
       >
         {/* Logo */}
         <div className="flex items-center shrink-0 cursor-pointer" onClick={() => navigate('/')}>
@@ -143,14 +143,83 @@ export default function Navbar() {
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L12 12M6 6l12 12" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
         </div>
       </motion.nav>
+ 
+       {/* Mobile Menu Overlay */}
+       <AnimatePresence>
+         {isMobileMenuOpen && (
+           <>
+             <motion.div
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+               onClick={() => setIsMobileMenuOpen(false)}
+               className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[9000] pointer-events-auto lg:hidden"
+             />
+             <motion.div
+               initial={{ x: '100%' }}
+               animate={{ x: 0 }}
+               exit={{ x: '100%' }}
+               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+               className="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white z-[9001] shadow-2xl p-8 flex flex-col pointer-events-auto lg:hidden"
+             >
+               <div className="flex items-center justify-between mb-12">
+                 <img src="/logo.png" alt="CellStart" className="h-7 w-auto" />
+                 <button 
+                   onClick={() => setIsMobileMenuOpen(false)}
+                   className="p-2 text-[#111827]"
+                 >
+                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
+                 </button>
+               </div>
+ 
+               <div className="flex flex-col gap-8">
+                 {navLinks.map((link) => (
+                   <a
+                     key={link.name}
+                     href={link.href}
+                     onClick={(e) => scrollToSection(e, link.href)}
+                     className="text-2xl font-black text-[#111827] hover:text-[#0D47A1] transition-colors"
+                   >
+                     {link.name}
+                   </a>
+                 ))}
+               </div>
+ 
+               <div className="mt-auto space-y-6">
+                 <button 
+                   onClick={() => {
+                     navigate('/quiz')
+                     setIsMobileMenuOpen(false)
+                   }}
+                   className="w-full bg-[#0D47A1] text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl"
+                 >
+                   Take the Quiz
+                 </button>
+                 
+                 <div className="flex items-center justify-center gap-8 text-[#111827]">
+                   <button onClick={() => { setIsSearchOpen(true); setIsMobileMenuOpen(false); }}>
+                     <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                   </button>
+                   <button onClick={() => { setIsAccountModalOpen(true); setIsMobileMenuOpen(false); }}>
+                     <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                   </button>
+                   <button onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}>
+                     <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 0a2 2 0 100 4 2 2 0 000-4z" /></svg>
+                   </button>
+                 </div>
+               </div>
+             </motion.div>
+           </>
+         )}
+       </AnimatePresence>
 
       {/* Search Overlay */}
       <AnimatePresence>
@@ -169,7 +238,7 @@ export default function Navbar() {
               }}
               className="absolute top-10 right-10 text-[#111827] p-2 hover:bg-gray-100 rounded-full transition-all"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L12 12M6 6l12 12" /></svg>
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
             <div className="w-full max-w-2xl space-y-12 py-20">
               <div className="space-y-4 text-center">
@@ -246,7 +315,7 @@ export default function Navbar() {
               <div className="p-8 border-b border-gray-100 flex items-center justify-between">
                 <h3 className="text-2xl font-black text-[#111827] tracking-tight">Your Cart</h3>
                 <button onClick={() => setIsCartOpen(false)} className="text-[#111827] hover:rotate-90 transition-transform duration-300">
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L12 12M6 6l12 12" /></svg>
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
               </div>
               <div className="flex-grow flex flex-col items-center justify-center p-8 space-y-6">
