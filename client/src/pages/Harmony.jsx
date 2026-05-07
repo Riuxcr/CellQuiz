@@ -125,7 +125,7 @@ export default function Harmony() {
                            transition={{ delay: 0.3 }}
                            className="text-2xl lg:text-[32px] font-bold text-[#0D47A1] leading-[1.1] tracking-tight font-heading text-center lg:text-left w-full max-w-2xl mx-auto lg:mx-0"
                         >
-                           How 3 Million Women Over 30 Save Their Youthful Glow, Energy, and Metabolism From Declining NAD levels
+                           How 3 Million Women Over 30 Save <span className="underline decoration-2 underline-offset-4">Their Youthful Glow, Energy, and Metabolism</span> From Declining NAD levels
                         </motion.h1>
 
                         <motion.div
@@ -385,7 +385,7 @@ export default function Harmony() {
           <section id="story" className="py-6 md:py-4 bg-white">
              <div className="max-w-5xl mx-auto px-6 text-center">
                 <div className="mb-12 space-y-8 md:space-y-12">
-                   <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight">
+                   <h2 className="text-2xl lg:text-[32px] font-bold text-[#0D47A1] leading-[1.1] tracking-tight">
                        As women age, their <br />
                        <span className="font-semibold">NAD+ levels drop by 30%</span> by Age 30.
                    </h2>
@@ -399,27 +399,33 @@ export default function Harmony() {
 
                 <div className="space-y-4 text-lg md:text-xl font-medium text-[#111827] leading-relaxed">
                     <p className="text-lg md:text-xl leading-tight mb-4">
-                       And that’s when everything changes in your body.
+                       And that’s when <span className="underline decoration-gray-200 underline-offset-4">everything changes</span> in your body.
                     </p>
 
-                   <div className="space-y-1">
-                      <p className="text-[#111827]">The dull, weathered complexion...</p>
-                      <p className="text-[#111827]">The heavy, persistent brain fog...</p>
-                      <p className="text-[#111827]">The slow, ‘biological rust’ recovery...</p>
-                   </div>
+                    <div className="space-y-1">
+                       <p className="text-[#111827] flex items-center justify-center gap-2">
+                          <span className="text-red-600">❌</span> The dull, weathered complexion...
+                       </p>
+                       <p className="text-[#111827] flex items-center justify-center gap-2">
+                          <span className="text-red-600">❌</span> The heavy, persistent brain fog...
+                       </p>
+                       <p className="text-[#111827] flex items-center justify-center gap-2">
+                          <span className="text-red-600">❌</span> The slow, ‘biological rust’ recovery...
+                       </p>
+                    </div>
 
-                   <p className="max-w-2xl mx-auto text-[#111827]">
-                      Are all symptoms of cellular decay that forces the body to stay DRAINED and WEATHERED… And that’s only what you see in the mirror.
+                   <p className="max-w-2xl mx-auto text-black">
+                      Are all symptoms of cellular decay that forces the body to stay <span className="font-bold">DRAINED</span> and <span className="font-bold">WEATHERED</span>… And that’s only what you see in the mirror.
                    </p>
 
                    <p className="text-lg md:text-xl text-[#111827]">
                       On the inside? There’s a biological brownout wreaking havoc on your youthfulness and energy.
                    </p>
 
-                   <div className="space-y-4 border-y-2 border-gray-50 py-6 text-[#111827] max-w-2xl mx-auto px-4">
-                      <p>You feel mentally gray and lagging during the day…</p>
-                      <p>Drained yet restless when your body needs to recover or sleep…</p>
-                      <p>And unable to reclaim your glow, no matter what serums you use.</p>
+                   <div className="space-y-4 border-y-2 border-gray-50 py-6 text-black max-w-2xl mx-auto px-4">
+                      <p className="text-black">You <span className="font-bold">feel mentally gray and lagging</span> during the day…</p>
+                      <p className="text-black">Drained yet restless when your body needs to recover or sleep…</p>
+                      <p className="text-black">And <span className="font-bold">unable to reclaim your glow</span>, no matter what serums you use.</p>
                    </div>
 
                    <p className="text-lg md:text-xl font-medium text-[#111827]">
@@ -427,7 +433,7 @@ export default function Harmony() {
                    </p>
 
                    <div className="flex flex-col items-center py-4">
-                      <p className="text-sm font-medium uppercase tracking-[0.1em] text-[#111827] mb-4">And unfortunately, it doesn’t stop here.</p>
+                      <p className="text-xl md:text-2xl font-medium text-[#111827] mb-4">And unfortunately, it doesn’t stop here.</p>
                       <div className="h-[2px] w-24 bg-gray-100"></div>
                    </div>
 
@@ -465,40 +471,63 @@ export default function Harmony() {
                           Which dulls the skin and creates that 'perpetually tired' look…
                        </p>
                     </div>
-                      <p>
-                         Other NAD+ dependent 'youth' processes fail, and DNA damage accumulates… <br />
-                         So the body stubbornly feels older, heavier, and slower than you actually are.
-                      </p>
+                    <div className="py-6">
+                       <p className="text-lg md:text-xl font-bold text-black text-center leading-relaxed">
+                          Other NAD+ dependent 'youth' processes fail, and DNA damage accumulates…
+                       </p>
+                       <p className="text-[#111827] text-center mt-2">
+                          So the body stubbornly feels older, heavier, and slower than you actually are.
+                       </p>
+                    </div>
                    </div>
 
                    <h3 className="text-lg md:text-xl font-medium text-[#111827] pt-4">So if you’ve ever witnessed…</h3>
 
-                   <div className="space-y-4 max-w-xl mx-auto text-[#111827]">
-                      {[
-                         "New fine-lines appearing where a glow used to be…",
-                         "A 'brain fog' that makes simple tasks feel like a climb…",
-                         "Slow recovery that keeps you sore and tired for days…",
-                         "Or dull wrinkled skin losing its firm, youthful definition…"
-                      ].map((item, i) => (
-                         <div key={i} className="text-center group">
-                            <p className="border-b border-gray-100 pb-4 text-[#111827]">{item}</p>
-                         </div>
-                      ))}
-                   </div>
-
-                    <div className="flex flex-col items-center py-6">
-                       <div className="inline-block px-10 py-5 bg-[#0D47A1] rounded-sm text-center">
-                          <p className="text-lg md:text-xl tracking-tighter font-medium text-white">"You’re not alone…"</p>
-                          <p className="text-lg md:text-xl font-medium text-white">It happens to MILLIONS of women just like you.</p>
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 py-8">
+                       <div className="text-8xl md:text-9xl animate-pulse">😩</div>
+                       <div className="space-y-1.5 text-left max-w-xl">
+                          <div className="flex items-start gap-3 group">
+                             <span className="text-2xl mt-0.5 text-blue-500">➡️</span>
+                             <p className="text-base md:text-xl text-[#111827] leading-relaxed">
+                                <strong>New fine-lines</strong> appearing where a glow used to be…
+                             </p>
+                          </div>
+                          <div className="flex items-start gap-3 group">
+                             <span className="text-2xl mt-0.5 text-blue-500">➡️</span>
+                             <p className="text-base md:text-xl text-[#111827] leading-relaxed">
+                                <strong>A 'brain fog'</strong> that makes simple tasks feel like a climb…
+                             </p>
+                          </div>
+                          <div className="flex items-start gap-3 group">
+                             <span className="text-2xl mt-0.5 text-blue-500">➡️</span>
+                             <p className="text-base md:text-xl text-[#111827] leading-relaxed">
+                                <strong>Slow recovery</strong> that keeps you sore and tired for days…
+                             </p>
+                          </div>
+                          <div className="flex items-start gap-3 group">
+                             <span className="text-2xl mt-0.5 text-blue-500">➡️</span>
+                             <p className="text-base md:text-xl text-[#111827] leading-relaxed">
+                                Or <strong>dull wrinkled skin</strong> losing its firm, youthful definition…
+                             </p>
+                          </div>
                        </div>
                     </div>
+
+                    <div className="flex flex-col items-center py-10 space-y-2">
+                        <p className="text-xl md:text-3xl font-bold text-rose-500 flex items-center gap-3">
+                           <span>➡️</span> You’re not alone… <span>⬅️</span>
+                        </p>
+                        <p className="text-xl md:text-3xl font-bold text-rose-500">
+                           It happens to MILLIONS <span className="inline-block animate-bounce">🙋‍♀️</span> of women just like you.
+                        </p>
+                     </div>
 
                    <p className="text-[#111827] text-lg md:text-xl pt-2 max-w-2xl mx-auto">
                       If you’ve experienced some of these symptoms… <br />
                       then you probably noticed that…
                    </p>
 
-                   <p className="text-lg md:text-xl leading-tight text-[#111827] underline decoration-gray-100 underline-offset-8">
+                   <p className="text-lg md:text-xl font-bold leading-tight text-[#111827] underline decoration-gray-100 underline-offset-8">
                       Standard vitamins and 'skincare only' routines just won’t cut it anymore.
                    </p>
 
@@ -508,7 +537,7 @@ export default function Harmony() {
                    </p>
 
                    <div className="py-6 space-y-4">
-                      <p className="text-lg md:text-xl leading-tight tracking-tighter mb-2 text-[#111827]">
+                      <p className="text-lg md:text-xl font-heading font-bold leading-tight mb-2 text-black">
                          Fortunately – there’s a way to <br />
                          reverse that.
                       </p>
@@ -523,7 +552,7 @@ export default function Harmony() {
                           <p className="text-lg md:text-xl mb-2 text-[#111827]">You can get back that <br />sexy confidence…</p>
                          <p className="text-lg md:text-xl text-[#111827]">The beautiful complexion, the sharp mind, the revitalized body…</p>
                          <p className="text-lg md:text-xl pt-4 text-[#111827]">So you can LOVE your life once again…</p>
-                         <p className="text-lg text-[#111827]">No matter your age, genetics, or unique biological profile!</p>
+                         <p className="text-xl md:text-2xl text-[#111827]">No matter <span className="font-bold text-black">your age, genetics, or unique biological profile!</span></p>
                       </div>
 
                       <div className="pt-8 md:pt-12 flex flex-col items-center space-y-6">
