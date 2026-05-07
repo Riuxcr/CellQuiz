@@ -89,7 +89,7 @@ export default function Navbar() {
       >
         {/* Logo */}
         <div className="flex items-center shrink-0 cursor-pointer" onClick={() => navigate('/harmony')}>
-          <img src="/logo.png" alt="CellStart" className="h-7 md:h-9 w-auto" />
+          <img src="/logo.png" alt="CellStart" className="h-9 md:h-11 w-auto" />
         </div>
 
         {/* Desktop Links */}
