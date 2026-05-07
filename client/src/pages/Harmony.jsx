@@ -105,7 +105,7 @@ export default function Harmony() {
 
 
          {/* HERO SECTION - BLACK & BLUE THEME */}
-         <section id="hero" className="relative min-h-[60vh] md:min-h-0 flex flex-col items-center justify-center bg-white overflow-hidden pt-20 pb-4 md:pt-32 md:pb-8 lg:pt-36 lg:pb-10 px-4 md:px-6">
+         <section id="hero" className="relative flex flex-col items-center justify-center bg-white overflow-hidden pt-24 pb-8 md:pt-32 md:pb-20 lg:pt-36 lg:pb-10 px-4 md:px-6">
             {/* Subtle Background Clinical Grid - Deep Blue */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(#0D47A1 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
 
@@ -114,7 +114,7 @@ export default function Harmony() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+                  className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-8 items-center"
                >
                   {/* Left Column: Text Content */}
                   <div className="flex flex-col items-start lg:items-start space-y-4 relative text-left lg:text-left order-2 lg:order-1">
@@ -123,11 +123,9 @@ export default function Harmony() {
                            initial={{ opacity: 0, y: 20 }}
                            animate={{ opacity: 1, y: 0 }}
                            transition={{ delay: 0.3 }}
-                           className="text-2xl lg:text-[32px] font-bold text-[#0D47A1] leading-[1.1] tracking-tight font-heading text-center lg:text-left w-full"
+                           className="text-2xl lg:text-[32px] font-bold text-[#0D47A1] leading-[1.1] tracking-tight font-heading text-center lg:text-left w-full max-w-2xl mx-auto lg:mx-0"
                         >
-                           How 3 Million Women Over 30 Save <br />
-                           <span>Their Youthful Glow, Energy, and</span> <br />
-                           Metabolism From Declining NAD levels
+                           How 3 Million Women Over 30 Save Their Youthful Glow, Energy, and Metabolism From Declining NAD levels
                         </motion.h1>
 
                         <motion.div
@@ -138,7 +136,8 @@ export default function Harmony() {
                         >
                            <p className="text-base md:text-xl text-[#111827] font-medium leading-relaxed">
                               New research shows declining NAD+ levels are one of the biggest hidden drivers of dull skin, low energy, and visible aging. <br />
-                              And for many women, this drop starts as early as 30
+                              And for many women, this drop starts as early as 30. <br />
+                              Experience the clinical-grade difference today.
                            </p>
                         </motion.div>
                      </div>
@@ -203,7 +202,7 @@ export default function Harmony() {
             {/* Massive Spherical Background Backdrop */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-[#F9FAFB] rounded-full z-0 opacity-50"></div>
             
-            <div className="w-full px-10 md:px-24 relative z-10">
+            <div className="w-full px-4 md:px-24 relative z-10">
                <div className="text-center mb-4 md:mb-8 space-y-6">
 
                   <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight">
@@ -211,7 +210,7 @@ export default function Harmony() {
                      <span className="text-[#0D47A1] font-semibold">Ingredients Featured In…</span>
                   </h2>
                </div>
-               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 lg:gap-2 pb-2 md:pb-0 px-2 md:px-0">
+               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 lg:gap-2 pb-2 md:pb-0 px-1 md:px-0">
                   {[
                      {
                         logo: "/allure png logo.png",
@@ -244,7 +243,7 @@ export default function Harmony() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1 }}
-                        className="bg-white px-5 py-8 md:p-8 flex flex-col items-center text-center space-y-6 w-full shadow-sm lg:shadow-none rounded-[2rem] lg:rounded-none"
+                        className="bg-white px-3 py-6 md:p-8 flex flex-col items-center text-center space-y-4 md:space-y-6 w-full shadow-sm lg:shadow-none rounded-2xl md:rounded-[2rem] lg:rounded-none"
                      >
                         <img 
                            src={item.logo} 
@@ -271,13 +270,13 @@ export default function Harmony() {
                <div className="text-center mb-4 md:mb-8 space-y-2 md:space-y-4">
 
                   <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight max-w-5xl mx-auto">
-                     See Why Thousands Of Women Are Turning To <span className="text-[#0D47A1] font-semibold">CHRONONAD+ To:</span>
+                     See Why Thousands Of Women Are Turning To CHRONONAD+ To:
                   </h2>
-                  <p className="text-xl md:text-2xl text-[#111827] font-bold leading-tight max-w-4xl mx-auto">
+                  <p className="text-xl md:text-2xl text-[#0D47A1] font-bold leading-tight max-w-4xl mx-auto">
                      Beat “Creepy” Skin, Premature Aging, Dark Under-Eye Bags, and Sluggish Metabolism.
                   </p>
                   <p className="text-base md:text-lg text-[#111827] font-medium leading-relaxed max-w-3xl mx-auto">
-                     NAD+ Ingredients have been proven and tested by thousands of studies and users to help restore declining NAD+ levels for women of all ages, so they can finally <span className="text-[#111827] font-black">END the dull skin, constant tiredness, and visible signs of aging.</span>
+                     NAD+ Ingredients have been proven and tested by thousands of studies and users to help restore declining NAD+ levels for women of all ages, so they can finally <span className="text-[#0D47A1] font-black">END the dull skin, constant tiredness, and visible signs of aging.</span>
                   </p>
                </div>
 
@@ -289,21 +288,15 @@ export default function Harmony() {
                         initial: "H",
                         title: "NAD+ Boost for Feeling Younger!",
                         body: "CellStart is a solid pick for anyone wanting to support healthy aging and cellular energy! After a month of one capsule daily with breakfast, I've noticed steadier energy, better focus, and recovery.",
-                        className: "md:col-span-3 lg:col-span-4 bg-white"
+                        className: "md:col-span-3 lg:col-span-6 bg-white"
                      },
-                     {
-                        name: "Brenda",
-                        initial: "B",
-                        title: "Great quality supplements",
-                        body: "60 capsules in a bottle. Pills are pretty easy to swallow. I had good results with taking this supplement. More energy and I have better sleep now.",
-                        className: "md:col-span-3 lg:col-span-4 bg-[#F9FAFB]"
-                     },
+
                      {
                         name: "James",
                         initial: "J",
                         title: "Easy to swallow capsules.",
                         body: "The CellStart Nad+ Resveratrol capsules come a well-sealed bottle. I like the fact that they are made in the USA and are also Non-GMO. I feel they give me more energy.",
-                        className: "md:col-span-3 lg:col-span-4 bg-white"
+                        className: "md:col-span-3 lg:col-span-6 bg-white"
                      },
                      {
                         name: "Danielle",
@@ -355,9 +348,9 @@ export default function Harmony() {
                                  </div>
                                  <div className="space-y-0.5">
                                     <p className={`text-base font-black ${review.className.includes('text-white') ? 'text-white' : 'text-[#111827]'}`}>{review.name}</p>
-                                    <div className="flex items-center gap-2">
-                                       
-                                       
+                                    <div className="flex items-center gap-1.5 text-[10px] font-black text-emerald-600 uppercase tracking-widest">
+                                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" /></svg>
+                                       <span>Verified Buyer</span>
                                     </div>
                                  </div>
                               </div>
@@ -368,7 +361,7 @@ export default function Harmony() {
                </div>
 
                {/* CTA Area */}
-               <div className="mt-24 text-center">
+               <div className="mt-6 md:mt-12 text-center">
                   <div className="flex flex-col items-center space-y-6">
                      <motion.button
                         whileHover={{ scale: 1.05 }}
@@ -533,7 +526,7 @@ export default function Harmony() {
                          <p className="text-lg text-[#111827]">No matter your age, genetics, or unique biological profile!</p>
                       </div>
 
-                      <div className="pt-20 flex flex-col items-center space-y-6">
+                      <div className="pt-8 md:pt-12 flex flex-col items-center space-y-6">
                           <motion.button
                              whileHover={{ scale: 1.05 }}
                              whileTap={{ scale: 0.95 }}
@@ -693,7 +686,7 @@ export default function Harmony() {
                </div>
 
                {/* Undeniable Results Box - Redesigned for High Authority */}
-               <div className="bg-[#0D47A1] text-white p-6 md:p-8 lg:p-10 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] relative overflow-hidden mb-20 group">
+               <div className="bg-[#0D47A1] text-white p-6 md:p-8 lg:p-10 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] relative overflow-hidden mb-8 md:mb-12 group">
                   {/* Background Pattern */}
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 to-transparent opacity-50"></div>
 
@@ -814,7 +807,7 @@ export default function Harmony() {
                 </div>
 
                 {/* Science CTA */}
-                <div className="mt-16 flex flex-col items-center gap-6">
+                <div className="mt-8 md:mt-12 flex flex-col items-center gap-6">
                    <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -1225,7 +1218,7 @@ export default function Harmony() {
                </div>
  
                {/* Payment Security Assurance Card */}
-               <div className="max-w-5xl mx-auto mt-10 md:mt-16 bg-[#0D47A1] rounded-3xl md:rounded-[2rem] p-6 md:p-10 shadow-2xl md:shadow-[0_30px_60px_rgba(13,71,161,0.2)] border border-transparent flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+               <div className="max-w-5xl mx-auto mt-6 md:mt-12 bg-[#0D47A1] rounded-3xl md:rounded-[2rem] p-6 md:p-10 shadow-2xl md:shadow-[0_30px_60px_rgba(13,71,161,0.2)] border border-transparent flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
                   <div className="flex flex-col items-center lg:items-start gap-4 lg:gap-6 lg:w-1/3">
                      <p className="text-[12px] md:text-[11px] font-black text-white/70 uppercase tracking-[0.2em]">Our trusted payment processors:</p>
                      <div className="flex items-center gap-3 md:gap-4">
@@ -1369,17 +1362,10 @@ export default function Harmony() {
 
 
                {/* Review Cards List - Single Column Horizontal Style */}
-               <div className="grid grid-cols-1 gap-8 md:gap-4 mb-16 max-w-7xl mx-auto">
+               <div className="grid grid-cols-1 gap-4 mb-8 md:mb-12 max-w-7xl mx-auto">
                   {(() => {
                      const allReviews = [
-                        {
-                           name: "Brenda",
-                           title: "Great quality supplements",
-                           body: "60 capsules in a bottle. Directions say to take two a day. Pills are pretty easy to swallow. I had good results with taking this supplement. More energy and I have better sleep now. My digestion improved also.",
-                           date: "2 MONTHS AGO",
-                           bg: "bg-white",
-                           initial: "B"
-                        },
+
                         {
                            name: "HappyFamily",
                            title: "NAD+ Boost for Feeling Younger!",
@@ -1475,6 +1461,10 @@ export default function Harmony() {
                                           <div className="w-10 h-10 rounded-full bg-[#0D47A1] text-white flex items-center justify-center font-black text-xs shadow-inner">{review.initial}</div>
                                           <div className="flex flex-col">
                                              <span className="font-bold text-base text-[#111827] tracking-tight">{review.name}</span>
+                                             <div className="flex items-center gap-1 text-[10px] font-black text-emerald-600 uppercase tracking-widest mt-0.5">
+                                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" /></svg>
+                                                <span>Verified Buyer</span>
+                                             </div>
                                           </div>
                                        </div>
                                     </div>
@@ -1494,7 +1484,7 @@ export default function Harmony() {
                            })}
 
                            {/* Pagination Controls */}
-                           <div className="flex items-center justify-center gap-4 mt-12">
+                           <div className="flex items-center justify-center gap-4 mt-8 md:mt-10">
                               <button
                                  onClick={() => {
                                     setCurrentPage(prev => Math.max(1, prev - 1));
@@ -1538,7 +1528,7 @@ export default function Harmony() {
                </div>
 
                {/* Bottom Actions */}
-               <div className="flex flex-col items-center gap-6 mt-16">
+               <div className="flex flex-col items-center gap-6 mt-8 md:mt-12">
                   <motion.button
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
@@ -1559,7 +1549,7 @@ export default function Harmony() {
          <section id="formula" className="py-6 md:py-4 bg-white">
             <div className="max-w-7xl mx-auto px-6">
                {/* Centered Header Inspired by Reference */}
-               <div className="text-center mb-8 md:mb-10 space-y-4 md:space-y-2">
+               <div className="text-center mb-4 md:mb-10 space-y-4 md:space-y-2">
                   <span className="text-xl md:text-2xl font-black text-[#0D47A1] tracking-tight">What’s Inside ChronoNAD+?</span>
                   <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] tracking-tight leading-[1.1]">
                      Nothing But Natural, Science-Backed Ingredients
@@ -1573,7 +1563,7 @@ export default function Harmony() {
                </div>
 
                 {/* Centered Image Only */}
-                <div className="flex justify-center mt-12 mb-20">
+                <div className="flex justify-center mt-0 mb-2 md:mt-12 md:mb-20">
                    <div className="w-full max-w-4xl">
                       <img
                          src="/126281.png"
@@ -1589,7 +1579,7 @@ export default function Harmony() {
          {/* MISSION & EXPERT TEAM SECTION - REFINED CLINICAL PREMIUM */}
          <section id="team" className="py-0 overflow-hidden bg-white">
             {/* Mission Header Bar */}
-            <div className="bg-white pt-6 pb-2 md:pt-10 md:pb-4 border-y border-gray-50">
+            <div className="bg-white pt-0 pb-2 md:pt-10 md:pb-4 border-y border-gray-50">
                <div className="max-w-7xl mx-auto px-6 text-center space-y-4 md:space-y-2">
 
                   <p className="text-xl md:text-2xl lg:text-[32px] font-bold text-[#111827] leading-tight max-w-5xl mx-auto tracking-tight">
@@ -1727,7 +1717,7 @@ export default function Harmony() {
                </div>
 
                {/* FAQ CTA */}
-               <div className="mt-12 flex flex-col items-center gap-6">
+               <div className="mt-8 md:mt-12 flex flex-col items-center gap-6">
                   <motion.button
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
