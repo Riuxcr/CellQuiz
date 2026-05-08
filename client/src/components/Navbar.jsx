@@ -21,11 +21,11 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { name: 'Home', href: '/feel-young' },
-    { name: 'Shop', href: '#pricing-grid' },
-    { name: 'Learn', href: '#science' },
-    { name: 'About Us', href: '#story' },
-    { name: 'Contact', href: '#faq' },
+    { name: 'Science', href: '#story' },
+    { name: 'Buy Now', href: '#pricing-grid' },
+    { name: 'Breakthroughs', href: '#breakthroughs' },
+    { name: 'The Expert', href: '#team' },
+    { name: 'FAQ', href: '#faq' },
   ]
 
   const scrollToSection = (e, href) => {
