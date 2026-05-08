@@ -1199,7 +1199,8 @@ export default function Harmony() {
                         isPopular: false,
                         savings: null,
                         installments: "$5.00",
-                        countLabel: "Per Bottle"
+                        countLabel: "Per Bottle",
+                        checkoutUrl: "https://cellstart.com/cart/46896557195521:1?selling_plan=3903586561"
                      },
                      {
                         title: "BIGGEST SAVINGS",
@@ -1214,7 +1215,8 @@ export default function Harmony() {
                         isPopular: true,
                         savings: "25% OFF",
                         installments: "$7.50",
-                        countLabel: "Per Bottle"
+                        countLabel: "Per Bottle",
+                        checkoutUrl: "https://cellstart.com/cart/46896557195521:2?selling_plan=3903586561&discount=OFFER25"
                      }
                   ].map((pkg, i) => (
                      <motion.div
@@ -1284,7 +1286,7 @@ export default function Harmony() {
 
                            {/* BUY NOW Button */}
                            <button 
-                               onClick={() => window.open('https://cellstart.com/products/nad?selling_plan=3903586561&variant=46896557195521', '_blank')}
+                               onClick={() => window.open(pkg.checkoutUrl, '_blank')}
                                className="w-full py-6 rounded-full bg-[#0D47A1] text-white font-black text-sm tracking-[0.1em] shadow-xl hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-3 mb-6 group"
                             >
                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" /></svg>
@@ -1826,7 +1828,7 @@ export default function Harmony() {
                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
                     {/* Brand Column */}
                     <div className="space-y-8">
-                       <a href="/harmony" className="inline-block">
+                       <a href="/feel-young" className="inline-block">
                           <img src="/logo.png" alt="CellStart Logo" className="h-10 w-auto brightness-0 invert" />
                        </a>
                        <p className="text-gray-400 text-sm leading-relaxed max-w-xs">

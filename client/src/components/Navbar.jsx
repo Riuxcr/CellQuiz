@@ -21,7 +21,7 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { name: 'Home', href: '/harmony' },
+    { name: 'Home', href: '/feel-young' },
     { name: 'Shop', href: '#pricing-grid' },
     { name: 'Learn', href: '#science' },
     { name: 'About Us', href: '#story' },
@@ -88,7 +88,7 @@ export default function Navbar() {
         className="pointer-events-auto flex items-center justify-between h-16 lg:h-20 overflow-hidden px-6 md:px-24 rounded-full shadow-sm border border-gray-100"
       >
         {/* Logo */}
-        <div className="flex items-center shrink-0 cursor-pointer" onClick={() => navigate('/harmony')}>
+        <div className="flex items-center shrink-0 cursor-pointer" onClick={() => navigate('/feel-young')}>
           <img src="/logo.png" alt="CellStart" className="h-9 md:h-11 w-auto" />
         </div>
 

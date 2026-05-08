@@ -28,7 +28,7 @@ export default function App() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Splash />} />
             <Route path="/home" element={<Landing />} />
-            <Route path="/harmony" element={<Harmony />} />
+            <Route path="/feel-young" element={<Harmony />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/result" element={<Result />} />
             <Route path="/admin/login" element={<AdminLogin />} />
