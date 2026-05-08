@@ -119,7 +119,7 @@ export default function Harmony() {
    const productImg = isMobile ? "/mobilehero.png" : chronoNadIsolated
 
    return (
-      <div className="font-sans antialiased text-[#111827] bg-white selection:bg-[#0D47A1] selection:text-white relative">
+      <div className="font-sans antialiased text-[#111827] bg-white selection:bg-[#0D47A1] selection:text-white relative overflow-x-hidden">
 
          <Navbar />
 
@@ -1153,7 +1153,7 @@ export default function Harmony() {
          </section>
 
          {/* CHECKOUT BUNDLE SECTION - MATCHING REFERENCE UI */}
-         <section id="pricing-grid" className="py-8 md:py-10 bg-gray-50/50 scroll-mt-20 border-y border-gray-100">
+         <section id="pricing-grid" className="py-8 md:py-10 bg-gray-50/50 scroll-mt-20 border-y border-gray-100 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
                {/* Checkout Progress Stepper */}
                <div className="max-w-4xl mx-auto mb-20 px-4 md:px-10">
@@ -1669,7 +1669,7 @@ export default function Harmony() {
             </div>
 
             {/* Scientific Leadership - Dr. Anthony Njapa */}
-            <div className="pt-4 pb-8 md:pt-4 md:pb-20 bg-white">
+            <div className="pt-4 pb-8 md:pt-4 md:pb-20 bg-white overflow-hidden">
                <div className="max-w-7xl mx-auto px-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 

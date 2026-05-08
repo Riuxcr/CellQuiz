@@ -70,7 +70,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[10000] flex justify-center p-4 transition-all duration-500 pointer-events-none">
+    <header className="fixed top-0 inset-x-0 z-[10000] flex justify-center p-4 transition-all duration-500 pointer-events-none">
       <motion.nav
         layout
         initial={false}

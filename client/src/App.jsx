@@ -15,7 +15,7 @@ export default function App() {
   const location = useLocation()
   
   return (
-    <div className="min-h-screen bg-white text-[#111827] font-sans antialiased selection:bg-gray-200 selection:text-black hover:cursor-default">
+    <div className="min-h-screen bg-white text-[#111827] font-sans antialiased selection:bg-gray-200 selection:text-black hover:cursor-default overflow-x-hidden">
       <MetaPixelPageView />
       <AnimatePresence mode="wait">
         <motion.div
