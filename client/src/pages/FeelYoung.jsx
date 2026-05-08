@@ -1216,7 +1216,7 @@ export default function FeelYoung() {
                         savings: "25% OFF",
                         installments: "$7.50",
                         countLabel: "Per Bottle",
-                        checkoutUrl: "https://cellstart.com/cart/9146653475073:1?selling_plan=3903586561&discount=OFFER25"
+                        checkoutUrl: "https://cellstart.com/cart/48746063003905:1?selling_plan=3903586561"
                      }
                   ].map((pkg, i) => (
                      <motion.div
