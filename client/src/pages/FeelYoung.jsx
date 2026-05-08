@@ -10,7 +10,7 @@ import chrononadProduct from '../assets/chrononad/chrononad_product_render_17768
 import Navbar from '../components/Navbar.jsx'
 
 
-export default function Harmony() {
+export default function FeelYoung() {
    const navigate = useNavigate()
    const [activeFaq, setActiveFaq] = useState(null)
    const [isMobile, setIsMobile] = useState(false)
