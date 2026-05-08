@@ -145,7 +145,7 @@ export default function Harmony() {
                            transition={{ delay: 0.3 }}
                            className="text-2xl lg:text-[32px] font-bold text-[#0D47A1] leading-snug tracking-tight font-heading text-center lg:text-left w-full max-w-2xl mx-auto lg:mx-0"
                         >
-                           How 3 Million Women Over 30 Save <span className="underline decoration-2 underline-offset-4">Their Youthful Glow, Energy, and Metabolism</span> From Declining NAD levels
+                           How 3 Million Women Over 30 Save <span className="underline decoration-2 underline-offset-8">Their Youthful Glow, Energy, and Metabolism</span> From Declining NAD levels
                         </motion.h1>
 
                         <motion.div
@@ -419,7 +419,7 @@ export default function Harmony() {
 
                 <div className="space-y-4 text-lg md:text-xl font-medium text-[#111827] leading-relaxed">
                     <p className="text-lg md:text-xl leading-tight mb-4">
-                       And that’s when <span className="underline decoration-gray-200 underline-offset-4">everything changes</span> in your body.
+                       And that’s when <span className="underline decoration-gray-200 underline-offset-8">everything changes</span> in your body.
                     </p>
 
                     <div className="space-y-1">
