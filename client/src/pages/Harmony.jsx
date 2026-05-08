@@ -79,20 +79,40 @@ export default function Harmony() {
 
    const faqs = [
       {
-         q: "HOW QUICKLY WILL I NOTICE THE SYSTEMIC SHIFT?",
-         a: "Most users report a noticeable increase in mental clarity and steady, all-day energy within the first 7-14 days. For deep cellular repair and metabolic optimization, we recommend consistent use for at least 60-90 days to allow coenzyme levels to fully stabilize."
+         q: "What is NAD+?",
+         a: "Think of NAD+ (Nicotinamide Adenine Dinucleotide) as your body's 'cellular fuel.' It's an essential coenzyme found in every cell and it's involved in hundreds of important biological processes. Two of its primary jobs include helping to convert food into energy (metabolism) and powering your body's natural DNA repair and cellular defense functions."
       },
       {
-         q: "IS THE CHRONONAD+ PROTOCOL SAFE WITH OTHER MEDICATIONS?",
-         a: "ChronoNAD+ is formulated with ultra-pure, clinical-grade ingredients. However, as with any advanced supplementation, we recommend consulting your physician before beginning the protocol, especially if you are currently taking prescription medication."
+         q: "What is Resveratrol?",
+         a: "Resveratrol is a powerful, plant-based compound (a polyphenol) found in sources like grapes or plants like Japanese Knotweed. It's known for its strong antioxidant properties and its ability to activate specific 'longevity genes' in your body, particularly Sirtuins."
       },
       {
-         q: "WHAT HAPPENS IF I MISS A DAILY DOSAGE?",
-         a: "Consistency is the foundation of cellular health. If you miss a day, simply resume your protocol the following morning. There is no need to double the dose; your body responds best to a steady, daily rhythm of replenishment."
+         q: "What are Sirtuins and why are they important to Longevity?",
+         a: "Sirtuins are a family of enzymes that play a critical role in cellular processes such as aging, metabolism, and DNA repair. However, sirtuins can only function in the presence of NAD+ (nicotinamide adenine dinucleotide)."
       },
       {
-         q: "WHY THE 4-BOTTLE PROTOCOL FOR OPTIMAL TRANSFORMATION?",
-         a: "True biological transformation takes time. While early benefits are felt quickly, the 4-bottle protocol (120 days) is designed to facilitate complete cellular turnover and lock in your new baseline of vitality, ensuring long-term systemic resilience."
+         q: "What is NAD+ decline?",
+         a: "NAD+ decline is a natural part of the aging process. As we get older, our bodies produce less and consume more of this vital molecule. Studies suggest our NAD+ levels can decline by over 50% by middle age. This decline means our cells have less 'fuel' for repair and energy, which is why we may start to feel the effects of aging, like fatigue and mental fog."
+      },
+      {
+         q: "Why combine an NAD precursor with Resveratrol? What's the synergy?",
+         a: "This is our key differentiator. Think of it this way:\n\nNAD+: The essential 'cellular fuel' for your cells.\nResveratrol: The 'accelerator pedal' that helps activate important cellular pathways.\n\nResveratrol helps activate the very same 'longevity genes' (Sirtuins) that use NAD+ as their fuel. By providing both, you are giving your cells the fuel and the boost to use that fuel for enhanced cellular defense and renewal."
+      },
+      {
+         q: "When can I expect to feel a difference?",
+         a: "Taking ChronoNAD+ is an investment in your long-term health, while the most meaningful changes aren't always immediately 'felt', results can very by individual. Many users notice steadier energy, better endurance, and clearer focus within 4-6 weeks of consistent use. Even if you don’t feel a dramatic shift right away, your cells are still benefiting from the ongoing NAD⁺ and Resveratrol support."
+      },
+      {
+         q: "What are the benefits of subscribing to ChronoNAD+?",
+         a: "Subscribing is the most cost-effective way to stay consistent with your NAD⁺ and Resveratrol routine. CellStart subscribers receive 20%+ off every monthly bottle or 30%+ off with an annual plan, plus free shipping on every subscription order You also get automatic deliveries on your schedule. You can pause, skip, or adjust your subscription at any time. It’s a simple, flexible way to support better aging while keeping more savings in your pocket—better aging, more saving."
+      },
+      {
+         q: "Is this supplement safe?",
+         a: "ChronoNAD+ is formulated with safety, quality, and transparency as top priorities. Every bottle is manufactured in a Eurofins-accredited cGMP-certified, and FDA-inspected facility here in the United States, following strict industry standards for purity and quality. Each batch undergoes multiple levels of quality control and laboratory testing to verify identity, potency, and safety—tests we make publicly available so you know exactly what you’re taking.\n\nThe core ingredients in ChronoNAD+ are supported by hundreds of peer-reviewed scientific studies exploring their roles in cellular energy, repair, and overall metabolic function. ChronoNAD+ is generally well-tolerated when taken as directed, but as with any supplement, we recommend consulting your healthcare provider if you have underlying health conditions, are pregnant or nursing, or are taking medications."
+      },
+      {
+         q: "Where is it made?",
+         a: "ChronoNAD+ is made in the USA with globally sourced components."
       }
    ]
 
@@ -123,7 +143,7 @@ export default function Harmony() {
                            initial={{ opacity: 0, y: 20 }}
                            animate={{ opacity: 1, y: 0 }}
                            transition={{ delay: 0.3 }}
-                           className="text-2xl lg:text-[32px] font-bold text-[#0D47A1] leading-[1.1] tracking-tight font-heading text-center lg:text-left w-full max-w-2xl mx-auto lg:mx-0"
+                           className="text-2xl lg:text-[32px] font-bold text-[#0D47A1] leading-snug tracking-tight font-heading text-center lg:text-left w-full max-w-2xl mx-auto lg:mx-0"
                         >
                            How 3 Million Women Over 30 Save <span className="underline decoration-2 underline-offset-4">Their Youthful Glow, Energy, and Metabolism</span> From Declining NAD levels
                         </motion.h1>
@@ -168,7 +188,7 @@ export default function Harmony() {
                         </div>
                      </div>
  
-                     <div className="pt-0 w-full flex flex-col items-start space-y-6">
+                     <div className="pt-0 w-full flex flex-col items-start space-y-3">
                         <motion.button
                            whileHover={{ scale: 1.05 }}
                            whileTap={{ scale: 0.95 }}
@@ -205,7 +225,7 @@ export default function Harmony() {
             <div className="w-full px-4 md:px-24 relative z-10">
                <div className="text-center mb-4 md:mb-8 space-y-6">
 
-                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-snug tracking-tight">
                      Research Backed <br />
                      <span className="text-[#0D47A1] font-semibold">Ingredients Featured In…</span>
                   </h2>
@@ -269,7 +289,7 @@ export default function Harmony() {
                {/* Header Area Area */}
                <div className="text-center mb-4 md:mb-8 space-y-2 md:space-y-4">
 
-                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight max-w-5xl mx-auto">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-snug tracking-tight max-w-5xl mx-auto">
                      See Why Thousands Of Women Are Turning To CHRONONAD+ To:
                   </h2>
                   <p className="text-xl md:text-2xl text-[#0D47A1] font-bold leading-tight max-w-4xl mx-auto">
@@ -362,7 +382,7 @@ export default function Harmony() {
 
                {/* CTA Area */}
                <div className="mt-6 md:mt-12 text-center">
-                  <div className="flex flex-col items-center space-y-6">
+                  <div className="flex flex-col items-center space-y-3">
                      <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -385,7 +405,7 @@ export default function Harmony() {
           <section id="story" className="py-6 md:py-4 bg-white">
              <div className="max-w-5xl mx-auto px-6 text-center">
                 <div className="mb-12 space-y-8 md:space-y-12">
-                   <h2 className="text-2xl lg:text-[32px] font-bold text-[#0D47A1] leading-[1.1] tracking-tight">
+                   <h2 className="text-2xl lg:text-[32px] font-bold text-[#0D47A1] leading-snug tracking-tight">
                        As women age, their <br />
                        <span className="font-semibold">NAD+ levels drop by 30%</span> by Age 30.
                    </h2>
@@ -424,7 +444,7 @@ export default function Harmony() {
 
                    <div className="space-y-4 border-y-2 border-gray-50 py-6 text-black max-w-2xl mx-auto px-4">
                       <p className="text-black">You <span className="font-bold">feel mentally gray and lagging</span> during the day…</p>
-                      <p className="text-black">Drained yet restless when your body needs to recover or sleep…</p>
+                      <p className="text-black"><span className="font-bold">Drained yet restless</span> when your body needs to recover or sleep…</p>
                       <p className="text-black">And <span className="font-bold">unable to reclaim your glow</span>, no matter what serums you use.</p>
                    </div>
 
@@ -527,7 +547,7 @@ export default function Harmony() {
                       then you probably noticed that…
                    </p>
 
-                   <p className="text-lg md:text-xl font-bold leading-tight text-[#111827] underline decoration-gray-100 underline-offset-8">
+                   <p className="text-lg md:text-xl font-bold leading-snug text-[#111827] underline decoration-2 decoration-gray-300 underline-offset-8">
                       Standard vitamins and 'skincare only' routines just won’t cut it anymore.
                    </p>
 
@@ -555,7 +575,7 @@ export default function Harmony() {
                          <p className="text-xl md:text-2xl text-[#111827]">No matter <span className="font-bold text-black">your age, genetics, or unique biological profile!</span></p>
                       </div>
 
-                      <div className="pt-8 md:pt-12 flex flex-col items-center space-y-6">
+                      <div className="pt-8 md:pt-12 flex flex-col items-center space-y-3">
                           <motion.button
                              whileHover={{ scale: 1.05 }}
                              whileTap={{ scale: 0.95 }}
@@ -585,7 +605,7 @@ export default function Harmony() {
                  </div>
  
                  {/* Headline */}
-                 <h2 className="text-2xl lg:text-[32px] text-black text-center leading-tight mb-6 md:mb-12 max-w-5xl mx-auto tracking-tighter">
+                 <h2 className="text-2xl lg:text-[32px] text-black text-center leading-snug mb-6 md:mb-12 max-w-5xl mx-auto tracking-tighter">
                     <span className="font-bold block mb-2 md:mb-1">It’s Now Possible To Block Cellular Bankruptcy, and Restore Your ‘Youth’ Molecules...</span>
                     <span className="font-semibold block mb-2 md:mb-1 text-black">And Stay Naturally Sharp, Luminous, and Revitalized with</span>
                     <span className="text-[#0D47A1] font-black block underline decoration-blue-100 underline-offset-8">ChronoNAD+</span>
@@ -620,7 +640,7 @@ export default function Harmony() {
                  </div>
  
                  {/* CTA */}
-                 <div className="mt-12 text-center space-y-8">
+                  <div className="mt-12 text-center space-y-4">
                     <motion.button
                        whileHover={{ scale: 1.05 }}
                        whileTap={{ scale: 0.95 }}
@@ -643,7 +663,7 @@ export default function Harmony() {
          <section id="breakthroughs" className="py-4 md:py-4 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
                <div className="text-center mb-8 md:mb-10">
-                  <h2 className="text-2xl lg:text-[32px] font-bold text-black mb-4 md:mb-2 leading-tight tracking-tight">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-black mb-4 md:mb-2 leading-snug tracking-tight">
                      The 6 Biggest Scientific Cellular Energy Breakthroughs <br />
                      Of The Past 20 Years…
                   </h2>
@@ -732,7 +752,7 @@ export default function Harmony() {
                   </div>
                </div>
 
-               <div className="flex flex-col items-center gap-6">
+               <div className="flex flex-col items-center gap-3">
                   <motion.button
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
@@ -753,7 +773,7 @@ export default function Harmony() {
          <section id="science" className="relative py-6 md:py-4 bg-[#F0F7FF] overflow-hidden">
             <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
                
-               <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight mb-6">
+               <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-snug tracking-tight mb-6">
                   All It Takes Is <span className="text-[#0D47A1] font-black">2 Capsules A Day</span> To Beat <br className="hidden md:block" />
                   New Fine Wrinkles, Feeling Drained, and Looking Dull…
                </h2>
@@ -869,11 +889,26 @@ export default function Harmony() {
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                {/* Centered Header */}
                <div className="flex flex-col items-center text-center space-y-4 md:space-y-2 mb-8 md:mb-12">
-                  <h2 className="text-2xl lg:text-[32px] font-bold text-black leading-[1.1] tracking-tight">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-black leading-snug tracking-tight">
                      What Happens When <br />
                      <span className="text-[#0D47A1] font-semibold">You Start Taking CHRONONAD+?</span>
                   </h2>
                </div>
+
+               {/* Mobile Only Image - Positioned after header */}
+               <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="block lg:hidden w-full mb-10"
+               >
+                  <img
+                     src="/landing page images (1).png"
+                     alt="The Vitality Renaissance"
+                     className="w-full h-auto object-cover rounded-[2rem] shadow-lg"
+                  />
+               </motion.div>
+
                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
 
                   {/* Left Column: Genesis Journey Content */}
@@ -944,7 +979,7 @@ export default function Harmony() {
                   </div>
 
                   {/* Right Column: Inspirational Cinematic Visual */}
-                  <div className="lg:col-span-5 relative flex items-center justify-center">
+                  <div className="hidden lg:flex lg:col-span-5 relative items-center justify-center">
                      <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -984,15 +1019,29 @@ export default function Harmony() {
          </section>
 
          {/* WORKS FOR ALL AGES SECTION - CLEAN SIMPLIFIED VERSION */}
-         <section id="transformation" className="py-6 md:py-4 bg-white">
+         <section id="transformation" className="py-12 md:py-20 bg-[#F0F7FF]">
             <div className="max-w-7xl mx-auto px-6">
                {/* Centered Header */}
                <div className="flex flex-col items-center text-center space-y-6 mb-8 md:mb-12">
-                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.2] tracking-tight max-w-4xl">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-snug tracking-tight max-w-4xl">
                      Works For Women Of All Ages & Body Types <br />
                      <span className="text-[#0D47A1] font-semibold">No Matter How Long You’ve Been Struggling With New Lines, Dull Skin , or “Not Yourself”</span>
                   </h2>
                </div>
+
+               {/* Mobile Only Image - Positioned after header */}
+               <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="block lg:hidden w-full mb-10"
+               >
+                  <img
+                     src="/landing page images (2).png"
+                     alt="Transformation Results"
+                     className="w-full aspect-[4/5] object-cover object-bottom rounded-[2rem] shadow-lg"
+                  />
+               </motion.div>
 
                <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-16">
                   {/* Left Column: Benefits */}
@@ -1019,12 +1068,12 @@ export default function Harmony() {
                   </div>
 
                   {/* Right Column: Image */}
-                  <div className="w-full lg:w-[40%] relative flex items-center justify-center">
+                  <div className="hidden lg:flex lg:w-[40%] relative items-center justify-center">
                      <div className="relative w-full h-auto">
                         <img
                            src="/landing page images (2).png"
                            alt="Transformation Results"
-                           className="w-full h-auto max-h-[550px] object-cover rounded-3xl"
+                           className="w-full aspect-[4/5] object-cover object-bottom rounded-3xl"
                         />
                      </div>
                   </div>
@@ -1037,7 +1086,7 @@ export default function Harmony() {
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                <div className="text-center mb-10 md:mb-10 space-y-6">
-                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-snug tracking-tight">
                      Clinical Purity. <br />
                      <span className="text-[#0D47A1] font-semibold">Zero Compromise.</span>
                   </h2>
@@ -1110,9 +1159,9 @@ export default function Harmony() {
                <div className="max-w-4xl mx-auto mb-20 px-4 md:px-10">
                   <div className="relative flex justify-between items-center">
                      {/* Base Progress Line */}
-                     <div className="absolute top-[68px] left-0 w-full h-1 bg-gray-100 -z-0" />
+                     <div className="absolute top-[48px] md:top-[69px] left-0 w-full h-[2px] bg-gray-300 -z-0" />
                      {/* Active Progress Line Segment */}
-                     <div className="absolute top-[68px] left-0 w-[20%] md:w-[25%] h-1 bg-black -z-0" />
+                     <div className="absolute top-[48px] md:top-[69px] left-0 w-[20%] md:w-[25%] h-[2px] bg-black -z-0" />
  
                      {[
                         { step: 1, label: "Select Your Package", active: true },
@@ -1120,10 +1169,10 @@ export default function Harmony() {
                         { step: 3, label: "Thank You", active: false }
                      ].map((s, idx) => (
                         <div key={idx} className="flex flex-col items-center relative z-10 w-1/3">
-                           <span className={`text-[8px] md:text-[10px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em] mb-2 md:mb-4 text-center transition-colors leading-tight min-h-[2.5em] flex items-end justify-center ${s.active ? 'text-black' : 'text-gray-300'}`}>
+                           <span className={`text-[8px] md:text-[10px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em] mb-2 md:mb-4 text-center transition-colors leading-tight min-h-[2.5em] flex items-end justify-center ${s.active ? 'text-black' : 'text-gray-400'}`}>
                               {s.label}
                            </span>
-                           <div className={`w-10 h-10 md:w-14 md:h-14 rounded-full border-[3px] md:border-[4px] flex items-center justify-center text-lg md:text-2xl font-black bg-white transition-all ${s.active ? 'border-black text-black' : 'border-gray-100 text-gray-300'}`}>
+                           <div className={`w-10 h-10 md:w-14 md:h-14 rounded-full border-[3px] md:border-[4px] flex items-center justify-center text-lg md:text-2xl font-black bg-white transition-all ${s.active ? 'border-black text-black' : 'border-gray-300 text-gray-400'}`}>
                               {s.step}
                            </div>
                         </div>
@@ -1150,7 +1199,7 @@ export default function Harmony() {
                         isPopular: false,
                         savings: null,
                         installments: "$5.00",
-                        countLabel: "90ct"
+                        countLabel: "Per Bottle"
                      },
                      {
                         title: "BIGGEST SAVINGS",
@@ -1165,7 +1214,7 @@ export default function Harmony() {
                         isPopular: true,
                         savings: "25% OFF",
                         installments: "$7.50",
-                        countLabel: "90ct"
+                        countLabel: "Per Bottle"
                      }
                   ].map((pkg, i) => (
                      <motion.div
@@ -1376,7 +1425,7 @@ export default function Harmony() {
             <div className="max-w-7xl mx-auto px-6">
                <div className="text-center mb-8 md:mb-12 space-y-6 max-w-6xl mx-auto">
 
-                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight">
+                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-snug tracking-tight">
                      Real People, Real Results: <br />
                      <span className="text-[#0D47A1]">Join Thousands of Women All Over The World that Trust ChronoNAD+</span>
                   </h2>
@@ -1613,7 +1662,7 @@ export default function Harmony() {
 
                   <p className="text-xl md:text-2xl lg:text-[32px] font-bold text-[#111827] leading-tight max-w-5xl mx-auto tracking-tight">
                      We’ve Set Out To Help <span className="text-[#0D47A1]">50,000,000 Women</span> <br className="hidden md:block" />
-                     Naturally, Safely Fight Father Time In 2026… <br className="hidden md:block" />
+                     Naturally, Safely <span className="underline decoration-[#0D47A1] decoration-2 underline-offset-4">Fight Father Time</span> In 2026… <br className="hidden md:block" />
                      And Step Back Into Their <span className="italic text-[#0D47A1] font-semibold">Prime</span>
                   </p>
                </div>
@@ -1629,13 +1678,19 @@ export default function Harmony() {
                         {/* Decorative background border */}
                         <div className="absolute -top-6 -left-6 w-full h-full border-t border-l border-[#0D47A1]/20 rounded-tl-[4rem] -z-10"></div>
 
-                        <div className="relative z-10 rounded-[3rem] overflow-hidden bg-gray-100">
-                           <img
-                              src="/Dr-Njapa-photo.jpg"
-                              alt="Dr. Anthony Njapa"
-                              className="w-full h-[500px] lg:h-[600px] object-cover object-top"
-                           />
+                     <div className="relative z-10 rounded-[3rem] overflow-hidden bg-gray-100 group">
+                        {/* Clinical Leadership Tag - Overlayed on Image */}
+                        <div className="absolute top-6 left-6 z-20">
+                           <span className="px-6 py-2 bg-white/90 backdrop-blur-md text-[#0D47A1] text-[10px] md:text-xs font-black uppercase tracking-[0.3em] rounded-full border border-white/20 shadow-lg">
+                              Clinical Leadership
+                           </span>
                         </div>
+                        <img
+                           src="/Dr-Njapa-photo.jpg"
+                           alt="Dr. Anthony Njapa"
+                           className="w-full h-[500px] lg:h-[600px] object-cover object-top"
+                        />
+                     </div>
 
                          {/* Floating Badge - IMPROVED CONTRAST */}
                          <motion.div
@@ -1658,11 +1713,6 @@ export default function Harmony() {
                      <div className="mt-12 lg:mt-0 lg:pl-10 text-center lg:text-left flex flex-col items-center lg:items-start">
 
 
-                        <div className="mb-6">
-                           <span className="px-8 py-3 bg-[#0D47A1]/5 text-[#0D47A1] text-xs md:text-sm font-black uppercase tracking-[0.3em] rounded-full border border-[#0D47A1]/10">
-                              Clinical Leadership
-                           </span>
-                        </div>
 
                         <h3 className="text-lg md:text-xl lg:text-2xl font-black text-[#002855] mb-8 font-heading tracking-tight">
                            Dr. Anthony Njapa
@@ -1693,18 +1743,16 @@ export default function Harmony() {
          </section>
 
 
-         {/* FAQ */}
          {/* FAQ SECTION - Redesigned for Premium Minimalist Look */}
-         <section id="faq" className="py-6 md:py-12 lg:py-16 bg-gray-50/30">
+         <section id="faq" className="py-12 md:py-20 bg-[#0D47A1]">
             <div className="max-w-4xl mx-auto px-6">
-               <div className="text-center mb-8 md:mb-12 space-y-4">
-                  <span className="text-lg md:text-xl font-black uppercase tracking-[0.1em] text-[#0D47A1] block">Still Not Sure?</span>
-                  <h2 className="text-2xl lg:text-[32px] font-bold text-[#111827] leading-[1.1] tracking-tight max-w-2xl mx-auto">
+               <div className="text-center mb-12 md:mb-16 space-y-4">
+                  <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
                      Frequently Asked Questions
                   </h2>
                </div>
 
-               <div className="space-y-4">
+               <div className="border-t border-white/10">
                   {[
                      { q: "What is NAD+?", a: "Think of NAD+ (Nicotinamide Adenine Dinucleotide) as your body's \"cellular fuel.\" It's an essential coenzyme found in every cell and it's involved in hundreds of important biological processes. Two of its primary jobs include helping to convert food into energy (metabolism) and powering your body's natural DNA repair and cellular defense functions." },
                      { q: "What is Resveratrol?", a: "Resveratrol is a powerful, plant-based compound (a polyphenol) found in sources like grapes or plants like Japanese Knotweed. It's known for its strong antioxidant properties and its ability to activate specific \"longevity genes\" in your body, particularly Sirtuins." },
@@ -1716,14 +1764,25 @@ export default function Harmony() {
                      { q: "Is this supplement safe?", a: "ChronoNAD+ is formulated with safety, quality, and transparency as top priorities. Every bottle is manufactured in a Eurofins-accredited cGMP-certified, and FDA-inspected facility here in the United States, following strict industry standards for purity and quality. Each batch undergoes multiple levels of quality control and laboratory testing to verify identity, potency, and safety—tests we make publicly available so you know exactly what you’re taking. \n\nThe core ingredients in ChronoNAD+ are supported by hundreds of peer-reviewed scientific studies exploring their roles in cellular energy, repair, and overall metabolic function. ChronoNAD+ is generally well-tolerated when taken as directed, but as with any supplement, we recommend consulting your healthcare provider if you have underlying health conditions, are pregnant or nursing, or are taking medications." },
                      { q: "Where is it made?", a: "ChronoNAD+ is made in the USA with globally sourced components." }
                   ].map((faq, index) => (
-                     <div key={index} className="bg-white rounded-[2rem] border border-gray-100 overflow-hidden hover:border-[#0D47A1] transition-colors duration-500">
+                     <div key={index} className="border-b border-white/10 transition-colors duration-300">
                         <button
                            onClick={() => toggleFaq(index)}
-                           className="w-full flex justify-between items-center p-8 text-left group"
+                           className="w-full flex items-center py-6 md:py-8 text-left group gap-4 md:gap-6"
                         >
-                           <span className="text-lg font-bold text-[#111827] uppercase tracking-tight">{faq.q}</span>
-                           <div className={`w-8 h-8 rounded-full border border-gray-100 flex items-center justify-center transition-transform duration-500 ${activeFaq === index ? 'rotate-45 bg-[#0D47A1] text-white' : 'bg-white text-[#111827]'}`}>
-                              <span className="text-xl">+</span>
+                           {/* Checkbox Icon */}
+                           <div className="shrink-0 w-6 h-6 border-2 border-white flex items-center justify-center rounded-sm">
+                              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                              </svg>
+                           </div>
+                           
+                           <span className="flex-grow text-lg md:text-xl font-bold text-white tracking-tight">{faq.q}</span>
+                           
+                           {/* Chevron Icon */}
+                           <div className={`shrink-0 transition-transform duration-300 ${activeFaq === index ? 'rotate-180' : ''}`}>
+                              <svg className="w-5 h-5 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                              </svg>
                            </div>
                         </button>
                         <AnimatePresence>
@@ -1734,9 +1793,8 @@ export default function Harmony() {
                                  exit={{ height: 0, opacity: 0 }}
                                  className="overflow-hidden"
                               >
-                                 <div className="px-8 pb-8 pt-0">
-                                    <div className="h-[1px] w-full bg-gray-50 mb-6"></div>
-                                    <p className="text-base md:text-lg text-[#111827] font-medium leading-relaxed">{faq.a}</p>
+                                 <div className="pl-10 md:pl-12 pb-8 pr-8">
+                                    <p className="text-base md:text-lg text-blue-50 font-medium leading-relaxed whitespace-pre-line">{faq.a}</p>
                                  </div>
                               </motion.div>
                            )}
@@ -1751,12 +1809,12 @@ export default function Harmony() {
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
                      onClick={scrollToProducts}
-                     className="bg-[#0D47A1] text-white font-black text-sm md:text-lg px-16 py-5 rounded-full uppercase tracking-[0.1em] shadow-lg hover:bg-[#111827] transition-all duration-500 flex items-center gap-3 group"
+                     className="bg-white text-[#0D47A1] font-black text-sm md:text-lg px-16 py-5 rounded-full uppercase tracking-[0.1em] shadow-lg hover:bg-blue-50 transition-all duration-500 flex items-center gap-3 group"
                   >
                      <span>Try ChronoNAD+</span>
                      <svg className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </motion.button>
-                  <div className="flex items-center gap-2 text-xs md:text-sm font-black text-[#0D47A1] uppercase tracking-[0.2em] mt-2">
+                  <div className="flex items-center gap-2 text-xs md:text-sm font-black text-blue-200 uppercase tracking-[0.2em] mt-2">
                      <span className="text-lg">✅</span> 30 Day Money Back Guarantee
                   </div>
                </div>
