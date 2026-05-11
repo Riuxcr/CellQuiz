@@ -1825,13 +1825,13 @@ export default function FeelYoung() {
 
            <footer className="bg-[#0d1b2e] text-white">
               {/* Main Footer Grid */}
-              <div className="max-w-7xl mx-auto px-6 py-16">
-                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
+              <div className="max-w-7xl mx-auto px-6 pt-12 pb-8">
+                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10">
 
                     {/* PRODUCTS */}
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Products</h4>
-                       <ul className="space-y-3 text-sm text-gray-300">
+                       <ul className="space-y-4 text-sm text-gray-300">
                           <li>
                              <a href="https://cellstart.com/products/nad?selling_plan=3903586561&amp;variant=46896557195521" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">ChronoNAD+</a>
                           </li>
@@ -1839,9 +1839,9 @@ export default function FeelYoung() {
                     </div>
 
                     {/* POLICIES */}
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Policies</h4>
-                       <ul className="space-y-3 text-sm text-gray-300">
+                       <ul className="space-y-4 text-sm text-gray-300">
                           <li><a href="https://cellstart.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Privacy Policy</a></li>
                           <li><a href="https://cellstart.com/policies/refund-policy" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Refund Policy</a></li>
                           <li><a href="https://cellstart.com/pages/contact" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Contact Information</a></li>
@@ -1850,9 +1850,9 @@ export default function FeelYoung() {
                     </div>
 
                     {/* SUPPORT */}
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Support</h4>
-                       <ul className="space-y-3 text-sm text-gray-300">
+                       <ul className="space-y-4 text-sm text-gray-300">
                           <li><a href="tel:+13053060766" className="hover:text-white transition-colors">(305) 306-0766 – Call Us</a></li>
                           <li><a href="mailto:support@cellstart.com" className="hover:text-white transition-colors whitespace-nowrap">support@cellstart.com – Email us</a></li>
                           <li><a href="https://cellstart.com/account" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">My Account</a></li>
@@ -1860,9 +1860,9 @@ export default function FeelYoung() {
                     </div>
 
                     {/* QUICK LINKS */}
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Quick Links</h4>
-                       <ul className="space-y-3 text-sm text-gray-300">
+                       <ul className="space-y-4 text-sm text-gray-300">
                           <li><a href="https://cellstart.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Home</a></li>
                           <li><a href="https://cellstart.com/pages/about" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">About Us</a></li>
                           <li><a href="https://cellstart.com/pages/contact" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Contact</a></li>
@@ -1870,9 +1870,9 @@ export default function FeelYoung() {
                     </div>
 
                     {/* SOCIALS */}
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                        <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Socials</h4>
-                       <ul className="space-y-3 text-sm text-gray-300">
+                       <ul className="space-y-4 text-sm text-gray-300">
                           <li><a href="https://www.tiktok.com/@cellstart" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">TikTok</a></li>
                           <li><a href="https://www.instagram.com/cellstart_/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a></li>
                        </ul>
