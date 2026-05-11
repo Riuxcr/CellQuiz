@@ -21,18 +21,23 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { name: 'Home', href: '#story' },
-    { name: 'Shop', href: '#pricing-grid' },
-    { name: 'Learn', href: '#breakthroughs' },
-    { name: 'About Us', href: '#team' },
+    { name: 'Home', href: 'https://cellstart.com/', external: true },
+    { name: 'Shop', href: 'https://cellstart.com/products/nad?selling_plan=3903586561&variant=46896557195521', external: true },
+    { name: 'Learn', href: 'https://cellstart.com/pages/learn', external: true },
+    { name: 'About Us', href: 'https://cellstart.com/pages/about', external: true },
   ]
 
-  const scrollToSection = (e, href) => {
+  const scrollToSection = (e, href, external) => {
+    if (external) {
+      // Let the browser handle external links naturally (opens in new tab via target="_blank")
+      setIsMobileMenuOpen(false)
+      return
+    }
     if (href.startsWith('#')) {
       e.preventDefault()
       const element = document.querySelector(href)
       if (element) {
-        const offset = 100 // Adjust for rounded navbar height
+        const offset = 100
         const bodyRect = document.body.getBoundingClientRect().top
         const elementRect = element.getBoundingClientRect().top
         const elementPosition = elementRect - bodyRect
@@ -97,7 +102,9 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              onClick={(e) => scrollToSection(e, link.href)}
+              target={link.external ? '_blank' : undefined}
+              rel={link.external ? 'noopener noreferrer' : undefined}
+              onClick={(e) => scrollToSection(e, link.href, link.external)}
               className="text-[14px] font-bold text-[#111827] hover:text-[#0D47A1] transition-colors whitespace-nowrap"
             >
               {link.name}
@@ -184,7 +191,9 @@ export default function Navbar() {
                    <a
                      key={link.name}
                      href={link.href}
-                     onClick={(e) => scrollToSection(e, link.href)}
+                     target={link.external ? '_blank' : undefined}
+                     rel={link.external ? 'noopener noreferrer' : undefined}
+                     onClick={(e) => scrollToSection(e, link.href, link.external)}
                      className="text-2xl font-black text-[#111827] hover:text-[#0D47A1] transition-colors"
                    >
                      {link.name}

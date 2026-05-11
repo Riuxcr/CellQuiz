@@ -222,6 +222,10 @@ export default function Quiz() {
     }
   }
 
+  const handleClose = () => {
+    navigate('/feel-young')
+  }
+
   const stableSplit = (seed) => {
     // Stable "random" assignment so the same user/email
     // is routed consistently during an A/B test.
@@ -339,6 +343,7 @@ export default function Quiz() {
                 image={current.image}
                 onSelect={handleSelect}
                 onBack={currentStep > 0 ? handleBack : null}
+                onClose={currentStep === 0 ? handleClose : null}
               />
 
             </motion.div>
