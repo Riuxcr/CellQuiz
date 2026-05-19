@@ -1,6 +1,7 @@
 const express = require('express')
 const Lead = require('../models/Lead')
 const QuizAttempt = require('../models/QuizAttempt')
+const PromoAnalytics = require('../models/PromoAnalytics')
 
 const router = express.Router()
 
@@ -25,6 +26,32 @@ router.post('/start-session', async (req, res) => {
     res.json({ success: true, attempt, sequenceNumber })
   } catch (err) {
     console.error('Failed to start quiz session:', err)
+    res.status(500).json({ success: false, message: 'Server error' })
+  }
+})
+
+router.post('/track-promo', async (req, res) => {
+  try {
+    const { sessionId, page, action, element, metadata, location, ip } = req.body
+    if (!sessionId || !page || !action || !element) {
+      return res.status(400).json({ success: false, message: 'Missing required parameters' })
+    }
+
+    const clientIp = ip || req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || req.socket.remoteAddress || '';
+
+    const event = await PromoAnalytics.create({
+      sessionId,
+      page,
+      action,
+      element,
+      location: location || 'Unknown',
+      ip: clientIp,
+      metadata: metadata || {}
+    })
+
+    res.json({ success: true, event })
+  } catch (err) {
+    console.error('Failed to track promo event:', err)
     res.status(500).json({ success: false, message: 'Server error' })
   }
 })
@@ -232,6 +259,90 @@ router.get('/analytics', async (req, res) => {
       conversionDestination: a.conversionDestination
     }));
 
+    // Aggregate Promo Analytics (Feel Young & Harmony)
+    const promoEvents = await PromoAnalytics.find({}).sort({ createdAt: -1 });
+
+    const compilePromoStats = (events) => {
+      const totalViews = events.filter(e => e.element === 'page_view').length;
+      const uniqueSessions = new Set(events.filter(e => e.element === 'page_view').map(e => e.sessionId));
+      const uniqueViews = uniqueSessions.size;
+
+      const totalClicks = events.filter(e => e.action === 'click').length;
+      const totalPageClicks = events.filter(e => e.element === 'page_click').length;
+      const totalModuleClicks = events.filter(e => e.element === 'module_click').length;
+      const totalBuyNowClicks = events.filter(e => e.element === 'buy_now').length;
+
+      // Unique counts for funnel calculations
+      const uniqueClickers = new Set(events.filter(e => e.action === 'click').map(e => e.sessionId)).size;
+      const uniqueModuleClickers = new Set(events.filter(e => e.element === 'module_click').map(e => e.sessionId)).size;
+      const uniqueBuyNowClickers = new Set(events.filter(e => e.element === 'buy_now').map(e => e.sessionId)).size;
+
+      const sectionEvents = events.filter(e => e.element === 'section_view');
+      const sectionMap = {};
+      sectionEvents.forEach(e => {
+         const section = e.metadata?.section;
+         const time = e.metadata?.timeSpentSeconds || 0;
+         if (section) {
+            if (!sectionMap[section]) {
+               sectionMap[section] = {
+                  views: 0,
+                  totalTime: 0
+               };
+            }
+            sectionMap[section].views += 1;
+            sectionMap[section].totalTime += time;
+         }
+      });
+
+      const sections = Object.keys(sectionMap).map(key => ({
+         section: key,
+         views: sectionMap[key].views,
+         avgTimeSpent: Math.round(sectionMap[key].totalTime / sectionMap[key].views)
+      })).sort((a, b) => b.views - a.views);
+
+      const visits = events.filter(e => e.element === 'page_view');
+      const locationCounts = {};
+      visits.forEach(v => {
+         const loc = v.location || 'Unknown';
+         locationCounts[loc] = (locationCounts[loc] || 0) + 1;
+      });
+
+      const locations = Object.keys(locationCounts).map(key => ({
+         name: key,
+         count: locationCounts[key]
+      })).sort((a, b) => b.count - a.count).slice(0, 10);
+
+      return {
+        totalViews,
+        uniqueViews,
+        totalClicks,
+        totalPageClicks,
+        totalModuleClicks,
+        totalBuyNowClicks,
+        uniqueClickers,
+        uniqueModuleClickers,
+        uniqueBuyNowClickers,
+        sections,
+        locations
+      };
+    };
+
+    const promoStats = {
+      overall: compilePromoStats(promoEvents),
+      feelYoung: compilePromoStats(promoEvents.filter(e => e.page === 'feel-young')),
+      harmony: compilePromoStats(promoEvents.filter(e => e.page === 'harmony')),
+      recentActivity: promoEvents.slice(0, 30).map(e => ({
+        sessionId: e.sessionId,
+        page: e.page,
+        action: e.action,
+        element: e.element,
+        location: e.location,
+        ip: e.ip,
+        metadata: e.metadata,
+        createdAt: e.createdAt
+      }))
+    };
+
     res.json({
       success: true,
       data: {
@@ -243,7 +354,8 @@ router.get('/analytics', async (req, res) => {
         abandonmentRate,
         destSplit,
         questionStats,
-        activityFeed
+        activityFeed,
+        promoStats
       }
     });
   } catch (err) {

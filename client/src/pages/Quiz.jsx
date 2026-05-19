@@ -31,65 +31,250 @@ const COMMON_QUESTIONS = [
   },
 ]
 
-const SKINCARE_PATH = [
+const SKINCARE_ENTRY_QUESTION = {
+  id: 'skin_goal',
+  question: 'What would you like to improve most about your skin?',
+  options: [
+    'Look more youthful (fine lines, firmness)',
+    'Brighter, more even glow',
+    'Calm irritation or sensitivity'
+  ],
+  info: 'Did you know? Changes in your skin often come from a mix of lifestyle, environment, and your daily routine.',
+  image: '/skin.jpg'
+}
+
+const ANTI_AGING_PATH = [
   {
-    id: 'routine',
-    question: 'Do you have a skincare routine?',
-    options: ['Yes', 'No'],
-    info: 'Dermatologists often note a large part of visible skin aging is driven by UV exposure, which can be prevented with sunscreen. Including a retinol, facewash, and moisturizer into your routine are also great starting points.',
+    id: 'aging_signs',
+    question: 'Which signs of aging are you noticing most?',
+    options: [
+      'Fine lines or wrinkles',
+      'Loss of firmness',
+      'Uneven skin tone',
+      'Dull-looking skin'
+    ],
+    info: 'As we age, our skin’s natural production of collagen and elastin slows down, leading to visible changes in texture and elasticity.',
     image: '/skin.jpg'
   },
+  {
+    id: 'commitment',
+    question: 'How serious are you about improving your skin?',
+    options: [
+      'I want noticeable results fast',
+      'I’m consistent but prefer simple routines',
+      'I just want to maintain my skin'
+    ],
+    info: 'Small, consistent routines tend to outperform complex routines that aren’t followed regularly.',
+    image: '/Firstcard.jpg'
+  },
+  {
+    id: 'current_routine',
+    question: 'What’s your current routine like?',
+    options: [
+      'I use serums and treatments regularly',
+      'Cleanser + moisturizer mostly',
+      'I don’t really have a routine'
+    ],
+    info: 'Consistency is the most important factor in any skincare routine, regardless of how many steps it has.',
+    image: '/dermo.jpg'
+  },
+]
+
+const GLOW_PATH = [
+  {
+    id: 'glow_frustration',
+    question: 'What’s your biggest frustration with your skin right now?',
+    options: [
+      'It looks dull or tired',
+      'My skin tone feels uneven',
+      'It lacks that natural glow'
+    ],
+    info: 'Dullness is often caused by a buildup of dead skin cells or lack of hydration, which prevents light from reflecting evenly off your skin.',
+    image: '/skin.jpg'
+  },
+  {
+    id: 'worst_time',
+    question: 'When does your skin look its worst?',
+    options: [
+      'In the morning',
+      'During the day',
+      'It looks the same all the time'
+    ],
+    info: 'Skin often looks different throughout the day due to changes in hydration, blood flow, and environmental exposure.',
+    image: '/Time.png'
+  },
+  {
+    id: 'glow_routine_pref',
+    question: 'What kind of routine do you prefer?',
+    options: [
+      'Simple and quick',
+      'A few effective steps',
+      'I don’t mind multiple steps'
+    ],
+    info: 'A simple routine followed daily can be more effective than an inconsistent multi-step routine.',
+    image: '/dermo.jpg'
+  },
+]
+
+const SENSITIVE_PATH = [
+  {
+    id: 'sensitive_issue',
+    question: 'What are you currently dealing with?',
+    options: [
+      'Redness',
+      'Breakouts',
+      'Skin that feels irritated'
+    ],
+    info: 'Sensitivity can be a sign that your skin barrier is compromised, making it more reactive to environmental triggers.',
+    image: '/skin.jpg'
+  },
+  {
+    id: 'sensitive_severity',
+    question: 'Which statement sounds most like your skin?',
+    options: [
+      'My skin is easy to manage',
+      'I get occasional reactions',
+      'My skin is very sensitive'
+    ],
+    info: 'Identifying your skin’s unique triggers is the first step toward achieving a calm, balanced complexion.',
+    image: '/skinSevere.jpg'
+  },
+  {
+    id: 'sensitive_priority',
+    question: 'What matters most in your skincare?',
+    options: [
+      'Gentle, calming products',
+      'Something that won’t cause breakouts',
+      'Just keeping my skin balanced'
+    ],
+    info: 'Strengthening your skin barrier can improve how your skin responds to other products.',
+    image: '/dermo.jpg'
+  },
+]
+
+const SKINCARE_COMMON_END = [
   {
     id: 'dermatologist',
     question: 'Have you seen a dermatologist?',
     options: ['Yes', 'No'],
-    info: 'Everyone’s skin "biome" is as unique as a fingerprint. Seeing a professional can help identify whether a skin issue is inflammatory (internal) or reactive (external), saving you months of trial-and-error with products that might not be attacking the right problem.',
+    info: 'Everyone’s skin "biome" is as unique as a fingerprint. Seeing a professional can help identify whether a skin issue is inflammatory (internal) or reactive (external).',
     image: '/dermo.jpg'
   },
   {
     id: 'severity',
-    question: 'How severe is your skin issue?',
+    question: 'How severe is your skincare issue?',
     type: 'scale',
     min: 1,
     max: 10,
-    helperText: 'On a scale of 10, with 1 being the least severe and 10 the most severe. Scores of 5 and up often warrant a dermatologist visit.',
-    info: 'Your skin completely replaces itself roughly every 28 to 40 days. If you\'re dealing with a high-severity issue, it’s important to remember that true structural change takes at least two full "cycles" to become visible. Remember to see your dermatologist.',
+    helperText: 'On a scale of 10, with 1 being the least severe and 10 the most severe.',
+    info: 'True structural change in skin typically takes at least two full renewal cycles (roughly 60-80 days) to become visible.',
     image: '/skinSevere.jpg'
-  },
+  }
 ]
 
 const LONGEVITY_PATH = [
   {
-    id: 'active',
-    question: 'How active are you?',
-    options: ['Highly Active', 'Moderately Active', 'Lightly Active', 'Sedentary'],
-
-    info: 'Beyond intentional exercise, Non-Exercise Activity Thermogenesis (NEAT)—like pacing while on the phone or taking the stairs—can account for up to 50% of your daily energy burn. Staying "lightly active" throughout the day is often more impactful for longevity than one intense hour at the gym.',
+    id: 'health_frustration',
+    question: 'What’s your biggest health frustration right now?',
+    options: [
+      'Brain fog / poor focus',
+      'Low energy throughout the day',
+      'Stress / burnout',
+      'Poor sleep / tired mornings',
+      'Joint discomfort / stiffness',
+      'Digestive issues',
+      'General aging / prevention'
+    ],
+    info: 'Did you know - “Most people usually notice the first sign of aging in their bodily function.”',
     image: '/Active.png'
   },
   {
-    id: 'sleep',
-    question: 'How many hours of sleep do you typically get?',
-    options: ['Optimal', 'Average', 'Insufficient', 'Deprived'],
-
-    info: 'During deep sleep, your brain essentially "washes" itself, clearing out metabolic waste products that build up during the day. If you\'re consistently getting less than 7 hours, your body misses the window for this critical neurological cleanup.',
+    id: 'refreshed_wake',
+    question: 'How often do you wake up feeling fully refreshed?',
+    options: ['Almost never', 'Rarely', 'Sometimes', 'Most days', 'Always'],
+    info: 'Quality sleep is essential for the glymphatic system to clear metabolic waste from the brain.',
     image: '/Sleep.jpg'
   },
   {
-    id: 'stress',
-    question: 'How would you describe your current daily stress levels?',
-    options: ['Low', 'Moderate', 'High', 'Chronic'],
-
-    info: 'Did you know high stress doesn\'t just feel bad; it can actually "shorten" your DNA. Chronic stress is linked to the shortening of telomeres—the protective caps on the ends of your chromosomes—which is a primary marker of biological aging.',
+    id: 'activity_level',
+    question: 'How active are you?',
+    options: ['Sedentary', 'Lightly active', 'Moderately active', 'Very active'],
+    info: 'Physical activity stimulates mitochondrial biogenesis, which is the creation of new energy-producing centers in your cells.',
+    image: '/Active.png'
+  },
+  {
+    id: 'mental_clarity',
+    question: 'Do you struggle with mental clarity or focus during the day?',
+    options: ['Constantly struggle', 'Often struggle', 'Sometimes', 'Rarely'],
+    info: 'Did you know - “Cognitive fatigue often shows up before physical fatigue does.”',
     image: '/Stress.png'
   },
   {
-    id: 'recovery',
-    question: 'How long does it typically take your body to recover?',
-    options: ['Rapid', 'Standard', 'Slow', 'Persistent'],
-
-    info: 'Recovery time is a direct reflection of your body\'s "efficiency." The faster you can move from an inflammatory state (soreness/fatigue) back to homeostasis (balance), the more resilient your system is. Hydration and amino acid availability are the two biggest levers you can pull here.',
+    id: 'stress_levels',
+    question: 'How would you describe your stress levels lately?',
+    options: ['Very high', 'High', 'Moderate', 'Low', 'Very low'],
+    info: 'Did you know - “Stress can quietly affect sleep, energy, and overall recovery more than most people realize.”',
+    image: '/Stress.png'
+  },
+  {
+    id: 'sleep_hours',
+    question: 'How many hours of sleep do you typically get?',
+    options: ['<5 hours', '5–6 hours', '6–7 hours', '7–8 hours', '8+ hours'],
+    info: 'Most adults require 7-9 hours of sleep to allow for complete cellular repair cycles.',
+    image: '/Sleep.jpg'
+  },
+  {
+    id: 'energy_crashes',
+    question: 'Do you feel like your energy crashes as the day goes on?',
+    options: ['Yes, daily', 'Often (afternoon)', 'Sometimes', 'Rarely'],
+    info: 'Mid-day energy dips are often a sign of mitochondrial inefficiency or blood sugar fluctuations.',
+    image: '/Active.png'
+  },
+  {
+    id: 'mental_sharpness',
+    question: 'How important is staying mentally sharp as you age?',
+    options: ['Extremely important', 'Very important', 'Somewhat important', 'Not important'],
+    info: 'Did you know - “Mental performance is closely tied to cellular energy and long-term brain support.”',
+    image: '/Stress.png'
+  },
+  {
+    id: 'joint_recovery',
+    question: 'Do you experience joint discomfort, stiffness, or slower recovery?',
+    options: ['Frequent pain/stiffness', 'Sometimes', 'Rarely', 'Never'],
+    info: 'Systemic inflammation can manifest as joint stiffness and prolonged muscle soreness after activity.',
     image: '/recover.png'
+  },
+  {
+    id: 'digestion_health',
+    question: 'How would you rate your digestion and gut health?',
+    options: ['Frequent issues', 'Occasional bloating', 'Mostly fine', 'Excellent'],
+    info: 'Did you know - “Gut health plays a key role in how well your body absorbs nutrients, creates and retains energy, and overall wellbeing.”',
+    image: '/Firstcard.jpg'
+  },
+  {
+    id: 'aging_concern',
+    question: 'What aging concern matters most to you?',
+    options: [
+      'Energy decline',
+      'Mental decline',
+      'Physical decline (mobility)',
+      'General aging prevention'
+    ],
+    info: 'Identifying your top concerns allows for a more targeted approach to longevity and cellular repair.',
+    image: '/Age.png'
+  },
+  {
+    id: 'health_goal_12m',
+    question: 'What’s your main health goal over the next 12 months?',
+    options: [
+      'More energy',
+      'Better focus',
+      'Better recovery/sleep',
+      'Better mobility',
+      'General health optimization'
+    ],
+    info: 'Setting clear, long-term health goals is the first step toward meaningful biological change.',
+    image: '/goal.jpg'
   },
 ]
 
@@ -107,7 +292,25 @@ export default function Quiz() {
   const getQuestionSetForAnswers = (currentAnswers) => {
     const goal = currentAnswers['goal']
     if (!goal) return COMMON_QUESTIONS
-    if (goal === 'Skincare & anti-aging') return [...COMMON_QUESTIONS, ...SKINCARE_PATH]
+
+    if (goal === 'Skincare & anti-aging') {
+      const skinGoal = currentAnswers['skin_goal']
+      const base = [...COMMON_QUESTIONS, SKINCARE_ENTRY_QUESTION]
+      
+      if (!skinGoal) return base
+      
+      if (skinGoal === 'Look more youthful (fine lines, firmness)') {
+        return [...base, ...ANTI_AGING_PATH, ...SKINCARE_COMMON_END]
+      }
+      if (skinGoal === 'Brighter, more even glow') {
+        return [...base, ...GLOW_PATH, ...SKINCARE_COMMON_END]
+      }
+      if (skinGoal === 'Calm irritation or sensitivity') {
+        return [...base, ...SENSITIVE_PATH, ...SKINCARE_COMMON_END]
+      }
+      return base
+    }
+
     return [...COMMON_QUESTIONS, ...LONGEVITY_PATH]
   }
 
@@ -173,7 +376,10 @@ export default function Quiz() {
 
     const allUrls = [
       ...COMMON_QUESTIONS,
-      ...SKINCARE_PATH,
+      SKINCARE_ENTRY_QUESTION,
+      ...ANTI_AGING_PATH,
+      ...GLOW_PATH,
+      ...SENSITIVE_PATH,
       ...LONGEVITY_PATH,
     ]
       .map((q) => q.image)
@@ -250,10 +456,12 @@ export default function Quiz() {
     // Segment logic
     let segment = 'unknown'
     if (goal === 'Skincare & anti-aging') {
-      const hasRoutine = answers['routine'] === 'Yes'
-      segment = hasRoutine ? 'skincare_with_routine' : 'skincare_no_routine'
+      const skinGoal = answers['skin_goal']
+      if (skinGoal === 'Look more youthful (fine lines, firmness)') segment = 'skincare_anti_aging'
+      else if (skinGoal === 'Brighter, more even glow') segment = 'skincare_glow'
+      else if (skinGoal === 'Calm irritation or sensitivity') segment = 'skincare_sensitive'
     } else if (goal === 'Longevity & cellular repair') {
-      const isActive = ['Highly Active', 'Moderately Active'].includes(answers['active'])
+      const isActive = ['Very active', 'Moderately active'].includes(answers['activity_level'])
       segment = isActive ? 'longevity_active' : 'longevity_sedentary'
     }
 

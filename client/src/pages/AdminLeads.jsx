@@ -105,6 +105,9 @@ export default function AdminLeads() {
     { id: 'leads', label: 'Customer List', icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
     ), path: '/admin', active: true },
+    { id: 'promo', label: 'Feel Young Stats', icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>
+    ), path: '/admin/analytics?tab=promo' },
     { id: 'support', label: 'Help & Support', icon: (
        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
     ), path: '/admin/analytics?tab=support' },
@@ -171,11 +174,7 @@ export default function AdminLeads() {
               key={item.id}
               onClick={() => {
                 if (isMobile) setIsSidebarOpen(false)
-                if (item.id === 'support') {
-                   navigate('/admin/analytics');
-                } else {
-                   navigate(item.path);
-                }
+                navigate(item.path)
               }}
               className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-[20px] transition-all group ${item.active ? 'bg-blue-50 text-blue-700 font-bold' : 'text-gray-500 hover:bg-gray-50'}`}
             >

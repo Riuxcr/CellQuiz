@@ -1,18 +1,30 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { API_BASE_URL } from '../config.js'
 
 export default function AdminAnalytics() {
   const navigate = useNavigate()
+  const location = useLocation()
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [activeTab, setActiveTab] = useState('overview')
+  const [activeTab, setActiveTab] = useState(() => {
+     const params = new URLSearchParams(window.location.search)
+     return params.get('tab') || 'overview'
+  })
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 1024)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024)
   const [pathFilter, setPathFilter] = useState('') // '' (All), 'Skincare', 'Longevity'
+
+  useEffect(() => {
+     const params = new URLSearchParams(location.search)
+     const tab = params.get('tab') || 'overview'
+     if (tab !== activeTab) {
+        setActiveTab(tab)
+     }
+  }, [location.search])
 
   useEffect(() => {
     const handleResize = () => {
@@ -60,11 +72,17 @@ export default function AdminAnalytics() {
     { id: 'overview', label: 'Summary', icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
     )},
+    { id: 'leads', label: 'Customer List', icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+    ), path: '/admin' },
     { id: 'feed', label: 'Recent Activity', icon: (
        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
     )},
     { id: 'drop-offs', label: 'User Steps', icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" /></svg>
+    )},
+    { id: 'promo', label: 'Feel Young Stats', icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>
     )},
     { id: 'support', label: 'Help & Support', icon: (
        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
@@ -109,7 +127,7 @@ export default function AdminAnalytics() {
             {isSidebarOpen && (
               <motion.h1 
                 initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
-                className="ml-4 text-xl font-black tracking-tighter text-gray-900 flex items-center gap-2 whitespace-nowrap"
+                className="ml-4 text-xl font-black tracking-tighter text-gray-900 whitespace-nowrap"
               >
                 Admin<span className="text-blue-600">Panel</span>
               </motion.h1>
@@ -132,7 +150,11 @@ export default function AdminAnalytics() {
             <button
               key={item.id}
               onClick={() => {
-                setActiveTab(item.id)
+                if (item.path) {
+                  navigate(item.path)
+                } else {
+                  setActiveTab(item.id)
+                }
                 if (isMobile) setIsSidebarOpen(false)
               }}
               className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-[20px] transition-all group ${activeTab === item.id ? 'bg-blue-50 text-blue-700 font-bold' : 'text-gray-500 hover:bg-gray-50'}`}
@@ -478,6 +500,378 @@ export default function AdminAnalytics() {
                    </div>
                </motion.div>
             )}
+
+            {activeTab === 'promo' && (() => {
+               const promoData = data?.promoStats?.feelYoung || {
+                  totalViews: 0,
+                  uniqueViews: 0,
+                  totalClicks: 0,
+                  totalPageClicks: 0,
+                  totalModuleClicks: 0,
+                  totalBuyNowClicks: 0,
+                  uniqueClickers: 0,
+                  uniqueModuleClickers: 0,
+                  uniqueBuyNowClickers: 0
+               };
+
+               const conversionRate = promoData.uniqueViews > 0 
+                  ? ((promoData.uniqueBuyNowClickers / promoData.uniqueViews) * 100).toFixed(1)
+                  : '0.0';
+
+               const funnelSteps = [
+                  { 
+                     label: '1. Landed on Page', 
+                     value: promoData.uniqueViews, 
+                     percent: 100, 
+                     color: 'bg-blue-600', 
+                     desc: 'Unique visitor sessions loaded the landing page' 
+                  },
+                  { 
+                     label: '2. General Engagement', 
+                     value: promoData.uniqueClickers, 
+                     percent: promoData.uniqueViews > 0 ? Math.round((promoData.uniqueClickers / promoData.uniqueViews) * 100) : 0, 
+                     color: 'bg-indigo-600', 
+                     desc: 'Users who made at least one click/interaction' 
+                  },
+                  { 
+                     label: '3. Module Interactions', 
+                     value: promoData.uniqueModuleClickers, 
+                     percent: promoData.uniqueViews > 0 ? Math.round((promoData.uniqueModuleClickers / promoData.uniqueViews) * 100) : 0, 
+                     color: 'bg-purple-600', 
+                     desc: 'Users who interacted with accordions, reviews, or FAQs' 
+                  },
+                  { 
+                     label: '4. Buy Now Redirection', 
+                     value: promoData.uniqueBuyNowClickers, 
+                     percent: promoData.uniqueViews > 0 ? Math.round((promoData.uniqueBuyNowClickers / promoData.uniqueViews) * 100) : 0, 
+                     color: 'bg-emerald-600', 
+                     desc: 'Users who clicked a pack and redirected to Shopify Checkout' 
+                  }
+               ];
+
+               return (
+                  <motion.div
+                     key="promo-stats"
+                     initial={{ opacity: 0, y: 15 }}
+                     animate={{ opacity: 1, y: 0 }}
+                     exit={{ opacity: 0, y: -15 }}
+                     className="space-y-8 md:space-y-12 pb-32"
+                  >
+                     {/* Campaign Title Banner */}
+                     <div className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.01)] border border-gray-100/50">
+                        <h3 className="text-xl md:text-2xl font-black text-gray-900">Feel Young Promo Campaign</h3>
+                        <p className="text-xs md:text-sm text-gray-400 mt-1">Track Vercel landing page views and outbound Shopify checkout clicks</p>
+                     </div>
+
+                     {/* Stats Grid */}
+                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+                        <StatCard 
+                           label="Total Impressions" 
+                           value={promoData.totalViews.toLocaleString()} 
+                           icon={<svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>} 
+                           delay={0.1} 
+                        />
+                        <StatCard 
+                           label="Unique Visitors" 
+                           value={promoData.uniqueViews.toLocaleString()} 
+                           icon={<svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>} 
+                           delay={0.2} 
+                        />
+                        <StatCard 
+                           label="Buy Now Clicks" 
+                           value={promoData.totalBuyNowClicks.toLocaleString()} 
+                           icon={<svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>} 
+                           highlight 
+                           delay={0.3} 
+                        />
+                        <StatCard 
+                           label="Checkout CTR" 
+                           value={`${conversionRate}%`} 
+                           icon={<svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>} 
+                           delay={0.4} 
+                        />
+                     </div>
+
+                     {/* Funnel & Feed Grid */}
+                     <div className="grid grid-cols-1 xl:grid-cols-5 gap-6 md:gap-10">
+                        {/* Funnel Visualizer */}
+                        <section className="xl:col-span-3 bg-white p-6 md:p-12 rounded-3xl md:rounded-[48px] shadow-[0_24px_80px_rgba(0,0,0,0.02)] border border-gray-100/40">
+                           <div className="mb-8 md:mb-12">
+                              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-blue-600 mb-2">Campaign Flow</h4>
+                              <h3 className="text-xl md:text-3xl font-black tracking-tight text-gray-900">Conversion Funnel</h3>
+                           </div>
+
+                           <div className="space-y-6">
+                              {funnelSteps.map((step, idx) => (
+                                 <div key={idx} className="space-y-2">
+                                    <div className="flex justify-between items-end">
+                                       <div>
+                                          <span className="text-sm font-black text-gray-800">{step.label}</span>
+                                          <p className="text-[10px] text-gray-400 mt-0.5">{step.desc}</p>
+                                       </div>
+                                       <div className="text-right">
+                                          <span className="text-lg font-black text-gray-900">{step.value.toLocaleString()}</span>
+                                          <span className="text-xs font-bold text-gray-400 ml-2">({step.percent}%)</span>
+                                       </div>
+                                    </div>
+                                    <div className="h-3 w-full bg-gray-50 rounded-full overflow-hidden border border-gray-100/30">
+                                       <motion.div
+                                          initial={{ width: 0 }}
+                                          animate={{ width: `${step.percent}%` }}
+                                          transition={{ duration: 1, ease: 'easeOut', delay: idx * 0.1 }}
+                                          className={`h-full ${step.color} rounded-full`}
+                                       />
+                                    </div>
+                                 </div>
+                              ))}
+                           </div>
+                        </section>
+
+                        {/* Recent Activity Feed */}
+                        <section className="xl:col-span-2 bg-white p-6 md:p-12 rounded-3xl md:rounded-[48px] shadow-[0_24px_80px_rgba(0,0,0,0.02)] border border-gray-100/40 flex flex-col max-h-[500px]">
+                           <div className="mb-6">
+                              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-blue-600 mb-2">Real-Time Tracking</h4>
+                              <h3 className="text-xl md:text-3xl font-black tracking-tight text-gray-900">Live Interactions</h3>
+                           </div>
+
+                           <div className="flex-1 overflow-y-auto pr-2 space-y-4 no-scrollbar">
+                              {data?.promoStats?.recentActivity && data.promoStats.recentActivity.length > 0 ? (
+                                 data.promoStats.recentActivity
+                                    .filter(e => e.page === 'feel-young')
+                                    .map((event, idx) => {
+                                       const isBuyNow = event.element === 'buy_now';
+                                       const isVisit = event.element === 'page_view';
+                                       const isSection = event.element === 'section_view';
+                                       const timeStr = new Date(event.createdAt).toLocaleTimeString([], { 
+                                          hour: '2-digit', 
+                                          minute: '2-digit',
+                                          second: '2-digit'
+                                       });
+
+                                       return (
+                                          <div 
+                                             key={idx} 
+                                             className="flex items-start gap-4 p-3 rounded-2xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100/40"
+                                          >
+                                             <div className={`h-10 w-10 rounded-xl flex items-center justify-center shrink-0 text-lg ${
+                                                isBuyNow 
+                                                   ? 'bg-emerald-50 text-emerald-600' 
+                                                   : isSection 
+                                                      ? 'bg-amber-50 text-amber-600'
+                                                      : isVisit 
+                                                         ? 'bg-blue-50 text-blue-600' 
+                                                         : 'bg-indigo-50 text-indigo-600'
+                                             }`}>
+                                                {isBuyNow ? '🛍️' : isSection ? '⏱️' : isVisit ? '👁️' : '🖱️'}
+                                             </div>
+                                             <div className="min-w-0 flex-grow">
+                                                <div className="flex items-center justify-between gap-2">
+                                                   <span className="text-[10px] font-black uppercase text-gray-400">
+                                                      Feel Young
+                                                   </span>
+                                                   <span className="text-[9px] font-bold text-gray-300">{timeStr}</span>
+                                                </div>
+                                                <p className="text-xs font-black text-gray-800 mt-1 truncate">
+                                                   {isBuyNow 
+                                                      ? 'Clicked BUY NOW checkout redirect' 
+                                                      : isSection 
+                                                         ? `Spent ${event.metadata?.timeSpentSeconds || 0}s on ${
+                                                            {
+                                                               'hero': 'Hero Banner',
+                                                               'featured': 'Featured Logos',
+                                                               'testimonials': 'Reviews Panel',
+                                                               'story': 'Secret Story',
+                                                               'solution': 'Solution Intro',
+                                                               'breakthroughs': 'Breakthroughs',
+                                                               'science': 'Cellular Science',
+                                                               'journey': '30-Day Journey',
+                                                               'transformation': 'Before/Afters',
+                                                               'trust': 'Ingredients',
+                                                               'pricing-grid': 'Choose Package',
+                                                               'guarantee': 'Money Back Guarantee',
+                                                               'results': 'Clinical Results',
+                                                               'formula': 'Formula Details',
+                                                               'team': 'Medical Board',
+                                                               'faq': 'FAQ Section',
+                                                               'footer': 'Footer navigation'
+                                                            }[event.metadata?.section] || event.metadata?.section || 'Section'
+                                                         }`
+                                                         : isVisit 
+                                                            ? 'New visitor landed on page' 
+                                                            : `Clicked on page section (${event.element})`
+                                                   }
+                                                </p>
+                                                <p className="text-[9px] font-bold text-gray-400 mt-0.5 truncate font-mono">
+                                                   ID: {event.sessionId}
+                                                </p>
+                                                <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                                                   <span className="inline-flex items-center text-[9px] font-black text-blue-600 bg-blue-50/50 px-1.5 py-0.5 rounded-md border border-blue-100/30">
+                                                      📍 {event.location || 'Unknown Location'}
+                                                   </span>
+                                                   {event.ip && (
+                                                      <span className="text-[8px] font-bold text-gray-300 font-mono">
+                                                         ({event.ip})
+                                                      </span>
+                                                   )}
+                                                </div>
+                                             </div>
+                                          </div>
+                                       );
+                                    })
+                              ) : (
+                                 <div className="py-20 flex flex-col items-center justify-center text-center opacity-40">
+                                    <span className="text-3xl mb-3">📡</span>
+                                    <p className="text-sm font-black text-gray-800">No events captured yet</p>
+                                    <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Listening on Vercel pages...</p>
+                                 </div>
+                              )}
+                           </div>
+                        </section>
+                      </div>
+
+                     {/* Heatmap & Geographical Insights Grid */}
+                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-10">
+                        {/* Section Heatmap - takes 2 columns */}
+                        <div className="lg:col-span-2">
+                           <section className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_24px_80px_rgba(0,0,0,0.02)] border border-gray-100/40 h-full">
+                              <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                 <div>
+                                    <h4 className="text-xs font-black uppercase tracking-[0.3em] text-blue-600 mb-2">Attention Mapping</h4>
+                                    <h3 className="text-xl md:text-2xl font-black tracking-tight text-gray-900">Engagement Heatmap</h3>
+                                    <p className="text-xs text-gray-400 mt-1">Identify which portions of your Feel Young landing page are keeping users engaged the longest.</p>
+                                 </div>
+                                 <div className="flex items-center gap-2 bg-blue-50/50 text-blue-700 px-3 py-1.5 rounded-xl text-xs font-bold shrink-0 self-start sm:self-center">
+                                    <span>⏱️ Spent &gt;2s to register</span>
+                                 </div>
+                              </div>
+
+                              <div className="overflow-x-auto no-scrollbar">
+                                 {promoData.sections && promoData.sections.length > 0 ? (
+                                    <table className="w-full text-left border-collapse">
+                                       <thead>
+                                          <tr className="border-b border-gray-100 text-[10px] font-black uppercase tracking-wider text-gray-400">
+                                             <th className="py-4 pl-4">Page Section</th>
+                                             <th className="py-4">Impressions</th>
+                                             <th className="py-4 text-center">Avg. Time Spent</th>
+                                             <th className="py-4 pr-4">Depth</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody className="divide-y divide-gray-100">
+                                          {promoData.sections.map((sec, idx) => {
+                                             const sectionNameMap = {
+                                                'hero': '✨ Hero Section (Top Banner)',
+                                                'featured': '📺 As Featured In Logos',
+                                                'testimonials': '💬 Customer Reviews Panel',
+                                                'story': '📖 The Aging Secret Story',
+                                                'solution': '🔬 ChronoNAD+ Solution Intro',
+                                                'breakthroughs': '🧬 Scientific Breakthroughs',
+                                                'science': '🧫 Cellular NAD+ Science Details',
+                                                'journey': '📈 30-Day Rejuvenation Journey',
+                                                'transformation': '✨ Before/After Transformations',
+                                                'trust': '🛡️ Brand Trust & Ingredients',
+                                                'pricing-grid': '🛍️ Package Pricing Options (Choose Package)',
+                                                'guarantee': '🤝 Money Back Guarantee Banner',
+                                                'results': '📊 Clinical Test Results',
+                                                'formula': '🧪 Clean & Safe Formula Details',
+                                                'team': '👩‍⚕️ Medical Advisory Board',
+                                                'faq': '❓ Frequently Asked Questions',
+                                                'footer': '📑 Footer Navigation & Links'
+                                             };
+
+                                             const friendlyName = sectionNameMap[sec.section] || sec.section;
+                                             let barColor = 'bg-blue-600';
+                                             if (sec.avgTimeSpent > 15) barColor = 'bg-emerald-500';
+                                             else if (sec.avgTimeSpent > 8) barColor = 'bg-indigo-500';
+                                             else if (sec.avgTimeSpent > 4) barColor = 'bg-blue-500';
+                                             else barColor = 'bg-gray-400';
+
+                                             const barPercent = Math.min((sec.avgTimeSpent / 20) * 100, 100);
+
+                                             return (
+                                                <tr key={idx} className="hover:bg-gray-50/50 transition-colors text-xs group">
+                                                   <td className="py-3 pl-4 font-black text-gray-800">{friendlyName}</td>
+                                                   <td className="py-3 font-bold text-gray-500">
+                                                      <span className="bg-gray-100 px-2 py-0.5 rounded-full text-[10px] font-black text-gray-700">
+                                                         {sec.views.toLocaleString()} views
+                                                      </span>
+                                                   </td>
+                                                   <td className="py-3 text-center font-black text-gray-900 text-sm">
+                                                      {sec.avgTimeSpent} seconds
+                                                   </td>
+                                                   <td className="py-3 pr-4">
+                                                      <div className="flex items-center gap-2">
+                                                         <div className="h-1.5 w-20 bg-gray-100 rounded-full overflow-hidden shrink-0">
+                                                            <div className={`h-full ${barColor} rounded-full`} style={{ width: `${barPercent}%` }} />
+                                                         </div>
+                                                         <span className="text-[9px] font-bold text-gray-400">
+                                                            {sec.avgTimeSpent > 15 ? '🔥 High' : sec.avgTimeSpent > 8 ? '⚡ Med' : '💤 Low'}
+                                                         </span>
+                                                      </div>
+                                                   </td>
+                                                </tr>
+                                             );
+                                          })}
+                                       </tbody>
+                                    </table>
+                                 ) : (
+                                    <div className="py-20 flex flex-col items-center justify-center text-center opacity-40">
+                                       <span className="text-4xl mb-3">⏱️</span>
+                                       <p className="text-sm font-black text-gray-800">Waiting for scroll data...</p>
+                                       <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider">Users need to spend at least 2 seconds on a section to track</p>
+                                    </div>
+                                 )}
+                              </div>
+                           </section>
+                        </div>
+
+                        {/* Top Locations - takes 1 column */}
+                        <div className="lg:col-span-1">
+                           <section className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_24px_80px_rgba(0,0,0,0.02)] border border-gray-100/40 h-full flex flex-col">
+                              <div className="mb-8">
+                                 <h4 className="text-xs font-black uppercase tracking-[0.3em] text-blue-600 mb-2">Geographic Split</h4>
+                                 <h3 className="text-xl md:text-2xl font-black tracking-tight text-gray-900">Traffic by Location</h3>
+                                 <p className="text-xs text-gray-400 mt-1">Breakdown of visitors by country and city</p>
+                              </div>
+
+                              <div className="flex-1 overflow-y-auto space-y-4 pr-1 no-scrollbar max-h-[450px]">
+                                 {promoData.locations && promoData.locations.length > 0 ? (
+                                    promoData.locations.map((loc, idx) => {
+                                       const totalLocationViews = promoData.locations.reduce((acc, curr) => acc + curr.count, 0) || 1;
+                                       const percentage = Math.round((loc.count / totalLocationViews) * 100);
+
+                                       return (
+                                          <div key={idx} className="space-y-1">
+                                             <div className="flex justify-between items-center text-xs">
+                                                <span className="font-bold text-gray-700 truncate max-w-[150px]">
+                                                   📍 {loc.name}
+                                                </span>
+                                                <span className="font-black text-gray-900 bg-gray-100 px-2 py-0.5 rounded-full text-[10px] shrink-0">
+                                                   {loc.count.toLocaleString()} ({percentage}%)
+                                                </span>
+                                             </div>
+                                             <div className="h-1.5 w-full bg-gray-50 rounded-full overflow-hidden border border-gray-100/30">
+                                                <div 
+                                                   className="h-full bg-blue-600 rounded-full" 
+                                                   style={{ width: `${percentage}%` }}
+                                                />
+                                             </div>
+                                          </div>
+                                       );
+                                    })
+                                 ) : (
+                                    <div className="py-20 flex flex-col items-center justify-center text-center opacity-40 my-auto">
+                                       <span className="text-3xl mb-3">📍</span>
+                                       <p className="text-sm font-black text-gray-800">No geo data yet</p>
+                                       <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Detecting visitor IPs...</p>
+                                    </div>
+                                 )}
+                              </div>
+                           </section>
+                        </div>
+                     </div>
+                  </motion.div>
+               );
+            })()}
 
             {activeTab === 'support' && (
               <motion.div 

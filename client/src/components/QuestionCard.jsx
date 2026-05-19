@@ -168,8 +168,13 @@ export default function QuestionCard({ question, questionNumber, options, type, 
               className="mt-8 md:mt-10 w-full max-w-2xl mx-auto md:mx-0 z-20"
             >
               <div className="flex flex-col gap-6 items-center">
-                <div className="w-full py-2 px-4 md:py-3 md:px-6 rounded-2xl bg-white md:bg-white border md:border-gray-100 shadow-sm">
-                   <p className="text-[11px] md:text-[13px] font-bold text-gray-900 md:text-gray-700 leading-relaxed text-center">
+                <div className="w-full relative py-5 px-6 rounded-3xl bg-white/95 md:bg-gray-50/50 border border-white md:border-gray-100 shadow-2xl md:shadow-sm backdrop-blur-md">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-[#007AFF] rounded-full shadow-lg shadow-blue-500/20">
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white whitespace-nowrap">
+                      Science Fact
+                    </span>
+                  </div>
+                  <p className="text-[13px] md:text-[15px] font-bold text-gray-900 md:text-gray-700 leading-relaxed text-center">
                     {info}
                   </p>
                 </div>

@@ -57,33 +57,33 @@ export function getPersonalizedInsight(answers) {
 
   // --- LONGEVITY PATH ---
   if (goal === 'Longevity & cellular repair') {
-    const active = answers.active
+    const active = answers.activity_level
 
-    if (active === 'Highly Active') {
+    if (active === 'Very active') {
       return {
         trackKey: 'longevity_highly_active',
         categoryLabel: 'LONGEVITY / ACTIVITY RESULTS',
-        levelLabel: 'Highly Active',
+        levelLabel: 'Very Active',
         headline: 'Your Body Is Performing at a High Level',
         body: 'Your answers show a strong commitment to staying active and supporting your long-term health. Regular activity places unique demands on the body’s energy systems and recovery processes.\n\nSupporting cellular energy can help maintain balance and vitality. Support your routine with ChronoNAD+.'
       }
     }
 
-    if (active === 'Moderately Active') {
+    if (active === 'Moderately active') {
       return {
         trackKey: 'longevity_mildly_active',
         categoryLabel: 'LONGEVITY / ACTIVITY RESULTS',
-        levelLabel: 'Mildly Active',
+        levelLabel: 'Moderately Active',
         headline: 'You’re On the Right Track',
         body: 'Your answers indicate a moderate level of activity, which is a great step toward supporting overall wellness and longevity.\n\nMaintaining cellular energy and healthy metabolic function can help you stay consistent with your routine. Support your active lifestyle with ChronoNAD+.'
       }
     }
 
-    // Default for Lightly Active or Sedentary
+    // Default for Lightly active or Sedentary
     return {
       trackKey: 'longevity_not_very_active',
       categoryLabel: 'LONGEVITY / ACTIVITY RESULTS',
-      levelLabel: 'Not Very Active',
+      levelLabel: 'Lightly Active / Sedentary',
       headline: 'Your Body May Benefit from Additional Support',
       body: 'Your answers suggest that your current activity level may be lower than recommended for supporting long-term health and vitality.\n\nPhysical activity plays a role in cellular function and energy metabolism. Supporting your body with the right lifestyle choices — including nutrition — can help maintain overall wellness. Support your cells daily with ChronoNAD+.'
     }

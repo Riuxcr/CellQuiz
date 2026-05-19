@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { API_BASE_URL } from '../config.js'
 import skinTransformation from '../assets/skin-transformation.png'
 import chronoNadIsolated from '../assets/chrono-nad-isolated.png'
 import cortisolTransformation from '../assets/cortisol-transformation.png'
@@ -18,15 +20,143 @@ export default function FeelYoung() {
    const [currentPage, setCurrentPage] = useState(1)
    const reviewsPerPage = 5
 
+   const trackPromoEvent = async (action, element, metadata = {}) => {
+      try {
+         let sessId = sessionStorage.getItem('feel_young_sess')
+         if (!sessId) {
+            sessId = `sess_${Math.random().toString(36).substring(2, 11)}_${Date.now()}`
+            sessionStorage.setItem('feel_young_sess', sessId)
+         }
+
+         let loc = sessionStorage.getItem('feel_young_loc')
+         let ip = sessionStorage.getItem('feel_young_ip')
+
+         if (!loc) {
+            try {
+               const geoRes = await axios.get('https://ipapi.co/json/')
+               if (geoRes.data) {
+                  const { city, region, country_name, ip: clientIp } = geoRes.data
+                  loc = `${city ? city + ', ' : ''}${region ? region + ', ' : ''}${country_name || 'Unknown'}`
+                  ip = clientIp || ''
+                  sessionStorage.setItem('feel_young_loc', loc)
+                  sessionStorage.setItem('feel_young_ip', ip)
+               }
+            } catch (geoErr) {
+               console.warn('Geocoding error:', geoErr)
+               loc = 'Unknown'
+               ip = ''
+            }
+         }
+
+         const pageName = window.location.pathname.includes('harmony') ? 'harmony' : 'feel-young'
+
+         await axios.post(`${API_BASE_URL}/api/quiz/track-promo`, {
+            sessionId: sessId,
+            page: pageName,
+            action,
+            element,
+            location: loc || 'Unknown',
+            ip: ip || '',
+            metadata
+         })
+      } catch (err) {
+         console.error('Failed to log promo event:', err)
+      }
+   }
+
+   useEffect(() => {
+      // 1. Log page view visit
+      trackPromoEvent('visit', 'page_view')
+
+      // 2. Track general page interaction (first click on the page)
+      const handleFirstClick = () => {
+         const hasClicked = sessionStorage.getItem('feel_young_clicked')
+         if (!hasClicked) {
+            sessionStorage.setItem('feel_young_clicked', 'true')
+            trackPromoEvent('click', 'page_click')
+         }
+      }
+      window.addEventListener('click', handleFirstClick)
+      return () => window.removeEventListener('click', handleFirstClick)
+   }, [])
+
+   const sectionTimesRef = useRef({})
+
+   useEffect(() => {
+      const sectionIds = [
+         'hero', 'featured', 'testimonials', 'story', 'solution', 
+         'breakthroughs', 'science', 'journey', 'transformation', 
+         'trust', 'pricing-grid', 'guarantee', 'results', 'formula', 
+         'team', 'faq', 'footer'
+      ]
+
+      const observerOptions = {
+         root: null,
+         rootMargin: '0px',
+         threshold: 0.2
+      }
+
+      const observerCallback = (entries) => {
+         entries.forEach(entry => {
+            const id = entry.target.id
+            if (!id) return
+
+            if (entry.isIntersecting) {
+               sectionTimesRef.current[id] = Date.now()
+            } else {
+               const enterTime = sectionTimesRef.current[id]
+               if (enterTime) {
+                  const elapsedSeconds = Math.round((Date.now() - enterTime) / 1000)
+                  if (elapsedSeconds >= 2) {
+                     trackPromoEvent('visit', 'section_view', { 
+                        section: id, 
+                        timeSpentSeconds: elapsedSeconds 
+                     })
+                  }
+                  delete sectionTimesRef.current[id]
+               }
+            }
+         })
+      }
+
+      const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+      sectionIds.forEach(id => {
+         const el = document.getElementById(id)
+         if (el) observer.observe(el)
+      })
+
+      return () => {
+         observer.disconnect()
+         Object.keys(sectionTimesRef.current).forEach(id => {
+            const enterTime = sectionTimesRef.current[id]
+            if (enterTime) {
+               const elapsedSeconds = Math.round((Date.now() - enterTime) / 1000)
+               if (elapsedSeconds >= 2) {
+                  trackPromoEvent('visit', 'section_view', { 
+                     section: id, 
+                     timeSpentSeconds: elapsedSeconds 
+                  })
+               }
+            }
+         })
+      }
+   }, [])
+
    const toggleReview = (index) => {
       setExpandedReviews(prev => ({
          ...prev,
          [index]: !prev[index]
       }))
+      trackPromoEvent('click', 'module_click', { module: 'reviews', index })
    }
 
    const toggleFaq = (index) => {
+      const isOpening = activeFaq !== index
       setActiveFaq(activeFaq === index ? null : index)
+      if (isOpening) {
+         trackPromoEvent('click', 'module_click', { module: 'faq', index })
+      }
    }
 
    useEffect(() => {
@@ -1286,7 +1416,10 @@ export default function FeelYoung() {
 
                            {/* BUY NOW Button */}
                            <button
-                              onClick={() => window.open(pkg.checkoutUrl, '_blank')}
+                              onClick={async () => {
+                                 await trackPromoEvent('click', 'buy_now', { package: pkg.title, checkoutUrl: pkg.checkoutUrl });
+                                 window.open(pkg.checkoutUrl, '_blank');
+                              }}
                               className="w-full py-6 rounded-full bg-[#0D47A1] text-white font-black text-sm tracking-[0.1em] shadow-xl hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-3 mb-6 group"
                            >
                               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" /></svg>
@@ -1823,7 +1956,7 @@ export default function FeelYoung() {
             </div>
          </section>
 
-         <footer className="bg-[#0d1b2e] text-white">
+         <footer id="footer" className="bg-[#0d1b2e] text-white">
             {/* Main Footer Grid */}
             <div className="max-w-7xl mx-auto px-6 pt-12 pb-8">
                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10">
