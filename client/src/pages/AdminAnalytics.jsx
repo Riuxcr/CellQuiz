@@ -708,6 +708,16 @@ export default function AdminAnalytics() {
                                                    <span className="inline-flex items-center text-[9px] font-black text-blue-600 bg-blue-50/50 px-1.5 py-0.5 rounded-md border border-blue-100/30">
                                                       📍 {event.location || 'Unknown Location'}
                                                    </span>
+                                                   {event.metadata?.utm_source && (
+                                                      <span className="inline-flex items-center text-[9px] font-black text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-md border border-emerald-100">
+                                                         📢 {event.metadata.utm_source.toUpperCase()}
+                                                      </span>
+                                                   )}
+                                                   {event.metadata?.utm_campaign && (
+                                                      <span className="inline-flex items-center text-[9px] font-black text-indigo-700 bg-indigo-50 px-1.5 py-0.5 rounded-md border border-indigo-100">
+                                                         🎯 {event.metadata.utm_campaign}
+                                                      </span>
+                                                   )}
                                                    {event.ip && (
                                                       <span className="text-[8px] font-bold text-gray-300 font-mono">
                                                          ({event.ip})

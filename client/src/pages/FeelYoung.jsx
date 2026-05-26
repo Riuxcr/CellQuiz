@@ -339,21 +339,31 @@ export default function FeelYoung() {
                               </motion.div>
                            ))}
                         </div>
-                     </div>
+                        <div className="pt-2 w-full flex flex-row items-center gap-4">
+                           <motion.button
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              onClick={scrollToProducts}
+                              className="bg-[#0D47A1] text-white font-bold text-base md:text-lg px-10 md:px-12 py-3.5 md:py-4 rounded-full uppercase tracking-[0.05em] shadow-md hover:bg-[#111827] transition-all duration-300 flex items-center justify-center w-auto"
+                           >
+                              <span>Try ChronoNAD+</span>
+                           </motion.button>
 
-                     <div className="pt-0 w-full flex flex-col items-start space-y-3">
-                        <motion.button
-                           whileHover={{ scale: 1.05 }}
-                           whileTap={{ scale: 0.95 }}
-                           onClick={scrollToProducts}
-                           className="bg-[#0D47A1] text-white font-bold md:font-black text-[12px] md:text-lg px-10 md:px-16 py-4 md:py-5 rounded-full uppercase tracking-[0.1em] md:tracking-[0.1em] shadow-[0_25px_60px_rgba(13,71,161,0.25)] hover:bg-[#111827] transition-all duration-500 flex items-center justify-center group relative overflow-hidden w-full md:w-auto"
-                        >
-                           <span className="relative z-10">Try ChronoNAD+</span>
-                           <svg className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                        </motion.button>
-                        <div className="flex items-center justify-center lg:justify-start gap-2 text-xs md:text-sm font-bold text-[#0D47A1] uppercase tracking-[0.05em] w-full lg:w-auto lg:pl-4">
-                           <span className="text-lg">✅</span> 30 Day Money Back Guarantee
+                           <motion.button
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              onClick={async () => {
+                                 await trackPromoEvent('click', 'amazon_click', { section: 'hero' });
+                                 window.open('https://www.amazon.com/dp/B0G14CTG1Q/?maas=maas_adg_83D2472A4C6C1447DA2E6886D1DB7BD3_afap_abs&ref_=aa_maas&tag=maas', '_blank');
+                              }}
+                              className="bg-[#FF9900] text-black font-bold text-base md:text-lg px-10 md:px-12 py-3.5 md:py-4 rounded-full uppercase tracking-[0.05em] shadow-md hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center w-auto"
+                           >
+                              <span>Buy on Amazon</span>
+                           </motion.button>
                         </div>
+                     </div>
+                     <div className="flex items-center justify-center lg:justify-start gap-2 text-xs md:text-sm font-bold text-[#0D47A1] uppercase tracking-[0.05em] w-full lg:w-auto lg:pl-4 mt-3">
+                        <span className="text-lg">✅</span> 30 Day Money Back Guarantee
                      </div>
                   </div>
 
