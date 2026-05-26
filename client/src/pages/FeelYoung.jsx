@@ -20,7 +20,7 @@ export default function FeelYoung() {
    const [currentPage, setCurrentPage] = useState(1)
    const reviewsPerPage = 5
 
-   const trackPromoEvent = async (action, element, metadata = {}) => {
+    const trackPromoEvent = async (action, element, metadata = {}) => {
       try {
          let sessId = sessionStorage.getItem('feel_young_sess')
          if (!sessId) {
@@ -48,6 +48,16 @@ export default function FeelYoung() {
             }
          }
 
+         // Retrieve any tracking parameters from sessionStorage to attach to metadata
+         const tracking = {
+            utm_source: sessionStorage.getItem('utm_source'),
+            utm_medium: sessionStorage.getItem('utm_medium'),
+            utm_campaign: sessionStorage.getItem('utm_campaign'),
+            utm_content: sessionStorage.getItem('utm_content'),
+            utm_term: sessionStorage.getItem('utm_term'),
+            source: sessionStorage.getItem('source')
+         }
+
          const pageName = window.location.pathname.includes('harmony') ? 'harmony' : 'feel-young'
 
          await axios.post(`${API_BASE_URL}/api/quiz/track-promo`, {
@@ -57,7 +67,10 @@ export default function FeelYoung() {
             element,
             location: loc || 'Unknown',
             ip: ip || '',
-            metadata
+            metadata: {
+               ...metadata,
+               ...tracking
+            }
          })
       } catch (err) {
          console.error('Failed to log promo event:', err)
@@ -65,6 +78,16 @@ export default function FeelYoung() {
    }
 
    useEffect(() => {
+      // Parse and store UTM tracking parameters from URL
+      const searchParams = new URLSearchParams(window.location.search)
+      const params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'source']
+      params.forEach(param => {
+         const value = searchParams.get(param)
+         if (value) {
+            sessionStorage.setItem(param, value)
+         }
+      })
+
       // 1. Log page view visit
       trackPromoEvent('visit', 'page_view')
 
@@ -1417,8 +1440,31 @@ export default function FeelYoung() {
                            {/* BUY NOW Button */}
                            <button
                               onClick={async () => {
-                                 await trackPromoEvent('click', 'buy_now', { package: pkg.title, checkoutUrl: pkg.checkoutUrl });
-                                 window.open(pkg.checkoutUrl, '_blank');
+                                 // Retrieve tracking parameters from sessionStorage
+                                 const utmSource = sessionStorage.getItem('utm_source');
+                                 const utmMedium = sessionStorage.getItem('utm_medium');
+                                 const utmCampaign = sessionStorage.getItem('utm_campaign');
+                                 const utmContent = sessionStorage.getItem('utm_content');
+                                 const utmTerm = sessionStorage.getItem('utm_term');
+                                 const source = sessionStorage.getItem('source');
+
+                                 // Append UTM parameters dynamically to the checkout URL
+                                 let finalCheckoutUrl = pkg.checkoutUrl;
+                                 try {
+                                    const urlObj = new URL(finalCheckoutUrl);
+                                    if (utmSource) urlObj.searchParams.set('utm_source', utmSource);
+                                    if (utmMedium) urlObj.searchParams.set('utm_medium', utmMedium);
+                                    if (utmCampaign) urlObj.searchParams.set('utm_campaign', utmCampaign);
+                                    if (utmContent) urlObj.searchParams.set('utm_content', utmContent);
+                                    if (utmTerm) urlObj.searchParams.set('utm_term', utmTerm);
+                                    if (source) urlObj.searchParams.set('source', source);
+                                    finalCheckoutUrl = urlObj.toString();
+                                 } catch (e) {
+                                    console.warn("Invalid checkout URL, using original.", e);
+                                 }
+
+                                 await trackPromoEvent('click', 'buy_now', { package: pkg.title, checkoutUrl: finalCheckoutUrl });
+                                 window.open(finalCheckoutUrl, '_blank');
                               }}
                               className="w-full py-6 rounded-full bg-[#0D47A1] text-white font-black text-sm tracking-[0.1em] shadow-xl hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-3 mb-6 group"
                            >
