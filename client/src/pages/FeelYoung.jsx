@@ -344,7 +344,7 @@ export default function FeelYoung() {
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                               onClick={scrollToProducts}
-                              className="bg-[#0D47A1] text-white font-bold text-base md:text-lg px-10 md:px-12 py-3.5 md:py-4 rounded-full uppercase tracking-[0.05em] shadow-md hover:bg-[#111827] transition-all duration-300 flex items-center justify-center w-auto"
+                              className="bg-[#0D47A1] text-white font-bold text-sm md:text-lg px-5 md:px-12 py-3.5 md:py-4 rounded-full uppercase tracking-[0.05em] shadow-md hover:bg-[#111827] transition-all duration-300 flex items-center justify-center w-auto whitespace-nowrap"
                            >
                               <span>Try ChronoNAD+</span>
                            </motion.button>
