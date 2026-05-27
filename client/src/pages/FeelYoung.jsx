@@ -356,12 +356,12 @@ export default function FeelYoung() {
                                  await trackPromoEvent('click', 'amazon_click', { section: 'hero' });
                                  window.open('https://www.amazon.com/dp/B0G14CTG1Q/?maas=maas_adg_83D2472A4C6C1447DA2E6886D1DB7BD3_afap_abs&ref_=aa_maas&tag=maas', '_blank');
                               }}
-                              className="transition-all duration-300 flex items-center justify-center overflow-hidden h-[52px] md:h-[60px] w-[150px] md:w-[180px] relative hover:brightness-105 rounded-full"
+                              className="transition-all duration-300 flex items-center justify-center overflow-hidden h-[44px] md:h-[50px] w-[136px] md:w-[155px] relative hover:brightness-105 rounded-full"
                            >
                               <img 
                                  src="/Amazon Buy Now Button.png" 
                                  alt="Buy on Amazon" 
-                                 className="absolute w-[125%] h-auto max-w-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain"
+                                 className="absolute w-[112%] h-auto max-w-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain"
                               />
                            </motion.button>
                         </div>
@@ -1353,20 +1353,20 @@ export default function FeelYoung() {
                   </h2>
                   <span className="text-xs md:text-sm font-black text-gray-400 uppercase tracking-[0.2em] mt-2">OR ORDER ON AMAZON</span>
                   <motion.button
-                     whileHover={{ scale: 1.05 }}
-                     whileTap={{ scale: 0.95 }}
-                     onClick={async () => {
-                        await trackPromoEvent('click', 'amazon_click', { section: 'pricing' });
-                        window.open('https://www.amazon.com/dp/B0G14CTG1Q/?maas=maas_adg_83D2472A4C6C1447DA2E6886D1DB7BD3_afap_abs&ref_=aa_maas&tag=maas', '_blank');
-                     }}
-                     className="transition-all duration-300 flex items-center justify-center overflow-hidden h-[52px] md:h-[60px] w-[150px] md:w-[180px] relative hover:brightness-105 rounded-full shadow-md"
-                  >
-                     <img 
-                        src="/Amazon Buy Now Button.png" 
-                        alt="Buy on Amazon" 
-                        className="absolute w-[125%] h-auto max-w-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain"
-                     />
-                  </motion.button>
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={async () => {
+                         await trackPromoEvent('click', 'amazon_click', { section: 'pricing' });
+                         window.open('https://www.amazon.com/dp/B0G14CTG1Q/?maas=maas_adg_83D2472A4C6C1447DA2E6886D1DB7BD3_afap_abs&ref_=aa_maas&tag=maas', '_blank');
+                      }}
+                      className="transition-all duration-300 flex items-center justify-center overflow-hidden h-[44px] md:h-[50px] w-[136px] md:w-[155px] relative hover:brightness-105 rounded-full shadow-md"
+                   >
+                      <img 
+                         src="/Amazon Buy Now Button.png" 
+                         alt="Buy on Amazon" 
+                         className="absolute w-[112%] h-auto max-w-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain"
+                      />
+                   </motion.button>
                </div>
 
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 max-w-7xl mx-auto items-stretch">
