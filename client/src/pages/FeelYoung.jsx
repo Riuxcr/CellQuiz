@@ -356,9 +356,13 @@ export default function FeelYoung() {
                                  await trackPromoEvent('click', 'amazon_click', { section: 'hero' });
                                  window.open('https://www.amazon.com/dp/B0G14CTG1Q/?maas=maas_adg_83D2472A4C6C1447DA2E6886D1DB7BD3_afap_abs&ref_=aa_maas&tag=maas', '_blank');
                               }}
-                              className="bg-[#FF9900] text-black font-bold text-base md:text-lg px-10 md:px-12 py-3.5 md:py-4 rounded-full uppercase tracking-[0.05em] shadow-md hover:bg-black hover:text-white transition-all duration-300 flex items-center justify-center w-auto"
+                              className="transition-all duration-300 flex items-center justify-center overflow-hidden h-[52px] md:h-[60px] w-[150px] md:w-[180px] relative hover:brightness-105 rounded-full"
                            >
-                              <span>Buy on Amazon</span>
+                              <img 
+                                 src="/Amazon Buy Now Button.png" 
+                                 alt="Buy on Amazon" 
+                                 className="absolute w-[125%] h-auto max-w-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain"
+                              />
                            </motion.button>
                         </div>
                      </div>
