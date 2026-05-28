@@ -18,6 +18,11 @@ export default function AdminAnalytics() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024)
   const [pathFilter, setPathFilter] = useState('') // '' (All), 'Skincare', 'Longevity'
 
+  const [promoStartDate, setPromoStartDate] = useState('')
+  const [promoEndDate, setPromoEndDate] = useState('')
+  const [promoUtmSource, setPromoUtmSource] = useState('')
+  const [promoUtmCampaign, setPromoUtmCampaign] = useState('')
+
   useEffect(() => {
      const params = new URLSearchParams(location.search)
      const tab = params.get('tab') || 'overview'
@@ -40,14 +45,20 @@ export default function AdminAnalytics() {
     fetchAnalytics()
     const interval = setInterval(fetchAnalytics, 30000)
     return () => clearInterval(interval)
-  }, [pathFilter])
+  }, [pathFilter, promoStartDate, promoEndDate, promoUtmSource, promoUtmCampaign])
 
   const fetchAnalytics = async () => {
     try {
       const token = localStorage.getItem('admin_token')
       const res = await axios.get(`${API_BASE_URL}/api/quiz/analytics`, {
         headers: { Authorization: token },
-        params: { goal: pathFilter }
+        params: { 
+          goal: pathFilter,
+          promoStartDate,
+          promoEndDate,
+          promoUtmSource,
+          promoUtmCampaign
+        }
       })
       setData(res.data.data)
     } catch (err) {
@@ -514,6 +525,9 @@ export default function AdminAnalytics() {
                   uniqueBuyNowClickers: 0
                };
 
+               const allCampaigns = data?.promoStats?.allCampaigns || [];
+               const allSources = data?.promoStats?.allSources || [];
+
                const conversionRate = promoData.uniqueViews > 0 
                   ? ((promoData.uniqueBuyNowClickers / promoData.uniqueViews) * 100).toFixed(1)
                   : '0.0';
@@ -558,9 +572,108 @@ export default function AdminAnalytics() {
                      className="space-y-8 md:space-y-12 pb-32"
                   >
                      {/* Campaign Title Banner */}
-                     <div className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.01)] border border-gray-100/50">
-                        <h3 className="text-xl md:text-2xl font-black text-gray-900">Feel Young Promo Campaign</h3>
-                        <p className="text-xs md:text-sm text-gray-400 mt-1">Track Vercel landing page views and outbound Shopify checkout clicks</p>
+                     <div className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.01)] border border-gray-100/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                           <h3 className="text-xl md:text-2xl font-black text-gray-900">Feel Young Promo Campaign</h3>
+                           <p className="text-xs md:text-sm text-gray-400 mt-1">Track Vercel landing page views and outbound Shopify checkout clicks</p>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2">
+                           <span className="text-[10px] font-black uppercase text-gray-400">Platform Active Filters:</span>
+                           {promoUtmSource && (
+                              <span className="bg-blue-50 text-blue-600 text-[10px] font-bold px-3 py-1 rounded-full border border-blue-100">
+                                 Source: {promoUtmSource === 'meta' ? 'Meta Ads' : promoUtmSource.toUpperCase()}
+                              </span>
+                           )}
+                           {promoUtmCampaign && (
+                              <span className="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-3 py-1 rounded-full border border-indigo-100">
+                                 Campaign: {promoUtmCampaign}
+                              </span>
+                           )}
+                           {(promoStartDate || promoEndDate) && (
+                              <span className="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-3 py-1 rounded-full border border-emerald-100">
+                                 📅 {promoStartDate || '...'} to {promoEndDate || '...'}
+                              </span>
+                           )}
+                           {!promoUtmSource && !promoUtmCampaign && !promoStartDate && !promoEndDate && (
+                              <span className="bg-gray-50 text-gray-400 text-[10px] font-bold px-3 py-1 rounded-full border border-gray-100">
+                                 None (All Traffic)
+                              </span>
+                           )}
+                        </div>
+                     </div>
+
+                     {/* Sleek Filter Control Panel */}
+                     <div className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_24px_80px_rgba(0,0,0,0.02)] border border-gray-100/40 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {/* Start Date */}
+                        <div className="flex flex-col gap-2">
+                           <span className="text-[10px] font-black uppercase tracking-wider text-gray-400">Start Date</span>
+                           <input 
+                              type="date" 
+                              value={promoStartDate} 
+                              onChange={(e) => setPromoStartDate(e.target.value)} 
+                              className="w-full px-4 py-3 rounded-xl border border-gray-100 text-sm font-medium focus:ring-2 focus:ring-blue-600 focus:outline-none bg-gray-50/50 hover:bg-white transition-all cursor-pointer"
+                           />
+                        </div>
+
+                        {/* End Date */}
+                        <div className="flex flex-col gap-2">
+                           <span className="text-[10px] font-black uppercase tracking-wider text-gray-400">End Date</span>
+                           <input 
+                              type="date" 
+                              value={promoEndDate} 
+                              onChange={(e) => setPromoEndDate(e.target.value)} 
+                              className="w-full px-4 py-3 rounded-xl border border-gray-100 text-sm font-medium focus:ring-2 focus:ring-blue-600 focus:outline-none bg-gray-50/50 hover:bg-white transition-all cursor-pointer"
+                           />
+                        </div>
+
+                        {/* Ads Source */}
+                        <div className="flex flex-col gap-2">
+                           <span className="text-[10px] font-black uppercase tracking-wider text-gray-400">Ad Platform</span>
+                           <select 
+                              value={promoUtmSource} 
+                              onChange={(e) => setPromoUtmSource(e.target.value)} 
+                              className="w-full px-4 py-3 rounded-xl border border-gray-100 text-sm font-medium focus:ring-2 focus:ring-blue-600 focus:outline-none bg-gray-50/50 hover:bg-white transition-all cursor-pointer"
+                           >
+                              <option value="">All Platforms</option>
+                              <option value="meta">Meta Ads Only (Facebook/Instagram)</option>
+                              {allSources.filter(s => typeof s === 'string' && !['facebook', 'instagram', 'meta', 'fb', 'ig'].includes(s.toLowerCase())).map(src => (
+                                 <option key={src} value={src}>{src.toUpperCase()}</option>
+                              ))}
+                           </select>
+                        </div>
+
+                        {/* Campaigns */}
+                        <div className="flex flex-col gap-2">
+                           <span className="text-[10px] font-black uppercase tracking-wider text-gray-400">Ad Campaign</span>
+                           <select 
+                              value={promoUtmCampaign} 
+                              onChange={(e) => setPromoUtmCampaign(e.target.value)} 
+                              className="w-full px-4 py-3 rounded-xl border border-gray-100 text-sm font-medium focus:ring-2 focus:ring-blue-600 focus:outline-none bg-gray-50/50 hover:bg-white transition-all cursor-pointer"
+                           >
+                              <option value="">All Campaigns</option>
+                              {allCampaigns.map(camp => (
+                                 <option key={camp} value={camp}>{camp}</option>
+                              ))}
+                           </select>
+                        </div>
+
+                        {/* Reset Filters Option if any filter is active */}
+                        {(promoStartDate || promoEndDate || promoUtmSource || promoUtmCampaign) && (
+                           <div className="sm:col-span-2 lg:col-span-4 flex justify-end">
+                              <button 
+                                 onClick={() => {
+                                    setPromoStartDate('');
+                                    setPromoEndDate('');
+                                    setPromoUtmSource('');
+                                    setPromoUtmCampaign('');
+                                 }}
+                                 className="px-5 py-2.5 bg-red-50 text-red-600 text-xs font-black uppercase tracking-wider rounded-full hover:bg-red-100 transition-all flex items-center gap-2"
+                              >
+                                 <span>Clear Filters</span>
+                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                              </button>
+                           </div>
+                        )}
                      </div>
 
                      {/* Stats Grid */}
@@ -637,16 +750,17 @@ export default function AdminAnalytics() {
                            <div className="flex-1 overflow-y-auto pr-2 space-y-4 no-scrollbar">
                               {data?.promoStats?.recentActivity && data.promoStats.recentActivity.length > 0 ? (
                                  data.promoStats.recentActivity
-                                    .filter(e => e.page === 'feel-young')
+                                    .filter(e => e && e.page === 'feel-young')
                                     .map((event, idx) => {
                                        const isBuyNow = event.element === 'buy_now';
                                        const isVisit = event.element === 'page_view';
                                        const isSection = event.element === 'section_view';
-                                       const timeStr = new Date(event.createdAt).toLocaleTimeString([], { 
+                                       const dateObj = event.createdAt ? new Date(event.createdAt) : null;
+                                       const timeStr = dateObj && !isNaN(dateObj.getTime()) ? dateObj.toLocaleTimeString([], { 
                                           hour: '2-digit', 
                                           minute: '2-digit',
                                           second: '2-digit'
-                                       });
+                                       }) : 'Unknown';
 
                                        return (
                                           <div 
@@ -879,6 +993,104 @@ export default function AdminAnalytics() {
                            </section>
                         </div>
                      </div>
+
+                     {/* Daily Clicks & Views Performance Breakdown */}
+                     <section className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_24px_80px_rgba(0,0,0,0.02)] border border-gray-100/40">
+                        <div className="mb-6 md:mb-8">
+                           <h4 className="text-xs font-black uppercase tracking-[0.3em] text-blue-600 mb-2">Daily Performance Trends</h4>
+                           <h3 className="text-xl md:text-2xl font-black tracking-tight text-gray-900">Breakdown by Specific Dates</h3>
+                           <p className="text-xs text-gray-400 mt-1">See exactly on which specific dates your clicks, impressions, and conversions turned up based on the active filters.</p>
+                        </div>
+
+                        <div className="overflow-x-auto no-scrollbar">
+                           {(() => {
+                              const dailyDataMap = {};
+                              const recentEvents = data?.promoStats?.recentActivity || [];
+                              recentEvents
+                                 .filter(e => e && e.page === 'feel-young')
+                                 .forEach(event => {
+                                    if (!event || !event.createdAt) return;
+                                    const dateObj = new Date(event.createdAt);
+                                    if (isNaN(dateObj.getTime())) return;
+                                    const dateStr = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                                    if (!dailyDataMap[dateStr]) {
+                                       dailyDataMap[dateStr] = { date: dateStr, rawDate: dateObj, views: 0, clicks: 0, buyNow: 0 };
+                                    }
+                                    if (event.element === 'page_view') {
+                                       dailyDataMap[dateStr].views += 1;
+                                    }
+                                    if (event.action === 'click') {
+                                       dailyDataMap[dateStr].clicks += 1;
+                                       if (event.element === 'buy_now') {
+                                          dailyDataMap[dateStr].buyNow += 1;
+                                       }
+                                    }
+                                 });
+
+                              const dailyBreakdown = Object.values(dailyDataMap).sort((a, b) => b.rawDate - a.rawDate);
+
+                              if (dailyBreakdown.length === 0) {
+                                 return (
+                                    <div className="py-12 flex flex-col items-center justify-center text-center opacity-40">
+                                       <span className="text-3xl mb-3">📅</span>
+                                       <p className="text-sm font-black text-gray-800">No date-specific logs match your filter</p>
+                                       <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Try selecting a different date range or ad platform</p>
+                                    </div>
+                                 );
+                              }
+
+                              return (
+                                 <table className="w-full text-left border-collapse">
+                                    <thead>
+                                       <tr className="border-b border-gray-100 text-[10px] font-black uppercase tracking-wider text-gray-400">
+                                          <th className="py-4 pl-4">Date</th>
+                                          <th className="py-4">Impressions (Views)</th>
+                                          <th className="py-4">Total Clicks</th>
+                                          <th className="py-4 text-center">Buy Now Redirects</th>
+                                          <th className="py-4 pr-4">Click-Through Efficiency</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-100">
+                                       {dailyBreakdown.map((day, idx) => {
+                                          const ctr = day.views > 0 ? ((day.clicks / day.views) * 100).toFixed(1) : '0.0';
+                                          return (
+                                             <tr key={idx} className="hover:bg-gray-50/50 transition-colors text-xs group">
+                                                <td className="py-4 pl-4 font-black text-gray-800">{day.date}</td>
+                                                <td className="py-4 font-bold text-gray-600">
+                                                   <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-black">
+                                                      👁️ {day.views} views
+                                                   </span>
+                                                </td>
+                                                <td className="py-4 font-bold text-gray-600">
+                                                   <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-[10px] font-black">
+                                                      🖱️ {day.clicks} clicks
+                                                   </span>
+                                                </td>
+                                                <td className="py-4 text-center">
+                                                   <span className="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-black">
+                                                      🛍️ {day.buyNow} checkout redirects
+                                                   </span>
+                                                </td>
+                                                <td className="py-4 pr-4">
+                                                   <div className="flex items-center gap-2">
+                                                      <div className="h-1.5 w-20 bg-gray-100 rounded-full overflow-hidden shrink-0">
+                                                         <div 
+                                                            className="h-full bg-blue-600 rounded-full" 
+                                                            style={{ width: `${Math.min(parseFloat(ctr) * 2, 100)}%` }} 
+                                                         />
+                                                      </div>
+                                                      <span className="text-[10px] font-black text-gray-900">{ctr}% CTR</span>
+                                                   </div>
+                                                </td>
+                                             </tr>
+                                          );
+                                       })}
+                                    </tbody>
+                                 </table>
+                              );
+                           })()}
+                        </div>
+                     </section>
                   </motion.div>
                );
             })()}

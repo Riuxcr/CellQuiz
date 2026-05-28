@@ -260,7 +260,30 @@ router.get('/analytics', async (req, res) => {
     }));
 
     // Aggregate Promo Analytics (Feel Young & Harmony)
-    const promoEvents = await PromoAnalytics.find({}).sort({ createdAt: -1 });
+    const { promoStartDate, promoEndDate, promoUtmSource, promoUtmCampaign } = req.query;
+    let promoQuery = {};
+
+    if (promoUtmSource) {
+      if (promoUtmSource === 'meta') {
+        promoQuery['metadata.utm_source'] = { $in: ['facebook', 'instagram', 'meta', 'fb', 'ig'] };
+      } else {
+        promoQuery['metadata.utm_source'] = promoUtmSource;
+      }
+    }
+
+    if (promoUtmCampaign) {
+      promoQuery['metadata.utm_campaign'] = promoUtmCampaign;
+    }
+
+    if (promoStartDate || promoEndDate) {
+      promoQuery.createdAt = {};
+      if (promoStartDate) promoQuery.createdAt.$gte = new Date(promoStartDate);
+      if (promoEndDate) promoQuery.createdAt.$lte = new Date(promoEndDate + 'T23:59:59.999Z');
+    }
+
+    const promoEvents = await PromoAnalytics.find(promoQuery).sort({ createdAt: -1 });
+    const allCampaigns = await PromoAnalytics.distinct('metadata.utm_campaign', { 'metadata.utm_campaign': { $ne: null, $ne: '' } });
+    const allSources = await PromoAnalytics.distinct('metadata.utm_source', { 'metadata.utm_source': { $ne: null, $ne: '' } });
 
     const compilePromoStats = (events) => {
       const totalViews = events.filter(e => e.element === 'page_view').length;
@@ -355,7 +378,11 @@ router.get('/analytics', async (req, res) => {
         destSplit,
         questionStats,
         activityFeed,
-        promoStats
+        promoStats: {
+          ...promoStats,
+          allCampaigns,
+          allSources
+        }
       }
     });
   } catch (err) {
