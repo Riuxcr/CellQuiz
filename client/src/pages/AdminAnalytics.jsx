@@ -525,7 +525,7 @@ export default function AdminAnalytics() {
                   uniqueBuyNowClickers: 0
                };
 
-               const allCampaigns = data?.promoStats?.allCampaigns || [];
+               const allCampaigns = (data?.promoStats?.allCampaigns || []).filter(camp => camp !== 'feel_young_promo');
                const allSources = data?.promoStats?.allSources || [];
 
                const conversionRate = promoData.uniqueViews > 0 
@@ -993,104 +993,6 @@ export default function AdminAnalytics() {
                            </section>
                         </div>
                      </div>
-
-                     {/* Daily Clicks & Views Performance Breakdown */}
-                     <section className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_24px_80px_rgba(0,0,0,0.02)] border border-gray-100/40">
-                        <div className="mb-6 md:mb-8">
-                           <h4 className="text-xs font-black uppercase tracking-[0.3em] text-blue-600 mb-2">Daily Performance Trends</h4>
-                           <h3 className="text-xl md:text-2xl font-black tracking-tight text-gray-900">Breakdown by Specific Dates</h3>
-                           <p className="text-xs text-gray-400 mt-1">See exactly on which specific dates your clicks, impressions, and conversions turned up based on the active filters.</p>
-                        </div>
-
-                        <div className="overflow-x-auto no-scrollbar">
-                           {(() => {
-                              const dailyDataMap = {};
-                              const recentEvents = data?.promoStats?.recentActivity || [];
-                              recentEvents
-                                 .filter(e => e && e.page === 'feel-young')
-                                 .forEach(event => {
-                                    if (!event || !event.createdAt) return;
-                                    const dateObj = new Date(event.createdAt);
-                                    if (isNaN(dateObj.getTime())) return;
-                                    const dateStr = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                                    if (!dailyDataMap[dateStr]) {
-                                       dailyDataMap[dateStr] = { date: dateStr, rawDate: dateObj, views: 0, clicks: 0, buyNow: 0 };
-                                    }
-                                    if (event.element === 'page_view') {
-                                       dailyDataMap[dateStr].views += 1;
-                                    }
-                                    if (event.action === 'click') {
-                                       dailyDataMap[dateStr].clicks += 1;
-                                       if (event.element === 'buy_now') {
-                                          dailyDataMap[dateStr].buyNow += 1;
-                                       }
-                                    }
-                                 });
-
-                              const dailyBreakdown = Object.values(dailyDataMap).sort((a, b) => b.rawDate - a.rawDate);
-
-                              if (dailyBreakdown.length === 0) {
-                                 return (
-                                    <div className="py-12 flex flex-col items-center justify-center text-center opacity-40">
-                                       <span className="text-3xl mb-3">📅</span>
-                                       <p className="text-sm font-black text-gray-800">No date-specific logs match your filter</p>
-                                       <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Try selecting a different date range or ad platform</p>
-                                    </div>
-                                 );
-                              }
-
-                              return (
-                                 <table className="w-full text-left border-collapse">
-                                    <thead>
-                                       <tr className="border-b border-gray-100 text-[10px] font-black uppercase tracking-wider text-gray-400">
-                                          <th className="py-4 pl-4">Date</th>
-                                          <th className="py-4">Impressions (Views)</th>
-                                          <th className="py-4">Total Clicks</th>
-                                          <th className="py-4 text-center">Buy Now Redirects</th>
-                                          <th className="py-4 pr-4">Click-Through Efficiency</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-gray-100">
-                                       {dailyBreakdown.map((day, idx) => {
-                                          const ctr = day.views > 0 ? ((day.clicks / day.views) * 100).toFixed(1) : '0.0';
-                                          return (
-                                             <tr key={idx} className="hover:bg-gray-50/50 transition-colors text-xs group">
-                                                <td className="py-4 pl-4 font-black text-gray-800">{day.date}</td>
-                                                <td className="py-4 font-bold text-gray-600">
-                                                   <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-black">
-                                                      👁️ {day.views} views
-                                                   </span>
-                                                </td>
-                                                <td className="py-4 font-bold text-gray-600">
-                                                   <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-[10px] font-black">
-                                                      🖱️ {day.clicks} clicks
-                                                   </span>
-                                                </td>
-                                                <td className="py-4 text-center">
-                                                   <span className="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-black">
-                                                      🛍️ {day.buyNow} checkout redirects
-                                                   </span>
-                                                </td>
-                                                <td className="py-4 pr-4">
-                                                   <div className="flex items-center gap-2">
-                                                      <div className="h-1.5 w-20 bg-gray-100 rounded-full overflow-hidden shrink-0">
-                                                         <div 
-                                                            className="h-full bg-blue-600 rounded-full" 
-                                                            style={{ width: `${Math.min(parseFloat(ctr) * 2, 100)}%` }} 
-                                                         />
-                                                      </div>
-                                                      <span className="text-[10px] font-black text-gray-900">{ctr}% CTR</span>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          );
-                                       })}
-                                    </tbody>
-                                 </table>
-                              );
-                           })()}
-                        </div>
-                     </section>
                   </motion.div>
                );
             })()}

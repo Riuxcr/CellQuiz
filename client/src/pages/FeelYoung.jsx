@@ -22,31 +22,33 @@ export default function FeelYoung() {
 
     const trackPromoEvent = async (action, element, metadata = {}) => {
       try {
+         // 1. Filter out automated ad crawlers, bots, and speed-test engines
+         const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|facebookexternalhit|facebookplatform|mediapartners-google/i.test(navigator.userAgent)
+         if (isBot) return; // Ignore bot views to align data with real Meta clicks
+
+         // 2. Smart Session Deduplication (30-minute local session lock)
          let sessId = sessionStorage.getItem('feel_young_sess')
          if (!sessId) {
-            sessId = `sess_${Math.random().toString(36).substring(2, 11)}_${Date.now()}`
-            sessionStorage.setItem('feel_young_sess', sessId)
-         }
+            const cachedSess = localStorage.getItem('feel_young_sess')
+            const cachedTime = localStorage.getItem('feel_young_sess_time')
+            const now = Date.now()
 
-         let loc = sessionStorage.getItem('feel_young_loc')
-         let ip = sessionStorage.getItem('feel_young_ip')
-
-         if (!loc) {
-            try {
-               const geoRes = await axios.get('https://ipapi.co/json/')
-               if (geoRes.data) {
-                  const { city, region, country_name, ip: clientIp } = geoRes.data
-                  loc = `${city ? city + ', ' : ''}${region ? region + ', ' : ''}${country_name || 'Unknown'}`
-                  ip = clientIp || ''
-                  sessionStorage.setItem('feel_young_loc', loc)
-                  sessionStorage.setItem('feel_young_ip', ip)
-               }
-            } catch (geoErr) {
-               console.warn('Geocoding error:', geoErr)
-               loc = 'Unknown'
-               ip = ''
+            // If session exists in localStorage and was created less than 30 minutes ago, reuse it
+            if (cachedSess && cachedTime && (now - Number(cachedTime) < 30 * 60 * 1000)) {
+               sessId = cachedSess
+               sessionStorage.setItem('feel_young_sess', sessId)
+               localStorage.setItem('feel_young_sess_time', String(now)) // Bump expiration
+            } else {
+               // Create a brand new session
+               sessId = `sess_${Math.random().toString(36).substring(2, 11)}_${now}`
+               sessionStorage.setItem('feel_young_sess', sessId)
+               localStorage.setItem('feel_young_sess', sessId)
+               localStorage.setItem('feel_young_sess_time', String(now))
             }
          }
+
+         const loc = sessionStorage.getItem('feel_young_loc') || 'Unknown'
+         const ip = sessionStorage.getItem('feel_young_ip') || ''
 
          // Retrieve any tracking parameters from sessionStorage to attach to metadata
          const tracking = {
@@ -65,8 +67,8 @@ export default function FeelYoung() {
             page: pageName,
             action,
             element,
-            location: loc || 'Unknown',
-            ip: ip || '',
+            location: loc,
+            ip: ip,
             metadata: {
                ...metadata,
                ...tracking
@@ -78,6 +80,25 @@ export default function FeelYoung() {
    }
 
    useEffect(() => {
+      // 1. Fetch location in the background (Non-blocking check-in)
+      const loc = sessionStorage.getItem('feel_young_loc')
+      if (!loc) {
+         axios.get('https://ipapi.co/json/')
+            .then(geoRes => {
+               if (geoRes.data) {
+                  const { city, region, country_name, ip: clientIp } = geoRes.data
+                  const resolvedLoc = `${city ? city + ', ' : ''}${region ? region + ', ' : ''}${country_name || 'Unknown'}`
+                  sessionStorage.setItem('feel_young_loc', resolvedLoc)
+                  sessionStorage.setItem('feel_young_ip', clientIp || '')
+               }
+            })
+            .catch(geoErr => {
+               console.warn('Geocoding error in background:', geoErr)
+               sessionStorage.setItem('feel_young_loc', 'Unknown')
+               sessionStorage.setItem('feel_young_ip', '')
+            })
+      }
+
       // Parse and store UTM tracking parameters from URL
       const searchParams = new URLSearchParams(window.location.search)
       const params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'source']
@@ -88,10 +109,10 @@ export default function FeelYoung() {
          }
       })
 
-      // 1. Log page view visit
+      // 2. Log page view visit (Fires immediately!)
       trackPromoEvent('visit', 'page_view')
 
-      // 2. Track general page interaction (first click on the page)
+      // 3. Track general page interaction (first click on the page)
       const handleFirstClick = () => {
          const hasClicked = sessionStorage.getItem('feel_young_clicked')
          if (!hasClicked) {
